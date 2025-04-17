@@ -11,3 +11,8 @@ conda activate jobsync
 ```
 pip install -r requirements.txt
 ```
+4. Create a .env file based on .env.example
+5. Run the application
+```
+python app.py
+```
