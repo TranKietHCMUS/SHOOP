@@ -1,0 +1,2304 @@
+{
+    "stores": [
+        {
+            "address": "23I Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh 100000",
+            "latitude": 10.7787418,
+            "longitude": 106.6417313
+        },
+        {
+            "address": "459 Đ. Âu Cơ, Phú Trung, Tân Phú, Hồ Chí Minh 72016",
+            "latitude": 10.7793713,
+            "longitude": 106.6445749
+        },
+        {
+            "address": "40 Hoa Bằng, Tân Sơn Nhì, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7984275,
+            "longitude": 106.6277419
+        },
+        {
+            "address": "173/23/100 Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7719492,
+            "longitude": 106.6406564
+        },
+        {
+            "address": "111 Kênh Nước Đen, Tân Quý, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7894794,
+            "longitude": 106.6276184
+        },
+        {
+            "address": "04 Hoàng Thiều Hoa, Phú Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.772471,
+            "longitude": 106.628576
+        },
+        {
+            "address": "219 Tây Thạnh, Tân Phú, Hồ Chí Minh 72009",
+            "latitude": 10.8130721,
+            "longitude": 106.6229812
+        },
+        {
+            "address": "987/5 Đ. Trường Chinh, Phường 15, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.8225853,
+            "longitude": 106.6300235
+        },
+        {
+            "address": "9 Phạm Vấn, Phú Thọ Hoà, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.784381,
+            "longitude": 106.6244159
+        },
+        {
+            "address": "63 Đ. Âu Cơ, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.774688,
+            "longitude": 106.6500125
+        },
+        {
+            "address": "958/39 Đ. Âu Cơ, Phường 14, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7977149,
+            "longitude": 106.639163
+        },
+        {
+            "address": "137 Lương Thế Vinh, Tân Thới Hoà, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.762153,
+            "longitude": 106.628855
+        },
+        {
+            "address": "318 Đ. Âu Cơ, Phường 10, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7764877,
+            "longitude": 106.6468284
+        },
+        {
+            "address": "106 108 Tân Sơn Hoà, Phường 3, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7967128,
+            "longitude": 106.6625213
+        },
+        {
+            "address": "174A Trịnh Đình Trọng, Phú Trung, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7754602,
+            "longitude": 106.642807
+        },
+        {
+            "address": "11 Trần Quang Cơ, Phú Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7776238,
+            "longitude": 106.6270136
+        },
+        {
+            "address": "64 - 66 Huỳnh Thiện Lộc, Phú Trung, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.779829,
+            "longitude": 106.637828
+        },
+        {
+            "address": "121 Lê Niệm, Phú Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7799654,
+            "longitude": 106.6255722
+        },
+        {
+            "address": "15 Đ. Nguyễn Quang Bích, Phường 13, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8046538,
+            "longitude": 106.6464282
+        },
+        {
+            "address": "9A Thoại Ngọc Hầu, Phú Trung, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.784191,
+            "longitude": 106.639422
+        },
+        {
+            "address": "231 Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.778586,
+            "longitude": 106.6418406
+        },
+        {
+            "address": "Chung Cư, Bàu Cát 2 Ni Sư Huỳnh Liên, Phường 10, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7861177,
+            "longitude": 106.6450363
+        },
+        {
+            "address": "63/13 Đ. Gò Dầu, Tân Sơn Nhì, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7950117,
+            "longitude": 106.627249
+        },
+        {
+            "address": "278 Đ. Hòa Bình, Phú Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7720216,
+            "longitude": 106.6271774
+        },
+        {
+            "address": "122-124 Ni Sư Huỳnh Liên, Phường 10, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.78374,
+            "longitude": 106.647044
+        },
+        {
+            "address": "36 Đ. Kinh Dương Vương, Phường 13, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7536313,
+            "longitude": 106.6300304
+        },
+        {
+            "address": "134 Hẻm 13 Trần Văn Hoàng, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7779462,
+            "longitude": 106.6517587
+        },
+        {
+            "address": "271 Bàu Cát, Phường 12, Tân Bình, Hồ Chí Minh 72111",
+            "latitude": 10.791325,
+            "longitude": 106.64549
+        },
+        {
+            "address": "702 Đ. Lũy Bán Bích, Tân Thành, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7902984,
+            "longitude": 106.6374977
+        },
+        {
+            "address": "4 Đ. Lê Văn Quới, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.774451,
+            "longitude": 106.6198665
+        },
+        {
+            "address": "39 Đường D9, Tây Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.8103003,
+            "longitude": 106.625111
+        },
+        {
+            "address": "83 Đ. Trần Hưng Đạo, P, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7954871,
+            "longitude": 106.6349912
+        },
+        {
+            "address": "1 Nguyễn Sỹ Sách, Phường 15, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8220021,
+            "longitude": 106.6383424
+        },
+        {
+            "address": "27 Ỷ Lan, Hòa Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.775391,
+            "longitude": 106.632259
+        },
+        {
+            "address": "120-122 Ca Văn Thỉnh, Phường 11, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7901181,
+            "longitude": 106.643508
+        },
+        {
+            "address": "36 Lê Quốc Trinh, P, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.786897,
+            "longitude": 106.623356
+        },
+        {
+            "address": "47-49-51 Trần Văn Ơn, Tân Sơn Nhì, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.801284,
+            "longitude": 106.630882
+        },
+        {
+            "address": "94 Đ. Số 4, Bình Hưng Hoà A, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.786392,
+            "longitude": 106.606565
+        },
+        {
+            "address": "300 Đ. Vườn Lài, P, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.788169,
+            "longitude": 106.624926
+        },
+        {
+            "address": "314, Phú Thọ Hoà, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.784764,
+            "longitude": 106.626903
+        },
+        {
+            "address": "152 Hoàng Hoa Thám, Phường 12, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8066016,
+            "longitude": 106.6480214
+        },
+        {
+            "address": "Căn Hộ Duplex, Chung Cư Topaz Home 2 Block B3, Đường 154 và 138, Phường Tân Phú, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8640852,
+            "longitude": 106.810577
+        },
+        {
+            "address": "Vincom+, Tầng 1 TTTM, Đường P. Quang, Phường 2, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8061859,
+            "longitude": 106.6664355
+        },
+        {
+            "address": "60 Liên khu 10-11, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.767572,
+            "longitude": 106.620513
+        },
+        {
+            "address": "89-91 Phạm Phú Thứ, Phường 11, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.788894,
+            "longitude": 106.647827
+        },
+        {
+            "address": "179A Nghĩa Phát, Phường 6, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7854293,
+            "longitude": 106.6577429
+        },
+        {
+            "address": "151 Lý Thánh Tông, Tân Thới Hoà, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7669303,
+            "longitude": 106.6256049
+        },
+        {
+            "address": "53 Đ. Vườn Lài, Phú Thọ Hoà, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7873684,
+            "longitude": 106.634228
+        },
+        {
+            "address": "42 44 Đường A4, Phường 12, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7999247,
+            "longitude": 106.6496847
+        },
+        {
+            "address": "cửa hàng), Khối A, 16 Đ. Âu Cơ, Phường 14, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7963694,
+            "longitude": 106.6369079
+        },
+        {
+            "address": "34/31 - 34/33 Trần Thái Tông, Phường 15, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8181,
+            "longitude": 106.632
+        },
+        {
+            "address": "31A-33A Đ. Gò Dầu, Tân Quý, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7956743,
+            "longitude": 106.6280594
+        },
+        {
+            "address": "58 Nguyễn Phúc Chu, Phường 158, Tân Bình, Hồ Chí Minh 72109",
+            "latitude": 10.8225005,
+            "longitude": 106.6322385
+        },
+        {
+            "address": "102 Đường Số 29, Khu phố 2, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7567226,
+            "longitude": 106.611821
+        },
+        {
+            "address": "68 Đ. Huỳnh Văn Nghệ, Phường 15, Tân Bình, Hồ Chí Minh 72109",
+            "latitude": 10.8306517,
+            "longitude": 106.6368147
+        },
+        {
+            "address": "109 -111 Kênh Nước Đen, Tân Quý, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7895098,
+            "longitude": 106.6277023
+        },
+        {
+            "address": "39 Thép Mới, Phường 12, Tân Bình, Hồ Chí Minh 72111",
+            "latitude": 10.796756,
+            "longitude": 106.648309
+        },
+        {
+            "address": "39A Hẻm 41 Đội Cung, Phường 11, Quận 11, Hồ Chí Minh 70000",
+            "latitude": 10.7669796,
+            "longitude": 106.6502166
+        },
+        {
+            "address": "219 Tây Thạnh, Tân Phú, Hồ Chí Minh 72009",
+            "latitude": 10.8130781,
+            "longitude": 106.6228241
+        },
+        {
+            "address": "22A - 24 Nguyễn Súy, Tân Quý, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7908158,
+            "longitude": 106.6223822
+        },
+        {
+            "address": "Saigonres Plaza, No 188, Nguyễn Xí, Tầng L2, TTTM Vincom Plaza, Phường 26, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8164319,
+            "longitude": 106.7070034
+        },
+        {
+            "address": "Vincom Center Landmark 81, No 772 Đ. Điện Biên Phủ, Phường 22, Bình Thạnh, Hồ Chí Minh 70000",
+            "latitude": 10.794575,
+            "longitude": 106.7220989
+        },
+        {
+            "address": "1/54 Thanh Đa, Phường 27, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.813122,
+            "longitude": 106.720428
+        },
+        {
+            "address": "602/52 Đ. Điện Biên Phủ, Phường 22, Bình Thạnh, Hồ Chí Minh 008428",
+            "latitude": 10.7979834,
+            "longitude": 106.7176348
+        },
+        {
+            "address": "Đ. D9, Phường 22, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.7886922,
+            "longitude": 106.7178011
+        },
+        {
+            "address": "220/16 Đ. Xô Viết Nghệ Tĩnh, Phường 19, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.7983995,
+            "longitude": 106.711473
+        },
+        {
+            "address": "323-325 Đ. Bùi Hữu Nghĩa, Phường 1, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8001334,
+            "longitude": 106.6992993
+        },
+        {
+            "address": "10 Đường D5, Phường 25, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8066164,
+            "longitude": 106.7122641
+        },
+        {
+            "address": "87 Đ. Nơ Trang Long, Phường 13, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8094914,
+            "longitude": 106.6950181
+        },
+        {
+            "address": "107 Đường số 1, Phường 26, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8113062,
+            "longitude": 106.7061621
+        },
+        {
+            "address": "80 60 Đ. Xô Viết Nghệ Tĩnh, Phường 25, Bình Thạnh, Hồ Chí Minh 700000",
+            "latitude": 10.8113313,
+            "longitude": 106.7182557
+        },
+        {
+            "address": "34 Hoàng Hoa Thám, Phường 7, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8056578,
+            "longitude": 106.6911128
+        },
+        {
+            "address": "637 Đ. Xô Viết Nghệ Tĩnh, Phường 26, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8113817,
+            "longitude": 106.7140334
+        },
+        {
+            "address": "119 Tân Cảng, Phường 25, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8018792,
+            "longitude": 106.7216337
+        },
+        {
+            "address": "1 Trần Văn Khê, Phường 17, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.7932936,
+            "longitude": 106.7052323
+        },
+        {
+            "address": "113-115 Đ. Đặng Thuỳ Trâm, Phường 13, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8293352,
+            "longitude": 106.7027512
+        },
+        {
+            "address": "72 Đ. Lê Thánh Tôn, Bến Nghé, Quận 1, Hồ Chí Minh",
+            "latitude": 10.7782501,
+            "longitude": 106.7020279
+        },
+        {
+            "address": "66 Bình Lợi, Phường 13, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8281945,
+            "longitude": 106.706166
+        },
+        {
+            "address": "City Garden, 59 Đ. Ng. Tất Tố, Phường 19, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.7943254,
+            "longitude": 106.7121185
+        },
+        {
+            "address": "87 Đ. Nơ Trang Long, Phường 13, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8094771,
+            "longitude": 106.694999
+        },
+        {
+            "address": "244 Đ. Điện Biên Phủ, Phường 17, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.7987928,
+            "longitude": 106.7060547
+        },
+        {
+            "address": "24-26 Tân Cảng, Phường 25, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.7995949,
+            "longitude": 106.7209226
+        },
+        {
+            "address": "Tòa Morning Star, 57 QL13, Phường 26, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.81182,
+            "longitude": 106.711853
+        },
+        {
+            "address": "372A Đ. Nơ Trang Long, Phường 13, Bình Thạnh, Hồ Chí Minh 100000",
+            "latitude": 10.818875,
+            "longitude": 106.700839
+        },
+        {
+            "address": "10 Đường D5, Phường 25, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8066159,
+            "longitude": 106.7122669
+        },
+        {
+            "address": "298 Đ. Phan Văn Trị, Phường 11, Bình Thạnh, Hồ Chí Minh 72313",
+            "latitude": 10.8165493,
+            "longitude": 106.6953895
+        },
+        {
+            "address": "208 Đ. Nguyễn Hữu Cảnh, Vinhomes Tân Cảng, Bình Thạnh, Hồ Chí Minh 72324",
+            "latitude": 10.7917036,
+            "longitude": 106.7216069
+        },
+        {
+            "address": "59 Đ. Ng. Tất Tố, Phường 19, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.7941983,
+            "longitude": 106.7117271
+        },
+        {
+            "address": "188 Đ. Trường Sa, Phường 1, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.7944117,
+            "longitude": 106.6949664
+        },
+        {
+            "address": "66/10Đường, Bình Thành, Khu Phố 5, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.8015476,
+            "longitude": 106.5879534
+        },
+        {
+            "address": "Số 649/115C, Đ. Điện Biên Phủ, Phường 25, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8018868,
+            "longitude": 106.7216593
+        },
+        {
+            "address": "tòa The Landmark 6, L6-SH.01A, tầng trệt, Lô B1/720A Đ. Điện Biên Phủ, Vinhomes Tân Cảng, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.7959414,
+            "longitude": 106.7207565
+        },
+        {
+            "address": "Vincom+, Tầng 1 TTTM, Đường P. Quang, Phường 2, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8061859,
+            "longitude": 106.6664355
+        },
+        {
+            "address": "860/80/22 Đ. Xô Viết Nghệ Tĩnh, Phường 25, Bình Thạnh, Hồ Chí Minh 700000",
+            "latitude": 10.8115173,
+            "longitude": 106.7181368
+        },
+        {
+            "address": "685/32 - 685/30/1 Đ. Xô Viết Nghệ Tĩnh, Phường 26, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8125525,
+            "longitude": 106.7153091
+        },
+        {
+            "address": "Chung cư 4S, Đường 17, Thành phố, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8221,
+            "longitude": 106.718
+        },
+        {
+            "address": "54 Đ. Huỳnh Mẫn Đạt, Phường 19, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.790451,
+            "longitude": 106.708596
+        },
+        {
+            "address": "The Manor Officetel, Hẻm 89 Nguyễn Hữu Cảnh, Phường 22, Bình Thạnh, Hồ Chí Minh 700000",
+            "latitude": 10.7926846,
+            "longitude": 106.717881
+        },
+        {
+            "address": "476 Đ. Phan Xích Long, Phường 4, Phú Nhuận, Hồ Chí Minh 72213",
+            "latitude": 10.8023176,
+            "longitude": 106.6825834
+        },
+        {
+            "address": "31/55 Đ. Ung Văn Khiêm, Phường 25, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8099299,
+            "longitude": 106.7149887
+        },
+        {
+            "address": "1E Thanh Đa, Phường 27, Bình Thạnh, Hồ Chí Minh 100000",
+            "latitude": 10.8142067,
+            "longitude": 106.721369
+        },
+        {
+            "address": "SAV2 28, Đ. Mai Chí Thọ, An Phú, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.7851449,
+            "longitude": 106.7484762
+        },
+        {
+            "address": "190 Đ. Quang Trung, Phường 10, Gò Vấp, Hồ Chí Minh",
+            "latitude": 10.8292565,
+            "longitude": 106.6725783
+        },
+        {
+            "address": "161 Đ. Võ Nguyên Giáp, Thảo Điền, Thủ Đức, Hồ Chí Minh 70000",
+            "latitude": 10.8021155,
+            "longitude": 106.740379
+        },
+        {
+            "address": "52A Đường 18, Hiệp Bình Chánh, Thủ Đức, Hồ Chí Minh 71315",
+            "latitude": 10.825845,
+            "longitude": 106.719052
+        },
+        {
+            "address": "4 Phan Chu Trinh, Phường 12, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.816093,
+            "longitude": 106.701363
+        },
+        {
+            "address": "110 Đ. Ng. Tất Tố, Phường 22, Bình Thạnh, Hồ Chí Minh 72324",
+            "latitude": 10.7912608,
+            "longitude": 106.7144671
+        },
+        {
+            "address": "163/25/1 Đ. Tô Hiến Thành, Phường 13, Quận 10, Hồ Chí Minh 008428",
+            "latitude": 10.7795143,
+            "longitude": 106.669793
+        },
+        {
+            "address": "666 Đ. 3 Tháng 2, Phường 14, Quận 10, Hồ Chí Minh 70000",
+            "latitude": 10.7682058,
+            "longitude": 106.6605864
+        },
+        {
+            "address": "23I Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh 100000",
+            "latitude": 10.7787418,
+            "longitude": 106.6417313
+        },
+        {
+            "address": "145 Đ. Vĩnh Viễn, Phường 04, Quận 10, Hồ Chí Minh 72517",
+            "latitude": 10.764381,
+            "longitude": 106.67081
+        },
+        {
+            "address": "6 Hoàng Dư Khương, Phường 12, Quận 10, Hồ Chí Minh",
+            "latitude": 10.7753747,
+            "longitude": 106.6720223
+        },
+        {
+            "address": "149 Đường Đội Cung, Phường 10, Quận 11, Hồ Chí Minh",
+            "latitude": 10.762739,
+            "longitude": 106.646195
+        },
+        {
+            "address": "QM97+QCW, Tầng trệt, Toà nhà Rivera Park Saigon, số, 7/28 Thành Thái, Phường 14, Quận 10, Hồ Chí Minh 76000",
+            "latitude": 10.7694282,
+            "longitude": 106.6637059
+        },
+        {
+            "address": "25 Đ. Trường Sơn, Phường 15, Quận 10, Hồ Chí Minh 72512",
+            "latitude": 10.7825652,
+            "longitude": 106.664307
+        },
+        {
+            "address": "39A Hẻm 41 Đội Cung, Phường 11, Quận 11, Hồ Chí Minh 70000",
+            "latitude": 10.7669796,
+            "longitude": 106.6502166
+        },
+        {
+            "address": "575/J10A Nguyễn Tri Phương Tổ 5 KP 1, Phường 14, Quận 10, Hồ Chí Minh",
+            "latitude": 10.7744864,
+            "longitude": 106.6637522
+        },
+        {
+            "address": "63 Đ. Âu Cơ, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.774688,
+            "longitude": 106.6500125
+        },
+        {
+            "address": "505 Nhật Tảo, Phường 7, Quận 10, Hồ Chí Minh",
+            "latitude": 10.7629756,
+            "longitude": 106.6610216
+        },
+        {
+            "address": "592 Đ. Vĩnh Viễn, Phường 6, Quận 10, Hồ Chí Minh",
+            "latitude": 10.7623803,
+            "longitude": 106.6611086
+        },
+        {
+            "address": "216 Đ. Võ Văn Ngân, Bình Thọ, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8504228,
+            "longitude": 106.7653767
+        },
+        {
+            "address": "50 Lê Văn Việt, Hiệp Phú, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8443795,
+            "longitude": 106.7783448
+        },
+        {
+            "address": "651A-653 Tỉnh Lộ 43, khu phố 4, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8667499,
+            "longitude": 106.7335398
+        },
+        {
+            "address": "52A Đường 18, Hiệp Bình Chánh, Thủ Đức, Hồ Chí Minh 71315",
+            "latitude": 10.825845,
+            "longitude": 106.719052
+        },
+        {
+            "address": "161 Đ. Võ Nguyên Giáp, Thảo Điền, Thủ Đức, Hồ Chí Minh 70000",
+            "latitude": 10.8021155,
+            "longitude": 106.740379
+        },
+        {
+            "address": "307 Đ. Nguyễn Duy Trinh, Phường Bình Trưng Tây, Thủ Đức, Hồ Chí Minh 71100",
+            "latitude": 10.7886353,
+            "longitude": 106.765623
+        },
+        {
+            "address": "17 Đ. Mai Chí Thọ, Bình Khánh, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.7813019,
+            "longitude": 106.7353931
+        },
+        {
+            "address": "48 Đ. Số 26, Kp 5, Thủ Đức, Hồ Chí Minh 71315",
+            "latitude": 10.8322392,
+            "longitude": 106.730896
+        },
+        {
+            "address": "113A Đ. Tam Châu, Kp 5, Thủ Đức, Hồ Chí Minh 71311",
+            "latitude": 10.867429,
+            "longitude": 106.744823
+        },
+        {
+            "address": "D/01, Tầng 1, Chung Cư 4S Riverside Linh Đông Khối D, Đ. Số 30, Linh Đông, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.844246,
+            "longitude": 106.740325
+        },
+        {
+            "address": "45 Đường Số 4, An Phú, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8077474,
+            "longitude": 106.7536064
+        },
+        {
+            "address": "2 Đ. Võ Nguyên Giáp, Phước Long B, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8391915,
+            "longitude": 106.7700848
+        },
+        {
+            "address": "185B Đ. Nguyễn Thị Định, An Phú, Thủ Đức, Hồ Chí Minh 71106",
+            "latitude": 10.7905498,
+            "longitude": 106.7540277
+        },
+        {
+            "address": "34 Đ. Số 12, Trường Thọ, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8363091,
+            "longitude": 106.7556521
+        },
+        {
+            "address": "85A Đ. Quốc lộ 13 cũ, KP3, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8597,
+            "longitude": 106.722
+        },
+        {
+            "address": "22 Đoàn Kết, Bình Thọ, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8472965,
+            "longitude": 106.7684555
+        },
+        {
+            "address": "8 Đường 12, Hiệp Bình Phước, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.868561,
+            "longitude": 106.7191201
+        },
+        {
+            "address": "231 Đ. Nguyễn Thị Định, Phường Bình Trưng Tây, Thủ Đức, Hồ Chí Minh 70000",
+            "latitude": 10.7849729,
+            "longitude": 106.7574972
+        },
+        {
+            "address": "đường số 104/Số 1 Q2, Phường Bình Trưng Tây, Thủ Đức, Hồ Chí Minh 71300",
+            "latitude": 10.7777302,
+            "longitude": 106.7469301
+        },
+        {
+            "address": "Toà nhà STown - Lầu, 1 Số 2, Bình Chiểu, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.872673,
+            "longitude": 106.733148
+        },
+        {
+            "address": "65 Đ. Linh Đông, Linh Đông, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8490686,
+            "longitude": 106.7464441
+        },
+        {
+            "address": "72 Đ. Lê Thánh Tôn, Bến Nghé, Quận 1, Hồ Chí Minh",
+            "latitude": 10.7782501,
+            "longitude": 106.7020279
+        },
+        {
+            "address": "25 Đ. Số 6, Hiệp Bình Chánh, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.830299,
+            "longitude": 106.7159991
+        },
+        {
+            "address": "38C/9, 38C/7, Đường Cây Keo, Tam Phú, Thủ Đức, Hồ Chí Minh 71311",
+            "latitude": 10.86022,
+            "longitude": 106.7395785
+        },
+        {
+            "address": "19A Đ. Hiệp Bình, Kp7, Thủ Đức, Hồ Chí Minh 71315",
+            "latitude": 10.838723,
+            "longitude": 106.732203
+        },
+        {
+            "address": "72 Đ. Lê Thánh Tôn, Bến Nghé, Quận 1, Hồ Chí Minh",
+            "latitude": 10.7782501,
+            "longitude": 106.7020279
+        },
+        {
+            "address": "331C Đ. Trần Hưng Đạo, Phường Cô Giang, Quận 1, Hồ Chí Minh 71013",
+            "latitude": 10.7616951,
+            "longitude": 106.6901743
+        },
+        {
+            "address": "37 Hồ Hảo Hớn, Phường Cô Giang, Quận 1, Hồ Chí Minh 71013",
+            "latitude": 10.7610855,
+            "longitude": 106.6924974
+        },
+        {
+            "address": "Vincom Center Landmark 81, No 772 Đ. Điện Biên Phủ, Phường 22, Bình Thạnh, Hồ Chí Minh 70000",
+            "latitude": 10.794575,
+            "longitude": 106.7220989
+        },
+        {
+            "address": "339DE, Nguyễn Cảnh Chân, Quận 1, Hồ Chí Minh 71015",
+            "latitude": 10.756909,
+            "longitude": 106.689443
+        },
+        {
+            "address": "RiverGate Apartment Saigon, 155 Đ. Bến Vân Đồn, Phường 9, Quận 4, Hồ Chí Minh 72808",
+            "latitude": 10.7621795,
+            "longitude": 106.6992691
+        },
+        {
+            "address": "323-325 Đ. Bùi Hữu Nghĩa, Phường 1, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8001334,
+            "longitude": 106.6992993
+        },
+        {
+            "address": "163/25/1 Đ. Tô Hiến Thành, Phường 13, Quận 10, Hồ Chí Minh 008428",
+            "latitude": 10.7795143,
+            "longitude": 106.669793
+        },
+        {
+            "address": "Vincom+, Tầng 1 TTTM, Đường P. Quang, Phường 2, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8061859,
+            "longitude": 106.6664355
+        },
+        {
+            "address": "56-58 Nguyễn Hữu Cầu, P, Quận 1, Hồ Chí Minh",
+            "latitude": 10.790737,
+            "longitude": 106.690859
+        },
+        {
+            "address": "12 Pasteur, Bến Nghé, Quận 1, Hồ Chí Minh",
+            "latitude": 10.7787701,
+            "longitude": 106.6988027
+        },
+        {
+            "address": "Vincom+, Tầng 1 TTTM, Đường P. Quang, Phường 2, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8061859,
+            "longitude": 106.6664355
+        },
+        {
+            "address": "63 Đ. Âu Cơ, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.774688,
+            "longitude": 106.6500125
+        },
+        {
+            "address": "Chung Cư, Bàu Cát 2 Ni Sư Huỳnh Liên, Phường 10, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7861177,
+            "longitude": 106.6450363
+        },
+        {
+            "address": "106 108 Tân Sơn Hoà, Phường 3, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7967128,
+            "longitude": 106.6625213
+        },
+        {
+            "address": "No 15/17 Đ. Cộng Hòa, Phường 4, Tân Bình, Hồ Chí Minh 70000",
+            "latitude": 10.8006237,
+            "longitude": 106.6560618
+        },
+        {
+            "address": "958/39 Đ. Âu Cơ, Phường 14, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7977149,
+            "longitude": 106.639163
+        },
+        {
+            "address": "271 Bàu Cát, Phường 12, Tân Bình, Hồ Chí Minh 72111",
+            "latitude": 10.791325,
+            "longitude": 106.64549
+        },
+        {
+            "address": "152 Hoàng Hoa Thám, Phường 12, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8066016,
+            "longitude": 106.6480214
+        },
+        {
+            "address": "179A Nghĩa Phát, Phường 6, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7854293,
+            "longitude": 106.6577429
+        },
+        {
+            "address": "42 Thăng Long, Phường 4, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.805157,
+            "longitude": 106.6613932
+        },
+        {
+            "address": "18A Đ. Cộng Hòa, Phường 12, Tân Bình, Hồ Chí Minh 700000",
+            "latitude": 10.7992818,
+            "longitude": 106.6545061
+        },
+        {
+            "address": "42 44 Đường A4, Phường 12, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7999247,
+            "longitude": 106.6496847
+        },
+        {
+            "address": "15 Đ. Nguyễn Quang Bích, Phường 13, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8046538,
+            "longitude": 106.6464282
+        },
+        {
+            "address": "39 Thép Mới, Phường 12, Tân Bình, Hồ Chí Minh 72111",
+            "latitude": 10.796756,
+            "longitude": 106.648309
+        },
+        {
+            "address": "318 Đ. Âu Cơ, Phường 10, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7764877,
+            "longitude": 106.6468284
+        },
+        {
+            "address": "459 Đ. Âu Cơ, Phú Trung, Tân Phú, Hồ Chí Minh 72016",
+            "latitude": 10.7793713,
+            "longitude": 106.6445749
+        },
+        {
+            "address": "23I Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh 100000",
+            "latitude": 10.7787418,
+            "longitude": 106.6417313
+        },
+        {
+            "address": "1 Nguyễn Sỹ Sách, Phường 15, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8220021,
+            "longitude": 106.6383424
+        },
+        {
+            "address": "58 Đ. Hồng Hà, Phường 2, Tân Bình, Hồ Chí Minh 72108",
+            "latitude": 10.8131596,
+            "longitude": 106.6681632
+        },
+        {
+            "address": "Botanica Premier, BPA 01-05, Phường 2, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8125833,
+            "longitude": 106.6695173
+        },
+        {
+            "address": "134 Hẻm 13 Trần Văn Hoàng, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7779462,
+            "longitude": 106.6517587
+        },
+        {
+            "address": "24B Đ. Lam Sơn, Phường 2, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8100789,
+            "longitude": 106.6669457
+        },
+        {
+            "address": "68 Đ. Huỳnh Văn Nghệ, Phường 15, Tân Bình, Hồ Chí Minh 72109",
+            "latitude": 10.8306517,
+            "longitude": 106.6368147
+        },
+        {
+            "address": "34/31 - 34/33 Trần Thái Tông, Phường 15, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8181,
+            "longitude": 106.632
+        },
+        {
+            "address": "120-122 Ca Văn Thỉnh, Phường 11, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7901181,
+            "longitude": 106.643508
+        },
+        {
+            "address": "987/5 Đ. Trường Chinh, Phường 15, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.8225853,
+            "longitude": 106.6300235
+        },
+        {
+            "address": "29 Phạm Văn Hai, Phường 1, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.796068,
+            "longitude": 106.664374
+        },
+        {
+            "address": "122-124 Ni Sư Huỳnh Liên, Phường 10, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.78374,
+            "longitude": 106.647044
+        },
+        {
+            "address": "Tòa nhà Sky Center Tân Bình, P. Quang, Phường 2, Thành phố Hồ Chí Minh, Hồ Chí Minh",
+            "latitude": 10.8017776,
+            "longitude": 106.665655
+        },
+        {
+            "address": "64 Yên Thế, Phường 2, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8116941,
+            "longitude": 106.6683807
+        },
+        {
+            "address": "89-91 Phạm Phú Thứ, Phường 11, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.788894,
+            "longitude": 106.647827
+        },
+        {
+            "address": "33 Đ. Cộng Hòa, Phường 4, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8008678,
+            "longitude": 106.6566595
+        },
+        {
+            "address": "102 Đường Số 29, Khu phố 2, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7567226,
+            "longitude": 106.611821
+        },
+        {
+            "address": "24 Lê Bình, Phường 4, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7936371,
+            "longitude": 106.6565793
+        },
+        {
+            "address": "82 Trần Mai Ninh, Phường 12, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.792811,
+            "longitude": 106.647439
+        },
+        {
+            "address": "413/39 Đ. Lê Văn Quới, khu Phố 5, Bình Tân, Hồ Chí Minh 700000",
+            "latitude": 10.7738142,
+            "longitude": 106.6057358
+        },
+        {
+            "address": "04 Hoàng Thiều Hoa, Phú Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.772471,
+            "longitude": 106.628576
+        },
+        {
+            "address": "108 Đ. Hồng Hà, Phường 2, Tân Bình, Hồ Chí Minh 70000",
+            "latitude": 10.8107451,
+            "longitude": 106.6696152
+        },
+        {
+            "address": "58 Nguyễn Phúc Chu, Phường 158, Tân Bình, Hồ Chí Minh 72109",
+            "latitude": 10.8225005,
+            "longitude": 106.6322385
+        },
+        {
+            "address": "28 Đ. số 14, Bình Hưng Hoà, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7785112,
+            "longitude": 106.6116339
+        },
+        {
+            "address": "94 Đ. Số 4, Bình Hưng Hoà A, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.786392,
+            "longitude": 106.606565
+        },
+        {
+            "address": "254/63 Đ. Âu Cơ, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7749,
+            "longitude": 106.65
+        },
+        {
+            "address": "59-61 Tân Hải, Phường 13, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8016139,
+            "longitude": 106.6390837
+        },
+        {
+            "address": "39 Thép Mới, Phường 12, Tân Bình, Hồ Chí Minh 72111",
+            "latitude": 10.7965956,
+            "longitude": 106.648346
+        },
+        {
+            "address": "111 Kênh Nước Đen, Tân Quý, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7894794,
+            "longitude": 106.6276184
+        },
+        {
+            "address": "9 Phạm Vấn, Phú Thọ Hoà, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.784381,
+            "longitude": 106.6244159
+        },
+        {
+            "address": "190 Đ. Quang Trung, Phường 10, Gò Vấp, Hồ Chí Minh",
+            "latitude": 10.8292565,
+            "longitude": 106.6725783
+        },
+        {
+            "address": "106 Bành Văn Trân, Phường 7, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.788455,
+            "longitude": 106.6565857
+        },
+        {
+            "address": "39 Đ. Số 1, An Lạc A, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7483007,
+            "longitude": 106.6202198
+        },
+        {
+            "address": "60 Liên khu 10-11, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.767572,
+            "longitude": 106.620513
+        },
+        {
+            "address": "21 Trương Công Định, Phường 14, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7960796,
+            "longitude": 106.6412026
+        },
+        {
+            "address": "219 Tây Thạnh, Tân Phú, Hồ Chí Minh 72009",
+            "latitude": 10.8130721,
+            "longitude": 106.6229812
+        },
+        {
+            "address": "197 Nguyễn Thị Nhỏ, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7729839,
+            "longitude": 106.6527673
+        },
+        {
+            "address": "2N Bình Giã, Phường 13, Tân Bình, Hồ Chí Minh 72110",
+            "latitude": 10.7991721,
+            "longitude": 106.6444072
+        },
+        {
+            "address": "4 Đ. Lê Văn Quới, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.774451,
+            "longitude": 106.6198665
+        },
+        {
+            "address": "94 Trần Văn Dư, Phường 13, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8076639,
+            "longitude": 106.6447067
+        },
+        {
+            "address": "173/23/100 Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7719492,
+            "longitude": 106.6406564
+        },
+        {
+            "address": "Bùi Tư Toàn, An Lạc, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7321609,
+            "longitude": 106.6158743
+        },
+        {
+            "address": "39A Hẻm 41 Đội Cung, Phường 11, Quận 11, Hồ Chí Minh 70000",
+            "latitude": 10.7669796,
+            "longitude": 106.6502166
+        },
+        {
+            "address": "Shophouse TB-01.19 The Botanica, 104 P. Quang, Phường 2, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.808342,
+            "longitude": 106.670224
+        },
+        {
+            "address": "413/39 Đ. Lê Văn Quới, khu Phố 5, Bình Tân, Hồ Chí Minh 700000",
+            "latitude": 10.7738142,
+            "longitude": 106.6057358
+        },
+        {
+            "address": "4 Đ. Lê Văn Quới, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.774451,
+            "longitude": 106.6198665
+        },
+        {
+            "address": "102 Đường Số 29, Khu phố 2, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7567226,
+            "longitude": 106.611821
+        },
+        {
+            "address": "451 Tân Hòa Đông, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7675692,
+            "longitude": 106.6154761
+        },
+        {
+            "address": "94 Đ. Số 4, Bình Hưng Hoà A, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.786392,
+            "longitude": 106.606565
+        },
+        {
+            "address": "60 Liên khu 10-11, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.767572,
+            "longitude": 106.620513
+        },
+        {
+            "address": "68 Hồ Văn Long, KP1, Bình Tân, Hồ Chí Minh 71914",
+            "latitude": 10.8196806,
+            "longitude": 106.5998724
+        },
+        {
+            "address": "39 Đ. Số 1, An Lạc A, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7483007,
+            "longitude": 106.6202198
+        },
+        {
+            "address": "28 Đ. số 14, Bình Hưng Hoà, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7785112,
+            "longitude": 106.6116339
+        },
+        {
+            "address": "319 Chiến Lược, Bình Trị Đông A, Bình Tân, Hồ Chí Minh 71911",
+            "latitude": 10.7611541,
+            "longitude": 106.608716
+        },
+        {
+            "address": "79 Đ. Liên Khu 5-6, Khu Phố 5, Bình Tân, Hồ Chí Minh 71914",
+            "latitude": 10.7900872,
+            "longitude": 106.5914914
+        },
+        {
+            "address": "167 Đ. An Dương Vương, An Lạc, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7235721,
+            "longitude": 106.6197777
+        },
+        {
+            "address": "66/10Đường, Bình Thành, Khu Phố 5, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.8015476,
+            "longitude": 106.5879534
+        },
+        {
+            "address": "Bùi Tư Toàn, An Lạc, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7321609,
+            "longitude": 106.6158743
+        },
+        {
+            "address": "58 Hồ Học Lãm, An Lạc, Bình Tân, Hồ Chí Minh 70000",
+            "latitude": 10.7164351,
+            "longitude": 106.6153799
+        },
+        {
+            "address": "63 Đ. Âu Cơ, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.774688,
+            "longitude": 106.6500125
+        },
+        {
+            "address": "31 Trương Phước Phan, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.77323,
+            "longitude": 106.6143484
+        },
+        {
+            "address": "958/39 Đ. Âu Cơ, Phường 14, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7977149,
+            "longitude": 106.639163
+        },
+        {
+            "address": "Ehome 3, An Lạc, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7141713,
+            "longitude": 106.6110398
+        },
+        {
+            "address": "thuộc chung cư cao tầng và thương mại dịch vụ - văn phòng, 510 Đ. Kinh Dương Vương, An Lạc, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7372904,
+            "longitude": 106.6140518
+        },
+        {
+            "address": "515-517 HL2, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.771575,
+            "longitude": 106.61712
+        },
+        {
+            "address": "Vincom+, Tầng 1 TTTM, Đường P. Quang, Phường 2, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8061859,
+            "longitude": 106.6664355
+        },
+        {
+            "address": "42 44 Đường A4, Phường 12, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7999247,
+            "longitude": 106.6496847
+        },
+        {
+            "address": "Chung Cư, Bàu Cát 2 Ni Sư Huỳnh Liên, Phường 10, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7861177,
+            "longitude": 106.6450363
+        },
+        {
+            "address": "271 Bàu Cát, Phường 12, Tân Bình, Hồ Chí Minh 72111",
+            "latitude": 10.791325,
+            "longitude": 106.64549
+        },
+        {
+            "address": "4449 Nguyễn Cửu Phú, Tân Tạo A, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7534739,
+            "longitude": 106.5849382
+        },
+        {
+            "address": "42 Thăng Long, Phường 4, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.805157,
+            "longitude": 106.6613932
+        },
+        {
+            "address": "784 Đ. Tân Kỳ Tân Quý, Bình Hưng Hoà A, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7903569,
+            "longitude": 106.6028833
+        },
+        {
+            "address": "79 Đ. Liên Khu 5-6, khu phố 5, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.790062,
+            "longitude": 106.591346
+        },
+        {
+            "address": "15 Đ. Nguyễn Quang Bích, Phường 13, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8046538,
+            "longitude": 106.6464282
+        },
+        {
+            "address": "106 108 Tân Sơn Hoà, Phường 3, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7967128,
+            "longitude": 106.6625213
+        },
+        {
+            "address": "179A Nghĩa Phát, Phường 6, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7854293,
+            "longitude": 106.6577429
+        },
+        {
+            "address": "36 Đ. Kinh Dương Vương, Phường 13, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7536313,
+            "longitude": 106.6300304
+        },
+        {
+            "address": "68 Đ. Huỳnh Văn Nghệ, Phường 15, Tân Bình, Hồ Chí Minh 72109",
+            "latitude": 10.8306517,
+            "longitude": 106.6368147
+        },
+        {
+            "address": "04 Hoàng Thiều Hoa, Phú Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.772471,
+            "longitude": 106.628576
+        },
+        {
+            "address": "18A Đ. Cộng Hòa, Phường 12, Tân Bình, Hồ Chí Minh 700000",
+            "latitude": 10.7992818,
+            "longitude": 106.6545061
+        },
+        {
+            "address": "17 Đường số 1, Bình Hưng Hoà A, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7808753,
+            "longitude": 106.6179958
+        },
+        {
+            "address": "135 Đ. Bình Long, KP27, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.779497,
+            "longitude": 106.620331
+        },
+        {
+            "address": "60 Đ. số 40, Tân Tạo, Bình Tân, Hồ Chí Minh 70000",
+            "latitude": 10.7539029,
+            "longitude": 106.6041729
+        },
+        {
+            "address": "1 Nguyễn Sỹ Sách, Phường 15, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8220021,
+            "longitude": 106.6383424
+        },
+        {
+            "address": "39 Thép Mới, Phường 12, Tân Bình, Hồ Chí Minh 72111",
+            "latitude": 10.796756,
+            "longitude": 106.648309
+        },
+        {
+            "address": "662 Đ. Tên Lửa, Bình Trị Đông B, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.755057,
+            "longitude": 106.607892
+        },
+        {
+            "address": "Tầng Trệt, Chung Cư An Gia Star, 900A QL 1A, P, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7631571,
+            "longitude": 106.5917155
+        },
+        {
+            "address": "318 Đ. Âu Cơ, Phường 10, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7764877,
+            "longitude": 106.6468284
+        },
+        {
+            "address": "15 Đường số 1, Bình Hưng Hoà A, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7802356,
+            "longitude": 106.6193855
+        },
+        {
+            "address": "152 Hoàng Hoa Thám, Phường 12, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8066016,
+            "longitude": 106.6480214
+        },
+        {
+            "address": "73 Đ. Phạm Đăng Giảng, Bình Hưng Hoà, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.819986,
+            "longitude": 106.605781
+        },
+        {
+            "address": "183 Lê Cơ, An Lạc, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7268158,
+            "longitude": 106.6131742
+        },
+        {
+            "address": "Botanica Premier, BPA 01-05, Phường 2, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8125833,
+            "longitude": 106.6695173
+        },
+        {
+            "address": "9 Phạm Vấn, Phú Thọ Hoà, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.784381,
+            "longitude": 106.6244159
+        },
+        {
+            "address": "23I Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh 100000",
+            "latitude": 10.7787418,
+            "longitude": 106.6417313
+        },
+        {
+            "address": "344 Đ. Bình Trị Đông, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.774721,
+            "longitude": 106.6091726
+        },
+        {
+            "address": "QH3M+RRF, Unnamed, Road, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7545505,
+            "longitude": 106.5845342
+        },
+        {
+            "address": "134 Hẻm 13 Trần Văn Hoàng, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7779462,
+            "longitude": 106.6517587
+        },
+        {
+            "address": "213 Đ. Gò Xoài, P, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.788,
+            "longitude": 106.60462
+        },
+        {
+            "address": "278 Đ. Hòa Bình, Phú Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7720216,
+            "longitude": 106.6271774
+        },
+        {
+            "address": "58 Đ. Hồng Hà, Phường 2, Tân Bình, Hồ Chí Minh 72108",
+            "latitude": 10.8131596,
+            "longitude": 106.6681632
+        },
+        {
+            "address": "12-12A, Chiến Lược, Bình Trị Đông, Bình Tân, Hồ Chí Minh 700000",
+            "latitude": 10.7601784,
+            "longitude": 106.621723
+        },
+        {
+            "address": "55 Trương Phước Phan, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7603591,
+            "longitude": 106.6116491
+        },
+        {
+            "address": "196 Mã Lò, Bình Trị Đông A, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7661084,
+            "longitude": 106.6037674
+        },
+        {
+            "address": "202 Đ. Tản Đà, Phường 11, Quận 5, Hồ Chí Minh",
+            "latitude": 10.7543463,
+            "longitude": 106.6641321
+        },
+        {
+            "address": "7 Đ. Nguyễn Duy Dương, Phường 7, Quận 5, Hồ Chí Minh",
+            "latitude": 10.7556778,
+            "longitude": 106.6717533
+        },
+        {
+            "address": "440 Đ. Nguyễn Trãi, Phường 7, Quận 5, Hồ Chí Minh",
+            "latitude": 10.7551861,
+            "longitude": 106.6718137
+        },
+        {
+            "address": "176 Đ. Huỳnh Mẫn Đạt, Phường 2, Quận 5, Hồ Chí Minh",
+            "latitude": 10.7577025,
+            "longitude": 106.6759592
+        },
+        {
+            "address": "418/124S Trần Phú, Phường 7, Quận 5, Hồ Chí Minh",
+            "latitude": 10.7534202,
+            "longitude": 106.6684438
+        },
+        {
+            "address": "sky garden 3, 25 Đ. Phạm Văn Nghị, Tân Phong, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7321845,
+            "longitude": 106.7062518
+        },
+        {
+            "address": "MPXJ+WCX, khu tái định cư, Quận 7, Hồ Chí Minh",
+            "latitude": 10.6998757,
+            "longitude": 106.7310942
+        },
+        {
+            "address": "60/14 Đ. Lâm Văn Bền, Khu Phố 4, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7490214,
+            "longitude": 106.7149879
+        },
+        {
+            "address": "125 Số 17, Tân Quy, Quận 7, Hồ Chí Minh",
+            "latitude": 10.745035,
+            "longitude": 106.71091
+        },
+        {
+            "address": "20 Đ. Lê Thị Chợ, Phú Mỹ, Quận 7, Hồ Chí Minh 700000",
+            "latitude": 10.7156718,
+            "longitude": 106.7423639
+        },
+        {
+            "address": "64A Đường Số 15, Khu Phố 2, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7455986,
+            "longitude": 106.7080248
+        },
+        {
+            "address": "23I Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh 100000",
+            "latitude": 10.7787418,
+            "longitude": 106.6417313
+        },
+        {
+            "address": "27 Đ. Nguyễn Hữu Thọ, Khu đô thị Sunrise City, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7432801,
+            "longitude": 106.7010641
+        },
+        {
+            "address": "TTTM Vincom+ KĐT Nam Long, 71 Đường Trần Trọng Cung, Tân Thuận Đông, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7440202,
+            "longitude": 106.7327554
+        },
+        {
+            "address": "538 Nguyễn Thị Thập, Tân Quy, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7387737,
+            "longitude": 106.7118337
+        },
+        {
+            "address": "96 Đ. Lâm Văn Bền, Tân Thuận Tây, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7464321,
+            "longitude": 106.7157704
+        },
+        {
+            "address": "39A Hẻm 41 Đội Cung, Phường 11, Quận 11, Hồ Chí Minh 70000",
+            "latitude": 10.7669796,
+            "longitude": 106.6502166
+        },
+        {
+            "address": "54 Lô L, Số 7, Khu dân cư, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7140054,
+            "longitude": 106.7327028
+        },
+        {
+            "address": "Hung Phat Apartment, Ấp 3, Nhà Bè, Hồ Chí Minh",
+            "latitude": 10.7138357,
+            "longitude": 106.7006563
+        },
+        {
+            "address": "72 Đ. Lê Thánh Tôn, Bến Nghé, Quận 1, Hồ Chí Minh",
+            "latitude": 10.7782501,
+            "longitude": 106.7020279
+        },
+        {
+            "address": "846 Huỳnh Tấn Phát, Tân Phú, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7294881,
+            "longitude": 106.7351153
+        },
+        {
+            "address": "96 Đ. Lâm Văn Bền, Tân Thuận Tây, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7465644,
+            "longitude": 106.7157536
+        },
+        {
+            "address": "V1, Sunrise City, South Towers, Đ. Nguyễn Hữu Thọ, Tân Hưng, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7388263,
+            "longitude": 106.7000405
+        },
+        {
+            "address": "64a Đường Số 15, Tân Quy, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7454236,
+            "longitude": 106.7080344
+        },
+        {
+            "address": "PPJ8+XHF, Thung Lũng Xanh, Khu đô thị Phú Mỹ Hưng, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7324367,
+            "longitude": 106.7164208
+        },
+        {
+            "address": "RiverGate Apartment Saigon, 155 Đ. Bến Vân Đồn, Phường 9, Quận 4, Hồ Chí Minh 72808",
+            "latitude": 10.7621795,
+            "longitude": 106.6992691
+        },
+        {
+            "address": "11A (SG-8-1) - Phố Tiểu Nam - khu phố Cảnh Viên (SS2, Quận 7, Hồ Chí Minh 72908",
+            "latitude": 10.7223804,
+            "longitude": 106.7296355
+        },
+        {
+            "address": "SAV2 28, Đ. Mai Chí Thọ, An Phú, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.7851449,
+            "longitude": 106.7484762
+        },
+        {
+            "address": "Vincom Center Landmark 81, No 772 Đ. Điện Biên Phủ, Phường 22, Bình Thạnh, Hồ Chí Minh 70000",
+            "latitude": 10.794575,
+            "longitude": 106.7220989
+        },
+        {
+            "address": "339DE, Nguyễn Cảnh Chân, Quận 1, Hồ Chí Minh 71015",
+            "latitude": 10.756909,
+            "longitude": 106.689443
+        },
+        {
+            "address": "C2 Đường Cao Thị Chính, Phú Thuận, Quận 7, Hồ Chí Minh 700000",
+            "latitude": 10.7319,
+            "longitude": 106.735
+        },
+        {
+            "address": "S30, Tầng 1+2, Block B1, Chung cư Phú Mỹ 2 (Q7 Boulevard, Đường 15B, P, Quận 7, Hồ Chí Minh",
+            "latitude": 10.708265,
+            "longitude": 106.733253
+        },
+        {
+            "address": "Lux Garden, 370 Nguyễn Văn Quỳ, Phú Thuận, Quận 7, Hồ Chí Minh 72907",
+            "latitude": 10.7377047,
+            "longitude": 106.7417363
+        },
+        {
+            "address": "82A Đ. Lý Phục Man, Bình Thuận, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7432,
+            "longitude": 106.726
+        },
+        {
+            "address": "231 Đ. Nguyễn Thị Định, Phường Bình Trưng Tây, Thủ Đức, Hồ Chí Minh 70000",
+            "latitude": 10.7849729,
+            "longitude": 106.7574972
+        },
+        {
+            "address": "138 Đ. 51, An Phú, Quận 2, Hồ Chí Minh 71106",
+            "latitude": 10.7849426,
+            "longitude": 106.7477543
+        },
+        {
+            "address": "Chung cư Đức Khải, Nguyễn Lương Bằng, Phú Mỹ, Quận 7, Hồ Chí Minh 700000",
+            "latitude": 10.7006349,
+            "longitude": 106.7331984
+        },
+        {
+            "address": "783 Trần Xuân Soạn, Tân Hưng, Quận 7, Hồ Chí Minh 72912",
+            "latitude": 10.7513849,
+            "longitude": 106.6994807
+        },
+        {
+            "address": "Đường số 53/25 Đ. Lâm Văn Bền, Bình Thuận, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7406252,
+            "longitude": 106.7164107
+        },
+        {
+            "address": "942 Đ. Tạ Quang Bửu, Phường 5, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7343315,
+            "longitude": 106.6571659
+        },
+        {
+            "address": "854 Đ. Tạ Quang Bửu, Phường 5, Quận 8, Hồ Chí Minh 700000",
+            "latitude": 10.736948,
+            "longitude": 106.6689257
+        },
+        {
+            "address": "108 Đ. Tùng Thiện Vương, Phường Xóm Củi, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7483453,
+            "longitude": 106.6648884
+        },
+        {
+            "address": "2394 Đ. Phạm Thế Hiển, Phường 6, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7321153,
+            "longitude": 106.6414551
+        },
+        {
+            "address": "Him Lam Nam Khánh, 01 E3 Chung Cư, Phường 5, Quận 8, Hồ Chí Minh 700000",
+            "latitude": 10.734775,
+            "longitude": 106.667963
+        },
+        {
+            "address": "1646A Đ. Võ Văn Kiệt, Phường 16, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7303457,
+            "longitude": 106.6243134
+        },
+        {
+            "address": "3086 Đ. Phạm Thế Hiển, Phường 7, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7060359,
+            "longitude": 106.6227057
+        },
+        {
+            "address": "268 Đ. Bùi Minh Trực, Phường 6, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7372213,
+            "longitude": 106.6549212
+        },
+        {
+            "address": "26 Đ. Tám Danh, Phường 4, Quận 8, Hồ Chí Minh 75312",
+            "latitude": 10.7412651,
+            "longitude": 106.6709938
+        },
+        {
+            "address": "950 Đ. Tạ Quang Bửu, Phường 5, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7342263,
+            "longitude": 106.6566581
+        },
+        {
+            "address": "1648 Đ. Võ Văn Kiệt, Phường 16, Quận 8, Hồ Chí Minh 70000",
+            "latitude": 10.7282827,
+            "longitude": 106.624628
+        },
+        {
+            "address": "37 Cao Lỗ, Phường 4, Quận 8, Hồ Chí Minh 70000",
+            "latitude": 10.7395668,
+            "longitude": 106.6786182
+        },
+        {
+            "address": "1438B Đ. Phạm Thế Hiển, Phường 5, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7413543,
+            "longitude": 106.6581894
+        },
+        {
+            "address": "39A Hẻm 41 Đội Cung, Phường 11, Quận 11, Hồ Chí Minh 70000",
+            "latitude": 10.7669796,
+            "longitude": 106.6502166
+        },
+        {
+            "address": "726 Đ. Phạm Thế Hiển, Phường 4, Quận 8, Hồ Chí Minh",
+            "latitude": 10.744361,
+            "longitude": 106.673867
+        },
+        {
+            "address": "445 Đ. Gia Phú, Phường 1, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7434362,
+            "longitude": 106.6469431
+        },
+        {
+            "address": "RiverGate Apartment Saigon, 155 Đ. Bến Vân Đồn, Phường 9, Quận 4, Hồ Chí Minh 72808",
+            "latitude": 10.7621795,
+            "longitude": 106.6992691
+        },
+        {
+            "address": "2225 Đ. Phạm Thế Hiển, Phường 6, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7329047,
+            "longitude": 106.6444793
+        },
+        {
+            "address": "Hung Phat Apartment, Ấp 3, Nhà Bè, Hồ Chí Minh",
+            "latitude": 10.7138357,
+            "longitude": 106.7006563
+        },
+        {
+            "address": "36 Đ. Kinh Dương Vương, Phường 13, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7536313,
+            "longitude": 106.6300304
+        },
+        {
+            "address": "sky garden 3, 25 Đ. Phạm Văn Nghị, Tân Phong, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7321845,
+            "longitude": 106.7062518
+        },
+        {
+            "address": "63 Đ. Âu Cơ, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.774688,
+            "longitude": 106.6500125
+        },
+        {
+            "address": "2398 Đ. Phạm Thế Hiển, Phường 6, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7320501,
+            "longitude": 106.641411
+        },
+        {
+            "address": "Cao ốc Silland, Đ. số 9A/7J ẤP 4B, Khu dân cư Trung Sơn, Bình Chánh, Hồ Chí Minh",
+            "latitude": 10.7308323,
+            "longitude": 106.6886898
+        },
+        {
+            "address": "149 Đường Đội Cung, Phường 10, Quận 11, Hồ Chí Minh",
+            "latitude": 10.762739,
+            "longitude": 106.646195
+        },
+        {
+            "address": "3088 Đ. Phạm Thế Hiển, Phường 7, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7061179,
+            "longitude": 106.6225585
+        },
+        {
+            "address": "58 Hồ Học Lãm, An Lạc, Bình Tân, Hồ Chí Minh 70000",
+            "latitude": 10.7164351,
+            "longitude": 106.6153799
+        },
+        {
+            "address": "2672A Đ. Phạm Thế Hiển, Phường 7, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7232447,
+            "longitude": 106.6352692
+        },
+        {
+            "address": "339DE, Nguyễn Cảnh Chân, Quận 1, Hồ Chí Minh 71015",
+            "latitude": 10.756909,
+            "longitude": 106.689443
+        },
+        {
+            "address": "thuộc chung cư cao tầng và thương mại dịch vụ - văn phòng, 510 Đ. Kinh Dương Vương, An Lạc, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7372904,
+            "longitude": 106.6140518
+        },
+        {
+            "address": "592 Đ. Vĩnh Viễn, Phường 6, Quận 10, Hồ Chí Minh",
+            "latitude": 10.7623803,
+            "longitude": 106.6611086
+        },
+        {
+            "address": "Chung Cu D1, Lô BC1, Tầng Trệt, Khu B-C, 1 Đ. Phạm Thế Hiển, Khu dân cư Phú Lợi, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7039518,
+            "longitude": 106.6201706
+        },
+        {
+            "address": "56 - 58 Đ. Số 23, Phường 10, Quận 6, Hồ Chí Minh",
+            "latitude": 10.741042,
+            "longitude": 106.625416
+        },
+        {
+            "address": "PMXG+747, Đ. Hưng Phú, Phường Hưng Phú, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7482635,
+            "longitude": 106.6752908
+        },
+        {
+            "address": "161 Đ. Võ Nguyên Giáp, Thảo Điền, Thủ Đức, Hồ Chí Minh 70000",
+            "latitude": 10.8021155,
+            "longitude": 106.740379
+        },
+        {
+            "address": "23I Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh 100000",
+            "latitude": 10.7787418,
+            "longitude": 106.6417313
+        },
+        {
+            "address": "307 Đ. Nguyễn Duy Trinh, Phường Bình Trưng Tây, Thủ Đức, Hồ Chí Minh 71100",
+            "latitude": 10.7886353,
+            "longitude": 106.765623
+        },
+        {
+            "address": "Chung Cư, Bàu Cát 2 Ni Sư Huỳnh Liên, Phường 10, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7861177,
+            "longitude": 106.6450363
+        },
+        {
+            "address": "138 Đ. 51, An Phú, Quận 2, Hồ Chí Minh 71106",
+            "latitude": 10.7849426,
+            "longitude": 106.7477543
+        },
+        {
+            "address": "đường số 104/Số 1 Q2, Phường Bình Trưng Tây, Thủ Đức, Hồ Chí Minh 71300",
+            "latitude": 10.7777302,
+            "longitude": 106.7469301
+        },
+        {
+            "address": "190 Đ. Quang Trung, Phường 10, Gò Vấp, Hồ Chí Minh",
+            "latitude": 10.8292565,
+            "longitude": 106.6725783
+        },
+        {
+            "address": "63 Đ. Âu Cơ, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.774688,
+            "longitude": 106.6500125
+        },
+        {
+            "address": "04 Hoàng Thiều Hoa, Phú Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.772471,
+            "longitude": 106.628576
+        },
+        {
+            "address": "39A Hẻm 41 Đội Cung, Phường 11, Quận 11, Hồ Chí Minh 70000",
+            "latitude": 10.7669796,
+            "longitude": 106.6502166
+        },
+        {
+            "address": "50 Lê Văn Việt, Hiệp Phú, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8443795,
+            "longitude": 106.7783448
+        },
+        {
+            "address": "Vincom Center Landmark 81, No 772 Đ. Điện Biên Phủ, Phường 22, Bình Thạnh, Hồ Chí Minh 70000",
+            "latitude": 10.794575,
+            "longitude": 106.7220989
+        },
+        {
+            "address": "72 Đ. Lê Thánh Tôn, Bến Nghé, Quận 1, Hồ Chí Minh",
+            "latitude": 10.7782501,
+            "longitude": 106.7020279
+        },
+        {
+            "address": "64 - 66 Huỳnh Thiện Lộc, Phú Trung, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.779829,
+            "longitude": 106.637828
+        },
+        {
+            "address": "Saigonres Plaza, No 188, Nguyễn Xí, Tầng L2, TTTM Vincom Plaza, Phường 26, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8164319,
+            "longitude": 106.7070034
+        },
+        {
+            "address": "958/39 Đ. Âu Cơ, Phường 14, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7977149,
+            "longitude": 106.639163
+        },
+        {
+            "address": "318 Đ. Âu Cơ, Phường 10, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7764877,
+            "longitude": 106.6468284
+        },
+        {
+            "address": "151 Đ. Nguyễn Duy Trinh, Khu phố 1, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.7879925,
+            "longitude": 106.759857
+        },
+        {
+            "address": "17 Đ. Mai Chí Thọ, Bình Khánh, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.7813019,
+            "longitude": 106.7353931
+        },
+        {
+            "address": "231 Đ. Nguyễn Thị Định, Phường Bình Trưng Tây, Thủ Đức, Hồ Chí Minh 70000",
+            "latitude": 10.7849729,
+            "longitude": 106.7574972
+        },
+        {
+            "address": "445 Đ. Gia Phú, Phường 1, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7434362,
+            "longitude": 106.6469431
+        },
+        {
+            "address": "231 Đ. Nguyễn Thị Định, Phường Bình Trưng Tây, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.7850102,
+            "longitude": 106.7574813
+        },
+        {
+            "address": "Chung Cư Thủ Thiêm Lô B, 01, 0.01/Lô P Đ. Số 63, Bình Trưng Đông, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.7898927,
+            "longitude": 106.7770057
+        },
+        {
+            "address": "149 Đường Đội Cung, Phường 10, Quận 11, Hồ Chí Minh",
+            "latitude": 10.762739,
+            "longitude": 106.646195
+        },
+        {
+            "address": "102 Đường Số 29, Khu phố 2, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7567226,
+            "longitude": 106.611821
+        },
+        {
+            "address": "63 Đ. Võ Nguyên Giáp, Thảo Điền, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.801323,
+            "longitude": 106.736004
+        },
+        {
+            "address": "36 Đ. Kinh Dương Vương, Phường 13, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7536313,
+            "longitude": 106.6300304
+        },
+        {
+            "address": "Cao ốc An Cư, 8 Thái Thuận, Thảo Điền, Thủ Đức, Hồ Chí Minh 700000",
+            "latitude": 10.7981115,
+            "longitude": 106.7391464
+        },
+        {
+            "address": "122-124 Ni Sư Huỳnh Liên, Phường 10, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.78374,
+            "longitude": 106.647044
+        },
+        {
+            "address": "173/23/100 Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7719492,
+            "longitude": 106.6406564
+        },
+        {
+            "address": "42 44 Đường A4, Phường 12, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7999247,
+            "longitude": 106.6496847
+        },
+        {
+            "address": "134 Hẻm 13 Trần Văn Hoàng, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7779462,
+            "longitude": 106.6517587
+        },
+        {
+            "address": "Chung Cư Topaz Tower, 4 Trịnh Đình Thảo, Hòa Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.775219,
+            "longitude": 106.6342011
+        },
+        {
+            "address": "232 Đường Lê Văn Thịnh, Cát Lái, Quận 2, Hồ Chí Minh",
+            "latitude": 10.777392,
+            "longitude": 106.7673273
+        },
+        {
+            "address": "942 Đ. Tạ Quang Bửu, Phường 5, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7343315,
+            "longitude": 106.6571659
+        },
+        {
+            "address": "87 Trần Quang Diệu, Phường 12, Quận 3, Hồ Chí Minh 72412",
+            "latitude": 10.784962,
+            "longitude": 106.678549
+        },
+        {
+            "address": "9 Phạm Vấn, Phú Thọ Hoà, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.784381,
+            "longitude": 106.6244159
+        },
+        {
+            "address": "TTTM Vincom+ KĐT Nam Long, 71 Đường Trần Trọng Cung, Tân Thuận Đông, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7440202,
+            "longitude": 106.7327554
+        },
+        {
+            "address": "854 Đ. Tạ Quang Bửu, Phường 5, Quận 8, Hồ Chí Minh 700000",
+            "latitude": 10.736948,
+            "longitude": 106.6689257
+        },
+        {
+            "address": "106 108 Tân Sơn Hoà, Phường 3, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7967128,
+            "longitude": 106.6625213
+        },
+        {
+            "address": "9A Thoại Ngọc Hầu, Phú Trung, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.784191,
+            "longitude": 106.639422
+        },
+        {
+            "address": "666 Đ. 3 Tháng 2, Phường 14, Quận 10, Hồ Chí Minh 70000",
+            "latitude": 10.7682058,
+            "longitude": 106.6605864
+        },
+        {
+            "address": "42 Thăng Long, Phường 4, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.805157,
+            "longitude": 106.6613932
+        },
+        {
+            "address": "RiverGate Apartment Saigon, 155 Đ. Bến Vân Đồn, Phường 9, Quận 4, Hồ Chí Minh 72808",
+            "latitude": 10.7621795,
+            "longitude": 106.6992691
+        },
+        {
+            "address": "mở rộng 1, 45 Đ. Nguyễn Văn Quá, Khu dân cư, Quận 12, Hồ Chí Minh",
+            "latitude": 10.8277,
+            "longitude": 106.628
+        },
+        {
+            "address": "60 Liên khu 10-11, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.767572,
+            "longitude": 106.620513
+        },
+        {
+            "address": "thuộc chung cư cao tầng và thương mại dịch vụ - văn phòng, 510 Đ. Kinh Dương Vương, An Lạc, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7372904,
+            "longitude": 106.6140518
+        },
+        {
+            "address": "Đ. D9, Phường 22, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.7886922,
+            "longitude": 106.7178011
+        },
+        {
+            "address": "174A Trịnh Đình Trọng, Phú Trung, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7754602,
+            "longitude": 106.642807
+        },
+        {
+            "address": "11 Trần Quang Cơ, Phú Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.7776238,
+            "longitude": 106.6270136
+        },
+        {
+            "address": "Căn Hộ Duplex, Chung Cư Topaz Home 2 Block B3, Đường 154 và 138, Phường Tân Phú, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8640852,
+            "longitude": 106.810577
+        },
+        {
+            "address": "216 Đ. Võ Văn Ngân, Bình Thọ, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8504228,
+            "longitude": 106.7653767
+        },
+        {
+            "address": "No 15/17 Đ. Cộng Hòa, Phường 4, Tân Bình, Hồ Chí Minh 70000",
+            "latitude": 10.8006237,
+            "longitude": 106.6560618
+        },
+        {
+            "address": "65 Đ. Linh Đông, Linh Đông, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.8490686,
+            "longitude": 106.7464441
+        },
+        {
+            "address": "SAV2 28, Đ. Mai Chí Thọ, An Phú, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.7851449,
+            "longitude": 106.7484762
+        },
+        {
+            "address": "56 - 58 Đ. Số 23, Phường 10, Quận 6, Hồ Chí Minh",
+            "latitude": 10.741042,
+            "longitude": 106.625416
+        },
+        {
+            "address": "Botanica Premier, BPA 01-05, Phường 2, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8125833,
+            "longitude": 106.6695173
+        },
+        {
+            "address": "Khu Thương Mại, tháp A, Khu Căn Hộ 36, Trịnh Đình Thảo, Phú Trung, Tân Phú, Hồ Chí Minh 70000",
+            "latitude": 10.7745323,
+            "longitude": 106.635753
+        },
+        {
+            "address": "323-325 Đ. Bùi Hữu Nghĩa, Phường 1, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8001334,
+            "longitude": 106.6992993
+        },
+        {
+            "address": "4 Đ. Lê Văn Quới, Bình Trị Đông, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.774451,
+            "longitude": 106.6198665
+        },
+        {
+            "address": "36 Đ. Kinh Dương Vương, Phường 13, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7536313,
+            "longitude": 106.6300304
+        },
+        {
+            "address": "56 - 58 Đ. Số 23, Phường 10, Quận 6, Hồ Chí Minh",
+            "latitude": 10.741042,
+            "longitude": 106.625416
+        },
+        {
+            "address": "445 Đ. Gia Phú, Phường 1, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7434362,
+            "longitude": 106.6469431
+        },
+        {
+            "address": "357/31/50 Đ. Hậu Giang, Phường 11, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7456701,
+            "longitude": 106.6384112
+        },
+        {
+            "address": "23I Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh 100000",
+            "latitude": 10.7787418,
+            "longitude": 106.6417313
+        },
+        {
+            "address": "336/55 Đ. Nguyễn Văn Luông, Phường 12, Quận 6, Hồ Chí Minh",
+            "latitude": 10.750888,
+            "longitude": 106.637431
+        },
+        {
+            "address": "149 Đường Đội Cung, Phường 10, Quận 11, Hồ Chí Minh",
+            "latitude": 10.762739,
+            "longitude": 106.646195
+        },
+        {
+            "address": "55-57 Đ. Trần Văn Kiểu, Phường 10, Quận 6, Hồ Chí Minh",
+            "latitude": 10.734086,
+            "longitude": 106.626584
+        },
+        {
+            "address": "628/14 Đ. Hậu Giang, Phường 12, Quận 6, Hồ Chí Minh",
+            "latitude": 10.748539,
+            "longitude": 106.6342906
+        },
+        {
+            "address": "231 Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.778586,
+            "longitude": 106.6418406
+        },
+        {
+            "address": "39A Hẻm 41 Đội Cung, Phường 11, Quận 11, Hồ Chí Minh 70000",
+            "latitude": 10.7669796,
+            "longitude": 106.6502166
+        },
+        {
+            "address": "268 Đ. Bùi Minh Trực, Phường 6, Quận 8, Hồ Chí Minh",
+            "latitude": 10.7372213,
+            "longitude": 106.6549212
+        },
+        {
+            "address": "04 Hoàng Thiều Hoa, Phú Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.772471,
+            "longitude": 106.628576
+        },
+        {
+            "address": "Lucky Palace, 1, 01 và 1.02/50 Đ. Phan Văn Khỏe, Phường 02, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7494,
+            "longitude": 106.653
+        },
+        {
+            "address": "63 Đ. Âu Cơ, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.774688,
+            "longitude": 106.6500125
+        },
+        {
+            "address": "85-86 Đ. Phan Văn Khỏe, Phường 02, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7483385,
+            "longitude": 106.6487758
+        },
+        {
+            "address": "117 Đ. Trần Văn Kiểu, Khu IV, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7390069,
+            "longitude": 106.6274089
+        },
+        {
+            "address": "209/48 Tôn Thất Thuyết, Phường 3, Quận 4, Hồ Chí Minh",
+            "latitude": 10.7546662,
+            "longitude": 106.6994408
+        },
+        {
+            "address": "QP83+FGF, Đường Số 1, Phường 13, Quận 4, Hồ Chí Minh",
+            "latitude": 10.7661817,
+            "longitude": 106.7038069
+        },
+        {
+            "address": "24 Đ. Tôn Đản, Phường 13, Quận 4, Hồ Chí Minh",
+            "latitude": 10.7609753,
+            "longitude": 106.7084214
+        },
+        {
+            "address": "RiverGate Apartment Saigon, 155 Đ. Bến Vân Đồn, Phường 9, Quận 4, Hồ Chí Minh 72808",
+            "latitude": 10.7621795,
+            "longitude": 106.6992691
+        },
+        {
+            "address": "72 Đ. Lê Thánh Tôn, Bến Nghé, Quận 1, Hồ Chí Minh",
+            "latitude": 10.7782501,
+            "longitude": 106.7020279
+        },
+        {
+            "address": "Millenium Masteri, 132 Đ. Bến Vân Đồn, Phường 9, Quận 4, Hồ Chí Minh",
+            "latitude": 10.7634946,
+            "longitude": 106.6995168
+        },
+        {
+            "address": "94 Đ. Số 4, Bình Hưng Hoà A, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.786392,
+            "longitude": 106.606565
+        },
+        {
+            "address": "280A Nguyễn Tất Thành, Phường 13, Quận 4, Hồ Chí Minh 700000",
+            "latitude": 10.7617426,
+            "longitude": 106.7093867
+        },
+        {
+            "address": "209/15A Tôn Thất Thuyết, Phường 03, Quận 4, Hồ Chí Minh",
+            "latitude": 10.7547552,
+            "longitude": 106.6995204
+        },
+        {
+            "address": "42 44 Đường A4, Phường 12, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7999247,
+            "longitude": 106.6496847
+        },
+        {
+            "address": "37 Hồ Hảo Hớn, Phường Cô Giang, Quận 1, Hồ Chí Minh 71013",
+            "latitude": 10.7610855,
+            "longitude": 106.6924974
+        },
+        {
+            "address": "331C Đ. Trần Hưng Đạo, Phường Cô Giang, Quận 1, Hồ Chí Minh 71013",
+            "latitude": 10.7616951,
+            "longitude": 106.6901743
+        },
+        {
+            "address": "23I Khuông Việt, Phú Trung, Tân Phú, Hồ Chí Minh 100000",
+            "latitude": 10.7787418,
+            "longitude": 106.6417313
+        },
+        {
+            "address": "24-24B Tôn Đản, Phường 13, Quận 4, Hồ Chí Minh",
+            "latitude": 10.761744,
+            "longitude": 106.707718
+        },
+        {
+            "address": "339DE, Nguyễn Cảnh Chân, Quận 1, Hồ Chí Minh 71015",
+            "latitude": 10.756909,
+            "longitude": 106.689443
+        },
+        {
+            "address": "04 Hoàng Thiều Hoa, Phú Thạnh, Tân Phú, Hồ Chí Minh",
+            "latitude": 10.772471,
+            "longitude": 106.628576
+        },
+        {
+            "address": "sky garden 3, 25 Đ. Phạm Văn Nghị, Tân Phong, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7321845,
+            "longitude": 106.7062518
+        },
+        {
+            "address": "244 Đ. Khánh Hội, Phường 9, Quận 4, Hồ Chí Minh 72851",
+            "latitude": 10.7593595,
+            "longitude": 106.6988491
+        },
+        {
+            "address": "Saigonres Plaza, No 188, Nguyễn Xí, Tầng L2, TTTM Vincom Plaza, Phường 26, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8164319,
+            "longitude": 106.7070034
+        },
+        {
+            "address": "190 Đ. Quang Trung, Phường 10, Gò Vấp, Hồ Chí Minh",
+            "latitude": 10.8292565,
+            "longitude": 106.6725783
+        },
+        {
+            "address": "Vincom Center Landmark 81, No 772 Đ. Điện Biên Phủ, Phường 22, Bình Thạnh, Hồ Chí Minh 70000",
+            "latitude": 10.794575,
+            "longitude": 106.7220989
+        },
+        {
+            "address": "125 Số 17, Tân Quy, Quận 7, Hồ Chí Minh",
+            "latitude": 10.745035,
+            "longitude": 106.71091
+        },
+        {
+            "address": "63 Đ. Âu Cơ, Phường 9, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.774688,
+            "longitude": 106.6500125
+        },
+        {
+            "address": "Vincom+, Tầng 1 TTTM, Đường P. Quang, Phường 2, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.8061859,
+            "longitude": 106.6664355
+        },
+        {
+            "address": "TTTM Vincom+ KĐT Nam Long, 71 Đường Trần Trọng Cung, Tân Thuận Đông, Quận 7, Hồ Chí Minh",
+            "latitude": 10.7440202,
+            "longitude": 106.7327554
+        },
+        {
+            "address": "17 Đ. Mai Chí Thọ, Bình Khánh, Thủ Đức, Hồ Chí Minh",
+            "latitude": 10.7813019,
+            "longitude": 106.7353931
+        },
+        {
+            "address": "39A Hẻm 41 Đội Cung, Phường 11, Quận 11, Hồ Chí Minh 70000",
+            "latitude": 10.7669796,
+            "longitude": 106.6502166
+        },
+        {
+            "address": "28 Đ. số 14, Bình Hưng Hoà, Bình Tân, Hồ Chí Minh",
+            "latitude": 10.7785112,
+            "longitude": 106.6116339
+        },
+        {
+            "address": "323-325 Đ. Bùi Hữu Nghĩa, Phường 1, Bình Thạnh, Hồ Chí Minh",
+            "latitude": 10.8001334,
+            "longitude": 106.6992993
+        },
+        {
+            "address": "179A Nghĩa Phát, Phường 6, Tân Bình, Hồ Chí Minh",
+            "latitude": 10.7854293,
+            "longitude": 106.6577429
+        },
+        {
+            "address": "36 Đ. Kinh Dương Vương, Phường 13, Quận 6, Hồ Chí Minh",
+            "latitude": 10.7536313,
+            "longitude": 106.6300304
+        },
+        {
+            "address": "Hung Phat Apartment, Ấp 3, Nhà Bè, Hồ Chí Minh",
+            "latitude": 10.7138357,
+            "longitude": 106.7006563
+        },
+        {
+            "address": "416/61 Nguyễn Đình Chiểu, Phường 4, Quận 3, Hồ Chí Minh",
+            "latitude": 10.7740497,
+            "longitude": 106.6844204
+        },
+        {
+            "address": "Riva Park, 2, 01 - 2.02/504 Đ. Nguyễn Tất Thành, Phường 18, Quận 4, Hồ Chí Minh",
+            "latitude": 10.7549286,
+            "longitude": 106.7183991
+        }
+    ]
+}

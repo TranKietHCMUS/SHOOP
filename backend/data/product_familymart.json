@@ -1,0 +1,2706 @@
+{
+    "products": [
+        {
+            "name": "Bánh khoai lang nhân phô mai Hokkaido",
+            "price": 9000,
+            "img_url": "https://famima.vn/api/files/91aa9978-0a4c-4047-aec7-ff1dc2ae78de_Banh-khoai-lang-nhan-pho-mai-Hokkaido-700x700.jpg",
+            "unit": "cái",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Cá tẩm bột chiên giòn (15pcs)",
+            "price": 19000,
+            "img_url": "https://famima.vn/api/files/52641111-ebdc-44cd-818c-f8523f8a6610_Ca-tam-bot-chien-gion-15pcs-1-700x700.jpg",
+            "unit": "phần",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Corndog - xúc xích tẩm bột nhân phô mai hồng",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/91d192ea-8164-428a-ae1b-873b854e82e6_Corndog-Xuc-xich-tam-bot-nhan-pho-mai-hong-01-1.jpg",
+            "unit": "cây",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Gyoza - bánh xếp nhân thịt nướng",
+            "price": 9000,
+            "img_url": "https://famima.vn/api/files/383ce702-f9b6-4d30-8447-c24d7c0ffb03_Gyoza-banh-xep-nhan-thit-nuong-01-1-700x700.jpg",
+            "unit": "phần",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Miếng gà chiên tiêu Pe-Bo-Chi",
+            "price": 26000,
+            "img_url": "https://famima.vn/api/files/cb21eb25-9755-4161-9902-3983fefae647_Mieng-ga-Pe-Bo-Chi-01-700x700.jpg",
+            "unit": "miếng",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Xúc xích heo xông khói lớn 90g",
+            "price": 21000,
+            "img_url": "https://famima.vn/api/files/fafd17aa-6af9-42fb-84ac-08e1dcbbd1bd_Xuc-Xich-Heo-Xong-Khoi-Lon-90g-1.jpg",
+            "unit": "cây",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Xúc xích hồ lô bò phô mai (5pcs/xiên)",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/775538f6-ec55-45a3-a951-f98a11e7f4d4_Xuc-xich-ho-lo-bo-pho-mai-5pcsxien-1.png",
+            "unit": "xiên",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Xúc xích xông khói 50g",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/58e7b3fc-78ba-4200-85ed-00dcca494150_Xuc-Xich-Heo-Xong-Khoi-50g-2.jpg",
+            "unit": "cây",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Đùi gà giòn cay",
+            "price": 28000,
+            "img_url": "https://famima.vn/api/files/7f445335-01be-4761-8e5b-62f721128524_Dui-ga-gion-cay-01-1-700x700.jpg",
+            "unit": "miếng",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Đùi gà góc tư nướng vị tiêu",
+            "price": 65000,
+            "img_url": "https://famima.vn/api/files/1f83dbfa-6437-4210-8370-1f48c6bd4397_Dui-ga-goc-tu-nuong-vi-tieu-01-2-700x700.jpg",
+            "unit": "miếng",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Gà xiên que sốt Teriyaki",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/0765ae12-f10e-40d1-87b2-d6b0e0e888fe_Ga-xien-que-xot-Teriyaki-01-1-280x280.jpg",
+            "unit": "xiên",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Gà xiên que nướng vị Mexican",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/2577e57c-6f34-44f0-bd46-2c6e6c69cb8c_Ga-xien-que-nuong-vi-Mexican-100-1-280x280.jpg",
+            "unit": "xiên",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Okonomiyaki - Bánh xèo Nhật nhân hải sản",
+            "price": 25000,
+            "img_url": "https://famima.vn/api/files/8af0edf7-6e87-43ea-a772-f8579a914848_Okonomiyaki-Banh-xeo-Nhat-nhan-hai-san-01-1-280x280.jpg",
+            "unit": "cái",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Takoyaki SET",
+            "price": 27000,
+            "img_url": "https://famima.vn/api/files/0cc24652-0de4-4946-a2d8-b3614a87d36f_Takoyaki-SET-2-280x280.jpg",
+            "unit": "set",
+            "category": "Đồ chiên"
+        },
+        {
+            "name": "Combo yêu thích",
+            "price": 32000,
+            "img_url": "https://famima.vn/api/files/dd16fba5-9ad7-4fb2-ba92-96face7bc243_Combo-hotpot-yeu-thich-1.jpg",
+            "unit": "set",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Bún tươi ",
+            "price": 5000,
+            "img_url": "https://famima.vn/api/files/a6e030ca-541b-4d4e-af55-fbe5d991fd47_Bun-tuoi-2.jpg",
+            "unit": "phần",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Bò viên TVS",
+            "price": 6000,
+            "img_url": "https://famima.vn/api/files/4938957f-755b-4355-a7df-c6415b88d1ed_Bo-vien-TVS-1.jpg",
+            "unit": "phần",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Bắp cải cuộn tôm",
+            "price": 8000,
+            "img_url": "https://famima.vn/api/files/ac31f1ef-e166-4f64-85b9-9cfbd71933fe_Bap-cai-cuon-tom-1.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Cá viên lớn",
+            "price": 3000,
+            "img_url": "https://famima.vn/api/files/5da347f3-96ff-4d78-bddb-2c045a34246d_Ca-vien-lon-2.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Cá viên nhân cá trích",
+            "price": 7000,
+            "img_url": "https://famima.vn/api/files/0048bbaf-2ba3-4c14-9938-f17f117cd887_ca-vien-nhan-ca-trich-01.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Cá viên trứng muối",
+            "price": 9000,
+            "img_url": "https://famima.vn/api/files/324d9b7b-dd40-4a45-a74f-a971e7520f16_Ca-vien-trung-muoi-1.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Chả cá bọc bắp non",
+            "price": 8000,
+            "img_url": "https://famima.vn/api/files/5b13dc7a-fa8e-4195-b6e6-d17a368209f4_Cha-ca-boc-bap-non-1.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Chả cá bọc trứng cút",
+            "price": 8000,
+            "img_url": "https://famima.vn/api/files/bb1b2e7b-b683-41ee-9979-f45af6f16fa8_Cha-cac-boc-trung-cut-1.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Chả cá cuộn rong biển",
+            "price": 7000,
+            "img_url": "https://famima.vn/api/files/88926ac1-9625-423d-8a1e-ff4957e26241_Cha-ca-cuon-rong-bien-1.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Chả cá cuộn trứng ",
+            "price": 4000,
+            "img_url": "https://famima.vn/api/files/94467566-c74b-480d-96d0-da12be28d4c8_cha-ca-cuon-trung-01.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Chả cá hấp",
+            "price": 7000,
+            "img_url": "https://famima.vn/api/files/13ef7121-9033-4d34-b097-efce38cc66d4_Cha-ca-hap-1.jpg",
+            "unit": "phần",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Chả cá rau củ",
+            "price": 7000,
+            "img_url": "https://famima.vn/api/files/2fe0c1fe-c0ec-4eb0-a027-5a30b768a627_cha-ca-rau-cu-01-1-700x700.jpg",
+            "unit": "phần",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Chả cá topokki",
+            "price": 6000,
+            "img_url": "https://famima.vn/api/files/6136e820-c078-40a0-a908-7d2462c1b48a_Cha-ca-topokki-1.jpg",
+            "unit": "phần",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Đậu hủ cá",
+            "price": 5000,
+            "img_url": "https://famima.vn/api/files/73368f55-c9be-40f0-aa72-29c4699fa4da_Dau-hu-ca-1.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Đậu hủ cá phô mai Hokkaido 20g (50pcs)",
+            "price": 7000,
+            "img_url": "https://famima.vn/api/files/5673cf52-cfbc-4440-b6e8-0b056574b31a_Dau-hu-ca-pho-mai-Hokkaido-20g-50pcs-1.jpg",
+            "unit": "gói",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Hải sản viên nhân trứng cá",
+            "price": 6000,
+            "img_url": "https://famima.vn/api/files/b3a5c399-3ed1-4eda-98a4-67567e977023_Hai-san-vien-nhan-trung-ca-1.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Mực viên",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/88500fd8-fd80-402e-8041-19cbbfc56dc1_Muc-vien-1.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Sò điệp surimi",
+            "price": 5000,
+            "img_url": "https://famima.vn/api/files/f4cb4cb3-8763-4601-89cf-2e6c4e66826b_So-diep-surimi-lon-1.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Thanh cua ",
+            "price": 7000,
+            "img_url": "https://famima.vn/api/files/c0e35395-7411-4093-a609-cdf0b5aed9c2_Thanh-cua-2.jpg",
+            "unit": "cây",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Tôm surimi",
+            "price": 4000,
+            "img_url": "https://famima.vn/api/files/a9da484e-133b-4708-9869-16e381806016_Tom-surimi-2.jpg",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Viên cua hoàng đế",
+            "price": 8000,
+            "img_url": "https://famima.vn/api/files/be4430fc-ffcc-4b3e-ab3d-4a3d02f87ffe_vien-cua-hoang-de-1-700x700.png",
+            "unit": "miếng",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Xúc xích bạch tuộc",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/5c99f936-677f-4435-939a-c829f5066984_Xuc-xich-bach-tuoc-1.jpg",
+            "unit": "cây",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Xúc xích hotpot",
+            "price": 6000,
+            "img_url": "https://famima.vn/api/files/071bf3b5-9273-4683-9e27-4639c88291b6_Xuc-xich-hotpot-1.jpg",
+            "unit": "cây",
+            "category": "Lẩu"
+        },
+        {
+            "name": "Bánh bao nhân thịt heo trứng muối",
+            "price": 23000,
+            "img_url": "https://famima.vn/api/files/2dae2874-f0fb-4299-87fe-268338ba0453_Banh-bao-nhan-thit-heo-trung-muoi-1-700x700.jpg",
+            "unit": "cái",
+            "category": "Bánh hấp"
+        },
+        {
+            "name": "Famiman 120g",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/fad7119f-e1df-4e86-981a-1962f2b0f82f_Banh-bao-Famiman-2.jpg",
+            "unit": "gói",
+            "category": "Bánh hấp"
+        },
+        {
+            "name": "Bánh giò nhân gà 2 trứng cút",
+            "price": 17000,
+            "img_url": "https://famima.vn/api/files/ae331130-9065-4829-a18f-89ae7a92fd55_Banh-gio-nhan-ga-2-trung-cut-2-700x700.png",
+            "unit": "cái",
+            "category": "Bánh hấp"
+        },
+        {
+            "name": "Bánh giò nhân thịt 2 trứng cút",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/39643393-660e-421a-9030-4c34b5364d36_Banh-gio-nhan-thit-2-trung-cut-1.jpg",
+            "unit": "cái",
+            "category": "Bánh hấp"
+        },
+        {
+            "name": "Americano đá 12oz",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/bf492868-0d7b-4134-bd01-13e07c785159_Americano-da-12oz.jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Americano nóng 10oz",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/61c81859-34d9-4e19-bddf-63eb89adb8e3_Americano-nong-10oz-01-1-700x700 (1).jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Cà phê đen đá - L size ",
+            "price": 20000,
+            "img_url": "https://famima.vn/api/files/999eac14-29af-4e36-aa28-f1c5a494e258_Ca-phe-den-da-L-size.jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Cà phê đen đá - S size ",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/c75703f5-1c20-4096-af76-07455444ad01_Ca-phe-den-da-S-size.jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Cà phê muối - S size ",
+            "price": 23000,
+            "img_url": "https://famima.vn/api/files/09d5cc97-771f-47e9-8867-48f048ae4c85_Ca-phe-muoi-S-size-01-1-700x700.jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Cà phê sữa đá - L size ",
+            "price": 20000,
+            "img_url": "https://famima.vn/api/files/32f7271c-0809-4706-ba09-2a186b2c7692_Ca-phe-den-da-L-size.jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Cà phê sữa đá - S size ",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/5019a776-ea12-4013-8b91-cca93647ac33_Ca-phe-den-da-S-size.jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Milo ly - S size",
+            "price": 14000,
+            "img_url": "https://famima.vn/api/files/cbb525f7-b3ac-4e5d-ae6b-60cd86c80621_Milo-Ly-S-size.jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Milo ly - XL size",
+            "price": 38000,
+            "img_url": "https://famima.vn/api/files/40006c59-c74e-495d-a851-cfffe7e1cea7_Milo-Ly-XL-size-1.jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Milo ly - L size ",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/22004d70-8640-4d1a-80e9-c1b1646c01af_Milo-Ly-L-size-1.jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Nestea chanh ly - L size",
+            "price": 14000,
+            "img_url": "https://famima.vn/api/files/bea1aad0-93ab-4e56-a3a8-1472bb4deb0d_Nestea-chanh-Ly-L-size-01-1-700x700 (1).jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Nestea chanh ly - XL size",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/46850514-2423-42ea-8f39-398673336cc0_Nestea-chanh-Ly-XL-size-01-1-700x700.jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Nestea trà vải hương lài - L size",
+            "price": 14000,
+            "img_url": "https://famima.vn/api/files/0f1e7908-413c-4780-8180-d2168dc1ae3b_Nestea-tra-vai-huong-lai-L-size.jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Nestea trà vải hương lài - XL size",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/59e7643a-b353-4b4f-b9ef-fe92db537afc_Nestea-tra-vai-huong-lai-XL-size.jpg",
+            "unit": "ly",
+            "category": "Thức uống Fami"
+        },
+        {
+            "name": "Big Omusubi Hamburg Phô Mai Hokkaido",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/356e93dc-dd45-4f1c-b5cc-3223d46eeda2_Big-Omusubi-Hamburg-Pho-Mai-Hokkaido.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Big Omusubi Tôm Chiên Xốt Tartar ",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/9fc3074f-f667-4d5b-b59f-7d4859101e07_BIG-OMUSUBI-TOM-CHIEN-XOT-TARTAR.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Jikamaki Omusubi Bò Xốt Tiêu Xanh",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/cf87d31d-20f5-4635-9d3a-df0f5f60de1d_Jikamaki-Omusubi-Bo-Xot-Tieu-Xanh.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Jikamaki Omusubi Gà Áp Chảo & Phô Mai Mozzrealla",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/01c88f8e-75cf-48c0-92fc-02068e02cf7f_Jikamaki-Omusubi-Ga-Ap-Chao-Pho-Mai-Mozzrella.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Jikamaki Omusubi Trứng Ốp La",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/b8e08a99-5fad-49d7-a39d-11d69c800baa_Jikamaki-Omusubi-Trung-Op-La-01-700x700.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Omusubi Set Dinh Dưỡng",
+            "price": 29000,
+            "img_url": "https://famima.vn/api/files/45edf3b1-9e98-490b-86b6-54b6a9e8b402_Omusubi-Set-Dinh-Duong-1.jpg",
+            "unit": "set",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Temaki Omusubi Bacon & Phô Mai Hokkaido",
+            "price": 17000,
+            "img_url": "https://famima.vn/api/files/12db2f59-1dcc-46cd-a6fc-cd4ddbbee88f_Temaki-Omusubi-Bacon-Pho-Mai-Hokkaido.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Temaki Omusubi Cá Hồi Nướng",
+            "price": 17000,
+            "img_url": "https://famima.vn/api/files/7dd06227-77ff-42ac-ae35-2988d378301c_Temaki-Omusubi-Ca-Hoi-Nuong-01-1-700x700.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Temaki Omusubi Cá Hồi Nướng Mayo",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/0197592e-cc1d-40b5-8b24-3053a296bcfb_TEMAKI-OMUSUBI-CA-HOI-NUONG-MAYO-01-1-700x700.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Temaki Omusubi Cá Hồi Xốt Teriyaki",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/3f620d80-bd55-4c8b-87a3-11333ae4665f_Temaki-Omusubi-ca-hoi-xot-teriyaki-01-01-700x700.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Temaki Omusubi Cá Ngừ & Cơm Gia Vị Rong Biển ",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/4508f278-6cd3-4b24-8bd3-5bc7220d5483_Temaki-Omusubi-Ca-ngu-com-gia-vi-rong-bien.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Temaki Omusubi Cá ngừ Mayo",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/6e0e3031-7094-4136-acfa-9dce54a4e0b7_TEMAKI-OMUSUBI-CA-NGU-MAYO-01-1-700x700.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Temaki Omusubi Thanh Cua Mayo",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/b8e55b80-d046-4bf6-bece-0b89e8481505_TEMAKI-OMUSUBI-THANH-CUA-MAYO-01-1-700x700.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Temaki Omusubi Tôm Xào Cay Mayonnaise",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/e82a9d73-475a-42c8-8d23-938d50c69dd9_Temaki-Omusubi-Tom-Xao-Cay-Mayonnaise-01-1-700x700.jpg",
+            "unit": "cái",
+            "category": "Omusubi"
+        },
+        {
+            "name": "Set Yêu Thích",
+            "price": 28000,
+            "img_url": "https://famima.vn/api/files/0f1eb652-3b55-4b74-890c-ed179257902e_SET-YEU-THICH-01-700x700.jpg",
+            "unit": "set",
+            "category": "Sushi"
+        },
+        {
+            "name": "Sushi Set Cá Ngừ Mayo & Trứng",
+            "price": 31000,
+            "img_url": "https://famima.vn/api/files/8821f4b7-db84-4710-8743-01715eedde1c_SUSHI-SET-CA-NGU-MAYO-TRUNG-01-1-700x700.jpg",
+            "unit": "set",
+            "category": "Sushi"
+        },
+        {
+            "name": "Sushi Set California Tobiko",
+            "price": 32000,
+            "img_url": "https://famima.vn/api/files/71ed6823-d51f-4631-8af4-a56df52d2b9d_Sushi-Set-California-Tobiko-01-700x700.jpg",
+            "unit": "set",
+            "category": "Sushi"
+        },
+        {
+            "name": "Temaki Sushi Cá Ngừ Mayo",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/f652dfe6-8f61-47b5-94dc-23ba1a766f69_TEMAKI-SUSHI-CA-NGU-MAYO-01-700x700.jpg",
+            "unit": "cái",
+            "category": "Sushi"
+        },
+        {
+            "name": "Temaki Sushi Thanh Cua & Tobiko",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/b9e27aee-bc84-437a-826d-abe4a8a45c10_Temaki-Sushi-Thanh-Cua-Tobiko-01-700x700.jpg",
+            "unit": "cái",
+            "category": "Sushi"
+        },
+        {
+            "name": "Temaki Sushi Tôm Xốt Cay & Tobiko",
+            "price": 20000,
+            "img_url": "https://famima.vn/api/files/86879f7e-4530-47d9-ae56-7d90ee58091a_Temaki-Sushi-Tom-Xot-Cay-Tobiko-01-700x700.jpg",
+            "unit": "cái",
+            "category": "Sushi"
+        },
+        {
+            "name": "Cơm (Gạo Thơm Nàng Hoa)",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/61d7469e-34cd-4b79-bdaf-8fa7dcb64693_Com-Gao-Thom-Nang-Hoa.jpg",
+            "unit": "phần",
+            "category": "Cơm hộp"
+        },
+        {
+            "name": "Cơm Bò Cay & Trứng",
+            "price": 38000,
+            "img_url": "https://famima.vn/api/files/58b03cdc-ac25-43bb-be1e-6264edf40cd1_Com-Bo-Cay-Trung.jpg",
+            "unit": "phần",
+            "category": "Cơm hộp"
+        },
+        {
+            "name": "Cơm Cà Ri Nhật & Ức Gà Áp Chảo",
+            "price": 37000,
+            "img_url": "https://famima.vn/api/files/c833cf52-ac68-4575-a89f-86955981a644_COM-CA-RI-NHAT-UC-GA-AP-CHAO-100.jpg",
+            "unit": "phần",
+            "category": "Cơm hộp"
+        },
+        {
+            "name": "Cơm Chiên Dương Châu",
+            "price": 34000,
+            "img_url": "https://famima.vn/api/files/2ee7b032-51a0-4b7c-8bb5-34fe0ce55dc4_com-chien-duong-chau-01-280x280.jpg",
+            "unit": "phần",
+            "category": "Cơm hộp"
+        },
+        {
+            "name": "Cơm Chiên Kim Chi Cá Hồi",
+            "price": 37000,
+            "img_url": "https://famima.vn/api/files/c4cd7c6d-48cd-4ba8-b499-a5f7e838b680_Com-Chien-Kim-Chi-Ca-Hoi-01-1-700x700.jpg",
+            "unit": "phần",
+            "category": "Cơm hộp"
+        },
+        {
+            "name": "Cơm Chiên Xúc Xích Xốt Cay & Phô Mai Mozzarella",
+            "price": 33000,
+            "img_url": "https://famima.vn/api/files/c23b3bcb-c3b4-41c8-b8e7-fd9d52180cb2_COM-CHIEN-XUC-XICH-XOT-CAY-PHO-MAI-MOZZARELLA.jpg",
+            "unit": "phần",
+            "category": "Cơm hộp"
+        },
+        {
+            "name": "Cơm Đậu Hủ Xốt Sả Ớt",
+            "price": 35000,
+            "img_url": "https://famima.vn/api/files/3240190d-c8f8-4095-baf3-d55c3063459c_Com-Dau-Hu-Xot-Sa-Ot-01-700x700.jpg",
+            "unit": "phần",
+            "category": "Cơm hộp"
+        },
+        {
+            "name": "Cơm Gà Dakgalbi & Phô Mai",
+            "price": 46000,
+            "img_url": "https://famima.vn/api/files/b4c2283c-0211-47e5-9a87-d977f2cad3fe_Com-Ga-Dakgalbi-Pho-Mai-01-1-700x700.jpg",
+            "unit": "phần",
+            "category": "Cơm hộp"
+        },
+        {
+            "name": "Cơm Gà Trứng Kiểu Nhật",
+            "price": 40000,
+            "img_url": "https://famima.vn/api/files/118dbabb-d3a3-4965-820f-7ffa782d52e6_Com-Ga-Trung-Kieu-Nhat-01-01-700x700.jpg",
+            "unit": "phần",
+            "category": "Cơm hộp"
+        },
+        {
+            "name": "Cơm Gạo Lức Tôm Xốt Bơ Tỏi",
+            "price": 40000,
+            "img_url": "https://famima.vn/api/files/13fdc898-ca5b-443d-a3ea-0f13c95cf7ed_Com-Gao-Luc-Tom-Xot-Bo-Toi-01-1-700x700.jpg",
+            "unit": "phần",
+            "category": "Cơm hộp"
+        },
+        {
+            "name": "Cơm Nghêu & Thịt Xào Cay",
+            "price": 35000,
+            "img_url": "https://famima.vn/api/files/8f8b6e86-83c8-416e-8627-e346286b6a3b_COM-NGHEU-THIT-XAO-CAY.jpg",
+            "unit": "phần",
+            "category": "Cơm hộp"
+        },
+        {
+            "name": "Cơm Chiên Gà nướng phô mai cay",
+            "price": 37000,
+            "img_url": "https://famima.vn/api/files/f5c135bb-16b1-490d-948e-6e86c9bebaf4_COM-CHIEN-XUC-XICH-XOT-CAY-PHO-MAI-MOZZARELLA-01-01-700x700.jpg",
+            "unit": "phần",
+            "category": "Cơm hộp"
+        },
+        {
+            "name": "Mì Xào Thịt Vịt BBQ",
+            "price": 34000,
+            "img_url": "https://famima.vn/api/files/006424b5-449d-468d-9119-297190613ea3_MI-XAO-THIT-VI-BBQ.jpg",
+            "unit": "phần",
+            "category": "Mì"
+        },
+        {
+            "name": "Mì Ý Bò Bằm",
+            "price": 34000,
+            "img_url": "https://famima.vn/api/files/f4c10285-46d1-4b12-8e74-641fdcaa37b3_Mi-Y-bo-bam.jpg",
+            "unit": "phần",
+            "category": "Mì"
+        },
+        {
+            "name": "Mì Ý Tôm Xốt Kem Phô Mai",
+            "price": 37000,
+            "img_url": "https://famima.vn/api/files/648bc0b5-8cb8-481c-8921-3b4ce5367362_Mi-Y-Tom-Xot-Kem-Pho-Mai.jpg",
+            "unit": "phần",
+            "category": "Mì"
+        },
+        {
+            "name": "Mì Ý Xúc Xích Xông Khói Xốt Rau củ",
+            "price": 35000,
+            "img_url": "https://famima.vn/api/files/25bd7de7-319d-4c1b-8963-0114c934d0a1_MI-Y-XUC-XICH-XONG-KHOI-XOT-RAU-CU.jpg",
+            "unit": "phần",
+            "category": "Mì"
+        },
+        {
+            "name": "Mì Hảo Hảo xào khô tôm chua ngọt 75g",
+            "price": 5000,
+            "img_url": "https://famima.vn/api/files/d0763b49-4aab-4949-b761-1a06883119c4_Mi-Hao-Hao-xao-kho-tom-chua-ngot-75g-280x280.jpg",
+            "unit": "gói",
+            "category": "Mì"
+        },
+        {
+            "name": "Mì SiuKay vị bò 127g",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/1785d443-da3d-4692-8dbb-a6e5c5140c58_Mi-SiuKay-vi-bo-127g-280x280.jpg",
+            "unit": "gói",
+            "category": "Mì"
+        },
+        {
+            "name": "Mì xào khô Indomie Mì Goreng vị sườn 80g",
+            "price": 7000,
+            "img_url": "https://famima.vn/api/files/aaa37dda-8e97-47fe-949a-72ef36d2c40d_Mi-xao-kho-Indomie-Mi-Goreng-vi-suon-80g-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Mì"
+        },
+        {
+            "name": "Mì xào khô Indomie Mì Goreng 85g",
+            "price": 7000,
+            "img_url": "https://famima.vn/api/files/2a221a87-c2f0-463f-8a4b-2141210452ec_Mi-xao-kho-Indomie-Mi-Goreng-85g-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Mì"
+        },
+        {
+            "name": "Mì ly CayKay bị bò 66g",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/29cb7ff9-86af-445a-8ca3-99191e54bee1_My-ly-CayKay-vi-bo-66g-01-280x280.jpg",
+            "unit": "ly",
+            "category": "Mì"
+        },
+        {
+            "name": "Mì SiuKay bị hải sản 128g",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/f3c880dd-f227-4b30-968c-5b9e276e6304_Mi-SiuKay-vi-hai-san-128g-280x280.jpg",
+            "unit": "gói",
+            "category": "Mì"
+        },
+        {
+            "name": "Mì ly Modern lẩu Thái Tôm 67g",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/377de046-3cc5-4cae-a70b-549b06f4583f_Mi-ly-Modern-lau-Thai-Tom-67g-280x280.jpg",
+            "unit": "ly",
+            "category": "Mì"
+        },
+        {
+            "name": "Ly Hảo Hảo tôm chua cay 67g",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/dfbe4d29-38cc-4165-9f3d-1c092e4db5a9_Mi-ly-Handy-Hao-Hao-tom-chua-cay-67g-01-280x280.jpg",
+            "unit": "ly",
+            "category": "Mì"
+        },
+        {
+            "name": "Bát Kool Spaghetti xốt bò bằm 105g",
+            "price": 19000,
+            "img_url": "https://famima.vn/api/files/ba41838f-cdcc-4879-a8ed-a80f8e623b5b_bat-kool-spaghetti-xot-bo-bam-105g-250x250.jpg",
+            "unit": "bát",
+            "category": "Mì"
+        },
+        {
+            "name": "Bánh mì Sandwich lạt (A)",
+            "price": 30000,
+            "img_url": "https://famima.vn/api/files/93235bc6-3abc-4f51-8c2c-965f2ffb1f3f_banh-mi-sandwich-lat-A.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Bánh mì Sandwich Nho (LVG)",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/665745db-2846-4b7a-b959-19cd59dd039e_210043-Banh-Sandwich-Nho-LVG.png",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Sandwich Cá Ngừ & Trứng Mayonnaise",
+            "price": 21000,
+            "img_url": "https://famima.vn/api/files/a5ace312-03b0-48b7-ac17-da14af060b63_SANDWICH-CA-NGU-TRUNG-MAYONNAISE.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Sandwich Dăm Bông & Phô Mai Hokkaido",
+            "price": 24000,
+            "img_url": "https://famima.vn/api/files/be820cce-cc9d-4d03-99aa-71c102fdab62_SANDWICH-DAM-BONG-PHO-MAI-HOKKAIDO-01-1-700x700.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Sandwich Ebikatsu & trứng mayo tobiko",
+            "price": 27000,
+            "img_url": "https://famima.vn/api/files/0740e5c5-20bf-485a-8e72-9dae92e93539_SandWich-Ebikatsu-trung-mayo-tobiko-700x700.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Sandwich gà cay phô mai",
+            "price": 29000,
+            "img_url": "https://famima.vn/api/files/ce7b7f6a-3ced-490a-96ed-e12830f5b884_Sandwich-ga-cay-pho-mai-700x700.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Sandwich Hỗn Hợp",
+            "price": 31000,
+            "img_url": "https://famima.vn/api/files/c1321b40-acd6-4b90-b99e-26bed7b3ad1c_Sandwich-Hon-Hop-01-01-1-280x280.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Sandwich Nguyên Cám Cà Nướng Mật Ong",
+            "price": 30000,
+            "img_url": "https://famima.vn/api/files/ddf58058-be0e-481c-a748-1d4a5960e787_Sandwich-Nguyen-Cam-Ga-Nuong-Mat-Ong.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Sandwich Nguyên Cám Thanh Cua & Salad Trứng",
+            "price": 25000,
+            "img_url": "https://famima.vn/api/files/3f98d64f-15fb-4744-92da-15c61f0c3136_Sandwich-Nguyen-Cam-Thanh-Cua-Salad-Trung-1-700x700.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Sandwich Nguyên Cám Thịt Nướng Bulgogi, xà lách, cà chua",
+            "price": 30000,
+            "img_url": "https://famima.vn/api/files/fe57c448-9904-4540-9a79-318bbe5639a0_Sandwich-nguyen-cam-thit-nuong-Bulgogi-xa-lach-ca-chua-01-700x700.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Sandwich Tôm xốt bơ tỏi & trứng",
+            "price": 28000,
+            "img_url": "https://famima.vn/api/files/3858703c-1027-43eb-9b4c-d1750eae7447_Sandwich-Tom-xot-bo-toi-trung-280x280.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Sandwich Trứng chiên & Xúc Xích Xông Khói",
+            "price": 23000,
+            "img_url": "https://famima.vn/api/files/38c8267e-b026-4a38-bdaf-b3993b35fe53_SANDWICH-TRUNG-CHIEN-XUC-XICH-XONG-KHOI-01-1-700x700.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Sandwich Trứng Mayonnaise",
+            "price": 20000,
+            "img_url": "https://famima.vn/api/files/07fb5380-203b-408c-9a48-d3db66bed47b_SANDWICH-TRUNG-MAYONNAISE-280x280.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Sandwich Trứng Ốp la & Xúc Xích Tỏi",
+            "price": 26000,
+            "img_url": "https://famima.vn/api/files/e2b5b847-1d84-435c-8c21-d2e0be0a66ea_Sandwich-Trung-Opla-Xuc-Xich-Toi-280x280.jpg",
+            "unit": "cái",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Cháo Hải Sản & Nấm",
+            "price": 25000,
+            "img_url": "https://famima.vn/api/files/105de748-271a-4a5b-af33-0c189896ce80_Chao-Hai-San-Nam-01-280x280.jpg",
+            "unit": "phần",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Cháo Thịt Kho Nấm",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/a064a076-fe45-449e-b235-287a3250b513_Chao-Thit-Kho-Nam-2-280x280.jpg",
+            "unit": "phần",
+            "category": "Sandwich"
+        },
+        {
+            "name": "Gimbap Kim Chi & Phô Mai",
+            "price": 35000,
+            "img_url": "https://famima.vn/api/files/ca62e1b4-f091-48ef-b659-9350fd1f0c18_Gimbap-Kim-Chi-Pho-Mai-280x280.jpg",
+            "unit": "cuốn",
+            "category": "Thức ăn phụ"
+        },
+        {
+            "name": "Salad bông cải xanh xà lách giòn & ức gà",
+            "price": 36000,
+            "img_url": "https://famima.vn/api/files/c1c947f4-551b-4edd-8fd8-3634b8e2ed81_Salad-bong-cai-xanh-xa-lach-gion-uc-ga-01-280x280.jpg",
+            "unit": "phần",
+            "category": "Salad"
+        },
+        {
+            "name": "Salad cải xoăn tôm và trứng",
+            "price": 37000,
+            "img_url": "https://famima.vn/api/files/4410d62e-77c3-4145-bfce-e41d68c1dd45_Salad-cai-xoan-tom-va-trung-01-280x280.jpg",
+            "unit": "phần",
+            "category": "Salad"
+        },
+        {
+            "name": "Salad gạo lứt thịt xông khói & rau củ",
+            "price": 35000,
+            "img_url": "https://famima.vn/api/files/ee6f7dc0-f6b4-4273-9c01-d37ec7c97851_Salad-gao-lut-thit-xong-khoi-rau-cu-01-280x280.jpg",
+            "unit": "phần",
+            "category": "Salad"
+        },
+        {
+            "name": "Salad mini bắp cải trộn",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/50319271-2e04-4234-9528-da7c12083653_Salad-mini-bap-cai-tron-280x280.jpg",
+            "unit": "phần",
+            "category": "Salad"
+        },
+        {
+            "name": "Mousse Chanh leo (FG)",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/d06b462e-59f9-4e03-9bfe-38bd9bbcef06_Mousse-Chanh-leo-FG-280x280.jpg",
+            "unit": "hũ",
+            "category": "Tráng miệng"
+        },
+        {
+            "name": "Panna Cotta vị Xoài (FG)",
+            "price": 19000,
+            "img_url": "https://famima.vn/api/files/94361d52-ba3e-48e3-8332-918bdf36e1c6_Panna-Cotta-vi-Xoai-FG-280x280.jpg",
+            "unit": "hũ",
+            "category": "Tráng miệng"
+        },
+        {
+            "name": "TNT - Chè Khoai đậu bí 140g",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/3e003901-0795-425a-859c-5c6b18fad325_TNT-Che-Khoai-dau-bi-140g-280x280.jpg",
+            "unit": "hũ",
+            "category": "Tráng miệng"
+        },
+        {
+            "name": "TNT - Chè môn sáp 140g",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/5c7fbef3-4c86-419b-a173-299ab4e0b72a_TNT-Che-mon-sap-140g-280x280.jpg",
+            "unit": "hũ",
+            "category": "Tráng miệng"
+        },
+        {
+            "name": "TNT - Chè bắp 140g",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/a58ed892-d903-433e-a9d3-2537f6b785a4_TNT-Che-bap-140g-280x280.jpg",
+            "unit": "hũ",
+            "category": "Tráng miệng"
+        },
+        {
+            "name": "TNT - Chè bưởi 140g",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/5e99a7db-e5ed-4662-abfe-21a84cafcfc4_TNT-Che-buoi-140g-280x280.jpg",
+            "unit": "hũ",
+            "category": "Tráng miệng"
+        },
+        {
+            "name": "Bánh Mì Truyền Thống",
+            "price": 29,
+            "img_url": "https://famima.vn/api/files/09ed0b0b-7e9c-4747-8910-b4cfb5105ece_banh-mi-truyen-thong-vietnam-1-700x700.png",
+            "unit": "ổ",
+            "category": "Bánh mì"
+        },
+        {
+            "name": "Bánh Mì Que Thịt Nướng Sả",
+            "price": 19,
+            "img_url": "https://famima.vn/api/files/c9519b38-4725-491c-ab22-f53e1b9127f4_BANH-MI-QUE-THIT-HEO-NUONG-SA.jpg",
+            "unit": "cây",
+            "category": "Bánh mì"
+        },
+        {
+            "name": "Bánh Mì Que Pate Nướng Cay",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/f51ea464-94d6-49b3-a374-9ecc2fd77653_Banh-Mi-Que-Pate-Nuong-Cay-01-700x700.jpg",
+            "unit": "cây",
+            "category": "Bánh mì"
+        },
+        {
+            "name": "Bánh Mì Que Gà Xốt Cay Hàn Quốc",
+            "price": 21000,
+            "img_url": "https://famima.vn/api/files/5c7b5296-891b-4e6b-8c66-6861bdc625c4_Banh-Mi-Que-Ga-Xot-Cay-Han-Quoc.jpg",
+            "unit": "cây",
+            "category": "Bánh mì"
+        },
+        {
+            "name": "Bánh Mì Que Gà Gà Ngũ Vị",
+            "price": 19000,
+            "img_url": "https://famima.vn/api/files/64237421-2082-4b12-abae-f486803501e9_Banh-Mi-Que-Ga-Ngu-Vi-01-1-700x700.jpg",
+            "unit": "cây",
+            "category": "Bánh mì"
+        },
+        {
+            "name": "Bánh Mì Nem Nướng Jambon",
+            "price": 29000,
+            "img_url": "https://famima.vn/api/files/51c80514-5463-48e6-94c8-b933fc9c738f_Banh-mi-Viet-Nam-nem-nuong-jambon-01-1-700x700.jpg",
+            "unit": "ổ",
+            "category": "Bánh mì"
+        },
+        {
+            "name": "Bánh Mì dừa lưới (A)",
+            "price": 19000,
+            "img_url": "https://famima.vn/api/files/0e2fa3fc-2cab-4397-b920-e39f82802a31_Banh-mi-dua-luoi-A.jpg",
+            "unit": "ổ",
+            "category": "Bánh mì"
+        },
+        {
+            "name": "Bánh Mì Chả Cá Sợi",
+            "price": 28000,
+            "img_url": "https://famima.vn/api/files/9b991fba-5ff0-4d2d-a802-1b5f0eac7fa1_Banh-mi-Viet-Nam-cha-ca-soi-01-2-700x700.jpg",
+            "unit": "ổ",
+            "category": "Bánh mì"
+        },
+        {
+            "name": "Bánh Mì Bánh Tôm & Phô Mai Cheddar",
+            "price": 29000,
+            "img_url": "https://famima.vn/api/files/6a0fc53a-ffe3-4590-8e57-6d02811ed714_BANH-MI-BANH-TOM-PHO-MAI-CHEDDAR-700x699.jpg",
+            "unit": "ổ",
+            "category": "Bánh mì"
+        },
+        {
+            "name": "Bánh Su Kem (I)",
+            "price": 17000,
+            "img_url": "https://famima.vn/api/files/b27cfd53-e9c0-4adb-9701-eb86740c4947_Banh-Su-Kem-I-2.jpg",
+            "unit": "cái",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Bông Lan Chuối (A)",
+            "price": 17000,
+            "img_url": "https://famima.vn/api/files/3de01771-f368-4894-8428-b8efaaddc5e6_Bong-Lan-Chuoi-A-01-700x700.jpg",
+            "unit": "cái",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Bánh Hawaii Khoai Tây 1/2 ổ (Y)",
+            "price": 28000,
+            "img_url": "https://famima.vn/api/files/b3fe5409-3ff9-4626-b924-206fc976e719_Banh-Hawaii-Khoai-Tay-12-O-Y-700x700.jpg",
+            "unit": "ổ",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Bánh Đậu đỏ mới (Y)",
+            "price": 25000,
+            "img_url": "https://famima.vn/api/files/58ad0776-87bf-4a72-902b-f61a27912119_Banh-Dau-do-moi-Y.jpg",
+            "unit": "cái",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Bánh crepe tiramisu",
+            "price": 23000,
+            "img_url": "https://famima.vn/api/files/def30f81-230d-4bfb-bd75-03b613320d3b_Banh-crepe-tiramisu-SK.jpg",
+            "unit": "cái",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Bánh Dorayaki nhân kem sữa Hokkaido",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/8592a7b4-b01b-4f95-acb0-adff0175c73b_Banh-Dorayaki-nhan-kem-sua-Hokkaido.jpg",
+            "unit": "cái",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Đan Mạch Bơ nhỏ (A_TB)",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/6aa01ef9-48cf-44e7-aff9-10ca9b9d6af0_210006-Dan-Mach-Bo-nho-A_TB-394x400.png",
+            "unit": "cái",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Đan Mạch custard",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/6c85b0eb-7a25-4efd-b27f-580bcd000a12_Dan-Mach-custard-FG.jpg",
+            "unit": "cái",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Dorayaki nhân Sô Cô La (I)",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/25058028-9bde-4981-88bc-ddf8953fddc6_Dorayaki-nhan-So-Co-La-I.jpg",
+            "unit": "cái",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Chà bông kẹp (A)",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/94d3fc49-ae4b-4df6-ad2d-9807ce170ca7_Cha-bong-kep-A.jpg",
+            "unit": "cái",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Chà bông hotdog (A_TB)",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/0c0a66e7-6813-4a16-9530-8ba51a326251_Cha-bong-hotdog-A_TB.jpg",
+            "unit": "cái",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Bánh xốp Phô Mai (A)",
+            "price": 17000,
+            "img_url": "https://famima.vn/api/files/1efa741e-5b70-40bd-a482-6dfcf2568ed5_210212-Banh-xop-pho-mai-280x280.png",
+            "unit": "gói",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Bánh Mì cua mini (A)",
+            "price": 21000,
+            "img_url": "https://famima.vn/api/files/db59330e-1104-4613-b2bc-8d59e64d380a_Banh-mi-cua-mini-A.jpg",
+            "unit": "cái",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Bánh Mì lạt mini nhỏ (A)",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/fc1116cb-03d0-4a0e-8438-456070afc449_Banh-mi-lat-mini-nho-A-2.jpg",
+            "unit": "cái",
+            "category": "Bánh ngọt"
+        },
+        {
+            "name": "Sữa trái cây Nutriboost dâu 297ml",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/233728da-4172-4cab-bbc1-70639513b32f_Sua-trai-cay-Nutriboost-dau-297ml-400x400.png",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa hương bánh quy Nutriboost 297ml",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/88389521-716a-4283-b1f3-3d7aca4d1f82_Sua-huong-banh-quy-Nutriboost-297ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa trái cây Nutriboost dâu 1L",
+            "price": 34000,
+            "img_url": "https://famima.vn/api/files/268b8b28-7353-40da-b633-380471e97f75_Sua-trai-cay-Nutriboost-dau-1L-280x280.jpg",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "Lothamilk - Sữa tươi TC đường đen 250ml",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/5a8e886d-f57f-4e96-9cdd-824986235a50_Lothamilk-Sua-tuoi-TC-duong-den-250ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "Lothamilk - Trà sữa trân châu 250ml",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/08f91da0-4138-45bc-8be1-f3548ec2100a_Lothamilk-Tra-sua-tran-chau-250ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa Bắp Thái Sơn 330ml",
+            "price": 17000,
+            "img_url": "https://famima.vn/api/files/4d9a2286-750c-4c96-874e-f4c9dc81ee5f_Sua-Bap-Thai-Son-330ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa hương Dưa Lưới - Binggrae 200ml",
+            "price": 21000,
+            "img_url": "https://famima.vn/api/files/f90a324a-f2f3-4837-a194-0d06c88b7ed9_Sua-huong-Dua-Luoi-Binggrae-200ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa hương Chuối - Binggrae 200ml",
+            "price": 21000,
+            "img_url": "https://famima.vn/api/files/ef17803f-8daa-40a5-8270-6a115585954a_Sua-huong-Chuoi-Binggrae-200ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa uống lên men Yakult 65ml*5",
+            "price": 30000,
+            "img_url": "https://famima.vn/api/files/6967b7a7-94ab-4631-b83e-80601279a8af_Sua-uong-len-men-Yakult-65ml-01-1-280x280.jpg",
+            "unit": "lốc",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa đậu nành Fami bịch 200ml",
+            "price": 6000,
+            "img_url": "https://famima.vn/api/files/0a0ceaa1-6047-45eb-a983-a966497dd3e5_Sua-dau-nanh-Fami-bich-200ml-280x280.jpg",
+            "unit": "bịch",
+            "category": "Sữa"
+        },
+        {
+            "name": "Lothamilk - Sữa thanh trùng có đường 490ml",
+            "price": 32000,
+            "img_url": "https://famima.vn/api/files/3fd77c24-5bcc-4a80-a8d7-02f3f9d93119_Lothamilk-Sua-thanh-trung-co-duong-490ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa chua Đường VNM 100g",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/a1753845-6b72-41ef-ac47-fb4d87bba652_Sua-chua-co-duong-VNM-100g-280x280.jpg",
+            "unit": "hũ",
+            "category": "Sữa"
+        },
+        {
+            "name": "SG - Sữa chua nếp cẩm 120g",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/0d47152c-8e2e-4313-84b1-7850bbfe30a7_SG-Sua-chua-nep-cam-120g-280x280.jpg",
+            "unit": "hũ",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa chua Nha Đam VNM 100g",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/6b1c12f8-f4e9-4ad3-8089-91d247040ccc_Sua-Chua-Nha-Dam-VNM-100gr-280x280.jpg",
+            "unit": "hũ",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa chua VNM lựu đỏ ít đường 100g",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/2c386751-2663-4354-a715-347a65e0a569_Sua-chua-VNM-luu-do-it-duong-100g-280x280.jpg",
+            "unit": "hũ",
+            "category": "Sữa"
+        },
+        {
+            "name": "Milo lon 240ml",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/79ef33a1-acae-4d52-bc8b-c4da3436e444_Milo-lon-240ml-01-1-280x280.jpg",
+            "unit": "lon",
+            "category": "Sữa"
+        },
+        {
+            "name": "Milo lúa mạch nắp vặn 210ml",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/abe14c11-ef7a-488c-bf04-bd4197686b8b_Milo-lua-mach-nap-van-210ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "Milo nắp vặn Hương Bạc Hà 200ml",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/5bef08b8-a98f-4936-993e-b4739a2370f0_Milo-nap-van-Huong-Bac-Ha-200ml-280x280.png",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "Milo nước 180ml",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/bf8cfeaf-a173-4e4f-9b4b-01e00babb8c6_Milo-nuoc-180ml-01-1-700x700.jpg",
+            "unit": "hộp",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa Thanh Trùng VNM DUONG Fino 220ml",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/cfd48ebc-5d67-4114-a812-8cee7f492798_STT-VNM-DUONG-Fino-220-ml-280x280.png",
+            "unit": "hộp",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa Thanh Trùng VNM IT DUONG Fino 220ml",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/13d5f55c-8b2f-44b4-8da2-40de66766c2e_STT-VNM-It-Duong-Fino-220ml-280x280.jpg",
+            "unit": "hộp",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa Thanh Trùng VNM KO DUONG Fino 220ml",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/f52486a5-1d8b-45f6-84a4-258f1a71b488_STT-VNM-KD-Fino-220ml-280x280.jpg",
+            "unit": "hộp",
+            "category": "Sữa"
+        },
+        {
+            "name": "Sữa Đặc NSPN Xanh 380g",
+            "price": 26000,
+            "img_url": "https://famima.vn/api/files/9b92da69-a45a-44bb-a475-8c8844d15313_Sua-Dac-NSPN-Xanh-380g-280x280.jpg",
+            "unit": "lon",
+            "category": "Sữa"
+        },
+        {
+            "name": "IDP - Malto Socola 180ml",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/96d4c9d9-0be3-40c2-bbec-5fa4375276e1_IDP-Malto-Socola-180ml-300x300.jpg",
+            "unit": "hộp",
+            "category": "Sữa"
+        },
+        {
+            "name": "IDP - Malto Socola Bạc Hà 180ml",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/aacba14d-767b-45da-9b7f-88c48c4af301_IDP-Malto-Socola-180ml-300x300.jpg",
+            "unit": "hộp",
+            "category": "Sữa"
+        },
+        {
+            "name": "Betagen SCU cam 140ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/504c1cc2-0d8d-4882-8990-a71716455267_Betagen-SCU-cam-140ml-280x280.png",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "Betagen SCU tự nhiên 140ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/52432ee3-be7a-4949-9708-ff7855cd83dd_Betagen-SCU-tu-nhien-140ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Sữa"
+        },
+        {
+            "name": "VNM - SCA Nha đam ít đường 100g",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/76e1bbd4-7cf9-471c-b03e-dbc751176c49_VNM-â-Sua-chua-nha-dam-it-duong-100g-300x300.png",
+            "unit": "hũ",
+            "category": "Sữa"
+        },
+        {
+            "name": "Yogurt ăn TH vị nha đam 100g",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/ae5ba346-dbee-4f2f-836f-40ea3517406b_Yogurt-an-TH-vi-nha-dam-100g-300x300.jpg",
+            "unit": "hũ",
+            "category": "Sữa"
+        },
+        {
+            "name": "Yogurt ăn TH vị việt quất 100g",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/3ac56aa1-a63b-4bc3-8019-91bd966ac742_Yogurt-an-TH-vi-viet-quat-100g-300x300.jpg",
+            "unit": "hũ",
+            "category": "Sữa"
+        },
+        {
+            "name": "Aquafina 5L\t",
+            "price": 35000,
+            "img_url": "https://famima.vn/api/files/d188a34a-1a32-429a-9eff-65a109bc64bf_Aquafina-5L-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Aquafina 1500ml",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/5c60e0a2-d70f-4cac-ab0d-511872c6df18_Aquafina-1500ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Aquafina 500ml",
+            "price": 7000,
+            "img_url": "https://famima.vn/api/files/56a73276-a7b8-49d1-a213-67b36c4fc90f_Aquafina-500ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "C+ soda chanh - bổ sung vitamin C 350ml",
+            "price": 6000,
+            "img_url": "https://famima.vn/api/files/cbf3a8a0-6980-4c0f-932d-628fe4b1fa7f_C-soda-chanh-bo-sung-vitamin-C-350ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Coca-Cola chai 390ml",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/33e72ac1-5758-40fb-9f8e-174e6743a17e_Coca-Cola-chai-390ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Coca-Cola giảm đường chai 1.5L",
+            "price": 24000,
+            "img_url": "https://famima.vn/api/files/94ce3ce6-d1ef-4fe6-8594-4c79e5472055_Coca-Cola-giam-duong-chai-1.5L-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Coca-Cola giảm đường chai 600ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/e1df1ff7-d94b-44f7-8cdc-44e9be36eb13_Coca-Cola-giam-duong-chai-600ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Coca-Cola zero chai 600ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/9458bfef-c887-43bd-bb81-311bfd5e0d3a_Coca-Cola-zero-chai-600ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Dasani 1.5L",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/a20a99b9-9557-4d7f-b50f-1c78f28bbd75_Dasani-15L-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Dasani 510ml",
+            "price": 7000,
+            "img_url": "https://famima.vn/api/files/715c0c11-b05b-4b33-941a-4f3eb1635a71_Dasani-510ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Fuzetea + trà đào và hạt chia 450ml",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/b067c3e9-5ac0-431a-a0ea-845f5e4134bd_Fuzetea-tra-dao-va-hat-chia-450ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Hồng trà C2 vị đào 455ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/81a62afe-cf83-41c4-8ed8-f5a70d3a5b0f_Hong-tra-C2-vi-Dao-455ml-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Hồng trà C2 vị Vải 455ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/aaefac6e-adc9-417a-ab23-1ea15dcfc542_Hong-tra-C2-vi-Vai-455ml-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "ICE + Hương đào 490ml",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/77603cdc-3ad6-4599-8800-384f18b76cb9_ICE-HUONG-DAO-490ML-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "LaVie 1.5L",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/47c1e456-e561-4c23-bab9-847d8070a92e_LaVie-1.5-lit-280x280.png",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "LaVie 500ml",
+            "price": 6000,
+            "img_url": "https://famima.vn/api/files/a460dcb0-f125-4c51-b979-45148d073d93_LAVIE-500ML-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "LaVie 5L",
+            "price": 30000,
+            "img_url": "https://famima.vn/api/files/c5b32895-6c67-4f77-bea9-917f04e293e7_Lavie-5lit-280x280.png",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Nước dưa hấu nha đam 500ml",
+            "price": 33000,
+            "img_url": "https://famima.vn/api/files/e85d4d43-64f0-4ce1-98bd-1a6254666b2f_Nuoc-dua-hau-nha-dam-500ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Nước Gạo Buổi sáng 1.5L",
+            "price": 88000,
+            "img_url": "https://famima.vn/api/files/f1e2f2ad-36cc-4a6d-8d29-003a4039e23a_Nuoc-Gao-Buoi-Sang-1.5L-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Nước Gạo Buổi sáng 500ml",
+            "price": 41000,
+            "img_url": "https://famima.vn/api/files/9b00feea-fe64-47c5-af55-4e64c33b1968_Nuoc-Gao-Buoi-Sang-500ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Nước tăng lực Lipovitan Honey",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/3d2bff1a-c92c-43a7-981f-6b08601ee2fe_Nuoc-tang-luc-Lipovitan-Honey-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Nước tăng lực Monster 355ml",
+            "price": 27000,
+            "img_url": "https://famima.vn/api/files/b607200b-bbce-403f-b4cf-f155748368de_Nuoc-tang-luc-monster-355ml-01-1-280x280.jpg",
+            "unit": "lon",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Nước tăng lực Red bull vitamin và kẽm 250ml",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/2afcad4a-c552-456c-b42a-25efa7d18b26_Nuoc-tang-luc-Red-bull-vitamin-va-kem-250ml-280x280.png",
+            "unit": "lon",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Nước tăng lực Redbull",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/0436e86c-e331-4fa0-b621-f184b368c218_Nuoc-tang-luc-Redbull-01-1-280x280.jpg",
+            "unit": "lon",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Nước tăng lực Rockstar lon 250ml",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/10c1854c-883a-43b8-9eb7-77406c54e020_Nuoc-tang-luc-Rockstar-lon-250ml-01-1-280x280.jpg",
+            "unit": "lon",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Nước trà xanh C2 hương chanh 455ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/d5df69ca-5e8b-4a9f-a723-806e9003bc3a_Nuoc-tra-xanh-C2-Huong-chanh-455ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Pepsi Cola chai 600ml",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/f8d87c3f-3e69-4104-88d1-49b0738d2ce9_Pepsi-cola-chai-600ml-01-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Seiryu 1000ml",
+            "price": 7000,
+            "img_url": "https://famima.vn/api/files/4e67140a-5ecf-4edc-b742-7ac01e6518c4_Seiryu-1000ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Sprite pet 600ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/e223c346-c61d-4175-baad-6e5f76c69b80_Sprite-pet-600ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Sting dâu lon cao 320ml",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/fc5da711-f030-460e-b7ac-b07c816db0e0_Sting-dau-lon-cao-320ml-280x280.jpg",
+            "unit": "lon",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Sting Straw Pet 330ml",
+            "price": 14000,
+            "img_url": "https://famima.vn/api/files/dc78fcae-255d-483f-9be0-84749b6e3259_Sting-Straw-Pet-330-ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Sting Vàng Pet 330ml",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/ebf6aab7-5fda-4e58-99ab-6ae4842a5a8b_Sting-Vang-pet-330ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "TEA + Plus Trà ô long 1L",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/8857ee19-a64f-4aea-9cb9-9be1de1fcb02_TEA-Plus-Tra-o-long-1L-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "TEA + Plus Trà ô long 450ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/0fe05ca8-3e6c-42da-a0b8-506918a935ab_TEA-Plus-Tra-o-long-450ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Tea Break trà sữa 345ml ",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/bd8f6ce1-fa06-4007-9582-6aaa3d904ba0_Tea-Break-tra-sua-345ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Thức uống bổ sung ion Pocari Sweat 500ml",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/c91cc869-7d83-4784-b818-53cbd52a5c36_Thuc-uong-bo-sung-ion-Pocari-Sweat-500ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Trà bí đao Wonderfarm 440ml",
+            "price": 10000,
+            "img_url": "https://famima.vn/api/files/9fb6b8e2-99dc-42ad-b2fb-208909de6368_Tra-bi-dao-Wonderfarm-440ml-01-2-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Trà C2 Chanh tuyết Bạc Hà Freeze 455ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/253a33dd-1cd5-4879-aa9c-ede582e9ee35_tra-c2-chanh-tuyet-bac-ha-freeze-455ml-250x250.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Trà đen C2 hương dâu anh đào Freeze 455ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/2667f791-0cc9-4495-89bc-372631b8ec91_Tra-den-C2-huong-dau-anh-dao-Freeze-455ml-100-01-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Trà Ô Long Không đường Tea + Plus 450ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/d4029682-d72a-42f7-9971-2b8f4422c5f9_Tra-O-Long-Khong-Duong-Tea-plus-450ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Trà Ô Long vị chanh Tea + Plus 450ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/780b9201-fb3e-46b7-b2c3-121cda30d2c8_Tra-O-long-vi-chanh-Tea-Plus-450ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Trà olong vị chanh Tea + Plus 1L",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/8c2d3e5e-f6d4-4ace-ad22-08525b595944_Tra-olong-vi-chanh-TeaPlus-1L-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Trà Sữa Mr Brown 580ml",
+            "price": 28000,
+            "img_url": "https://famima.vn/api/files/d8a2a88e-f53e-46e3-9935-1eb560cfc92e_Tra-Sua-Mr-Brown-580ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Trà Tắc Mật Ong Cozy 455ml",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/2e8f2ab6-7fa0-496f-80c4-1814007f9442_Tra-tac-mat-ong-Cozy-455ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Trà Thanh Nhiệt Dr Thanh 455ml",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/b4fc817d-73cb-45be-ba99-3682a208c318_Tra-thanh-nhiet-Dr-Thanh-455ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Trà Xanh Không Độ Chanh 455ml",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/3effe59a-42e4-4395-84c5-e872ae8585c4_Tra-Xanh-Khong-Do-Chanh-455ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Twister Cam chai 1L",
+            "price": 27000,
+            "img_url": "https://famima.vn/api/files/30acc74c-7f4f-4dc6-b61b-a8447320fe55_Twister-Cam-chai-1L-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Cà phê sữa highlands hộp 180ml",
+            "price": 14000,
+            "img_url": "https://famima.vn/api/files/1918b485-89ec-4f5f-a545-178f19371d33_Ca-phe-sua-highlands-hop-180ml-280x280.jpg",
+            "unit": "hộp",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Highlands cà phê sữa lon 235ml",
+            "price": 17000,
+            "img_url": "https://famima.vn/api/files/c1b20e75-64a5-4338-948c-995c6bbba70e_highlands-ca-phe-sua-lon-235ml-250x250.jpg",
+            "unit": "lon",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Latte - Trà sữa 480ml",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/a91ff70f-dece-4524-b051-5817e60db926_Latte-Tra-sua-480ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Goodmood - Nước uống vị sữa chua 455ml",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/cb9ede86-a280-44d8-9839-7fb532ae029e_Goodmood-â-Nuoc-uong-vi-sua-chua-455ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Trà mật ong Hoa Lài 585ml",
+            "price": 32000,
+            "img_url": "https://famima.vn/api/files/ec7ab47e-1809-4ad9-bc1e-d7e9c920ee68_Tra-mat-ong-Hoa-Lai-585ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Nescafe cà phê Latte hộp 180ml",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/9f633897-d639-44c4-9885-169f15f468b1_Nescafe-ca-phe-Latte-hop-180ml-280x280.jpg",
+            "unit": "hộp",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Thức uống bổ sung ion Pocari Sweat 900ml",
+            "price": 27000,
+            "img_url": "https://famima.vn/api/files/569887a3-15ec-461b-b750-995cb79cf03b_Thuc-uong-bo-sung-ion-Pocari-Sweat-900ml.jpg",
+            "unit": "chai",
+            "category": "Thức uống"
+        },
+        {
+            "name": "Bia 333",
+            "price": 16000,
+            "img_url": "https://famima.vn/api/files/e5ca2ea4-e78b-47ef-8ec1-b6f84e10bff3_Bia-333-01-1-280x280.jpg",
+            "unit": "lon",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Bia Heineken lon bạc 330ml",
+            "price": 27000,
+            "img_url": "https://famima.vn/api/files/7990a6ba-f4f4-48e2-b677-331d176c9423_Bia-Heineken-lon-bac-330ml-280x280.jpg",
+            "unit": "lon",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Bia Heineken lon cao 330ml",
+            "price": 25000,
+            "img_url": "https://famima.vn/api/files/722c163c-133f-4bba-9be9-7e7efc2889c9_Bia-Heineken-lon-cao-330ml-01-1-280x280.jpg",
+            "unit": "lon",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Bia Red Horse 500ml",
+            "price": 30000,
+            "img_url": "https://famima.vn/api/files/d0431fc7-4036-4d1b-b34a-2e1f8ed83763_Bia-Red-Horse-500ml-2-280x280.jpg",
+            "unit": "lon",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Bia Sài Gòn Lager lon 330ml",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/2a08e9ca-d73b-4efc-b3e7-11f7d8755c67_Bia-Sai-Gon-Lager-lon-330ml-01-1-280x280.jpg",
+            "unit": "lon",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Bia Tiger Crystal lon 330ml",
+            "price": 24000,
+            "img_url": "https://famima.vn/api/files/743c87c2-256c-45d7-b40c-f48d5720a0e1_Bia-Tiger-Crystal-lon-330ml-280x280.jpg",
+            "unit": "lon",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Bia Tiger lon 500ml",
+            "price": 31000,
+            "img_url": "https://famima.vn/api/files/303c761f-ff17-4c2c-9be8-9de0ca6e5ca1_Bia-Tiger-lon-500ml-01-1-280x280.jpg",
+            "unit": "lon",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Rượu Good Day 360ml",
+            "price": 66000,
+            "img_url": "https://famima.vn/api/files/05887f9e-ce80-489c-8aff-32e1b3fc45cc_ruou-good-day-360ml-250x250.png",
+            "unit": "chai",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Rượu Good Day Đào 360ml",
+            "price": 66000,
+            "img_url": "https://famima.vn/api/files/13f25608-dcaf-4239-b626-16607b813150_Ruou-Good-Day-Dao-360ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Rượu Good Day Dâu 360ml 13.5%",
+            "price": 66000,
+            "img_url": "https://famima.vn/api/files/e3abcb5e-3dbc-48b7-961d-d596df3f71cc_Ruou-Good-Day-Dau-360ml-13.5-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Rượu Good Day Việt Quất 360ml",
+            "price": 66000,
+            "img_url": "https://famima.vn/api/files/69a3a85d-1cb6-465f-9ed9-7c8230f8b164_Ruou-Good-Day-Viet-Quat-360ml-01-1-280x280.jpg",
+            "unit": "chai",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Rượu mùi Good Day hương socola bạc hà 360ml",
+            "price": 70000,
+            "img_url": "https://famima.vn/api/files/bdc2eb43-746d-475f-b5b1-ea113b37a8dc_Ruou-mui-Good-day-huong-socola-bac-ha-360ml-01-1-700x700.jpg",
+            "unit": "chai",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Sapporo Premium lon bạc 330ml",
+            "price": 70000,
+            "img_url": "https://famima.vn/api/files/728c565f-5423-4f10-91dd-3a2177d10fb4_Sapporo-Premium-lon-bac-330ml-01-1-280x280.jpg",
+            "unit": "lon",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Strongbow dâu đen lon 330ml",
+            "price": 25000,
+            "img_url": "https://famima.vn/api/files/d60daf82-b011-4f39-a5ac-8df2baa30f8c_Strongbow-dau-den-lon-330ml-01-2-280x280.jpg",
+            "unit": "lon",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Strongbow dâu đỏ lon 330ml",
+            "price": 25000,
+            "img_url": "https://famima.vn/api/files/7920a35e-d2cf-49e8-aa83-5ac9ba88d454_Strongbow-dau-do-lon-330ml-280x280.jpg",
+            "unit": "lon",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Tiger lon cao 330ml",
+            "price": 21000,
+            "img_url": "https://famima.vn/api/files/aa505f54-4dfd-4fc5-ad31-195586d09711_Tiger-lon-cao-330ml-280x280.jpg",
+            "unit": "lon",
+            "category": "Bia, rượu"
+        },
+        {
+            "name": "Cá hộp Ba cô gái loại - Easy open ",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/c52970db-4df7-440b-b90d-9acd31b3c6e7_Ca-hop-Ba-co-gai-loai-Easy-open-280x280.jpg",
+            "unit": "hộp",
+            "category": "Đồ đóng hộp"
+        },
+        {
+            "name": "Dầu Cooking Oil Tường An 1L",
+            "price": 75000,
+            "img_url": "https://famima.vn/api/files/89302b7b-d02a-4596-a091-fb501ffe7f6b_Dau-Cooking-Oil-Tuong-An-1L-280x280.jpg",
+            "unit": "chai",
+            "category": "Đồ đóng hộp"
+        },
+        {
+            "name": "Dầu nành nguyên chất Simply 1L",
+            "price": 87000,
+            "img_url": "https://famima.vn/api/files/c0a2e994-8fbe-46f1-bb61-afde4782a718_Dau-nanh-nguyen-chat-Simply-1L-280x280.png",
+            "unit": "chai",
+            "category": "Đồ đóng hộp"
+        },
+        {
+            "name": "DH - Muối ớt chanh Nha Trang",
+            "price": 19000,
+            "img_url": "https://famima.vn/api/files/cfcbc630-93f0-455f-9ffc-3b1edfaf9c73_DH-Muoi-ot-chanh-Nha-Trang-280x280.jpg",
+            "unit": "hũ",
+            "category": "Đồ đóng hộp"
+        },
+        {
+            "name": "Nước mắm Nam Ngư 3in1 500ml",
+            "price": 34000,
+            "img_url": "https://famima.vn/api/files/995615af-89b1-42da-8a4a-8507c5c9c0f9_Nuoc-mam-Nam-Ngu-3in1-500ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Đồ đóng hộp"
+        },
+        {
+            "name": "Nước tương TTT Nhất Ca 500ml",
+            "price": 27000,
+            "img_url": "https://famima.vn/api/files/ffb4173c-7a01-4337-95d0-0c8c92482e13_Nuoc-tuong-TTT-Nhat-Ca-500ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Đồ đóng hộp"
+        },
+        {
+            "name": "Tương Cà Chai Nhựa Pet 270",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/6dbe4471-247a-4ad8-b5b4-3b6330f08c1b_Tuong-ca-Chai-Nhua-Pet-270-280x280.jpg",
+            "unit": "chai",
+            "category": "Đồ đóng hộp"
+        },
+        {
+            "name": "Tương Ớt Chai Nhựa Pet 270",
+            "price": 15000,
+            "img_url": "https://famima.vn/api/files/e857dedb-1265-484b-9caf-4ab135d73815_Tuong-Ot-Chai-Nhua-Pet-270-280x280.jpg",
+            "unit": "chai",
+            "category": "Đồ đóng hộp"
+        },
+        {
+            "name": "TUDD giàu năng lượng Milo hũ 400g",
+            "price": 95000,
+            "img_url": "https://famima.vn/api/files/f829e6e2-7361-44ec-8fcc-45d700ab2367_TUDD-giau-nang-luong-Milo-hu-400g.jpg",
+            "unit": "hũ",
+            "category": "Đồ đóng hộp"
+        },
+        {
+            "name": "Bánh gạo AN vị tảo biển 111.3g",
+            "price": 26000,
+            "img_url": "https://famima.vn/api/files/20fb6681-3c7a-45be-a990-1eae4ec6457d_Banh-gao-AN-vi-tao-bien-111.3g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Bánh Karo phô mai hoàng kim (26g x 6 gói)",
+            "price": 42000,
+            "img_url": "https://famima.vn/api/files/2b91581b-80bf-4eb1-b017-59e3a57a870a_Banh-Karo-pho-mai-hoang-kim-26g-x-6-goi-280x280.jpg",
+            "unit": "hộp",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Bánh Karo trứng tươi chà bông (26g x 6 gói)",
+            "price": 42000,
+            "img_url": "https://famima.vn/api/files/91a62b81-1e85-4c78-8f10-5d00b3782c4d_Banh-Karo-trung-tuoi-cha-bong-26g-x-6-goi-280x280.jpg",
+            "unit": "hộp",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Bánh ngọt nhân trứng muối Đài Loan 180g",
+            "price": 63000,
+            "img_url": "https://famima.vn/api/files/c1b9d4c0-549a-4d95-b53a-c7ad7e29a870_Banh-ngot-nhan-trung-muoi-Dai-Loan-180g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Bánh Pillows nhân dừa 85g",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/e2442afe-1356-429d-bf08-b8f0e7ed754c_Banh-pillows-nhan-dua-85g-01-1-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Bánh Pillows nhân socola 85g",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/82dc6d76-f16a-48f9-bf45-24538e29a4a1_Banh-Pillows-nhan-socola-85g-01-1-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Bánh que Dorkbua vị thịt xông khói 50g",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/ec704783-ba2f-4c6d-a9c2-8a3eaa38823f_Banh-que-Dorkbua-vi-thit-xong-khoi-50g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Bánh que Dorkbua vị truyền thống 50g",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/5190602b-ae8e-4599-b14e-3ebfd08b83e7_Banh-que-Dorkbua-vi-truyen-thong-50g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Bánh quế Poca nhân kem ổi hồng 115g",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/f462677f-07bd-4cdb-aed9-47bc44217f52_Banh-que-Poca-nhan-kem-oi-hong-115g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Bánh quế Poca nhân kem trứng muối 115g",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/835f7c35-afc8-418c-96d9-981313fa4545_Banh-que-Poca-nhan-kem-trung-muoi-115g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Bento snack mực vị cay ngọt 18g",
+            "price": 28000,
+            "img_url": "https://famima.vn/api/files/a9252a90-823d-43c8-8f85-a3765eda7609_Bento-snack-muc-vi-cay-ngot-18g-01-1-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Bento snack mực vị cay Thái 18g",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/e77ff3d7-c35a-4c9b-ace7-a6e2e5598339_Bento-snack-muc-vi-cay-Thai-18g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Choco Pie 12P",
+            "price": 62000,
+            "img_url": "https://famima.vn/api/files/b8ec5574-def1-4ed5-b1cf-8a7df641bf25_Choco-Pie-12P-280x280.jpg",
+            "unit": "hộp",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Chupa Chups SourBelt 1m trái cây 55g",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/ad1cc15f-1e2e-40c2-92c2-508e96cdb2b3_Chupa-Chups-SourBelt-1m-trai-cay-55g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Custas 12P",
+            "price": 67000,
+            "img_url": "https://famima.vn/api/files/717cab69-2f03-4f16-936f-d2657ba9ab6d_Custas-12P-280x280.jpg",
+            "unit": "hộp",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "GOKOCHI vị muối tự nhiên 65g",
+            "price": 21000,
+            "img_url": "https://famima.vn/api/files/0b3cbcaa-8f34-4d30-9354-3c5939036f17_GOKOCHI-vi-muoi-tu-nhien-65g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Goute 4P",
+            "price": 31000,
+            "img_url": "https://famima.vn/api/files/71edd103-546f-43cf-95e4-a0666662af3f_goute-4p-280x280.jpg",
+            "unit": "hộp",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Karamucho vị cay đặc biệt 85g",
+            "price": 24000,
+            "img_url": "https://famima.vn/api/files/80474623-eaaf-4259-bec2-e2ec88da37c4_Karamucho-vi-cay-dac-biet-85g-2-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Kẹo dẻo Burger khổng lồ Funmore 50g",
+            "price": 33000,
+            "img_url": "https://famima.vn/api/files/18229c6d-22ca-4610-8777-0b63f122ca89_Keo-deo-Burger-khong-lo-Funmore-50g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Kẹo dẻo Con mắt Funmore 18g",
+            "price": 20000,
+            "img_url": "https://famima.vn/api/files/f4aacb89-cadf-4b49-b2ae-cd527416725b_Keo-deo-Con-mat-Funmore-18g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Kẹo Jackpot Slot Machine 20g",
+            "price": 42000,
+            "img_url": "https://famima.vn/api/files/b78ba06d-6857-4916-a3e8-0285acfa3570_Keo-Jackpot-Slot-Machine-20g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Kẹo socola Snicker 51g",
+            "price": 26000,
+            "img_url": "https://famima.vn/api/files/08d21871-85cf-4b14-993b-c4a1ac0b6bd6_Keo-socola-Snicker-51g-280x280.jpg",
+            "unit": "thanh",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Kẹo the Playmore vị nho 22g",
+            "price": 34,
+            "img_url": "https://famima.vn/api/files/34c717ec-1a23-4bcb-a4df-a126df6d9d3d_Keo-the-Playmore-vi-nho-22g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Kinh Đô Snack vị cua 29g",
+            "price": 9000,
+            "img_url": "https://famima.vn/api/files/58863a25-2a2c-4fe2-9865-d939c06469de_Kinh-Do-Snack-vi-cua-29g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "KitKat socola 2F (17g)",
+            "price": 9000,
+            "img_url": "https://famima.vn/api/files/24b76ec3-6336-41ac-a2c8-43b691679499_KitKat-socola-2F-17g-280x280.jpg",
+            "unit": "thanh",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Lay's khoai tây tự nhiên 90g",
+            "price": 24000,
+            "img_url": "https://famima.vn/api/files/6ae745fa-f84d-4e30-bbbc-70ac406d0273_lays-khoai-tay-vi-tu-nhien-90g-250x250.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Lay's khoai tây vị tảo biển 90g",
+            "price": 24000,
+            "img_url": "https://famima.vn/api/files/17000e8b-0cef-49b3-988e-758c460df4a0_lays-khoai-tay-vi-tao-bien-90g-250x250.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Lay's wavy tôm hùm sốt trứng muối hoàng kim 90g",
+            "price": 24000,
+            "img_url": "https://famima.vn/api/files/46467cdf-84fd-4883-b458-7e4ac5c17dd4_Lays-wavy-tom-hum-xot-trung-muoi-hoang-kim-90g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "O'star phô mai trứng muối 56g",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/57168bd1-c4d3-423a-976e-9831f853a5d0_Ostar-pho-mai-trung-muoi-56g-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "O'star Kimchi 108g",
+            "price": 24000,
+            "img_url": "https://famima.vn/api/files/2bceb546-b04a-4db7-ac8f-5da30e3eb2f1_Ostar-Kimchi-108g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "O'star phô mai trứng muối 90g",
+            "price": 24000,
+            "img_url": "https://famima.vn/api/files/85ae01bb-2535-4a84-8653-c293ab04827c_Ostar-pho-mai-trung-muoi-90g-01-280x280 (1).jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Oishi bánh phồng mực Indo chips 110g",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/420f9297-7e8a-44fa-92e9-05791e3f28af_Oishi-banh-phong-muc-Indo-chips-110g-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Oishi bánh phồng tôm hùm Indo chips 68g",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/c8c4ca3c-f5da-4791-ab19-7e54a0192e46_Oishi-Banh-phong-tom-hum-Indo-Chips-68g-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Oishi Snack bí đỏ 110g",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/719a94cb-88f7-4cbe-8c8a-f02e01a6b426_Oishi-Snack-bi-do-110g-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Oishi Snack tôm cay đặc biệt 68g",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/037eb9cf-f0fd-4e58-9e9a-226f0dde5bd0_Oishi-Snack-tom-cay-dac-biet-68g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Oishi Snack tôm cay nồng 70g",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/472083a0-322e-4ba7-a9e2-934b12ce3797_Oishi-snack-tom-cay-nong-70g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Oreo kem vani 119.6g",
+            "price": 20000,
+            "img_url": "https://famima.vn/api/files/2b77c10b-2fdf-453b-a072-aa6403dc2fdd_Oreo-kem-vani-119.6g-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Pillows nhân socola vj hazelnut 85g",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/bcf1a423-78bf-4f01-ae9e-cef6c904aa99_Pillows-nhan-socola-vi-hazelnut-85g-01-1-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Pinattsu vị mực cay 85g (party size)",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/45e4ded4-573b-47c5-ab1a-46b655735ad2_Pinattsu-vi-muc-cay-85g-party-size-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Pinattsu vị nước cốt dừa 85g (party size)",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/2b8f42c2-4ded-40d6-bad1-ef8e80286e21_Pinattsu-vi-nuoc-cot-dua-85g-party-size-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Snack Poca bị bò lúc lắc 65g",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/230dc18b-f72e-4b05-baf9-a6aae40b0cf8_Snack-Poca-vi-bo-luc-lac-65g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Snack Poca vị mực lăn muối ớt 65g",
+            "price": 12000,
+            "img_url": "https://famima.vn/api/files/9f58c940-3ab5-431c-b1e7-56e591fda613_Snack-Poca-vi-muc-lan-muoi-ot-65g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Socola viên Milo Nuggets 25g ",
+            "price": 19000,
+            "img_url": "https://famima.vn/api/files/1cb970f7-1ead-4d80-a787-207430d5f854_Socola-vien-Milo-Nuggets-25g-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Swing vị bò bít tết 108g",
+            "price": 24000,
+            "img_url": "https://famima.vn/api/files/55a9f8ea-f6fb-4430-ac68-248422bd58f6_swing-vi-bo-bit-tet-108g-1-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Swing vị phô mai hai lớp 95g",
+            "price": 24000,
+            "img_url": "https://famima.vn/api/files/502b1435-462e-4294-989f-56a6289ac6be_Swing-vi-pho-mai-hai-lop-95g-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Lotte kẹo mút Lollipop Ice 11g (1 cây)",
+            "price": 4000,
+            "img_url": "https://famima.vn/api/files/e86bdb94-7363-43ec-8b9d-3066be4b875e_Lotte-Keo-mut-Lollipop-Ice-11g-1cay-280x280.jpg",
+            "unit": "cây",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Kẹo the Playmore vị dưa hấu 22g",
+            "price": 34000,
+            "img_url": "https://famima.vn/api/files/7040e6fc-d1dc-4970-9cc1-1dc2f225ef2e_Keo-the-Playmore-vi-dua-hau-22g-300x300.jpg",
+            "unit": "gói",
+            "category": "Bánh kẹo"
+        },
+        {
+            "name": "Acnes - Giấy Thấm Dầu",
+            "price": 38000,
+            "img_url": "https://famima.vn/api/files/d4ab7530-2be7-4d98-a5e9-b03ff221735b_Acnes-Giay-Tham-Dau-1-280x280.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "BC Colgate Slimsoft charcoal",
+            "price": 53000,
+            "img_url": "https://famima.vn/api/files/5c374657-cdb6-465a-92e0-34832049d568_BC-Colgate-Slimsoft-charcoal-280x280.jpg",
+            "unit": "cái",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "BG Attack khử mùi hương Anh Đào 360g",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/7bf6c5a2-0e5d-4b37-b551-e89d11a4e7b9_BG-Attack-khu-mui-huong-Anh-Dao-360g-01-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "BG OMO comfort tinh dầu thơm nồng nàn 360g",
+            "price": 22,
+            "img_url": "https://famima.vn/api/files/d957d95b-bd62-4a12-b7c0-3ee1715c0996_BG-OMO-comfort-tinh-dau-thom-nong-nan-720g-01-280x280 (1).jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "BG OMO comfort tinh dầu thơm nồng nàn 720g",
+            "price": 42000,
+            "img_url": "https://famima.vn/api/files/3dfac7e9-0bb2-4220-8272-f78d66fa5666_BG-OMO-comfort-tinh-dau-thom-nong-nan-720g-01-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Bông tẩy trang Helen Harper 80m",
+            "price": 44000,
+            "img_url": "https://famima.vn/api/files/4db0ecd4-0de7-4e5a-8f78-4631e802828a_Bong-tay-trang-Helen-Harper-80m-280x280.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Bông tẩy trang Silcot 82 pcs",
+            "price": 44000,
+            "img_url": "https://famima.vn/api/files/c0871e5b-244a-45b5-a253-7e14857540a8_bong-tay-trang-silcot-82-250x250.png",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Closeup KDR Kim cương 100g",
+            "price": 39000,
+            "img_url": "https://famima.vn/api/files/52642417-48b0-4c61-94f4-d50297cfa0ba_KDR-CLoseup-kim-cuong-100g-280x280.jpg",
+            "unit": "tuýp",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Dao cạo Blue II Plus (gói 2 cây)",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/d9b8b380-458c-4670-981a-70500138c591_Dao-cao-Blue-II-Plus-goi-2-cay-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Dầu gội X-MEN-BOSS intense 180gr",
+            "price": 85000,
+            "img_url": "https://famima.vn/api/files/9d077917-99d4-4f38-a157-883d924c55ad_Dau-goi-X-Men-Boss-intense-180gr-01-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "DG Pantene ngăn rụng tóc 150g",
+            "price": 56000,
+            "img_url": "https://famima.vn/api/files/826cfe80-4a57-453d-82d4-af46f991e850_DG-Pantene-ngan-rung-toc-150g-1-280x280.png",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "DG Rejoice siêu mượt 170ml",
+            "price": 59000,
+            "img_url": "https://famima.vn/api/files/ac13ad7a-69e7-496d-a7a4-01d92e6e3feb_DG-Rejoice-sieu-muot-170ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Diana Sensi Cool Fresh SMC 8m",
+            "price": 25000,
+            "img_url": "https://famima.vn/api/files/28b581cc-d632-4e79-b8ce-e2efede06a6d_BVS-Diana-Sensi-Cool-Fresh-mat-diu-SMC-8m-280x280.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Dove tẩy tế bào chết 298g",
+            "price": 205000,
+            "img_url": "https://famima.vn/api/files/e17db9cc-df65-467d-a11f-f1c509769cda_Dove-tay-te-bao-chet-298g-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "DX Pantene 3PDK ngăn rụng tóc 150ml",
+            "price": 68000,
+            "img_url": "https://famima.vn/api/files/b0c5601a-1de2-4d57-a131-ba7718352755_DX-Pantene-3PDK-ngan-rung-toc-150ml-1-280x280.png",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Gạc dán mục Hydro - colloid 16 miếng",
+            "price": 39,
+            "img_url": "https://famima.vn/api/files/352c45be-2dbc-499f-a779-344eb3085688_Gac-dan-mun-Hydro-colloid-16-mieng-1-280x280.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Gatsby Pomade vuốt tóc Perfect Raise 75",
+            "price": 69000,
+            "img_url": "https://famima.vn/api/files/8f5dffe3-a77f-49c4-8794-4efe4d870464_Gatsby-Pomade-vuot-toc-Perfect-Raise-75g-01-280x280.jpg",
+            "unit": "hũ",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Gatsby Wax tóc M&H giữ nếp&dày tóc-đen 75g",
+            "price": 64000,
+            "img_url": "https://famima.vn/api/files/2537b8e4-2c22-414f-ad33-edfbe0bddcf8_Gatsby-Wax-toc-MH-giu-nepday-toc-den-75g-280x280.jpg",
+            "unit": "hũ",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Giấy ăn E\"mos Premium 100t 1 lớp",
+            "price": 20000,
+            "img_url": "https://famima.vn/api/files/e29bc453-3def-48d8-a5c0-7576c4d8baed_Giay-an-Emos-Premium-100t-1-lop-280x280.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Giấy LETGREEN hộp 160 tờ 521514",
+            "price": 26000,
+            "img_url": "https://famima.vn/api/files/e21d96b0-3037-4f2e-8636-a5b4f27b3d83_Giay-LETGREEN-hop-160-to-521514-01-280x280.jpg",
+            "unit": "hộp",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Giấy lựa Pulppy hộp 180 tờ",
+            "price": 29000,
+            "img_url": "https://famima.vn/api/files/fcecc9c3-6738-4ae7-9006-7987448528d8_Giay-lua-Pulppy-hop-180-to-01-280x280.jpg",
+            "unit": "hộp",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Hazeline SRM Matcha Trầm Trà 50g",
+            "price": 30000,
+            "img_url": "https://famima.vn/api/files/4d75204a-fa41-476d-8249-42f94b851fe0_Hazeline-SRM-Matcha-Tram-Tra-50g-01-280x280.jpg",
+            "unit": "hũ",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Hazeline SRM Nghệ Hoa Cúc 50g",
+            "price": 30000,
+            "img_url": "https://famima.vn/api/files/62761fd6-7dce-4e2d-ac33-e07916253163_Hazeline-SRM-Nghe-Hoa-Cuc-50g-01-280x280.jpg",
+            "unit": "hũ",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "KĐR Colgate Maxfresh Bạc Hà 180g",
+            "price": 44000,
+            "img_url": "https://famima.vn/api/files/43c2daa6-73ca-4230-8c3b-01f6c3c4e444_KDR-Colgate-Maxfresh-Bac-Ha-180g-01-280x280.jpg",
+            "unit": "tuýp",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "KĐR Sensodyne - Bạc Hà",
+            "price": 74000,
+            "img_url": "https://famima.vn/api/files/b3e7fd5f-084a-45ad-97c8-b3e58bcd007d_KDR-Sensodyne-Bac-Ha-1-280x280.jpg",
+            "unit": "tuýp",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Kem chống nắng Super Block SPF 81",
+            "price": 108000,
+            "img_url": "https://famima.vn/api/files/040d1926-00f7-43ba-b823-0d12128ba0f9_Kem-chong-nang-Super-Block-SPF-81-1-280x280.jpg",
+            "unit": "tuýp",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Kem rửa mặt Oxy làm sạch sâu có hạt 100g",
+            "price": 89000,
+            "img_url": "https://famima.vn/api/files/03a5a54b-ebdd-45a6-a4bd-f4960cf9f180_Kem-rua-mat-Oxy-lam-sach-sau-co-hat-100g-280x280.jpg",
+            "unit": "tuýp",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Khăn tẩy trang và lau mặt Acnes 20m",
+            "price": 70000,
+            "img_url": "https://famima.vn/api/files/01a1ddaf-cde6-4c5d-9a1e-46f2518f850a_Khan-tay-trang-va-lau-mat-Acnes-20m-280x280.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Khăn ướt cồn Letgreen 50 miếng",
+            "price": 51000,
+            "img_url": "https://famima.vn/api/files/c3706e5e-8857-4853-9898-049cdefb1d7b_Khan-uot-con-Letgreen-50-mieng-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Khăn ướt Letgreen mini lốc 6",
+            "price": 34000,
+            "img_url": "https://famima.vn/api/files/f503a6c6-6308-4e99-b3c3-08294424b677_Khan-uot-Letgreen-mini-loc-6-280x280.jpg",
+            "unit": "lốc",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Khẩu trang 3D ngăn khói bụi",
+            "price": 20000,
+            "img_url": "https://famima.vn/api/files/4b77d8da-cac8-4a8c-a5ae-cf3f28124969_Khau-trang-3D-ngan-khoi-bui-01-01-280x280.jpg",
+            "unit": "cái",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Khẩu trang Unicharm 3D Mask Virus Block",
+            "price": 26000,
+            "img_url": "https://famima.vn/api/files/09a4468a-1257-4b43-88d9-392c30aedf00_Khau-trang-Unicharm-3D-Mask-Virus-Block-280x280.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Khẩu trang y tế 3 lớp Dr.Mask 10pcs ",
+            "price": 18000,
+            "img_url": "https://famima.vn/api/files/f2ffca5c-15a7-4e73-9914-34c563f8b3e2_Khau-trang-y-te-3-lop-Dr.Mask-10pcs-280x280.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Listerine NSM coolmint 250ml",
+            "price": 79000,
+            "img_url": "https://famima.vn/api/files/06a77cd0-0f3e-488d-a6b2-d6e62bf54864_Listerine-NSM-coolmint-250ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "LNM Nivea nam làm sáng 50ml",
+            "price": 76000,
+            "img_url": "https://famima.vn/api/files/f3bf4e93-616d-4de2-964f-7a1b181c4ab0_LNM-Nivea-nam-lam-sang-50ml-01-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "LNM Nivea nam ngăn ố vàng B&W 50ml",
+            "price": 109000,
+            "img_url": "https://famima.vn/api/files/92c7d304-a791-4456-b06b-820e11f1979e_LNM-Nivea-nam-ngan-o-vang-BW-50ml-01-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Mặt nạ Avif Biocell dưỡng trắng da 23g ",
+            "price": 30000,
+            "img_url": "https://famima.vn/api/files/f1f8ae8e-18b0-48aa-ba17-d444b1e87eda_Mat-Na-Avif-Biocell-duong-trang-da-23g-01-280x280.jpg",
+            "unit": "miếng",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Mặt nạ Biocell dưỡng ẩm da 23g",
+            "price": 30000,
+            "img_url": "https://famima.vn/api/files/13b54bfa-dd1a-4e77-a8d6-bf06253b23e1_Mat-Na-Biocell-duong-am-da-23g-01-280x280.jpg",
+            "unit": "miếng",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Mặt nạ Detox Dưa Leo & Chanh Tươi 21g",
+            "price": 20000,
+            "img_url": "https://famima.vn/api/files/ecc06c16-3ff1-494b-b104-9d3992866758_Mat-Na-Detox-Dua-Leo-Chanh-Tuoi-21g-01-280x280.jpg",
+            "unit": "miếng",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Mặt nạ Detox Lựu Đỏ & Chanh Tây",
+            "price": 20000,
+            "img_url": "https://famima.vn/api/files/dc726b0a-5334-40fc-82d3-61888f6b4cc7_Mat-Na-Detox-Luu-Do-Chanh-Tay-01-280x280.jpg",
+            "unit": "miếng",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Mặt nạ dừa sinh học Dưỡng mịn",
+            "price": 39000,
+            "img_url": "https://famima.vn/api/files/00d59b3f-bbdb-4a70-b409-3f7ec7569d84_Mat-na-dua-sinh-hoc-Duong-Min.jpg",
+            "unit": "miếng",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Mặt nạ dưỡng ẩm cho mắt",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/ab2371f3-1eb6-4b39-b8bc-0d60701c557d_Mat-na-duong-am-cho-mat-280x280.jpg",
+            "unit": "miếng",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Mặt nạ dưỡng ẩm cho môi",
+            "price": 20000,
+            "img_url": "https://famima.vn/api/files/3567b882-bac4-4b52-bcdc-41b20a629e61_Mat-na-duong-am-cho-moi-700x700.jpg",
+            "unit": "miếng",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Mặt nạ Relaxing trà xanh 21g",
+            "price": 20000,
+            "img_url": "https://famima.vn/api/files/32bc915b-03cd-496d-9224-8c554f6fa975_Mat-Na-Relaxing-tra-xanh-21g-280x280.jpg",
+            "unit": "miếng",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "MIENG DAN MUI LOT MUN BIORE - NAM 5M ",
+            "price": 31000,
+            "img_url": "https://famima.vn/api/files/7ef9feda-ca87-4f8d-904b-c2dbea40b19e_MIENG-DAN-MUI-LOT-MUN-BIORE-NAM-5M-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "MIENG DAN MUI LOT MUN BIORE 5M",
+            "price": 29000,
+            "img_url": "https://famima.vn/api/files/c6959d54-f2f1-4008-b45d-fca7faac1e14_MIENG-DAN-MUI-LOT-MUN-BIORE-5M-01-280x280.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Nước súc miệng Dr. Muối truyền thống 500m",
+            "price": 25000,
+            "img_url": "https://famima.vn/api/files/2aadb6f0-0560-405e-b03d-296fb55da9f1_Nuoc-suc-mieng-Dr.Muoi-truyen-thong-500ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Nước tẩy trang Micellar Senka 230ml",
+            "price": 119000,
+            "img_url": "https://famima.vn/api/files/f90e1250-2643-456f-88e5-4d4714bb22b2_Nuoc-tay-trang-Micellar-Senka-230ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Nước tẩy trang Simple micellar 400ml",
+            "price": 199000,
+            "img_url": "https://famima.vn/api/files/fc074d4f-9f52-4fd6-be18-aa42534edff5_Nuoc-tay-trang-Simple-micellar-400ml-700x700.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Romano - Sua tam Shower foam - classic",
+            "price": 65000,
+            "img_url": "https://famima.vn/api/files/d3fdc87f-892d-464a-a470-4f17972bfa9d_Romano-Sua-tam-Shower-foam-classic-280x280.png",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "XNM Nivea nam phân tử bạc 150ml",
+            "price": 121000,
+            "img_url": "https://famima.vn/api/files/e143aaa2-beea-45e9-9b21-65e08b3c4c23_XNM-Nivea-nam-phan-tu-bac-150ml-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Vitamin dưỡng tóc Ellips phục hồi hư tổn 6v",
+            "price": 28000,
+            "img_url": "https://famima.vn/api/files/8e3ae600-b4a9-42e1-9252-f7da58887ae5_Vitamin-duong-toc-Ellips-phuc-hoi-hu-ton-6v-01-700x700.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Sáp thơm Glade S.G Lavender 180g",
+            "price": 69000,
+            "img_url": "https://famima.vn/api/files/2095393f-169d-4d51-9fd1-7422a3d0baae_Sap-thom-Glade-S.G-Lavender-180g-280x280.jpg",
+            "unit": "hũ",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Vitamin dưỡng tóc Ellips duy trì độ ẩm 6v ",
+            "price": 28000,
+            "img_url": "https://famima.vn/api/files/c612257a-a8b3-46c2-932d-80487c97b8a4_Vitamin-duong-toc-Ellips-duy-tri-do-am-6v-01-700x700.jpg",
+            "unit": "gói",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Senka mặt nạ dưỡng ẩm sáng mịn 25ml",
+            "price": 32000,
+            "img_url": "https://famima.vn/api/files/ccf05d75-5c7f-4fa0-9876-18c23c578bb3_Senka-mat-na-duong-am-sang-min-25ml-1-280x280.jpg",
+            "unit": "miếng",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Vim BC & NT xanh 500ml",
+            "price": 25000,
+            "img_url": "https://famima.vn/api/files/9915683c-047e-43a9-9b54-b95926d84f0f_Vim-BC-NT-xanh-500ml-01-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Vaseline Lip dưỡng môi hồng xinh 7g",
+            "price": 90000,
+            "img_url": "https://famima.vn/api/files/0352425f-dbeb-4895-b7d4-58f4487478bb_vaseline-lip-duong-moi-hong-xinh-7g-250x250.jpg",
+            "unit": "hũ",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Sữa rửa mặt Simple 150ml",
+            "price": 145000,
+            "img_url": "https://famima.vn/api/files/4c562a31-3bfc-4730-92c0-4bed4b623b8a_Sua-rua-mat-Simple-150ml-01-280x280.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Tăm bông kháng khuẩn SAKURA 200pcs",
+            "price": 28000,
+            "img_url": "https://famima.vn/api/files/2c5c5456-cc29-42a0-b922-b7d7eba094c5_Tam-bong-khang-khuan-SAKURA-200pcs-280x280.jpeg",
+            "unit": "hộp",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Sunsilk xịt dưỡng tóc tinh dầu bưởi 12x100ml",
+            "price": 103000,
+            "img_url": "https://famima.vn/api/files/7bf20bf3-ed8d-4935-87ef-5f0540193e41_Sunsilk-xit-d.toc-tinh-dau-buoi-12x100ml-01.jpg",
+            "unit": "chai",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Sữa rửa mặt tẩy trang Hatomugi 130g",
+            "price": 89000,
+            "img_url": "https://famima.vn/api/files/d118128c-bb43-43ce-aa4f-7e9cad8aba30_Sua-rua-mat-tay-trang-Hatomugi-130g-700x700.jpg",
+            "unit": "tuýp",
+            "category": "Hàng tiêu dùng"
+        },
+        {
+            "name": "Abi Bánh tráng bơ 100g",
+            "price": 35000,
+            "img_url": "https://famima.vn/api/files/7ce33b2f-86b9-487f-b789-94ead26b558c_Abi-Banh-trang-bo-100g-01-1-280x280.jpg",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "Abi Bánh tráng phô mai 80g",
+            "price": 29000,
+            "img_url": "https://famima.vn/api/files/c4051bec-5105-4d03-a9ee-1e164a6228c8_Abi-banh-trang-pho-mai-80g-280x280.jpg",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "Abi Bánh tráng sa tế cay 80g",
+            "price": 22000,
+            "img_url": "https://famima.vn/api/files/7dc901d3-c89f-47de-b31a-4c0b2026ef86_Abi-banh-trang-sa-te-cay-80g-280x280.jpg",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "Abi Cơm cháy siêu vị 70g",
+            "price": 29000,
+            "img_url": "https://famima.vn/api/files/5dfae886-e8b1-4820-9463-632f8fbdec50_Abi-Com-chay-sieu-vi-70g-100-280x280.jpg",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "Bột ngọt 400g L2 Ajinomoto",
+            "price": 42000,
+            "img_url": "https://famima.vn/api/files/4794194f-0690-4f08-b001-1d592311be37_Bot-ngot-400g-L2-Ajinomoto-280x280.jpg",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "Cà phê truyền thống Highlands 200g",
+            "price": 72000,
+            "img_url": "https://famima.vn/api/files/47330851-3eaf-4038-a1b2-7ceec3b0230a_Ca-phe-truyen-thong-Highlands-200g-2-280x280.jpg",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "Cozy - Trà đào (25 túi) 50g",
+            "price": 36000,
+            "img_url": "https://famima.vn/api/files/ee972383-2bb3-46ad-8701-487d0a11b8ca_Cozy-Tra-dao-25-tui-50g-01-1-280x280.jpg",
+            "unit": "hộp",
+            "category": "Khác"
+        },
+        {
+            "name": "CP - XXTT Red (40g x 5)",
+            "price": 23000,
+            "img_url": "https://famima.vn/api/files/30a75846-2f2a-4781-9516-6dfb053c13eb_CP-XXTT-Red-40g-x-5-280x280.jpg",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "G7 3 in 1 hộp 20 gói 16g",
+            "price": 72000,
+            "img_url": "https://famima.vn/api/files/923d1c93-e5d5-4f09-9f40-c33c4b5607f2_g7-3in1-hop-20goi-16g-250x250.jpg",
+            "unit": "hộp",
+            "category": "Khác"
+        },
+        {
+            "name": "G - Da cá vị trứng muối 25g",
+            "price": 23000,
+            "img_url": "https://famima.vn/api/files/ac4c1811-1054-4468-8706-7b311e79fd32_G-Da-ca-vi-trung-muoi-25g-280x280.jpg",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "Hạt hướng dương chacheer vị dừa 130g",
+            "price": 28000,
+            "img_url": "https://famima.vn/api/files/ea13feb7-3f1b-4085-8e5e-50bf5f0e0b54_Hat-huong-duong-chacheer-vi-dua-130g-280x280.jpg",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "Hạt mỗi ngày - Daily nuts 25g",
+            "price": 13000,
+            "img_url": "https://famima.vn/api/files/7311619c-e265-43f7-bd73-9820e9044861_Hat-moi-ngay-Daily-nuts-25g-280x280.jpg",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "Hey Yo chân gà bách thảo 40g",
+            "price": 14000,
+            "img_url": "https://famima.vn/api/files/e9b56d09-e0e0-4e60-af31-caf8948f0c1b_Hey-Yo-Chan-ga-bach-thao-40g-280x280.png",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "Nescafe 3in1 Đậm đà hài hòa (20pcs*17g)",
+            "price": 75000,
+            "img_url": "https://famima.vn/api/files/017d9e3d-5e4a-444d-b6b7-0797059b0078_Nescafe-3in1-Dam-da-hai-hoa-20pcs7g-280x280.jpg",
+            "unit": "hộp",
+            "category": "Khác"
+        },
+        {
+            "name": "Trà sữa trân châu Hoàng Gia 416g (8 ly)",
+            "price": 89000,
+            "img_url": "https://famima.vn/api/files/a3ad7c38-449c-4d30-af12-034557a1aac8_Tra-sua-tran-chau-Hoang-Gia-416g-8-ly-01-1-280x280.jpg",
+            "unit": "hộp",
+            "category": "Khác"
+        },
+        {
+            "name": "XXTT heo Visssan 70g",
+            "price": 11000,
+            "img_url": "https://famima.vn/api/files/b7186ce4-5e8c-4d09-9387-5d8a5020a4db_XXTT-heo-Visssan-70g-280x280.jpeg",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "Snack Da cá hồi tôm nướng muối ớt 25g",
+            "price": 17000,
+            "img_url": "https://famima.vn/api/files/3d774f9a-384d-40d4-9cd6-0ffee64e69fe_Snack-Da-ca-hoi-tom-nuong-muoi-ot-25g-1-280x280.jpg",
+            "unit": "gói",
+            "category": "Khác"
+        },
+        {
+            "name": "Snack Da cá hồi vị phô mai 25g",
+            "price": 17000,
+            "img_url": "https://famima.vn/api/files/897a55db-48f4-4e46-a59e-1159b681fe86_Snack-Da-ca-hoi-vi-pho-mai-25g-1-280x280.jpg",
+            "unit": "gói",
+            "category": "Khác"
+        }
+    ]
+}
