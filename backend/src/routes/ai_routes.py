@@ -1,0 +1,38 @@
+from flask import Blueprint, request, jsonify, Response
+from src.extensions import AI_MODELS
+from src.controllers.ai_controller import handle_ai_insert
+from tqdm import tqdm
+from itertools import islice
+
+ai_routes = Blueprint("ai", __name__, url_prefix="/ai")
+sbert = AI_MODELS["sbert"]
+
+
+
+def batched(iterable, batch_size):
+    iterator = iter(iterable)
+    while batch := list(islice(iterator, batch_size)):
+        yield batch
+
+@ai_routes.route("/admin/insert", methods=["POST"])
+def insert():
+    data = request.json
+    products = data.get("products")
+    batch_size = 100  
+    results = []
+
+    for batch in tqdm(batched(products, batch_size)):
+        vectors = sbert.encode(batch)
+        
+        new_products = [{
+            "name": product,
+            "vector": vector.tolist()
+        } for product, vector in zip(batch, vectors)]
+        
+        message, status = handle_ai_insert(new_products)
+        if status != 200:
+            results.append(f"Batch failed: {message}")
+        else:
+            results.append(f"Batch processed: {len(new_products)} items")
+    
+    return {"message": "Processing completed", "details": results}, 200
