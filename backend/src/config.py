@@ -2,6 +2,7 @@ from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 class Config:
@@ -16,3 +17,4 @@ class Config:
     DIMENSIONS = 768
     VECTOR_WEIGHT = 0.7
     FULL_TEXT_WEIGHT = 0.3
+    
