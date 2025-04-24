@@ -1,11 +1,9 @@
 from bson.objectid import ObjectId
-from datetime import datetime
 from pymongo.operations import SearchIndexModel
-import numpy as np
 from src.config import Config
-import os
+from src.models.product_vec import ProductVec
 
-class ProductVecs:
+class ProductVecService:
     def __init__(self, db):
         self.collection = db.get_collection("product_vecs")
         self._ensure_indexes()
@@ -49,61 +47,37 @@ class ProductVecs:
 
             self.collection.create_search_index(model=vector_index_model)
             self.collection.create_search_index(model=text_index_model)
-
             print("Indexes created successfully")
 
         except Exception as e:
-                print(f"Error creating indexes: {e}")
+            print(f"Error creating indexes: {e}")
 
-    def _validate_product(self, product: dict) -> dict:
-        if "name" not in product or "vector" not in product:
-            raise ValueError("Wrong product format")
-            
-        if not isinstance(product["name"], str):
-            raise ValueError("Name must be a string")
-        product["name"] = product["name"].strip()
-        
-        if not isinstance(product["vector"], list):
-            raise ValueError("Vector must be a list")
-        if not all(isinstance(x, (int, float)) for x in product["vector"]):
-            raise ValueError("Vector must contain only numbers")
-            
-        vector = np.array(product["vector"], dtype=np.float32)
-        norm = np.linalg.norm(vector)
-        if norm == 0:
-            raise ValueError("Vector must not contain only zeros")
-        product["vector"] = (vector / norm).tolist()
-        
-        now = datetime.now()
-        if "_id" not in product:
-            product["created_at"] = now
-        product["updated_at"] = now
-        
-        return product
-
-    def insert_one(self, product: dict) -> ObjectId:
+    def insert_one(self, product_data: dict) -> ObjectId:
         try:
-            product = self._validate_product(product)
+            vector = ProductVec.validate_vector(product_data["vector"])
+            product = ProductVec(name=product_data["name"], vector=vector)
             
-            if self.collection.find_one({"name": product["name"]}):
-                raise ValueError(f"Product '{product['name']}' already exists")
+            if self.collection.find_one({"name": product.name}):
+                raise ValueError(f"Product '{product.name}' already exists")
             
-            result = self.collection.insert_one(product)
+            result = self.collection.insert_one(product.to_dict())
             return result.inserted_id
         except Exception as e:
             print(f"Error adding product: {e}")
             raise e
 
-    def insert_many(self, products: list[dict]) -> list[ObjectId]:
+    def insert_many(self, products_data: list[dict]) -> list[ObjectId]:
         try:
             validated_products = []
-            for product in products:
+            for product_data in products_data:
                 try:
-                    validated_product = self._validate_product(product)
-                    if not self.collection.find_one({"name": validated_product["name"]}):
-                        validated_products.append(validated_product)
+                    vector = ProductVec.validate_vector(product_data["vector"])
+                    product = ProductVec(name=product_data["name"], vector=vector)
+                    
+                    if not self.collection.find_one({"name": product.name}):
+                        validated_products.append(product.to_dict())
                     else:
-                        print(f"Skipping product '{product['name']}' (already exists)")
+                        print(f"Skipping product '{product.name}' (already exists)")
                 except Exception as e:
                     print(f"Skipping invalid product: {e}")
                     continue
@@ -116,24 +90,26 @@ class ProductVecs:
             print(f"Error adding products: {e}")
             raise e
 
-    def find_by_id(self, id: str) -> dict:
+    def find_by_id(self, id: str) -> ProductVec:
         try:
-            return self.collection.find_one({"_id": ObjectId(id)})
+            data = self.collection.find_one({"_id": ObjectId(id)})
+            return ProductVec.from_dict(data) if data else None
         except Exception as e:
             print(f"Error finding product: {e}")
             return None
 
-    def find_by_name(self, name: str) -> dict:
+    def find_by_name(self, name: str) -> ProductVec:
         try:
-            return self.collection.find_one({"name": name})
+            data = self.collection.find_one({"name": name})
+            return ProductVec.from_dict(data) if data else None
         except Exception as e:
             print(f"Error finding product: {e}")
             return None
 
-    def find_all(self, skip: int = 0, limit: int = 100) -> list[dict]:
+    def find_all(self, skip: int = 0, limit: int = 100) -> list[ProductVec]:
         try:
             cursor = self.collection.find().skip(skip).limit(limit)
-            return list(cursor)
+            return [ProductVec.from_dict(data) for data in cursor]
         except Exception as e:
             print(f"Error fetching product list: {e}")
             return []
@@ -144,21 +120,27 @@ class ProductVecs:
             if not current:
                 raise ValueError(f"Not found product with id {id}")
 
-            updated = {**current, **update_data}
+            # Update and validate product
+            if "vector" in update_data:
+                update_data["vector"] = ProductVec.validate_vector(update_data["vector"])
             
-            validated = self._validate_product(updated)
+            updated = ProductVec(
+                name=update_data.get("name", current.name),
+                vector=update_data.get("vector", current.vector),
+                id=id
+            )
             
-            if validated["name"] != current["name"]:
+            if updated.name != current.name:
                 existing = self.collection.find_one({
-                    "name": validated["name"],
+                    "name": updated.name,
                     "_id": {"$ne": ObjectId(id)}
                 })
                 if existing:
-                    raise ValueError(f"Product '{validated['name']}' already exists")
+                    raise ValueError(f"Product '{updated.name}' already exists")
 
             result = self.collection.update_one(
                 {"_id": ObjectId(id)},
-                {"$set": validated}
+                {"$set": updated.to_dict()}
             )
             return result.modified_count > 0
         except Exception as e:
@@ -176,11 +158,7 @@ class ProductVecs:
     def search(self, query_vector: list[float], product_name: str = None, top_k: int = 5) -> list[dict]:
         try:
             # Normalize vector
-            vector = np.array(query_vector, dtype=np.float32)
-            norm = np.linalg.norm(vector)
-            if norm == 0:
-                raise ValueError("Query vector must not contain only zeros")
-            query_vector = (vector / norm).tolist()
+            query_vector = ProductVec.validate_vector(query_vector)
 
             results = {}
 
@@ -270,4 +248,4 @@ class ProductVecs:
 
         except Exception as e:
             print(f"Error searching: {e}")
-            return []
+            return [] 
