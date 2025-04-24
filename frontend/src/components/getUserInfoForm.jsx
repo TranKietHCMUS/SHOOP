@@ -22,7 +22,7 @@ const SearchForm = () => {
       prompt: searchQuery,
       radius: distance
     };
-    navigate('/phase1-result', { state: { searchData } });
+    navigate('/result', { state: { searchData } });
   };
 
   return (
@@ -32,9 +32,9 @@ const SearchForm = () => {
         {/* Logo */}
         <div className="mb-6 flex justify-center">
           <img 
-            src="/logo/with_w_bg.png"
+            src="/logo/no_bg_new.png"
             alt="Grab Logo"
-            className="h-16 w-auto object-contain"
+            className="h-28 w-auto object-contain"
           />
         </div>
 

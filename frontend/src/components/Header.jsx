@@ -13,9 +13,9 @@ const Header = () => {
           <div className="flex-shrink-0">
             <Link to="/">
               <img
-                src="/logo/no_bg.png"
+                src="/logo/no_bg_new.png"
                 alt="Grab Logo"
-                className="h-8 w-auto"
+                className="h-14 w-auto"
               />
             </Link>
           </div>

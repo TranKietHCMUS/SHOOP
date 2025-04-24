@@ -2,44 +2,147 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useGoogleMapsApi } from '../../hooks/useGoogleMapsApi';
 import toast from 'react-hot-toast';
 
-
 const MapContainer = ({ 
   stores = [], 
-  radius = 1000, 
+  radius = 1000,
+  onStoreClick,
+  renderAdditionalLayers = null,
+  routes = []
 }) => {
   const mapRef = useRef(null);
-  const [userLocation, setUserLocation] = useState(null);
-  const [userMarker, setUserMarker] = useState(null);
-  const [storeMarkers, setStoreMarkers] = useState([]);
-  const [circle, setCircle] = useState(null);
+  const mapInstanceRef = useRef(null);
+  const markersRef = useRef([]);
+  const watchIdRef = useRef(null);
+  const circleRef = useRef(null);
+  const userMarkerRef = useRef(null);
+  const additionalLayersRef = useRef([]);
+  const isInitializedRef = useRef(false);
+
+  const [userLocation, setUserLocation] = useState({ lat: 10.762622, lng: 106.660172 }); // Default to Ho Chi Minh City
   const { isLoaded, error, googleApi } = useGoogleMapsApi();
 
-  useEffect(() => {
+  // Cleanup function để xóa tất cả markers và shapes
+  const cleanupMap = () => {
+    // Xóa user marker
+    if (userMarkerRef.current) {
+      userMarkerRef.current.setMap(null);
+      userMarkerRef.current = null;
+    }
+
+    // Xóa circle
+    if (circleRef.current) {
+      circleRef.current.setMap(null);
+      circleRef.current = null;
+    }
+
+    // Xóa store markers
+    if (markersRef.current.length > 0) {
+      markersRef.current.forEach(marker => marker.setMap(null));
+      markersRef.current = [];
+    }
+
+    // Xóa additional layers
+    if (additionalLayersRef.current.length > 0) {
+      additionalLayersRef.current.forEach(layer => {
+        if (layer && typeof layer.setMap === 'function') {
+          layer.setMap(null);
+        }
+      });
+      additionalLayersRef.current = [];
+    }
+
+    // Clear location watch
+    if (watchIdRef.current) {
+      navigator.geolocation.clearWatch(watchIdRef.current);
+      watchIdRef.current = null;
+    }
+  };
+
+  const updateUserLocation = (position) => {
+    const newLocation = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+    setUserLocation(newLocation);
+    
+    if (userMarkerRef.current) {
+      userMarkerRef.current.setPosition(newLocation);
+    }
+    if (circleRef.current) {
+      circleRef.current.setCenter(newLocation);
+    }
+    if (mapInstanceRef.current) {
+      mapInstanceRef.current.panTo(newLocation);
+    }
+  };
+
+  const handleLocationError = (error) => {
+    console.error('Geolocation error:', error);
+    toast.error('Cannot get your location: ' + error.message, {
+      position: 'top-center',
+      duration: 3000,
+      style: {
+        background: 'red',
+        color: '#fff',
+      },
+    });
+  };
+
+  const startTracking = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setUserLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          });
-        },
-        (error) => {
-          toast.error('Cannot get your location', {
+          updateUserLocation(position);
+          toast.success('Your location has been updated!', {
             position: 'top-center',
             duration: 3000,
-            style: {
-              background: 'red',
-              color: '#fff',
-            },
           });
-          setUserLocation({ lat: 10.762622, lng: 106.660172 });
+
+          watchIdRef.current = navigator.geolocation.watchPosition(
+            updateUserLocation,
+            handleLocationError,
+            {
+              enableHighAccuracy: true,
+              timeout: 5000,
+              maximumAge: 0
+            }
+          );
+        },
+        handleLocationError,
+        {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0
         }
       );
+    } else {
+      toast.error('Your browser does not support Geolocation', {
+        position: 'top-center',
+        duration: 3000,
+      });
     }
-  }, []);
+  };
+
+  // Khởi tạo vị trí user khi component mount
+  useEffect(() => {
+    if (!isInitializedRef.current && isLoaded) {
+      startTracking();
+      isInitializedRef.current = true;
+    }
+    // Cleanup khi component unmount
+    return () => {
+      if (watchIdRef.current) {
+        navigator.geolocation.clearWatch(watchIdRef.current);
+        watchIdRef.current = null;
+      }
+    };
+  }, [isLoaded]);
 
   useEffect(() => {
     if (isLoaded && googleApi && mapRef.current && userLocation) {
+      // Cleanup trước khi tạo map mới
+      cleanupMap();
+
       const storeMarkerIcon = {
         url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
         size: new googleApi.maps.Size(32, 32),
@@ -56,8 +159,8 @@ const MapContainer = ({
         scaledSize: new googleApi.maps.Size(32, 32)
       };
 
-      // Khởi tạo map instance
-      const map = new googleApi.maps.Map(mapRef.current, {
+      // Tạo map instance mới
+      const newMap = new googleApi.maps.Map(mapRef.current, {
         center: userLocation,
         zoom: 14,
         mapTypeControl: true,
@@ -65,90 +168,82 @@ const MapContainer = ({
         fullscreenControl: true,
         zoomControl: true,
       });
+      mapInstanceRef.current = newMap;
 
-      // Tạo marker cho user
+      // Tạo user marker mới
       const newUserMarker = new googleApi.maps.Marker({
         position: userLocation,
-        map,
-        title: 'Vị trí của bạn',
+        map: newMap,
+        title: 'Your location',
         icon: userMarkerIcon
       });
-      setUserMarker(newUserMarker);
+      userMarkerRef.current = newUserMarker;
 
-      // Tạo circle cho bán kính
+      // Tạo circle mới
       const newCircle = new googleApi.maps.Circle({
-        strokeColor: '#4285F4',
+        strokeColor: '#00B14F',
         strokeOpacity: 0.8,
         strokeWeight: 2,
-        fillColor: '#4285F4',
+        fillColor: '#00B14F',
         fillOpacity: 0.1,
-        map,
+        map: newMap,
         center: userLocation,
         radius: radius
       });
-      setCircle(newCircle);
+      circleRef.current = newCircle;
 
-      // Tạo marker cho các cửa hàng
-      const newStoreMarkers = stores.map(store => {
+      // Tạo store markers mới
+      markersRef.current = stores.map(store => {
         const marker = new googleApi.maps.Marker({
           position: store.coordinates,
-          map,
+          map: newMap,
           title: store.name,
           icon: storeMarkerIcon
         });
 
-        // Thêm info window cho mỗi cửa hàng
-        const infoWindow = new googleApi.maps.InfoWindow({
-          content: `
-            <div class="p-2">
-              <h3 class="font-bold">${store.name}</h3>
-              <p class="text-sm">${store.address}</p>
-              <p class="text-sm mt-1"><strong>Sản phẩm:</strong></p>
-              <ul class="text-sm list-disc list-inside">
-                ${store.products.map(product => `<li>${product}</li>`).join('')}
-              </ul>
-            </div>
-          `
-        });
-
         marker.addListener('click', () => {
-          infoWindow.open(map, marker);
+          if (onStoreClick) {
+            onStoreClick(store);
+          }
         });
 
         return marker;
       });
-      setStoreMarkers(newStoreMarkers);
+
+      // Render additional layers nếu có
+      if (renderAdditionalLayers && routes.length > 0) {
+        additionalLayersRef.current = renderAdditionalLayers(newMap, googleApi, routes);
+      }
     }
 
-    // Cleanup function
     return () => {
-      if (userMarker) userMarker.setMap(null);
-      if (circle) circle.setMap(null);
-      storeMarkers.forEach(marker => marker.setMap(null));
+      cleanupMap();
     };
-  }, [isLoaded, googleApi, userLocation, stores, radius]);
+  }, [isLoaded, googleApi, userLocation, stores, radius, renderAdditionalLayers, routes]);
 
   if (error) {
     return (
       <div className="flex items-center justify-center h-[400px] bg-gray-100 rounded-lg">
-        <p className="text-red-500">Có lỗi khi tải Google Maps: {error.message}</p>
+        <p className="text-red-500">Error when loading maps: {error.message}</p>
       </div>
     );
   }
 
-  if (!isLoaded || !userLocation) {
+  if (!isLoaded) {
     return (
       <div className="flex items-center justify-center h-[400px] bg-gray-100 rounded-lg">
-        <p className="text-gray-500">Đang tải bản đồ...</p>
+        <p className="text-gray-500">Loading map...</p>
       </div>
     );
   }
 
   return (
-    <div 
-      ref={mapRef}
-      className="w-full h-[400px] rounded-lg shadow-lg"
-    />
+    <div className="relative h-full">
+      <div 
+        ref={mapRef}
+        className="w-full h-full rounded-lg shadow-lg"
+      />
+    </div>
   );
 };
 

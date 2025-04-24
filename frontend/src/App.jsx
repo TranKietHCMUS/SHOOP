@@ -7,6 +7,7 @@ import FailRequest from './pages/FailRequest';
 import Phase1Result from './pages/Phase1Result';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/registerForm';
+import MainPage from './pages/MainPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/phase1-result-prototype" element={<Phase1ResultPrototype />} />
           <Route path="/error" element={<FailRequest />} />
           <Route path="/phase1-result" element={<Phase1Result />} />
+          <Route path="/result" element={<MainPage />} />
         </Routes>
       </Router>
     </AuthProvider>
