@@ -1,5 +1,5 @@
 from flask import Blueprint, request, Response, jsonify
-from src.controllers.user_controller import handle_user_search
+from src.controllers.user_controller import handle_user_search, register
 
 user_routes = Blueprint("user", __name__, url_prefix="/user")
 
@@ -9,3 +9,6 @@ user_routes = Blueprint("user", __name__, url_prefix="/user")
 def search():
     message, status_code = handle_user_search(request.json.get("prompt"))
     return message, status_code
+
+
+user_routes.route("/register", methods=["POST"])(register)
