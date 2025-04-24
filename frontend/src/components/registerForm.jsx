@@ -159,7 +159,7 @@ const RegisterForm = () => {
           <p className="text-base text-gray-600">
             Already have an account?{' '}
             <Link 
-              to="/auth/login" 
+              to="/login" 
               className="text-[#00B14F] hover:text-[#009F47] font-medium transition-colors"
             >
               Log in
