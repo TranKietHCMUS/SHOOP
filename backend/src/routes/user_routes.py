@@ -9,3 +9,9 @@ user_controller = UserController()
 def search():
     message, status_code = user_controller.handle_user_search(request.json)
     return message, status_code
+
+
+@user_routes.route("/register", methods=["POST"])
+def register():
+    message, status_code = user_controller.register(request)
+    return message, status_code

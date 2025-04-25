@@ -34,3 +34,4 @@ dependencies:
   - redis-py
   - sentence-transformers=4.1.0
   - google-genai
+  - bcrypt==4.3.0

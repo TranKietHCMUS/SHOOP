@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { LockClosedIcon, UserIcon } from "@heroicons/react/24/solid";
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 const LoginForm = () => {
-  const [username, setusername] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const {loginUser, loginInfo, updateLoginInfo, loginError, isLoginLoading} = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Username:', username);
-    console.log('Password:', password);
-  };
+    updateLoginInfo({ username, password });
+    loginUser()
+  }
 
   return (
     <div className="max-w-4xl mx-auto p-6">
@@ -20,8 +21,8 @@ const LoginForm = () => {
         <div className="mb-8">
           <img 
             style={{marginTop: "-5rem"}}
-            src="/logo/with_w_bg.png"
-            alt="Grab Logo"
+            src="/logo/no_bg_new.png"
+            alt="Logo"
             className="h-24 w-auto object-contain"
           />
         </div>
@@ -38,7 +39,7 @@ const LoginForm = () => {
               className="w-full p-4 pl-14 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
               placeholder="Enter your username"
               value={username}
-              onChange={(e) => setusername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <UserIcon className="h-10 w-10 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
           </div>
@@ -67,7 +68,7 @@ const LoginForm = () => {
           onClick={handleSubmit}
           className="w-full bg-[#00B14F] text-white py-4 rounded-lg text-lg font-medium hover:bg-[#009F47] transition-colors"
         >
-          Log In
+          {isLoginLoading ? "Loading your account" : "Log In"}
         </button>
 
         {/* Register Link */}
@@ -75,7 +76,7 @@ const LoginForm = () => {
           <p className="text-base text-gray-600">
             Don't have an account?{' '}
             <Link 
-              to="/auth/register" 
+              to="/register" 
               className="text-[#00B14F] hover:text-[#009F47] font-medium transition-colors"
             >
               Sign up

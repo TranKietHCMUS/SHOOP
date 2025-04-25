@@ -22,13 +22,13 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200">
+    <div className="max-w-4xl mx-auto p-4">
+      <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
         {/* Logo */}
-        <div className="mb-8">
+        <div className="mb-6">
           <img 
             style={{marginTop: "-5rem"}}
-            src="/logo/with_w_bg.png"
+            src="/logo/no_bg_new.png"
             alt="Grab Logo"
             className="h-24 w-auto object-contain"
           />
@@ -36,103 +36,103 @@ const RegisterForm = () => {
 
         <form onSubmit={handleSubmit}>
           {/* Username Input */}
-          <div className="mb-8 text-left">
-            <label htmlFor="username" className="block text-xl font-medium text-primary mb-3">
+          <div className="mb-6 text-left">
+            <label htmlFor="username" className="block text-lg font-medium text-primary mb-2">
               Username
             </label>
             <div className="relative">
               <input
                 type="text"
                 id="username"
-                className="w-full p-4 pl-14 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
+                className="w-full p-3 pl-12 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
                 placeholder="Enter your username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
-              <UserIcon className="h-10 w-10 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
+              <UserIcon className="h-8 w-8 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
             </div>
           </div>
 
           {/* Password Input */}
-          <div className="mb-8 text-left">
-            <label htmlFor="password" className="block text-xl font-medium text-primary mb-3">
+          <div className="mb-6 text-left">
+            <label htmlFor="password" className="block text-lg font-medium text-primary mb-2">
               Password
             </label>
             <div className="relative">
               <input
                 type="password"
                 id="password"
-                className="w-full p-4 pl-14 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
+                className="w-full p-3 pl-12 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <LockClosedIcon className="h-10 w-10 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
+              <LockClosedIcon className="h-8 w-8 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
             </div>
           </div>
 
           {/* Confirm Password Input */}
-          <div className="mb-8 text-left">
-            <label htmlFor="confirmPassword" className="block text-xl font-medium text-primary mb-3">
+          <div className="mb-6 text-left">
+            <label htmlFor="confirmPassword" className="block text-lg font-medium text-primary mb-2">
               Confirm Password
             </label>
             <div className="relative">
               <input
                 type="password"
                 id="confirmPassword"
-                className="w-full p-4 pl-14 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
+                className="w-full p-3 pl-12 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
                 placeholder="Confirm your password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-              <LockClosedIcon className="h-10 w-10 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
+              <LockClosedIcon className="h-8 w-8 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
             </div>
           </div>
 
           {/* Full Name Input */}
-          <div className="mb-8 text-left">
-            <label htmlFor="fullName" className="block text-xl font-medium text-primary mb-3">
+          <div className="mb-6 text-left">
+            <label htmlFor="fullName" className="block text-lg font-medium text-primary mb-2">
               Full Name
             </label>
             <div className="relative">
               <input
                 type="text"
                 id="fullName"
-                className="w-full p-4 pl-14 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
+                className="w-full p-3 pl-12 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
                 placeholder="Enter your full name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
               />
-              <UserIcon className="h-10 w-10 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
+              <UserIcon className="h-8 w-8 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
             </div>
           </div>
 
           {/* Date of Birth Input */}
-          <div className="mb-8 text-left">
-            <label htmlFor="dateOfBirth" className="block text-xl font-medium text-primary mb-3">
+          <div className="mb-6 text-left">
+            <label htmlFor="dateOfBirth" className="block text-lg font-medium text-primary mb-2">
               Date of Birth
             </label>
             <div className="relative">
               <input
                 type="date"
                 id="dateOfBirth"
-                className="w-full p-4 pl-14 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
+                className="w-full p-3 pl-12 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
                 value={dateOfBirth}
                 onChange={(e) => setDateOfBirth(e.target.value)}
               />
-              <CalendarIcon className="h-10 w-10 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
+              <CalendarIcon className="h-8 w-8 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
             </div>
           </div>
 
           {/* Gender Input */}
-          <div className="mb-8 text-left">
-            <label htmlFor="gender" className="block text-xl font-medium text-primary mb-3">
+          <div className="mb-6 text-left">
+            <label htmlFor="gender" className="block text-lg font-medium text-primary mb-2">
               Gender
             </label>
             <div className="relative">
               <select
                 id="gender"
-                className="w-full p-4 pl-14 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left appearance-none"
+                className="w-full p-3 pl-12 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left appearance-none"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
               >
@@ -141,25 +141,25 @@ const RegisterForm = () => {
                 <option value="female">Female (Nữ)</option>
                 <option value="other">Other (Khác)</option>
               </select>
-              <UserGroupIcon className="h-10 w-10 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
+              <UserGroupIcon className="h-8 w-8 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
             </div>
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-[#00B14F] text-white py-4 rounded-lg text-lg font-medium hover:bg-[#009F47] transition-colors"
+            className="w-full bg-[#00B14F] text-white py-3 rounded-lg text-base font-medium hover:bg-[#009F47] transition-colors"
           >
             Sign Up
           </button>
         </form>
 
         {/* Login Link */}
-        <div className="mt-6 text-center">
-          <p className="text-base text-gray-600">
+        <div className="mt-4 text-center">
+          <p className="text-sm text-gray-600">
             Already have an account?{' '}
             <Link 
-              to="/auth/login" 
+              to="/login" 
               className="text-[#00B14F] hover:text-[#009F47] font-medium transition-colors"
             >
               Log in
