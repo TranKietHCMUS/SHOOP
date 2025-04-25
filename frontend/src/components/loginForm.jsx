@@ -21,8 +21,8 @@ const LoginForm = () => {
         <div className="mb-8">
           <img 
             style={{marginTop: "-5rem"}}
-            src="/logo/with_w_bg.png"
-            alt="Grab Logo"
+            src="/logo/no_bg_new.png"
+            alt="Logo"
             className="h-24 w-auto object-contain"
           />
         </div>
