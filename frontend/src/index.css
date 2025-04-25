@@ -13,4 +13,13 @@
   .textfield-bg-primary {
     @apply bg-[#e6e6e6];
   }
+  .border-primary {
+    @apply border-[#00B14F];
+  }
+}
+
+@button {
+  .btn-primary {
+    @apply bg-[#00B14F] text-white py-4 rounded-lg text-lg font-medium hover:bg-[#009F47] transition-colors;
+  }
 }
