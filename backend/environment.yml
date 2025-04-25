@@ -1,4 +1,4 @@
-name: grab
+name: grab_test
 channels:
   - pytorch
   - huggingface
