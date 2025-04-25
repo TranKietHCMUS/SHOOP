@@ -23,3 +23,18 @@
     @apply bg-[#00B14F] text-white py-4 rounded-lg text-lg font-medium hover:bg-[#009F47] transition-colors;
   }
 }
+
+@colors {
+  .color-primary {
+    @apply bg-[#00B14F];
+  }
+  .color-warning {
+    @apply bg-[#ffea94];
+  }
+  .color-error {
+    @apply bg-[#ff0000];
+  }
+  .color-success {
+    @apply bg-[#00B14F];
+  }
+}
