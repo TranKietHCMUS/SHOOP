@@ -3,12 +3,16 @@ import { useGoogleMapsApi } from '../../hooks/useGoogleMapsApi';
 import toast from 'react-hot-toast';
 
 const MapContainer = ({ 
+  userLocation,
   stores = [], 
   radius = 1000,
   onStoreClick,
   renderAdditionalLayers = null,
-  routes = []
+  routes = [],
+  
 }) => {
+  console.log('MapContainer props:', { stores, routes, userLocation });
+  
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const markersRef = useRef([]);
@@ -17,8 +21,7 @@ const MapContainer = ({
   const userMarkerRef = useRef(null);
   const additionalLayersRef = useRef([]);
   const isInitializedRef = useRef(false);
-
-  const [userLocation, setUserLocation] = useState({ lat: 10.762622, lng: 106.660172 }); // Default to Ho Chi Minh City
+  console.log("userLocation", userLocation);
   const { isLoaded, error, googleApi } = useGoogleMapsApi();
 
   // Cleanup function để xóa tất cả markers và shapes
@@ -52,91 +55,91 @@ const MapContainer = ({
     }
 
     // Clear location watch
-    if (watchIdRef.current) {
-      navigator.geolocation.clearWatch(watchIdRef.current);
-      watchIdRef.current = null;
-    }
+    // if (watchIdRef.current) {
+    //   navigator.geolocation.clearWatch(watchIdRef.current);
+    //   watchIdRef.current = null;
+    // }
   };
 
-  const updateUserLocation = (position) => {
-    const newLocation = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-    };
-    setUserLocation(newLocation);
+  // const updateUserLocation = (position) => {
+  //   const newLocation = {
+  //     lat: position.coords.latitude,
+  //     lng: position.coords.longitude
+  //   };
+  //   setCurrentUserLocation(newLocation);
     
-    if (userMarkerRef.current) {
-      userMarkerRef.current.setPosition(newLocation);
-    }
-    if (circleRef.current) {
-      circleRef.current.setCenter(newLocation);
-    }
-    if (mapInstanceRef.current) {
-      mapInstanceRef.current.panTo(newLocation);
-    }
-  };
+  //   if (userMarkerRef.current) {
+  //     userMarkerRef.current.setPosition(newLocation);
+  //   }
+  //   if (circleRef.current) {
+  //     circleRef.current.setCenter(newLocation);
+  //   }
+  //   if (mapInstanceRef.current) {
+  //     mapInstanceRef.current.panTo(newLocation);
+  //   }
+  // };
 
-  const handleLocationError = (error) => {
-    console.error('Geolocation error:', error);
-    toast.error('Cannot get your location: ' + error.message, {
-      position: 'top-center',
-      duration: 3000,
-      style: {
-        background: 'red',
-        color: '#fff',
-      },
-    });
-  };
+  // const handleLocationError = (error) => {
+  //   console.error('Geolocation error:', error);
+  //   toast.error('Cannot get your location: ' + error.message, {
+  //     position: 'top-center',
+  //     duration: 3000,
+  //     style: {
+  //       background: 'red',
+  //       color: '#fff',
+  //     },
+  //   });
+  // };
 
-  const startTracking = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          updateUserLocation(position);
-          toast.success('Your location has been updated!', {
-            position: 'top-center',
-            duration: 3000,
-          });
+  // const startTracking = () => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         updateUserLocation(position);
+  //         toast.success('Your location has been updated!', {
+  //           position: 'top-center',
+  //           duration: 3000,
+  //         });
 
-          watchIdRef.current = navigator.geolocation.watchPosition(
-            updateUserLocation,
-            handleLocationError,
-            {
-              enableHighAccuracy: true,
-              timeout: 5000,
-              maximumAge: 0
-            }
-          );
-        },
-        handleLocationError,
-        {
-          enableHighAccuracy: true,
-          timeout: 5000,
-          maximumAge: 0
-        }
-      );
-    } else {
-      toast.error('Your browser does not support Geolocation', {
-        position: 'top-center',
-        duration: 3000,
-      });
-    }
-  };
+  //         watchIdRef.current = navigator.geolocation.watchPosition(
+  //           updateUserLocation,
+  //           handleLocationError,
+  //           {
+  //             enableHighAccuracy: true,
+  //             timeout: 5000,
+  //             maximumAge: 0
+  //           }
+  //         );
+  //       },
+  //       handleLocationError,
+  //       {
+  //         enableHighAccuracy: true,
+  //         timeout: 5000,
+  //         maximumAge: 0
+  //       }
+  //     );
+  //   } else {
+  //     toast.error('Your browser does not support Geolocation', {
+  //       position: 'top-center',
+  //       duration: 3000,
+  //     });
+  //   }
+  // };
 
   // Khởi tạo vị trí user khi component mount
-  useEffect(() => {
-    if (!isInitializedRef.current && isLoaded) {
-      startTracking();
-      isInitializedRef.current = true;
-    }
-    // Cleanup khi component unmount
-    return () => {
-      if (watchIdRef.current) {
-        navigator.geolocation.clearWatch(watchIdRef.current);
-        watchIdRef.current = null;
-      }
-    };
-  }, [isLoaded]);
+  // useEffect(() => {
+  //   if (!isInitializedRef.current && isLoaded) {
+  //     startTracking();
+  //     isInitializedRef.current = true;
+  //   }
+  //   // Cleanup khi component unmount
+  //   return () => {
+  //     if (watchIdRef.current) {
+  //       navigator.geolocation.clearWatch(watchIdRef.current);
+  //       watchIdRef.current = null;
+  //     }
+  //   };
+  // }, [isLoaded]);
 
   useEffect(() => {
     if (isLoaded && googleApi && mapRef.current && userLocation) {
@@ -214,12 +217,17 @@ const MapContainer = ({
       if (renderAdditionalLayers && routes.length > 0) {
         additionalLayersRef.current = renderAdditionalLayers(newMap, googleApi, routes);
       }
-    }
-
+    } else if (isLoaded && !userLocation) {
+      // Trường hợp API đã load nhưng chưa có userLocation (đang chờ hoặc lỗi)
+      // Có thể hiển thị một thông báo chờ trên map div
+      console.warn("MapContainer: Waiting for userLocation prop...");
+      // Đảm bảo map cũ được dọn dẹp nếu có
+      cleanupMap();
+  }
     return () => {
       cleanupMap();
     };
-  }, [isLoaded, googleApi, userLocation, stores, radius, renderAdditionalLayers, routes]);
+  }, [isLoaded, googleApi, userLocation, stores, radius, renderAdditionalLayers, routes, onStoreClick]);
 
   if (error) {
     return (
@@ -233,6 +241,13 @@ const MapContainer = ({
     return (
       <div className="flex items-center justify-center h-[400px] bg-gray-100 rounded-lg">
         <p className="text-gray-500">Loading map...</p>
+      </div>
+    );
+  }
+  if (isLoaded && !userLocation) {
+    return (
+      <div className="flex items-center justify-center h-[400px] bg-gray-100 rounded-lg">
+        <p className="text-gray-500">Getting your location...</p>
       </div>
     );
   }

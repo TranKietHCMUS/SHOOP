@@ -15,12 +15,18 @@ const SearchForm = () => {
       toast.error('Please enter your search content', {
         duration: 1500,
         position: 'top-center',
+        style: {
+          background: '#ffea94',
+          color: '#000',
+          fontWeight: 'bold',
+        },
+        icon: '❗',
       });
       return;
     }
     const searchData = {
       prompt: searchQuery,
-      radius: distance
+      expected_radius: distance
     };
     navigate('/result', { state: { searchData } });
   };
