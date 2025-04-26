@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 
-const SuccessPopup = ({ message = "Thành công!", show = false }) => {
+const SuccessPopup = ({ message = "Success!", show = false }) => {
   return (
     <div
       className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 transition-opacity duration-500 ${

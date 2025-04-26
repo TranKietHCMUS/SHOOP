@@ -5,7 +5,7 @@ from datetime import datetime
 class AuthController:
     def __init__(self):
         self.user_service = user_service
-        
+
     def register(self, request):
         try:
             # Lấy dữ liệu từ request
@@ -83,7 +83,7 @@ class AuthController:
                 return jsonify({"error": "Failed to create access token"}), 500
             
             response = make_response(jsonify({
-                "message": "Login successful",
+                "message": "Log in successfully",
                 "data": {
                     "user": user,
                 }
@@ -102,4 +102,19 @@ class AuthController:
 
         except Exception as e:
             print(f"Error during login: {e}")
+            return jsonify({"error": "Internal server error"}), 500
+    
+    def logout(self, request):
+        try:
+            response = make_response(jsonify({
+                "message": "Log out successfully",
+            }), 200)
+
+            # clear cookie
+            response.delete_cookie('token')
+
+            return response
+
+        except Exception as e:
+            print(f"Error during logout: {e}")
             return jsonify({"error": "Internal server error"}), 500

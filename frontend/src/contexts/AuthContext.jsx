@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   const [loginInfo, setLoginInfo] = useState({
     username: "",
     password: ""
-  });
+  });;
 
   const login = async () => {
     setIsLoginLoading(true);
@@ -81,6 +81,10 @@ export const AuthProvider = ({ children }) => {
           localStorage.setItem("user", JSON.stringify(user));
           setUser(user);
           setIsAuthenticated(true);
+          setLoginInfo({
+            username: "",
+            password: ""
+          });
         } else {
           setLoginError("Don't find user info in response");
         }
@@ -119,6 +123,13 @@ export const AuthProvider = ({ children }) => {
           localStorage.setItem("user", JSON.stringify(user));
           setUser(user);
           setIsCreated(true);
+          setRegisterInfo({
+            username: "",
+            password: "",
+            fullName: "",
+            gender: "",
+            dateOfBirth: ""
+          });
         } else {
           setRegisterError("Don't find user info in response");
         }
@@ -133,9 +144,31 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const logout = async () => {
+    setIsAuthenticated(false);
+    setUser(null);
+    localStorage.removeItem("user");
+  
+    try {
+      const response = await fetch(`${baseUrl}/auth/logout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include"
+      });
+  
+      if (!response.ok) {
+        console.error("Logout failed:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  }
+
   return (
     <AuthContext.Provider value={{user, isAuthenticated, isCreated, setIsAuthenticated,
-        registerInfo, registerError, isRegisterLoading, setRegisterError,
+        registerInfo, registerError, isRegisterLoading, setRegisterError, logout,
         loginInfo, loginError, isLoginLoading, login, setLoginInfo, register, setRegisterInfo}}>
       {children}
     </AuthContext.Provider>
