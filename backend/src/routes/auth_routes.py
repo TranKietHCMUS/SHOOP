@@ -12,3 +12,8 @@ def register():
 @auth_routes.route("/login", methods=["POST"])
 def login():
     return auth_controller.login(request)
+
+@auth_routes.route("/logout", methods=["POST"])
+@token_required
+def logout():
+    return auth_controller.logout(request)

@@ -103,3 +103,18 @@ class AuthController:
         except Exception as e:
             print(f"Error during login: {e}")
             return jsonify({"error": "Internal server error"}), 500
+    
+    def logout(self, request):
+        try:
+            response = make_response(jsonify({
+                "message": "Log out successfully",
+            }), 200)
+
+            # clear cookie
+            response.delete_cookie('token')
+
+            return response
+
+        except Exception as e:
+            print(f"Error during logout: {e}")
+            return jsonify({"error": "Internal server error"}), 500
