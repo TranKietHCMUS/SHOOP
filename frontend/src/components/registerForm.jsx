@@ -1,35 +1,30 @@
 import React, { useState } from 'react';
 import { LockClosedIcon, UserIcon, CalendarIcon, UserGroupIcon } from "@heroicons/react/24/solid";
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 const RegisterForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState('');
-  const [gender, setGender] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const { register, registerInfo, setRegisterInfo, registerError, setRegisterError, isRegisterLoading } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle registration logic here
-    console.log('Username:', username);
-    console.log('Password:', password);
-    console.log('Confirm Password:', confirmPassword);
-    console.log('Full Name:', fullName);
-    console.log('Date of Birth:', dateOfBirth);
-    console.log('Gender:', gender);
+    if (registerInfo.password != confirmPassword) {
+      setRegisterError("Passwords do not match");
+      return;
+    }
+    register();
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+    <div className="w-full p-4">
+      <div className="bg-white p-6">
         {/* Logo */}
-        <div className="mb-6">
+        <div className="mb-6 flex justify-center">
           <img 
-            style={{marginTop: "-5rem"}}
+            // style={{marginTop: "-5rem"}}
             src="/logo/no_bg_new.png"
-            alt="Grab Logo"
+            alt="Logo"
             className="h-24 w-auto object-contain"
           />
         </div>
@@ -46,8 +41,8 @@ const RegisterForm = () => {
                 id="username"
                 className="w-full p-3 pl-12 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
                 placeholder="Enter your username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={registerInfo.username}
+                onChange={(e) => setRegisterInfo({ ...registerInfo, username: e.target.value })}
               />
               <UserIcon className="h-8 w-8 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
             </div>
@@ -64,8 +59,8 @@ const RegisterForm = () => {
                 id="password"
                 className="w-full p-3 pl-12 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
                 placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={registerInfo.password}
+                onChange={(e) => setRegisterInfo({ ...registerInfo, password: e.target.value })}
               />
               <LockClosedIcon className="h-8 w-8 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
             </div>
@@ -100,8 +95,8 @@ const RegisterForm = () => {
                 id="fullName"
                 className="w-full p-3 pl-12 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
                 placeholder="Enter your full name"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                value={registerInfo.fullName}
+                onChange={(e) => setRegisterInfo({ ...registerInfo, fullName: e.target.value })}
               />
               <UserIcon className="h-8 w-8 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
             </div>
@@ -117,8 +112,8 @@ const RegisterForm = () => {
                 type="date"
                 id="dateOfBirth"
                 className="w-full p-3 pl-12 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
-                value={dateOfBirth}
-                onChange={(e) => setDateOfBirth(e.target.value)}
+                value={registerInfo.dateOfBirth}
+                onChange={(e) => setRegisterInfo({ ...registerInfo, dateOfBirth: e.target.value })}
               />
               <CalendarIcon className="h-8 w-8 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
             </div>
@@ -133,8 +128,8 @@ const RegisterForm = () => {
               <select
                 id="gender"
                 className="w-full p-3 pl-12 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent textfield-bg-primary text-left appearance-none"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
+                value={registerInfo.gender}
+                onChange={(e) => setRegisterInfo({ ...registerInfo, gender: e.target.value })}
               >
                 <option value="" disabled>Select your gender</option>
                 <option value="male">Male (Nam)</option>
@@ -145,16 +140,24 @@ const RegisterForm = () => {
             </div>
           </div>
 
+          {/* Error Message */}
+          {registerError && (
+            <div className="mb-4 text-red-600 text-center">
+              {registerError}
+            </div>
+          )}
+
           {/* Submit Button */}
           <button
             type="submit"
+            onClick={handleSubmit}
             className="w-full bg-[#00B14F] text-white py-3 rounded-lg text-base font-medium hover:bg-[#009F47] transition-colors"
           >
-            Sign Up
+            {isRegisterLoading ? "Creating your account" : "Register"}
           </button>
         </form>
 
-        {/* Login Link */}
+        {/* login Link */}
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
