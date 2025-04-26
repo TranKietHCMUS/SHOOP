@@ -8,7 +8,7 @@ import sys
 from src.routes.user_routes import user_routes
 from src.routes.ai_routes import ai_routes
 from src.routes.auth_routes import auth_routes
-from .controllers.search_controller import search_bp
+from src.routes.search_routes import search_bp
 
 from src.extensions import db, redis, AI_MODELS
 
