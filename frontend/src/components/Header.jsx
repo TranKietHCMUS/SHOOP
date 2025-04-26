@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const Header = () => {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
 
   return (
     <header className="bg-white shadow-md">
@@ -38,17 +38,24 @@ const Header = () => {
                 </Link>
               </>
             ) : (
-              <Link to="/profile" className="flex items-center space-x-2 group">
-                <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center group-hover:ring-2 group-hover:ring-primary transition">
-                  {/* Avatar Placeholder Icon */}
-                  <span className="text-white font-bold">
-                    {user?.fullName?.charAt(0) || 'U'}
+              <>
+                <Link to="/profile" className="flex items-center space-x-2 group">
+                  <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center group-hover:ring-2 group-hover:ring-primary transition">
+                    <span className="text-white font-bold">
+                      {user?.fullName?.charAt(0) || 'U'}
+                    </span>
+                  </div>
+                  <span className="text-gray-700 font-medium text-sm group-hover:text-primary transition">
+                    {user?.fullName || 'User'}
                   </span>
-                </div>
-                <span className="text-gray-700 font-medium text-sm group-hover:text-primary transition">
-                  {user?.fullName || 'User'}
-                </span>
-              </Link>
+                </Link>
+                <button
+                  onClick={logout}
+                  className="text-red-600 hover:text-red-800 text-sm font-medium px-3 py-2 rounded-md transition"
+                >
+                  Logout
+                </button>
+              </>
             )}
           </div>
         </div>
