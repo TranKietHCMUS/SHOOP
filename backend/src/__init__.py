@@ -7,12 +7,23 @@ import sys
 
 from src.routes.user_routes import user_routes
 from src.routes.ai_routes import ai_routes
+from src.routes.auth_routes import auth_routes
 
 from src.extensions import db, redis, AI_MODELS
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+
+    origins = [
+        "http://localhost:5174"
+    ]
+    
+    CORS(app, 
+         resources={r"/*": {"origins": origins}},
+         supports_credentials=True,
+         allow_headers=["Content-Type", "Authorization"],
+         methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+         expose_headers=["Content-Type", "Authorization"])
     
     # Load config
     app.config.from_object(Config)
@@ -28,5 +39,6 @@ def create_app():
     # Registering Blueprints
     app.register_blueprint(user_routes)
     app.register_blueprint(ai_routes)
+    app.register_blueprint(auth_routes)
 
     return app
