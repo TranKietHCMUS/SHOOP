@@ -1,6 +1,7 @@
 from flask import Blueprint
-from controllers.search_controller import get_plans_controller
+from src.controllers.search_controller import get_plans_controller
 
-search_bp = Blueprint('search', __name__)
+search_bp = Blueprint("search", __name__, url_prefix="/search")
 
-search_bp.route('/search', methods=['POST'])(get_plans_controller)
+# POST /search/plans
+search_bp.route("/plans", methods=["POST"])(get_plans_controller)
