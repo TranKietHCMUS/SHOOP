@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 const Header = () => {
-  // TODO: Replace with actual auth state
-  const isAuthenticated = false;
+  const { isAuthenticated, user } = useAuth();
 
   return (
     <header className="bg-white shadow-md">
@@ -20,27 +20,41 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Auth Buttons */}
-          {!isAuthenticated && (
-            <div className="flex items-center space-x-4">
-              <Link
-                to="/login"
-                className="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Login
+          {/* Auth Buttons / User Info */}
+          <div className="flex items-center space-x-4">
+            {!isAuthenticated ? (
+              <>
+                <Link
+                  to="/login"
+                  className="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="bg-primary text-white hover:bg-primary-dark px-4 py-2 rounded-md text-sm font-medium"
+                >
+                  Register
+                </Link>
+              </>
+            ) : (
+              <Link to="/profile" className="flex items-center space-x-2 group">
+                <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center group-hover:ring-2 group-hover:ring-primary transition">
+                  {/* Avatar Placeholder Icon */}
+                  <span className="text-white font-bold">
+                    {user?.fullName?.charAt(0) || 'U'}
+                  </span>
+                </div>
+                <span className="text-gray-700 font-medium text-sm group-hover:text-primary transition">
+                  {user?.fullName || 'User'}
+                </span>
               </Link>
-              <Link
-                to="/register"
-                className="bg-primary text-white hover:bg-primary-dark px-4 py-2 rounded-md text-sm font-medium"
-              >
-                Register
-              </Link>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </header>
   );
 };
 
-export default Header; 
+export default Header;
