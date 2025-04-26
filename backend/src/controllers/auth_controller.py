@@ -5,7 +5,7 @@ from datetime import datetime
 class AuthController:
     def __init__(self):
         self.user_service = user_service
-        
+
     def register(self, request):
         try:
             # Lấy dữ liệu từ request
@@ -83,7 +83,7 @@ class AuthController:
                 return jsonify({"error": "Failed to create access token"}), 500
             
             response = make_response(jsonify({
-                "message": "Login successful",
+                "message": "Log in successfully",
                 "data": {
                     "user": user,
                 }
