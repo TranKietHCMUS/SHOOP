@@ -35,3 +35,4 @@ dependencies:
   - sentence-transformers=4.1.0
   - google-genai
   - bcrypt==4.3.0
+  - PyJWT==2.10.1

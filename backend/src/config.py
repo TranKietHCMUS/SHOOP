@@ -17,4 +17,5 @@ class Config:
     DIMENSIONS = 768
     VECTOR_WEIGHT = 0.7
     FULL_TEXT_WEIGHT = 0.3
+    SECRET_KEY = os.getenv('SECRET_KEY')
     
