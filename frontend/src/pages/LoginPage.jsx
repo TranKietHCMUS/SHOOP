@@ -30,7 +30,7 @@ const LoginPage = () => {
       <div className="min-h-screen flex flex-col">
       <Header />
           <main className="flex-grow flex items-center justify-center py-12">
-          <SuccessPopup message="Đăng nhập thành công!" show={showSuccess} />
+          <SuccessPopup message="Log in successfully" show={showSuccess} />
           <div className="w-1/2 mx-auto px-4 bg-white rounded-xl shadow-lg flex flex-col md:flex-row">
               <div className="w-full md:w-1/2 p-4 flex items-center justify-center">
               <Carousel />
