@@ -2,16 +2,12 @@ from flask import Blueprint, request, jsonify, Response
 from src.extensions import AI_MODELS
 from src.controllers.ai_controller import AIController
 from tqdm import tqdm
-from itertools import islice
+from src.utils import batched
 
 ai_routes = Blueprint("ai", __name__, url_prefix="/ai")
 ai_controller = AIController()
 sbert = AI_MODELS["sbert"]
 
-def batched(iterable, batch_size):
-    iterator = iter(iterable)
-    while batch := list(islice(iterator, batch_size)):
-        yield batch
 
 @ai_routes.route("/admin/insert", methods=["POST"])
 def insert():
@@ -28,7 +24,7 @@ def insert():
             "vector": vector.tolist()
         } for product, vector in zip(batch, vectors)]
         
-        message, status = ai_controller.insert_products(new_products)
+        message, status = ai_controller.insert_vec_products(new_products)
         if status != 200:
             results.append(f"Batch failed: {message}")
         else:
