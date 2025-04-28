@@ -2,6 +2,8 @@ import React, { createContext, useContext, useCallback, useState, useEffect } fr
 
 const AuthContext = createContext();
 
+const baseUrl = 'http://localhost:5000';
+
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -13,26 +15,21 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const [isCreated, setIsCreated] = useState(false);
 
   useEffect(() => {
     try {
-      const token = localStorage.getItem("token");
+      const token = document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1];
       if (token) {
         const payload = JSON.parse(atob(token.split(".")[1]));
         const currentTime = Math.floor(Date.now() / 1000);
         if (payload.exp > currentTime) {
           setIsAuthenticated(true);
-
-          setUser({
-            id: payload.id,
-            username: payload.username,
-            fullName: payload.fullName,
-            gender: payload.gender,
-            dateOfBirth: payload.dateOfBirth,
-        });
+          const userData = JSON.parse(localStorage.getItem("user"));
+          setUser(userData);
         }
         else {
-          localStorage.removeItem("token");
+          localStorage.removeItem("user");
           setIsAuthenticated(false);
           setUser(null);
         }
@@ -58,64 +55,121 @@ export const AuthProvider = ({ children }) => {
   const [loginInfo, setLoginInfo] = useState({
     username: "",
     password: ""
-  });
+  });;
 
-  const updateLoginInfo = useCallback((info) => {
-    setLoginInfo(info);
-  }, []);
-
-  const loginUser = useCallback( async(e) => {
-      // setIsLoginLoading(true);
-      // setLoginError(null);
-
-      // const response = await postLoginOrRegister(`${baseUrl}/auth/login/`, JSON.stringify(loginInfo));
-
-      // setIsLoginLoading(false);
-      // if (response.error) return setLoginError(response);
-
-      // localStorage.setItem("User", JSON.stringify(response['user']));
-      // localStorage.setItem('token', response['accessToken']);
-      // setUser(response['user']);
-      const token = 'fake-token';
-      const userData = { id: 1, name: 'User' };
-      
-      localStorage.setItem('token', token);
-      setIsAuthenticated(true);
-      setUser(userData);
-  }, [loginInfo])
-
-  const updateRegisterInfo = useCallback((info) => {
-      setRegisterInfo(info);
-  }, []);
-
-  const registerUser = useCallback( async(e) => {
-      e.preventDefault();
-      setIsRegisterLoading(true);
-      setRegisterError(null);
-
-      const response = await postLoginOrRegister(`${baseUrl}/auth/register/`, JSON.stringify(registerInfo));
-
-      setIsRegisterLoading(false);
-      if (response.error) return setRegisterError(response);
-
-  }, [registerInfo]);
-
-  const logoutUser = useCallback( async(e) => {
-      const response = await getRequest(`${baseUrl}/auth/logout?user_id=${user?.id}`);
-      if (response?.error) {
-          console.log(response?.error);
-          return;
+  const login = async () => {
+    setIsLoginLoading(true);
+    setLoginError(null);
+  
+    try {
+      const response = await fetch(`${baseUrl}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify(loginInfo)
+      });
+  
+      const resData = await response.json();
+  
+      if (response.ok) {
+        const user = resData.data?.user;
+  
+        if (user) {
+          // Lưu user vào localStorage
+          localStorage.setItem("user", JSON.stringify(user));
+          setUser(user);
+          setIsAuthenticated(true);
+          setLoginInfo({
+            username: "",
+            password: ""
+          });
+        } else {
+          setLoginError("Don't find user info in response");
+        }
+      } else {
+        setLoginError(resData.error || "Failed to login");
       }
-      localStorage.removeItem("User");
-      localStorage.removeItem("token");
-      setUser(null);
-  }, [user]);
+    } catch (error) {
+      console.error("Login error:", error);
+      setLoginError("Connection error to server");
+    } finally {
+      setIsLoginLoading(false);
+    }
+  };
+
+  const register = async () => {
+    setIsRegisterLoading(true);
+    setRegisterError(null);
+  
+    try {
+      const response = await fetch(`${baseUrl}/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify(registerInfo)
+      });
+  
+      const resData = await response.json();
+  
+      if (response.ok) {
+        const user = resData.data?.user;
+  
+        if (user) {
+          // Lưu user vào localStorage
+          localStorage.setItem("user", JSON.stringify(user));
+          setUser(user);
+          setIsCreated(true);
+          setRegisterInfo({
+            username: "",
+            password: "",
+            fullName: "",
+            gender: "",
+            dateOfBirth: ""
+          });
+        } else {
+          setRegisterError("Don't find user info in response");
+        }
+      } else {
+        setRegisterError(resData.error || "Failed to register");
+      }
+    } catch (error) {
+      console.error("Register error:", error);
+      setRegisterError("Connection error to server");
+    } finally {
+      setIsRegisterLoading(false);
+    }
+  };
+
+  const logout = async () => {
+    setIsAuthenticated(false);
+    setUser(null);
+    localStorage.removeItem("user");
+  
+    try {
+      const response = await fetch(`${baseUrl}/auth/logout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include"
+      });
+  
+      if (!response.ok) {
+        console.error("Logout failed:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  }
 
   return (
-    <AuthContext.Provider value={{user, isAuthenticated,
-        registerInfo, updateRegisterInfo, registerUser, registerError, isRegisterLoading,
-        loginInfo, updateLoginInfo, loginError, loginUser, isLoginLoading,
-        logoutUser}}>
+    <AuthContext.Provider value={{user, isAuthenticated, isCreated, setIsAuthenticated,
+        registerInfo, registerError, isRegisterLoading, setRegisterError, logout,
+        loginInfo, loginError, isLoginLoading, login, setLoginInfo, register, setRegisterInfo}}>
       {children}
     </AuthContext.Provider>
   );

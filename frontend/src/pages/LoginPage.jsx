@@ -1,34 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import LoginForm from '../components/LoginForm';
+import React, { use } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Carousel from '../components/Carousel';
+import LoginForm from '../components/loginForm';
+import { useAuth } from '../contexts/AuthContext';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SuccessPopup from '../components/SuccessPopUp';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+  
+  // const [showSuccess, setShowSuccess] = useState(false);
+  
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     setShowSuccess(true); // hiện popup
+  //     const timeout = setTimeout(() => {
+  //       setShowSuccess(false); // tắt popup
+  //       navigate("/"); // chuyển trang sau 2s
+  //     }, 2000);
+  //     return () => clearTimeout(timeout); // dọn dẹp timeout
+  //   }
+  // }, [isAuthenticated, navigate]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/"); // chuyển trang nếu đã đăng nhập
+    }
+  }, [isAuthenticated, navigate]);
+
+  
+
   return (
-    <div className="flex flex-col bg-gradient-to-b from-primary-light to-[#C8E6D0]">
-      {/* Main Section (Header, Carousel, and LoginForm) */}
+    <div className="min-h-screen bg-gradient-to-b from-[#E6F3EA] to-[#C8E6D0]">
       <div className="min-h-screen flex flex-col">
-        {/* Header */}
-        <Header />
-
-        {/* Split Screen into Two Halves */}
-        <div className="flex-grow flex">
-          {/* Left Half - Carousel */}
-          <div className="hidden lg:flex w-1/2 justify-center items-center">
-            <Carousel />
-          </div>
-
-          {/* Right Half - Login Form */}
-          <div className="w-full lg:w-1/2 flex justify-center items-center p-12">
-            <div className="w-full max-w-2xl">
+      <Header />
+          <main className="flex-grow flex items-center justify-center py-12">
+          {/* <SuccessPopup message="Log in successfully" show={showSuccess} /> */}
+          <div className="w-1/2 mx-auto px-4 bg-white rounded-xl shadow-lg flex flex-col md:flex-row">
+              <div className="w-full md:w-1/2 p-4 flex items-center justify-center">
+              <Carousel />
+              </div>
+              <div className="w-full md:w-1/2 p-4 flex items-center">
               <LoginForm />
-            </div>
+              </div>
           </div>
-        </div>
+          </main>
       </div>
-
-      {/* Footer (visible on scroll) */}
       <Footer />
     </div>
   );
