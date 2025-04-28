@@ -13,6 +13,9 @@ class AuthController:
             if not data:
                 return jsonify({"error": "No input data provided"}), 400
 
+            if data["username"] != data["username"].strip() or data["password"] != data["password"].strip():
+                return jsonify({"error": "Username and password cannot contain leading or trailing spaces"}), 400
+
             # Validate gender
             gender = data.get("gender")
             valid_genders = ["male", "female", "other"]
