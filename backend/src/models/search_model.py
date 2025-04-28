@@ -20,3 +20,9 @@ class SearchRequestModel(BaseModel):
     user_loc: Tuple[float, float] = Field(
         ..., description="(lat, lon) of the user start location"
     )
+
+
+class StoreSearchRequestModel(BaseModel):
+    lat: float = Field(..., description="Latitude of the center point")
+    lng: float = Field(..., description="Longitude of the center point")
+    radius: float = Field(..., gt=0, description="Radius in kilometers")
