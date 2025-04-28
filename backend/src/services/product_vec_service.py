@@ -63,7 +63,7 @@ class ProductVecService:
             result = self.collection.insert_one(product.to_dict())
             return result.inserted_id
         except Exception as e:
-            print(f"Error adding product: {e}")
+            print(f"Error adding product vector: {e}")
             raise e
 
     def insert_many(self, products_data: list[dict]) -> list[ObjectId]:
@@ -79,7 +79,7 @@ class ProductVecService:
                     else:
                         print(f"Skipping product '{product.name}' (already exists)")
                 except Exception as e:
-                    print(f"Skipping invalid product: {e}")
+                    print(f"Skipping invalid product vector: {e}")
                     continue
             
             if validated_products:
@@ -87,7 +87,7 @@ class ProductVecService:
                 return result.inserted_ids
             return []
         except Exception as e:
-            print(f"Error adding products: {e}")
+            print(f"Error adding products vectors: {e}")
             raise e
 
     def find_by_id(self, id: str) -> ProductVec:
@@ -95,7 +95,7 @@ class ProductVecService:
             data = self.collection.find_one({"_id": ObjectId(id)})
             return ProductVec.from_dict(data) if data else None
         except Exception as e:
-            print(f"Error finding product: {e}")
+            print(f"Error finding product vector: {e}")
             return None
 
     def find_by_name(self, name: str) -> ProductVec:
@@ -103,7 +103,7 @@ class ProductVecService:
             data = self.collection.find_one({"name": name})
             return ProductVec.from_dict(data) if data else None
         except Exception as e:
-            print(f"Error finding product: {e}")
+            print(f"Error finding product vector: {e}")
             return None
 
     def find_all(self, skip: int = 0, limit: int = 100) -> list[ProductVec]:
@@ -111,14 +111,14 @@ class ProductVecService:
             cursor = self.collection.find().skip(skip).limit(limit)
             return [ProductVec.from_dict(data) for data in cursor]
         except Exception as e:
-            print(f"Error fetching product list: {e}")
+            print(f"Error fetching product vector list: {e}")
             return []
 
     def update_by_id(self, id: str, update_data: dict) -> bool:
         try:
             current = self.find_by_id(id)
             if not current:
-                raise ValueError(f"Not found product with id {id}")
+                raise ValueError(f"Not found product vector with id {id}")
 
             # Update and validate product
             if "vector" in update_data:
@@ -144,7 +144,7 @@ class ProductVecService:
             )
             return result.modified_count > 0
         except Exception as e:
-            print(f"Error updating product: {e}")
+            print(f"Error updating product vector: {e}")
             raise e
 
     def delete_by_id(self, id: str) -> bool:
@@ -152,7 +152,7 @@ class ProductVecService:
             result = self.collection.delete_one({"_id": ObjectId(id)})
             return result.deleted_count > 0
         except Exception as e:
-            print(f"Error deleting product: {e}")
+            print(f"Error deleting product vector: {e}")
             return False
 
     def search(self, query_vector: list[float], product_name: str = None, top_k: int = 5) -> list[dict]:
@@ -247,5 +247,5 @@ class ProductVecService:
             return final_results[:top_k]
 
         except Exception as e:
-            print(f"Error searching: {e}")
+            print(f"Error searching product vector: {e}")
             return [] 

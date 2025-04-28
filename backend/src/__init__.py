@@ -7,7 +7,8 @@ import sys
 
 from src.routes.user_routes import user_routes
 from src.routes.ai_routes import ai_routes
-
+from src.routes.product_routes import product_routes
+from src.routes.store_routes import store_routes
 from src.extensions import db, redis, AI_MODELS
 
 def create_app():
@@ -28,5 +29,7 @@ def create_app():
     # Registering Blueprints
     app.register_blueprint(user_routes)
     app.register_blueprint(ai_routes)
+    app.register_blueprint(product_routes)
+    app.register_blueprint(store_routes)
 
     return app
