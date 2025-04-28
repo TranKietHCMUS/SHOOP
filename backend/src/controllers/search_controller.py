@@ -3,7 +3,7 @@ from pydantic import ValidationError
 
 from src.models.search_model import SearchRequestModel, StoreSearchRequestModel
 from src.services.search_service import SearchService
-from src.services.search_store_service import StoreService
+from src.services.store_service import StoreService
 
 class SearchController:
     def __init__(self):
