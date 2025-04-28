@@ -30,7 +30,7 @@ class SearchController:
         except RuntimeError as re:
             return jsonify({"error": str(re)}), 500
 
-        return jsonify({"plans": plans}), 200
+        return jsonify(plans), 200
 
     def get_stores_within_radius(self, request):
         payload = request.get_json(force=True)

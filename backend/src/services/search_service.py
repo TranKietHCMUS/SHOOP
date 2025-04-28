@@ -94,6 +94,7 @@ class SearchService:
 
         # 2) Enumerate and find score
         plans = []
+        plan_id = 1
         for r in range(1, len(cands) + 1):
             for subset in itertools.combinations(cands, r):
                 total_price = 0.0
@@ -113,14 +114,31 @@ class SearchService:
 
                 locs = [user_loc_valid] + [stores_valid[s]['coord'] for s in subset]
                 dist = self._solve_tsp_ortools(locs)
-                score = total_price + self.lambda_dist * dist
+                # Fake duration: 1km = 6 phút
+                duration = int(dist * 6)
+                # Waypoints: tên store, có thể thêm điểm trung gian nếu muốn
+                waypoints = []
+                coordinates = []
+                # Start
+                if subset:
+                    start_name = list(stores_valid[subset[0]].get('name', str(subset[0])))
+                    end_name = list(stores_valid[subset[-1]].get('name', str(subset[-1])))
+                else:
+                    start_name = end_name = ""
+                # Lấy tên store nếu có
+                store_names = [stores_valid[s].get('name', str(s)) for s in subset]
+                waypoints = store_names
+                coordinates = [user_loc_valid] + [stores_valid[s]['coord'] for s in subset]
+                # Format output
                 plans.append({
-                    'stores': subset,
-                    'price': round(total_price, 2),
-                    'distance_km': round(dist, 2),
-                    'score': round(score, 2)
+                    'id': plan_id,
+                    'start': store_names[0] if store_names else '',
+                    'end': store_names[-1] if store_names else '',
+                    'distance': round(dist, 2),
+                    'duration': duration,
+                    'coordinates': [{'lat': c[0], 'lng': c[1]} for c in coordinates],
+                    'waypoints': waypoints
                 })
-
-        # 3) return top_k
-        plans.sort(key=lambda x: x['score'])
-        return plans[:self.top_k]
+                plan_id += 1
+        plans = plans[:self.top_k]
+        return plans
