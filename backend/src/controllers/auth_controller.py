@@ -13,6 +13,9 @@ class AuthController:
             if not data:
                 return jsonify({"error": "No input data provided"}), 400
 
+            if data["username"] != data["username"].strip() or data["password"] != data["password"].strip():
+                return jsonify({"error": "Username and password cannot contain leading or trailing spaces"}), 400
+
             # Validate gender
             gender = data.get("gender")
             valid_genders = ["male", "female", "other"]
@@ -66,6 +69,9 @@ class AuthController:
             password = data.get("password")
             if not username or not password:
                 return jsonify({"error": "Username and password are required"}), 400
+            
+            if username != username.strip() or password != password.strip():
+                return jsonify({"error": "Username and password cannot contain leading or trailing spaces"}), 400
 
             # check if user exists
             user = user_service.find_by_username(username)
