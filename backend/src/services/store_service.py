@@ -3,7 +3,7 @@ import math
 
 class StoreService:
     def __init__(self):
-        self.collection = db.get_collection("grab.stores")
+        self.collection = db.get_collection("stores")
 
     @staticmethod
     def haversine(lat1, lng1, lat2, lng2):
@@ -18,11 +18,17 @@ class StoreService:
         stores = list(self.collection.find({}))
         result = []
         for store in stores:
-            store_lat = float(store.get("lat", 0))
-            store_lng = float(store.get("lng", 0))
+            store_lat = store.get("lat")
+            store_lng = store.get("lng")
+            if store_lat is None or store_lng is None:
+                continue
+            try:
+                store_lat = float(store_lat)
+                store_lng = float(store_lng)
+            except (ValueError, TypeError):
+                continue
             distance = self.haversine(lat, lng, store_lat, store_lng)
             if distance <= radius_km:
-                # Chuyển ObjectId về string và format lại cho đúng mẫu
                 store["_id"] = {"$oid": str(store["_id"])}
                 result.append(store)
-        return result 
+        return result
