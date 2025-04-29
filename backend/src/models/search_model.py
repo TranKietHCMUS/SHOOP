@@ -26,3 +26,10 @@ class StoreSearchRequestModel(BaseModel):
     lat: float = Field(..., description="Latitude of the center point")
     lng: float = Field(..., description="Longitude of the center point")
     radius: float = Field(..., gt=0, description="Radius in kilometers")
+
+
+class NearbySearchRequestModel(BaseModel):
+    prompt: str = Field(..., description="User input prompt describing requested products")
+    lat: float = Field(..., description="Latitude of the center point")
+    lng: float = Field(..., description="Longitude of the center point")
+    radius: float = Field(..., gt=0, description="Radius in kilometers")

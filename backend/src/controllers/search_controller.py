@@ -1,14 +1,14 @@
 from flask import jsonify, request
 from pydantic import ValidationError
 
-from src.models.search_model import SearchRequestModel, StoreSearchRequestModel
+from src.models.search_model import SearchRequestModel, StoreSearchRequestModel, NearbySearchRequestModel
 from src.services.search_service import SearchService
-from src.services.store_service import StoreService
+from src.services.services import store_service
 
 class SearchController:
     def __init__(self):
         self.search_service = SearchService(lambda_dist=0.1, preselect_k=3, top_k=3)
-        self.store_service = StoreService()
+        self.store_service = store_service
 
     def get_plans(self, request):
         payload = request.get_json(force=True)
@@ -32,18 +32,19 @@ class SearchController:
 
         return jsonify(plans), 200
 
-    def get_stores_within_radius(self, request):
+    def search_nearby(self, request):
         payload = request.get_json(force=True)
+        # Validate input
         try:
-            req = StoreSearchRequestModel(**payload)
+            req = NearbySearchRequestModel(**payload)
         except ValidationError as e:
             return jsonify({"error": e.errors()}), 400
 
+        # Call service to fetch items grouped per store
         try:
-            stores = self.store_service.get_stores_within_radius(req.lat, req.lng, req.radius)
-            return jsonify({
-                "message": "Stores fetched successfully",
-                "data": {"stores": stores}
-            }), 200
+            results = self.store_service.get_products_for_stores_within_radius(
+                req.prompt, req.lat, req.lng, req.radius
+            )
+            return jsonify({"message": "Nearby search results", "data": {"stores": results}}), 200
         except Exception as e:
             return jsonify({"error": f"Internal server error: {str(e)}"}), 500
