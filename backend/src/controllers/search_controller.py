@@ -45,6 +45,7 @@ class SearchController:
             results = self.store_service.get_products_for_stores_within_radius(
                 req.prompt, req.lat, req.lng, req.radius
             )
-            return jsonify({"message": "Nearby search results", "data": {"stores": results}}), 200
+            # Return raw list of stores without wrapper
+            return jsonify(results), 200
         except Exception as e:
             return jsonify({"error": f"Internal server error: {str(e)}"}), 500
