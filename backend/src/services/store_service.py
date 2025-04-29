@@ -153,12 +153,9 @@ class StoreService:
                     "unit": info["unit"],
                     "candidates": candidates
                 })
-            # include store coordinates
+            # include all store info, not just address/lat/lng
             if has_candidate:
-                results.append({
-                    "address": address,
-                    "lat": lat_val,
-                    "lng": lng_val,
-                    "items": items_list
-                })
+                store_copy = dict(store)
+                store_copy["items"] = items_list
+                results.append(store_copy)
         return results
