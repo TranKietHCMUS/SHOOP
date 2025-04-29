@@ -119,6 +119,8 @@ class StoreService:
         for store in stores:
             store_name = store.get("name")
             address = store.get("address")
+            lat_val = store.get("lat")
+            lng_val = store.get("lng")
             items_list = []
             for info in product_items:
                 sim_names = info["similar_names"]
@@ -148,5 +150,11 @@ class StoreService:
                     "unit": info["unit"],
                     "candidates": candidates
                 })
-            results.append({"address": address, "items": items_list})
+            # include store coordinates
+            results.append({
+                "address": address,
+                "lat": lat_val,
+                "lng": lng_val,
+                "items": items_list
+            })
         return results

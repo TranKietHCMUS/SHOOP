@@ -1,7 +1,7 @@
 from flask import jsonify, request
 from pydantic import ValidationError
 
-from src.models.search_model import SearchRequestModel, StoreSearchRequestModel, NearbySearchRequestModel
+from src.models.search_model import PlanRequestModel, StoreSearchRequestModel, NearbySearchRequestModel
 from src.services.search_service import SearchService
 from src.services.services import store_service
 
@@ -11,25 +11,20 @@ class SearchController:
         self.store_service = store_service
 
     def get_plans(self, request):
+        """
+        Receives `/search/nearby` output unchanged and returns top-k plans.
+        """
         payload = request.get_json(force=True)
         # validate input
         try:
-            req = SearchRequestModel(**payload)
+            req = PlanRequestModel(**payload)
         except ValidationError as e:
             return jsonify({"error": e.errors()}), 400
 
-        # get top k plans
-        try:
-            plans = self.search_service.get_top_k_plans(
-                stores=req.stores,
-                groups=req.groups,
-                user_loc=req.user_loc
-            )
-        except ValueError as ve:
-            return jsonify({"error": str(ve)}), 400
-        except RuntimeError as re:
-            return jsonify({"error": str(re)}), 500
-
+        # pass stores list and user location directly to service
+        stores_list = [store.dict() for store in req.stores]
+        user_loc = tuple(req.user_loc)
+        plans = self.search_service.get_plans_from_nearby(stores_list, user_loc)
         return jsonify(plans), 200
 
     def search_nearby(self, request):
@@ -45,7 +40,7 @@ class SearchController:
             results = self.store_service.get_products_for_stores_within_radius(
                 req.prompt, req.lat, req.lng, req.radius
             )
-            # Return raw list of stores without wrapper
-            return jsonify(results), 200
+            # Include user location and stores list
+            return jsonify({"user_loc": [req.lat, req.lng], "stores": results}), 200
         except Exception as e:
             return jsonify({"error": f"Internal server error: {str(e)}"}), 500

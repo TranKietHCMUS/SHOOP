@@ -134,6 +134,7 @@ class SearchService:
                     'id': plan_id,
                     'start': store_names[0] if store_names else '',
                     'end': store_names[-1] if store_names else '',
+                    'cost': round(total_price, 2),  # total cost of items
                     'distance': round(dist, 2),
                     'duration': duration,
                     'coordinates': [{'lat': c[0], 'lng': c[1]} for c in coordinates],
@@ -142,3 +143,57 @@ class SearchService:
                 plan_id += 1
         plans = plans[:self.top_k]
         return plans
+
+    def get_plans_from_nearby(
+        self,
+        stores_list: List[dict],
+        user_loc: Tuple[float, float]
+    ) -> List[dict]:
+        """
+        Accepts output of get_products_for_stores_within_radius (list of stores with address, lat, lng, items)
+        and computes top-k plans.
+        """
+        if not stores_list:
+            return []
+        # Determine number of items and group count from first store
+        first_store = stores_list[0]
+        item_infos = first_store.get("items", [])
+        num_items = len(item_infos)
+        # Each item has 'candidates' list
+        group_count = min(
+            len(info.get("candidates", [])) for info in item_infos
+        ) if item_infos else 0
+
+        # Build stores dict for internal search
+        stores_for_search: Dict[str, dict] = {}
+        for store in stores_list:
+            address = store.get("address")
+            lat = store.get("lat")
+            lng = store.get("lng")
+            item_map: Dict[int, float] = {}
+            for idx_item, info in enumerate(store.get("items", [])):
+                qty = info.get("quantity", 1)
+                candidates = info.get("candidates", [])
+                for j in range(group_count):
+                    if j < len(candidates):
+                        price_val = candidates[j].get("price", 0) or 0
+                        # flatten index: item_index * group_count + candidate_index
+                        flat_index = idx_item * group_count + j
+                        item_map[flat_index] = price_val * qty
+            stores_for_search[address] = {
+                "coord": (lat, lng),
+                "items": item_map
+            }
+
+        # Build groups: list of flat indices for each candidate position across items
+        groups: List[List[int]] = []
+        for j in range(group_count):
+            group = [i * group_count + j for i in range(num_items)]
+            groups.append(group)
+
+        # Delegate to existing get_top_k_plans
+        return self.get_top_k_plans(
+            stores=stores_for_search,
+            groups=groups,
+            user_loc=user_loc
+        )
