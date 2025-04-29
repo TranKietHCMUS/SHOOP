@@ -155,8 +155,16 @@ class SearchService:
         """
         if not stores_list:
             return []
+        # Lọc bỏ các store không có candidate nào cho bất kỳ item nào
+        filtered_stores = []
+        for store in stores_list:
+            items = store.get("items", [])
+            if all(info.get("candidates") for info in items):
+                filtered_stores.append(store)
+        if not filtered_stores:
+            return []
         # Determine number of items and group count from first store
-        first_store = stores_list[0]
+        first_store = filtered_stores[0]
         item_infos = first_store.get("items", [])
         num_items = len(item_infos)
         # Each item has 'candidates' list
@@ -166,7 +174,7 @@ class SearchService:
 
         # Build stores dict for internal search
         stores_for_search: Dict[str, dict] = {}
-        for store in stores_list:
+        for store in filtered_stores:
             address = store.get("address")
             lat = store.get("lat")
             lng = store.get("lng")

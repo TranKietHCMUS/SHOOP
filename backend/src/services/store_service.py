@@ -122,6 +122,7 @@ class StoreService:
             lat_val = store.get("lat")
             lng_val = store.get("lng")
             items_list = []
+            has_candidate = False
             for info in product_items:
                 sim_names = info["similar_names"]
                 # regex filters for each similar name
@@ -144,6 +145,8 @@ class StoreService:
                     }
                     for p in cursor
                 ]
+                if candidates:
+                    has_candidate = True
                 items_list.append({
                     "product_name": info["query_name"],
                     "quantity": info["quantity"],
@@ -151,10 +154,11 @@ class StoreService:
                     "candidates": candidates
                 })
             # include store coordinates
-            results.append({
-                "address": address,
-                "lat": lat_val,
-                "lng": lng_val,
-                "items": items_list
-            })
+            if has_candidate:
+                results.append({
+                    "address": address,
+                    "lat": lat_val,
+                    "lng": lng_val,
+                    "items": items_list
+                })
         return results
