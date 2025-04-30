@@ -36,3 +36,4 @@ dependencies:
   - google-genai
   - bcrypt==4.3.0
   - PyJWT==2.10.1
+  - ortools==9.12

@@ -2,6 +2,7 @@ from src.models.store_model import Store
 from src.extensions import db
 from src.services.ai_service import AIService
 import re
+from time import time
 
 class StoreService:
     def __init__(self, ai_service):
@@ -101,11 +102,15 @@ class StoreService:
         # Find stores within radius
         stores = self.get_stores_within_radius(lat, lng, radius_km)
         # Obtain AI-based similar products per item
+        start = time()
         embeddings = self.ai_service.get_embeddings(product_names)
         similar_products = self.ai_service.search_products(embeddings, product_names)
-
+        # print("similar_products", similar_products)
+        end = time()
+        print(f"Time taken for AI service: {end - start:.2f} seconds")
         # Build per-item info with similar name sets
         product_items = []
+        start = time()
         for idx, item in enumerate(items):
             pname = item.get("product_name")
             qty = item.get("quantity")
@@ -158,4 +163,6 @@ class StoreService:
                 store_copy = dict(store)
                 store_copy["items"] = items_list
                 results.append(store_copy)
+        end = time()
+        print(f"Time taken for product search: {end - start:.2f} seconds")
         return results

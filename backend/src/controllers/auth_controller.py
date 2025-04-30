@@ -61,6 +61,7 @@ class AuthController:
         try:
             # Lấy dữ liệu từ request
             data = request.get_json()
+            print("data", data)
             if not data:
                 return jsonify({"error": "No input data provided"}), 400
 
@@ -75,16 +76,17 @@ class AuthController:
 
             # check if user exists
             user = user_service.find_by_username(username)
+            print("user", user)
             if not user:
                 return jsonify({"error": "User not found"}), 404
             
             # check if password is correct
             if not user_service.verify_password(username, password):
                 return jsonify({"error": "Wrong password"}), 401
-
+            
             # create access token
             access_token = user_service.create_token(user)
-
+            print("access token", access_token)
             if not access_token:
                 return jsonify({"error": "Failed to create access token"}), 500
             

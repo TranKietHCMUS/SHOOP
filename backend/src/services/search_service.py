@@ -72,7 +72,9 @@ class SearchService:
     ) -> List[dict]:
         # Validate input dât
         try:
-            req = SearchRequestModel(stores=stores, groups=groups, user_loc=user_loc)
+            req = SearchRequestModel(stores=stores, 
+                                     groups=groups, 
+                                     user_loc=user_loc)
         except ValidationError as e:
             raise ValueError(f"Invalid input data: {e}")
 
