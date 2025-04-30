@@ -1,12 +1,14 @@
 import React from 'react';
-import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Carousel from '../components/Carousel';
 import RegisterForm from '../components/registerForm';
 import { useAuth } from '../contexts/AuthContext';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SimpleFooter from '../components/SimpleFooter';
 import SuccessPopup from '../components/SuccessPopUp';
+import { motion } from 'framer-motion';
+
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -26,22 +28,36 @@ const RegisterPage = () => {
   }, [isCreated, navigate]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#E6F3EA] to-[#C8E6D0]">
-      <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-primary-light to-[#C8E6D0]">
       <Header />
-          <main className="flex-grow flex items-center justify-center py-12">
-          <SuccessPopup message="Register successfully" show={showSuccess} />
-          <div className="w-1/2 mx-auto px-4 bg-white rounded-xl shadow-lg flex flex-col md:flex-row">
-              <div className="w-full md:w-1/2 p-4 flex items-center justify-center">
-              <Carousel />
-              </div>
-              <div className="w-full md:w-1/2 p-4 flex items-center">
-              <RegisterForm />
-              </div>
+      <main className="flex-grow flex items-center justify-center py-4">
+        <SuccessPopup message="Register successfully" show={showSuccess} />
+        <div className="w-11/12 max-w-4xl mx-auto bg-white rounded-xl shadow-lg flex flex-col md:flex-row overflow-hidden">
+          <div className="w-full md:w-1/2 p-2 md:p-4 flex items-center justify-center">
+          <motion.div
+              initial={{ x: 100, opacity: 0 }}  
+              animate={{ x: 0, opacity: 1 }}   
+              exit={{ x: -100, opacity: 0 }}   
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              // className="w-full h-full"
+            >
+            <Carousel />
+            </motion.div>
           </div>
-          </main>
-      </div>
-      <Footer />
+          <div className="w-full md:w-1/2 p-2 md:p-4 flex items-center">
+            <motion.div
+              initial={{ x: 100, opacity: 0 }}  
+              animate={{ x: 0, opacity: 1 }}   
+              exit={{ x: -100, opacity: 0 }}   
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="w-full h-full"
+            >
+            <RegisterForm />
+            </motion.div>
+          </div>
+        </div>
+      </main>
+      <SimpleFooter minimal={true} />
     </div>
   );
 };

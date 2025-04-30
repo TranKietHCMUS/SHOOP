@@ -31,7 +31,12 @@ class SearchController:
         payload = request.get_json(force=True)
         # Validate input
         try:
-            req = NearbySearchRequestModel(**payload)
+            req = NearbySearchRequestModel(
+                prompt = payload["prompt"],
+                lat = payload["user_location"]["lat"],
+                lng = payload["user_location"]["lng"],
+                radius = payload["expected_radius"]
+            )
         except ValidationError as e:
             return jsonify({"error": e.errors()}), 400
 

@@ -26,6 +26,7 @@ def create_app():
          allow_headers=["Content-Type", "Authorization"],
          methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
          expose_headers=["Content-Type", "Authorization"])
+    # CORS(app, origins=origins, supports_credentials=True)
     
     # Load config
     app.config.from_object(Config)

@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from src.controllers.search_controller import SearchController
 
-search_bp = Blueprint("search", __name__, url_prefix="/search")
+search_bp = Blueprint("search", __name__, url_prefix="/api/search")
 search_controller = SearchController()
 
 def get_plans_route():

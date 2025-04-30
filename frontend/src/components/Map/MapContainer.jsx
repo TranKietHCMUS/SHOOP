@@ -21,7 +21,6 @@ const MapContainer = ({
   const userMarkerRef = useRef(null);
   const additionalLayersRef = useRef([]);
   const isInitializedRef = useRef(false);
-  console.log("userLocation", userLocation);
   const { isLoaded, error, googleApi } = useGoogleMapsApi();
 
   // Cleanup function để xóa tất cả markers và shapes
@@ -198,7 +197,10 @@ const MapContainer = ({
       // Tạo store markers mới
       markersRef.current = stores.map(store => {
         const marker = new googleApi.maps.Marker({
-          position: store.coordinates,
+          position: {
+            lat: parseFloat(store.lat),
+            lng: parseFloat(store.lng)
+          },
           map: newMap,
           title: store.name,
           icon: storeMarkerIcon

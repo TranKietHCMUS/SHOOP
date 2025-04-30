@@ -1,55 +1,52 @@
-import React, { use } from 'react';
-import Footer from '../components/Footer';
+import React from 'react';
 import Header from '../components/Header';
 import Carousel from '../components/Carousel';
 import LoginForm from '../components/loginForm';
 import { useAuth } from '../contexts/AuthContext';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SuccessPopup from '../components/SuccessPopUp';
+import SimpleFooter from '../components/SimpleFooter';
+import { motion } from 'framer-motion'
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   
-  // const [showSuccess, setShowSuccess] = useState(false);
-  
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     setShowSuccess(true); // hiện popup
-  //     const timeout = setTimeout(() => {
-  //       setShowSuccess(false); // tắt popup
-  //       navigate("/"); // chuyển trang sau 2s
-  //     }, 2000);
-  //     return () => clearTimeout(timeout); // dọn dẹp timeout
-  //   }
-  // }, [isAuthenticated, navigate]);
-
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/"); // chuyển trang nếu đã đăng nhập
     }
   }, [isAuthenticated, navigate]);
 
-  
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#E6F3EA] to-[#C8E6D0]">
-      <div className="min-h-screen flex flex-col">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-b from-primary-light to-[#C8E6D0]">
       <Header />
-          <main className="flex-grow flex items-center justify-center py-12">
-          {/* <SuccessPopup message="Log in successfully" show={showSuccess} /> */}
-          <div className="w-1/2 mx-auto px-4 bg-white rounded-xl shadow-lg flex flex-col md:flex-row">
-              <div className="w-full md:w-1/2 p-4 flex items-center justify-center">
-              <Carousel />
-              </div>
-              <div className="w-full md:w-1/2 p-4 flex items-center">
-              <LoginForm />
-              </div>
+      <main className="flex-grow flex items-center justify-center">
+        <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg flex flex-col md:flex-row overflow-hidden max-h-[calc(100vh-8rem)]">
+          <div className="w-full md:w-1/2 p-2 flex items-center justify-center">
+          <motion.div
+              initial={{ x: 100, opacity: 0 }}  
+              animate={{ x: 0, opacity: 1 }}   
+              exit={{ x: -100, opacity: 0 }}   
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+            <Carousel />
+            </motion.div>
           </div>
-          </main>
-      </div>
-      <Footer />
+          <div className="w-full md:w-1/2 p-2 flex items-center">
+            <motion.div
+              initial={{ x: 100, opacity: 0 }}  
+              animate={{ x: 0, opacity: 1 }}   
+              exit={{ x: -100, opacity: 0 }}   
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="w-full"
+            >
+            <LoginForm />
+            </motion.div>
+          </div>
+        </div>
+      </main>
+      <SimpleFooter minimal={true} />
     </div>
   );
 };
