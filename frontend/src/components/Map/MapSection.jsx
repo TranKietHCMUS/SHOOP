@@ -11,7 +11,10 @@ const MapSection = ({
   const renderRoutes = (map, googleApi, routes) => {
     return routes.map((route, index) => {
       const path = new googleApi.maps.Polyline({
-        path: route.coordinates,
+        path: {
+          lat: route.lat,
+          lng: route.lng
+        },
         geodesic: true,
         strokeColor: '#FF0000',
         strokeOpacity: 1.0,

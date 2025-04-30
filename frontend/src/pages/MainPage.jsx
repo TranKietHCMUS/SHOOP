@@ -1,71 +1,18 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import MapContainer from '../components/Map/MapContainer';
 import SideBar from '../components/Map/SideBar';
 import ProcessingRequest from '../components/ProcessingRequest';
 import { Toaster, toast } from 'react-hot-toast';
 import Header from '../components/Header';
-
-// Mock data được chuyển ra ngoài component để tránh tạo lại mỗi lần render
-const mockStores = [
-  {
-    id: 1,
-    name: "Circle K Nguyễn Văn Cừ",
-    address: "123 Nguyễn Văn Cừ, P4, Q5, TP.HCM",
-    coordinates: { lat: 10.762622, lng: 106.682220 },
-    products: ["Nước giải khát", "Bánh kẹo", "Mì gói"]
-  },
-  {
-    id: 2,
-    name: "GS25 Lý Thường Kiệt",
-    address: "456 Lý Thường Kiệt, P14, Q10, TP.HCM",
-    coordinates: { lat: 10.760000, lng: 106.680000 },
-    products: ["Đồ ăn vặt", "Nước uống", "Văn phòng phẩm"]
-  }
-];
-
-const mockRoutes = [
-  {
-    id: 1,
-    start: "Circle K Nguyễn Văn Cừ",
-    end: "GS25 Lý Thường Kiệt",
-    distance: 2.5,
-    duration: 15,
-    coordinates: [
-      { lat: 10.762622, lng: 106.682220 },
-      { lat: 10.761000, lng: 106.681000 },
-      { lat: 10.760000, lng: 106.680000 }
-    ],
-    waypoints: [
-      "Circle K Nguyễn Văn Cừ",
-      "Ngã tư Nguyễn Văn Cừ - Lý Thường Kiệt",
-      "GS25 Lý Thường Kiệt"
-    ]
-  },
-  {
-    id: 2,
-    start: "Circle K Nguyễn Văn Cừ",
-    end: "GS25 Lý Thường Kiệt",
-    distance: 3.0,
-    duration: 20,
-    coordinates: [
-      { lat: 10.762622, lng: 106.682220 },
-      { lat: 10.763000, lng: 106.683000 },
-      { lat: 10.760000, lng: 106.680000 }
-    ],
-    waypoints: [
-      "Circle K Nguyễn Văn Cừ",
-      "Đường vòng qua khu dân cư",
-      "GS25 Lý Thường Kiệt"
-    ]
-  }
-];
+import SimpleFooter from '../components/SimpleFooter';
 
 const MapSection = React.memo(({ 
   stores, 
   onStoreClick, 
   renderAdditionalLayers, 
   routes,
+  radius,
   currentPhase,
   handleBackPhase,
   handleNextPhase,
@@ -76,6 +23,7 @@ const MapSection = React.memo(({
     <div className="flex-1 relative p-6">
       <MapContainer
         stores={stores}
+        radius={radius}
         onStoreClick={onStoreClick}
         renderAdditionalLayers={renderAdditionalLayers}
         routes={routes}
@@ -93,7 +41,7 @@ const MainPage = () => {
   const [searchResults, setSearchResults] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const [isProcessing, setIsProcessing] = useState(true);
-
+  const routePolylinesRef = useRef([]);
   // State cho map và UI cũ
   const [currentPhase, setCurrentPhase] = useState(1);
   const [selectedStore, setSelectedStore] = useState(null);
@@ -140,8 +88,10 @@ const MainPage = () => {
 
       // Bước 2: Gọi API với vị trí đã lấy được
       console.log('Calling API with:', { searchData, user_location: fetchedLocation });
-      const response = await fetch('http://localhost:5000/user/search', {
+      setIsProcessing(true);
+      const response = await fetch('http://127.0.0.1:5000/api/search/nearby', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -149,24 +99,31 @@ const MainPage = () => {
           ...searchData,
           user_location: fetchedLocation
         })
-      });
-
+      })
+      
       if (!response.ok) {
         throw new Error('Error in API call');
       }
 
       const data = await response.json();
-      console.log('Search results received:', data);
-      setSearchResults(data);
-      toast.success('Tìm kiếm thành công!');
-
+      setUserLocation({
+        lat: data.user_loc[0],
+        lng: data.user_loc[1]
+      })
+      setSearchResults(data.stores)
+      setIsProcessing(false);
+      if (data.stores.length > 0) {
+        toast.success('We found these stores near your place!!');
+      } else {
+        toast.error('No stores found near your place. Please try again with a different location or prompt.');
+      }
     } catch (error) {
-      console.error('Lỗi trong quá trình tìm kiếm:', error);
+      console.error('Error during searching: ', error);
       // Phân biệt lỗi định vị và lỗi API
       if (!fetchedLocation) { // Nếu lỗi xảy ra trước khi lấy được vị trí
-         toast.error(`Lỗi định vị: ${error.message}`);
+         toast.error(`Navigator error: ${error.message}`);
       } else {
-         toast.error(`Lỗi tìm kiếm: ${error.message}`);
+         toast.error(`Searching error: ${error.message}`);
       }
       // Không set userLocation nếu lỗi xảy ra trước khi lấy được vị trí
       if (!fetchedLocation) setUserLocation(null);
@@ -175,7 +132,6 @@ const MainPage = () => {
     }
   }, [searchData]);
 
-  // Gọi quy trình khi component mount
   useEffect(() => {
     setIsProcessing(true);
     processSearchWithLocation();
@@ -199,12 +155,30 @@ const MainPage = () => {
 
   const handleNextPhase = useCallback(async () => {
     setIsProcessing(true);
+    console.log('User location handleNextPhase:', userLocation);
     try {
-      await new Promise(resolve => setTimeout(resolve, 15000));
-      setRoutes(mockRoutes);
+      const response = await fetch('http://127.0.0.1:5000/api/search/plans', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          stores: searchResults,
+          user_loc: [userLocation.lat, userLocation.lng]
+        })
+      })
+      
+      if (!response.ok) {
+        throw new Error('Error in API call');
+      }
+      const data = await response.json();
+      console.log('Routes PHASE 2:', data);
+      setRoutes(data);
       setCurrentPhase(2);
       setSelectedStore(null);
       setActiveTab('route');
+      setIsProcessing(false);
       toast.success('Found routes!', {
         duration: 3000,
         position: 'top-center',
@@ -214,7 +188,7 @@ const MainPage = () => {
         },
       });
     } catch (error) {
-      toast.error('An error occurred while finding routes. Please try again!', {
+      toast.error(`An error: "${error}" occurred while finding routes. Please try again!`, {
         duration: 3000,
         position: 'top-center',
         style: {
@@ -225,7 +199,7 @@ const MainPage = () => {
     } finally {
       setIsProcessing(false);
     }
-  }, []);
+  }, [userLocation, searchResults]);
 
   const handleBackPhase = useCallback(() => {
     setCurrentPhase(1);
@@ -238,40 +212,119 @@ const MainPage = () => {
   // Memoize renderRoutes function
   // Memoize renderRoutes function
   const renderRoutes = useCallback((map, googleApi, routesToRender) => {
-    console.log("Rendering routes:", routesToRender);
-   return routesToRender.map((route, index) => {
-     // Kiểm tra xem route và route.coordinates có tồn tại không
-     if (!route || !Array.isArray(route.coordinates)) {
-       console.warn("Invalid route object:", route);
-       return null; // Bỏ qua route không hợp lệ
-     }
-      // Xác định màu dựa trên route được chọn
-     const isSelected = selectedRoute && selectedRoute.id === route.id;
-     const strokeColor = isSelected ? '#0000FF' : (index === 0 ? '#FF0000' : '#4285F4'); // Xanh dương nếu được chọn, đỏ cho route đầu, xanh google cho các route khác
-     const strokeWeight = isSelected ? 4 : 2; // Dày hơn nếu được chọn
-     const zIndex = isSelected ? 1 : 0; // Ưu tiên hiển thị route được chọn
-
-     const path = new googleApi.maps.Polyline({
-       path: route.coordinates,
-       geodesic: true,
-       strokeColor: strokeColor,
-       strokeOpacity: 0.8,
-       strokeWeight: strokeWeight,
-       zIndex: zIndex,
-       map: map, // Thêm map vào đây để hiển thị ngay
-     });
-
-
-     const listener = path.addListener('click', () => {
-        console.log("Route clicked:", route.id);
-        handleRouteClick(route);
-     });
-
-      // Trả về object chứa path và listener để có thể xóa sau này
-      return { path, listener };
-
-   });
+    // Don't proceed if map or googleApi isn't available
+    if (!map || !googleApi) {
+      return [];
+    }
+    
+    const directionsService = new googleApi.maps.DirectionsService();
+    const renderedRoutes = [];
+  
+    // Clear existing polylines directly rather than using state
+    if (map) {
+      // Remove existing polylines if they exist in a ref
+      if (routePolylinesRef.current && routePolylinesRef.current.length > 0) {
+        routePolylinesRef.current.forEach(routeData => {
+          if (routeData.path) {
+            routeData.path.setMap(null);
+          }
+          if (routeData.listener) {
+            googleApi.maps.event.removeListener(routeData.listener);
+          }
+        });
+        routePolylinesRef.current = [];
+      }
+    }
+  
+    routesToRender.forEach((route, index) => {
+      if (!route || !Array.isArray(route.coordinates) || route.coordinates.length < 2) {
+        console.warn("Invalid route:", route);
+        return;
+      }
+  
+      const origin = route.coordinates[0];
+      const destination = route.coordinates[route.coordinates.length - 1];
+      const waypoints = route.coordinates.slice(1, -1).map(coord => ({
+        location: coord,
+        stopover: true,
+      }));
+  
+      directionsService.route(
+        {
+          origin,
+          destination,
+          waypoints,
+          optimizeWaypoints: true,
+          travelMode: googleApi.maps.TravelMode.DRIVING,
+        },
+        (result, status) => {
+          if (status === googleApi.maps.DirectionsStatus.OK && result.routes.length > 0) {
+            const isSelected = selectedRoute && selectedRoute.id === route.id;
+            let strokeColor;
+            if (isSelected) {
+              strokeColor = '#00B14F'; // Slightly different red for selected
+            } else if (index === 0) {
+              strokeColor = '#FF4500'; // Use orange-red for first route
+            } else {
+              strokeColor = '#4285F4'; // Blue for other routes
+            }
+            
+            // Ensure proper z-index (higher numbers appear on top)
+            // Give all routes a high z-index to ensure they're above other map elements
+            const zIndex = isSelected ? 1000 : 900 - index;
+            
+            // Increase stroke weight for all routes to improve clickability
+            const strokeWeight = isSelected ? 10 : 8;
+            
+            const pathCoordinates = result.routes[0].overview_path;
+  
+            const path = new googleApi.maps.Polyline({
+              path: pathCoordinates,
+              geodesic: true,
+              strokeColor,
+              strokeOpacity: 0.7,
+              strokeWeight,
+              zIndex,
+              map,
+              clickable: true
+            });
+  
+            const listener = googleApi.maps.event.addListener(path, 'click', () => {
+              console.log("Route clicked:", route.id);
+              handleRouteClick(route);
+            });
+  
+            renderedRoutes.push({ path, listener });
+            // Also store in ref for cleanup
+            routePolylinesRef.current.push({ path, listener });
+          } else {
+            console.warn('Directions request failed:', status);
+          }
+        }
+      );
+    });
+  
+    return renderedRoutes;
   }, [handleRouteClick, selectedRoute]);
+  
+  // Add this useEffect in your component to handle cleanup when component unmounts
+  useEffect(() => {
+    return () => {
+      // Cleanup polylines when component unmounts
+      if (routePolylinesRef.current && routePolylinesRef.current.length > 0) {
+        routePolylinesRef.current.forEach(routeData => {
+          if (routeData.path) {
+            routeData.path.setMap(null);
+          }
+          if (routeData.listener && window.google) {
+            window.google.maps.event.removeListener(routeData.listener);
+          }
+        });
+        routePolylinesRef.current = [];
+      }
+    };
+  }, []);
+  
 
   // Memoize sidebar props
   const sidebarProps = useMemo(() => ({
@@ -280,7 +333,7 @@ const MainPage = () => {
     selectedRoute,
     activeTab,
     onTabChange: handleTabChange,
-    searchResults: searchResults?.stores || [], // Truyền stores từ searchResults
+    searchResults: searchResults || [], // Truyền stores từ searchResults
     routes, // Truyền routes đã tìm được (hoặc mock)
     isLoadingRoutes: isProcessing && currentPhase === 1, // Cờ báo đang tìm routes
     isLoadingSearch: isProcessing && userLocation === null, // Cờ báo đang tìm kiếm ban đầu
@@ -292,13 +345,14 @@ const MainPage = () => {
   // Memoize map section props
   const mapSectionProps = useMemo(() => {
     // Chỉ truyền stores từ kết quả tìm kiếm API
-     const storesToShow = searchResults?.stores || [];
+     const storesToShow = searchResults || [];
     console.log('Updating mapSectionProps with userLocation:', userLocation);
     console.log('Stores being passed to MapSection:', storesToShow);
      console.log('Routes being passed to MapSection:', routes);
 
     return {
       stores: storesToShow, // Sử dụng stores từ API
+      radius: parseInt(searchData.expected_radius) * 1000, 
       onStoreClick: handleStoreClick,
       renderAdditionalLayers: currentPhase === 2 ? (map, google) => renderRoutes(map, google, routes) : null, // Truyền hàm render với routes hiện tại
       routes: routes, // Truyền routes để MapContainer biết khi nào cần vẽ lại
@@ -324,8 +378,8 @@ const MainPage = () => {
         <Header />
         <div className="m-4 flex h-[calc(80vh-1rem)] bg-gray-100 border-2 border-primary items-center justify-center text-center">
           <div>
-            <p className="text-red-500 text-xl mb-4">Không thể lấy được vị trí của bạn.</p>
-            <p className="text-gray-600">Vui lòng kiểm tra quyền truy cập vị trí trong trình duyệt và thử tải lại trang.</p>
+            <p className="text-red-500 text-xl mb-4">Cannot get your location.</p>
+            <p className="text-gray-600">Please check your browser's location access permission and reload the page.</p>
           </div>
         </div>
       </>
@@ -333,45 +387,52 @@ const MainPage = () => {
   }
 
   return (
-    <>
-      <Toaster />
-      <Header />
-      <div className="m-4 flex h-[calc(80vh-1rem)] bg-gray-100 border-2 border-primary">
-        <SideBar {...sidebarProps} />
-        <div className="flex flex-col flex-1">
-          <MapSection {...mapSectionProps} className="h-3/4" />
-          <div className="flex flex-row p-4 pl-6 pt-0 text-lg text-primary justify-between">
-            <div className="flex flex-col gap-2">
-              <p>
-                <span className="text-green-600 font-semibold">You are here </span> 
-                <span className="text-red-500">📍</span>
-              </p>
-              <p>
-                Click on <span className="text-green-600">📍</span> to see the detail information of the store
-              </p>
-            </div>
-            <div className="flex content-end flex-wrap">
-              {currentPhase === 2 && (
-                <button
-                  onClick={handleBackPhase}
-                  className="btn-primary px-4 py-2  text-white rounded-md transition-colors duration-200"
-                >
-                  Back
-                </button>
-              )}
-              {currentPhase === 1 && (
-                <button
-                  onClick={handleNextPhase}
-                  className="btn-primary px-4 py-2 text-white rounded-md transition-colors duration-200"
-                >
-                  Find routes
-                </button>
-              )}
+    isProcessing ? (
+      <ProcessingRequest message="Processing your request..." />
+    ) : (
+      <>
+        <Toaster />
+        <Header />
+        <div className="m-4 flex h-[calc(80vh-1rem)] bg-gray-100 border-2 border-primary">
+          <SideBar {...sidebarProps} />
+          <div className="flex flex-col flex-1">
+            <MapSection {...mapSectionProps} className="h-3/4" />
+            <div className="flex flex-row p-4 pl-6 pt-0 text-lg text-primary justify-between">
+              <div className="flex flex-col gap-2">
+                <p>
+                  <span className="text-green-600 font-semibold">You are here </span> 
+                  <span className="text-red-500">📍</span>
+                </p>
+                <p>
+                  Click on <span className="text-green-600">📍</span> to see the detail information of the store
+                </p>
+              </div>
+              <div className="flex content-end flex-wrap">
+                {currentPhase === 2 && (
+                  <button
+                    onClick={handleBackPhase}
+                    className="btn-primary px-4 py-2  text-white rounded-md transition-colors duration-200"
+                  >
+                    Back
+                  </button>
+                )}
+                {currentPhase === 1 && (
+                  <button
+                    onClick={handleNextPhase}
+                    className="btn-primary px-4 py-2 text-white rounded-md transition-colors duration-200"
+                  >
+                    Find routes
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
+        <div className='m-2'>
+          <SimpleFooter minimal={ true }/>
+        </div>
+      </>
+    )
   );
 };
 
