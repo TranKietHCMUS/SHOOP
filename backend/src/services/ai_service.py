@@ -30,7 +30,7 @@ class AIService:
     def process_prompt(self, prompt: str) -> PromptModel:
         try:
             response = self.genai.models.generate_content(
-                model="gemini-2.0-flash", 
+                model="gemini-2.0-flash-lite", 
                 contents=(self._get_system_prompt() + prompt)
             )
 
