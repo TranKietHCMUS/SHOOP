@@ -96,21 +96,32 @@ class StoreService:
         Process the user prompt to extract product names, then find stores within radius and list matching products per store.
         """
         # Extract product names and quantities from the prompt
+        start = time()
+
         prompt_model = self.ai_service.process_prompt(prompt)
         items = prompt_model.items
         product_names = [item.get("product_name") for item in items if item.get("product_name")]
+        end = time()
+        print(f"Time taken for LLM: {end - start:.2f} seconds")  
+        print(f"Extracted product names: {product_names}")
         # Find stores within radius
-        stores = self.get_stores_within_radius(lat, lng, radius_km)
-        # Obtain AI-based similar products per item
         start = time()
+
+        # Obtain AI-based similar products per item
         embeddings = self.ai_service.get_embeddings(product_names)
         similar_products = self.ai_service.search_products(embeddings, product_names)
-        # print("similar_products", similar_products)
         end = time()
         print(f"Time taken for AI service: {end - start:.2f} seconds")
+        
+        stores = self.get_stores_within_radius(lat, lng, radius_km)
+
+        if not stores:
+            return []
+        # Lấy danh sách store_name duy nhất
+        start = time()
+        store_names = list({store.get("name") for store in stores if store.get("name")})
         # Build per-item info with similar name sets
         product_items = []
-        start = time()
         for idx, item in enumerate(items):
             pname = item.get("product_name")
             qty = item.get("quantity")
@@ -118,38 +129,49 @@ class StoreService:
             sims = similar_products[idx] if idx < len(similar_products) else []
             sim_names = {pname} | {res.get("name") for res in sims if res.get("name")}
             product_items.append({"query_name": pname, "quantity": qty, "unit": unit, "similar_names": sim_names})
-
-        # Query products per store and per item
+        # Tạo filter truy vấn product_collection cho tất cả store_name và các tên sản phẩm liên quan
+        or_filters = []
+        for store_name in store_names:
+            for info in product_items:
+                for name in info["similar_names"]:
+                    or_filters.append({
+                        "store_name": store_name,
+                        "name": {"$regex": f".*{re.escape(name)}.*", "$options": "i"}
+                    })
+        query = {"$or": or_filters} if or_filters else {}
+        # Truy vấn 1 lần lấy toàn bộ product liên quan
+        products_cursor = self.product_collection.find(query)
+        products = list(products_cursor)
+        # Gom sản phẩm theo (store_name, product_name)
+        products_by_store = {}
+        for p in products:
+            sname = p.get("store_name")
+            pname = p.get("name")
+            if sname not in products_by_store:
+                products_by_store[sname] = []
+            products_by_store[sname].append(p)
+        # Ghép vào từng store
         results = []
         for store in stores:
             store_name = store.get("name")
-            address = store.get("address")
-            lat_val = store.get("lat")
-            lng_val = store.get("lng")
             items_list = []
             has_candidate = False
             for info in product_items:
                 sim_names = info["similar_names"]
-                # regex filters for each similar name
-                regex_filters = [
-                    {"name": {"$regex": f".*{re.escape(name)}.*", "$options": "i"}}
-                    for name in sim_names
-                ]
-                query = {"store_name": store_name}
-                if regex_filters:
-                    query["$or"] = regex_filters
-                cursor = self.product_collection.find(query)
-                candidates = [
-                    {
-                        "id": str(p["_id"]),
-                        "name": p["name"],
-                        "price": p.get("price"),
-                        "unit": p.get("unit"),
-                        "category": p.get("category"),
-                        "img_url": p.get("img_url")
-                    }
-                    for p in cursor
-                ]
+                # union similar names with the original product name
+                candidates = []
+                for p in products_by_store.get(store_name, []):
+                    for name in sim_names:
+                        if re.search(name, p.get("name", ""), re.IGNORECASE):
+                            candidates.append({
+                                "id": str(p["_id"]),
+                                "name": p["name"],
+                                "price": p.get("price"),
+                                "unit": p.get("unit"),
+                                "category": p.get("category"),
+                                "img_url": p.get("img_url")
+                            })
+                            break
                 if candidates:
                     has_candidate = True
                 items_list.append({
@@ -158,11 +180,12 @@ class StoreService:
                     "unit": info["unit"],
                     "candidates": candidates
                 })
-            # include all store info, not just address/lat/lng
             if has_candidate:
                 store_copy = dict(store)
                 store_copy["items"] = items_list
                 results.append(store_copy)
         end = time()
-        print(f"Time taken for product search: {end - start:.2f} seconds")
+
+        print(f"Time taken for product db query: {end - start:.2f} seconds")
+
         return results
