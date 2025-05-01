@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useGoogleMapsApi } from '../../hooks/useGoogleMapsApi';
 import toast from 'react-hot-toast';
+import { mapColors } from '../../lib/map_colors';
 
 const MapContainer = ({ 
   userLocation,
@@ -144,17 +145,14 @@ const MapContainer = ({
     if (isLoaded && googleApi && mapRef.current && userLocation) {
       // Cleanup trước khi tạo map mới
       cleanupMap();
-
-      const storeMarkerIcon = {
-        url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
-        size: new googleApi.maps.Size(32, 32),
-        origin: new googleApi.maps.Point(0, 0),
-        anchor: new googleApi.maps.Point(16, 32),
-        scaledSize: new googleApi.maps.Size(32, 32)
-      };
+      const userMarkerUrl = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 384 512">
+            <path fill="#fa0202" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+          </svg>
+        `)
 
       const userMarkerIcon = {
-        url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+        url: userMarkerUrl,
         size: new googleApi.maps.Size(32, 32),
         origin: new googleApi.maps.Point(0, 0),
         anchor: new googleApi.maps.Point(16, 32),
@@ -194,8 +192,37 @@ const MapContainer = ({
       });
       circleRef.current = newCircle;
 
-      // Tạo store markers mới
       markersRef.current = stores.map(store => {
+        const storeColor = mapColors[store.name] || '#00B14F'; // Default to green if no color found
+        
+        // Regular marker SVG
+        const markerSvg = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 384 512">
+            <path fill="${storeColor}" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+          </svg>
+        `;
+
+        // Hover/active marker SVG (larger with shadow effect)
+        const hoverMarkerSvg = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 384 512" style="filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.4));">
+            <path fill="${storeColor}" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+          </svg>
+        `;
+
+        const normalIcon = {
+          url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(markerSvg),
+          scaledSize: new googleApi.maps.Size(32, 32),
+          origin: new googleApi.maps.Point(0, 0),
+          anchor: new googleApi.maps.Point(16, 32) // Anchor at the bottom tip of the pin
+        };
+
+        const hoverIcon = {
+          url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(hoverMarkerSvg),
+          scaledSize: new googleApi.maps.Size(40, 40),
+          origin: new googleApi.maps.Point(0, 0),
+          anchor: new googleApi.maps.Point(20, 40) // Anchor at the bottom tip of the pin
+        };
+
         const marker = new googleApi.maps.Marker({
           position: {
             lat: parseFloat(store.lat),
@@ -203,27 +230,64 @@ const MapContainer = ({
           },
           map: newMap,
           title: store.name,
-          icon: storeMarkerIcon
+          icon: normalIcon,
+          animation: null,
+          optimized: false // This helps with animations being smoother
         });
 
+        // Add hover effect
+        marker.addListener('mouseover', () => {
+          marker.setIcon(hoverIcon);
+          marker.setZIndex(1000); // Bring to front
+          
+          if (!marker.getAnimation()) {
+            marker.setAnimation(googleApi.maps.Animation.BOUNCE);
+            setTimeout(() => {
+              marker.setAnimation(null);
+            }, 200);
+          }
+        });
+
+        marker.addListener('mouseout', () => {
+          marker.setIcon(normalIcon);
+          marker.setZIndex(null); // Reset z-index
+        });
+
+        // Add click handler to show sidebar with store info
         marker.addListener('click', () => {
+          // Temporarily set to hover icon to maintain visual feedback
+          marker.setIcon(hoverIcon);
+          marker.setZIndex(1000);
+          
+          // Add bounce animation
+          if (!marker.getAnimation()) {
+            marker.setAnimation(googleApi.maps.Animation.BOUNCE);
+            // Stop bouncing after 2 bounces
+            setTimeout(() => {
+              marker.setAnimation(null);
+              // Don't reset the icon - keep it highlighted
+            }, 750);
+          }
+          
           if (onStoreClick) {
             onStoreClick(store);
           }
+          
+          // Reset to normal icon after some delay
+          setTimeout(() => {
+            marker.setIcon(normalIcon);
+            marker.setZIndex(null);
+          }, 3000);
         });
 
         return marker;
       });
 
-      // Render additional layers nếu có
       if (renderAdditionalLayers && routes.length > 0) {
         additionalLayersRef.current = renderAdditionalLayers(newMap, googleApi, routes);
       }
     } else if (isLoaded && !userLocation) {
-      // Trường hợp API đã load nhưng chưa có userLocation (đang chờ hoặc lỗi)
-      // Có thể hiển thị một thông báo chờ trên map div
       console.warn("MapContainer: Waiting for userLocation prop...");
-      // Đảm bảo map cũ được dọn dẹp nếu có
       cleanupMap();
   }
     return () => {
@@ -264,4 +328,4 @@ const MapContainer = ({
   );
 };
 
-export default MapContainer; 
+export default MapContainer;
