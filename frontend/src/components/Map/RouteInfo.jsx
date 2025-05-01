@@ -33,7 +33,7 @@ export default function RouteInfo({ route }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 max-w-2xl mx-auto">
+    <div className="bg-white overflow-hidden border max-w-2xl mx-auto">
       {/* Header */}
       <div className="bg-primary text-white p-4 flex justify-between items-center">
         <div className="flex items-center space-x-2">

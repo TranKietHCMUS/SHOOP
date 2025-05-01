@@ -5,22 +5,19 @@ import SideBar from '../components/Map/SideBar';
 import ProcessingRequest from '../components/ProcessingRequest';
 import { Toaster, toast } from 'react-hot-toast';
 import Header from '../components/Header';
-import SimpleFooter from '../components/SimpleFooter';
-
+import { mapColors } from '../lib/map_colors';
+import { useNavigate } from 'react-router-dom';
 const MapSection = React.memo(({ 
   stores, 
   onStoreClick, 
   renderAdditionalLayers, 
   routes,
   radius,
-  currentPhase,
-  handleBackPhase,
-  handleNextPhase,
   userLocation 
 }) => {
   console.log('MapSection received userLocation:', userLocation);
   return (
-    <div className="flex-1 relative p-6">
+    <div className="absolute inset-0">
       <MapContainer
         stores={stores}
         radius={radius}
@@ -48,7 +45,8 @@ const MainPage = () => {
   const [selectedRoute, setSelectedRoute] = useState(null);
   const [activeTab, setActiveTab] = useState('store');
   const [routes, setRoutes] = useState([]);
-
+  const navigate = useNavigate();
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   // Hàm xử lý tuần tự: lấy vị trí -> gọi API
   const processSearchWithLocation = useCallback(async () => {
     if (!searchData) {
@@ -139,6 +137,7 @@ const MainPage = () => {
 
   const handleStoreClick = useCallback((store) => {
     setSelectedStore(store);
+    setIsSidebarCollapsed(false); // Ensure sidebar expands when a store is clicked
     if (currentPhase === 2) {
       setActiveTab('store');
     }
@@ -210,7 +209,6 @@ const MainPage = () => {
   }, []);
 
   // Memoize renderRoutes function
-  // Memoize renderRoutes function
   const renderRoutes = useCallback((map, googleApi, routesToRender) => {
     // Don't proceed if map or googleApi isn't available
     if (!map || !googleApi) {
@@ -262,19 +260,16 @@ const MainPage = () => {
             const isSelected = selectedRoute && selectedRoute.id === route.id;
             let strokeColor;
             if (isSelected) {
-              strokeColor = '#00B14F'; // Slightly different red for selected
+              strokeColor = '#00B14F'; // Green for selected
             } else if (index === 0) {
-              strokeColor = '#FF4500'; // Use orange-red for first route
+              strokeColor = '#FF4500'; // Orange-red for first route
             } else {
               strokeColor = '#4285F4'; // Blue for other routes
             }
             
-            // Ensure proper z-index (higher numbers appear on top)
-            // Give all routes a high z-index to ensure they're above other map elements
+            // Base styling
             const zIndex = isSelected ? 1000 : 900 - index;
-            
-            // Increase stroke weight for all routes to improve clickability
-            const strokeWeight = isSelected ? 10 : 8;
+            const strokeWeight = isSelected ? 10 : 6;
             
             const pathCoordinates = result.routes[0].overview_path;
   
@@ -288,10 +283,51 @@ const MainPage = () => {
               map,
               clickable: true
             });
+            
+            // Add hover effect to route
+            const hoverWeight = isSelected ? 12 : 9;
+            
+            // Add mouse listeners for hover effects
+            googleApi.maps.event.addListener(path, 'mouseover', () => {
+              path.setOptions({
+                strokeWeight: hoverWeight,
+                strokeOpacity: 0.9,
+                zIndex: 1001 // Ensure hovered route is on top
+              });
+            });
+            
+            googleApi.maps.event.addListener(path, 'mouseout', () => {
+              path.setOptions({
+                strokeWeight,
+                strokeOpacity: 0.7,
+                zIndex: isSelected ? 1000 : 900 - index
+              });
+            });
   
+            // Click handler - show sidebar with route info
             const listener = googleApi.maps.event.addListener(path, 'click', () => {
               console.log("Route clicked:", route.id);
+              
+              // Highlight the route even more on click
+              path.setOptions({
+                strokeWeight: hoverWeight,
+                strokeOpacity: 1,
+                zIndex: 1001
+              });
+              
+              // After a short delay, reduce the highlight a bit but keep it visible
+              setTimeout(() => {
+                if (path) {
+                  path.setOptions({
+                    strokeWeight: isSelected ? 12 : 10,
+                    strokeOpacity: 0.9
+                  });
+                }
+              }, 300);
+              
+              // Show the route details in sidebar
               handleRouteClick(route);
+              setIsSidebarCollapsed(false); // Ensure sidebar is visible
             });
   
             renderedRoutes.push({ path, listener });
@@ -305,7 +341,7 @@ const MainPage = () => {
     });
   
     return renderedRoutes;
-  }, [handleRouteClick, selectedRoute]);
+  }, [handleRouteClick, selectedRoute, setIsSidebarCollapsed]);
   
   // Add this useEffect in your component to handle cleanup when component unmounts
   useEffect(() => {
@@ -338,8 +374,10 @@ const MainPage = () => {
     isLoadingRoutes: isProcessing && currentPhase === 1, // Cờ báo đang tìm routes
     isLoadingSearch: isProcessing && userLocation === null, // Cờ báo đang tìm kiếm ban đầu
     onFindRoutes: handleNextPhase, // Truyền hàm tìm route
-    onBack: handleBackPhase // Truyền hàm quay lại
-  }), [currentPhase, selectedStore, selectedRoute, activeTab, handleTabChange, searchResults, routes, isProcessing, userLocation, handleNextPhase, handleBackPhase]);
+    onBack: handleBackPhase, // Truyền hàm quay lại
+    isCollapsed: isSidebarCollapsed, // Pass the collapsed state to sidebar
+    setIsCollapsed: setIsSidebarCollapsed // Pass the function to toggle sidebar
+  }), [currentPhase, selectedStore, selectedRoute, activeTab, handleTabChange, searchResults, routes, isProcessing, userLocation, handleNextPhase, handleBackPhase, isSidebarCollapsed]);
 
 
   // Memoize map section props
@@ -390,50 +428,108 @@ const MainPage = () => {
     isProcessing ? (
       <ProcessingRequest message="Processing your request..." />
     ) : (
-      <>
+      <div className="relative h-screen w-screen overflow-hidden">
         <Toaster />
-        <Header />
-        <div className="m-4 flex h-[calc(80vh-1rem)] bg-gray-100 border-2 border-primary">
-          <SideBar {...sidebarProps} />
-          <div className="flex flex-col flex-1">
-            <MapSection {...mapSectionProps} className="h-3/4" />
-            <div className="flex flex-row p-4 pl-6 pt-0 text-lg text-primary justify-between">
-              <div className="flex flex-col gap-2">
-                <p>
-                  <span className="text-green-600 font-semibold">You are here </span> 
-                  <span className="text-red-500">📍</span>
-                </p>
-                <p>
-                  Click on <span className="text-green-600">📍</span> to see the detail information of the store
-                </p>
+        {/* Header overlaying the map */}
+        <div className="absolute top-0 left-0 right-0 z-20">
+          <Header className=""/>
+        </div>
+        
+        {/* Full-screen map */}
+        <div className="absolute inset-0">
+          <MapSection {...mapSectionProps} />
+        </div>
+        
+        {/* Legend and Navigation Controls in top-right corner */}
+        <div className="absolute top-20 right-4 z-20 flex flex-col gap-3">
+          {/* Legend */}
+          <div className="bg-white rounded-lg shadow-md p-3 w-52">
+            <h3 className="text-sm font-bold mb-1 text-gray-700">Store Marks</h3>
+            <h4 className="text-xs font-semibold mb-2 text-gray-600">Select store icon or route line for more information</h4>
+            <div className="space-y-2">
+              <div className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-4 mr-2" viewBox="0 0 384 512">
+                  <path fill={"#fa0202"} d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                </svg>
+                <span className="text-xs">You</span>
               </div>
-              <div className="flex content-end flex-wrap">
-                {currentPhase === 2 && (
-                  <button
-                    onClick={handleBackPhase}
-                    className="btn-primary px-4 py-2  text-white rounded-md transition-colors duration-200"
-                  >
-                    Back
-                  </button>
-                )}
-                {currentPhase === 1 && (
-                  <button
-                    onClick={handleNextPhase}
-                    className="btn-primary px-4 py-2 text-white rounded-md transition-colors duration-200"
-                  >
-                    Find routes
-                  </button>
-                )}
+              {mapColors && Object.keys(mapColors).map((storeName) => (
+                <div key={storeName} className="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-4 mr-2" viewBox="0 0 384 512">
+                    <path fill={mapColors[storeName]} d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                  </svg>
+                  <span className="text-xs">{storeName}</span>
+                </div>
+              ))}
+              {/* <div className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-4 mr-2" viewBox="0 0 384 512">
+                  <path fill={mapColors["Bách hóa xanh"]} d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                </svg>
+                <span className="text-xs">Bách hóa xanh</span>
               </div>
+              <div className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-4 mr-2" viewBox="0 0 384 512">
+                  <path fill={mapColors["WinMart"]} d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                </svg>
+                <span className="text-xs">WinMart</span>
+              </div>
+              <div className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-4 mr-2" viewBox="0 0 384 512">
+                  <path fill={mapColors["FamilyMart"]} d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                </svg>
+                <span className="text-xs">FamilyMart</span>
+              </div> */}
             </div>
           </div>
+          
+          {/* Navigation buttons */}
+          <div className="bg-white rounded-lg shadow-md p-3">
+            <div className="flex flex-col gap-2">
+              {currentPhase === 2 && (
+                <button
+                  onClick={handleBackPhase}
+                  className="mb-2 btn-primary w-full px-3 py-2 text-sm text-white rounded-md transition-colors duration-200 flex items-center justify-center"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  Back to Stores
+                </button>
+              )}
+              {currentPhase === 1 && (
+                <button
+                  onClick={handleNextPhase}
+                  className="mb-2 btn-primary w-full px-3 py-2 text-sm text-white rounded-md transition-colors duration-200 flex items-center justify-center"
+                >
+                  Find Routes
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+              )}
+            </div>
+            <button
+              onClick={() => navigate('/get-user-data')}
+              className="btn-primary w-full px-3 py-2 text-sm text-white rounded-md transition-colors duration-200 flex items-center justify-center"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Back to Search
+            </button>
+          </div>
         </div>
-        <div className='m-2'>
-          <SimpleFooter minimal={ true }/>
+        
+        
+        
+        {/* Sidebar overlaying the map */}
+        <div className="m-4 absolute top-16 left-0 h-[calc(100vh-8rem)] z-20" 
+              style={{ marginLeft: '2rem'}}>
+          <SideBar {...sidebarProps} />
         </div>
-      </>
+      </div>
     )
   );
 };
 
-export default MainPage; 
+export default MainPage;

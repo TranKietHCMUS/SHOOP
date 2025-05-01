@@ -44,7 +44,7 @@
 }
 
 .custom-scrollbar {
-  max-height: 38vh;
+  max-height: 45vh;
   overflow-y: auto;
   overflow-x: hidden; /* Ngăn cuộn ngang */
   background: white;
