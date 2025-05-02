@@ -41,7 +41,7 @@ const StoreInfo = ({ store }) => {
   return (
     <div>
       <style>{globalScrollbarStyles}</style>
-      <div className="max-w-3xl mx-auto p-2 bg-white rounded-2xl shadow-lg">
+      <div className="max-w-3xl mx-auto p-2 bg-white">
         <header className="mb-6 flex items-start">
           <img src={store.img_url} alt={store.name} className="w-16 h-16 rounded-lg object-cover flex-shrink-0 mr-4" />
           <div className="flex-1 min-w-0">

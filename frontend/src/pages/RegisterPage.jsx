@@ -6,7 +6,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SimpleFooter from '../components/SimpleFooter';
-import SuccessPopup from '../components/SuccessPopUp';
+import SuccessPopup from '../components/SuccessPopup';
 import { motion } from 'framer-motion';
 
 

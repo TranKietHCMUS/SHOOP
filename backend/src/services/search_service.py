@@ -1,10 +1,12 @@
 import math
 import itertools
+import requests
 from typing import Dict, List, Tuple
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 from pydantic import ValidationError
 
 from src.models.search_model import SearchRequestModel
+from src.config import Config
 
 
 class SearchService:
@@ -28,41 +30,98 @@ class SearchService:
         return 2 * R * math.asin(math.sqrt(h))
 
     @staticmethod
-    def _create_distance_matrix(locs: List[Tuple[float, float]]) -> List[List[int]]:
+    def _create_distance_matrix(locs: List[Tuple[float, float]], force_haversine: bool = False):
+        """
+        Matrix distance using gg map API (nếu số lượng điểm nhỏ) hoặc Haversine (nếu số lượng điểm lớn hoặc ép dùng)
+        Return: (distance_matrix, duration_matrix) (met, seconds)
+        """
         n = len(locs)
-        mat = [[0] * n for _ in range(n)]
-        for i, a in enumerate(locs):
-            for j, b in enumerate(locs):
-                mat[i][j] = int(SearchService._haversine(a, b) * 1000)
-        return mat
+        if force_haversine or n > 10:
+            dist_mat = [[0] * n for _ in range(n)]
+            dur_mat = [[0] * n for _ in range(n)]
+            for i in range(n):
+                for j in range(n):
+                    if i == j:
+                        dist_mat[i][j] = 0
+                        dur_mat[i][j] = 0
+                    else:
+                        d_km = SearchService._haversine(locs[i], locs[j])
+                        dist_mat[i][j] = int(d_km * 1000)  # mét
+                        dur_mat[i][j] = int(dist_mat[i][j] / 8.33)
+            return dist_mat, dur_mat
+        api_key = Config.GGMAP_API_KEY
+        if not api_key:
+            raise RuntimeError("GGMAP_API_KEY environment variable not set")
+        origins = [f"{lat},{lng}" for lat, lng in locs]
+        destinations = origins
+        url = "https://maps.googleapis.com/maps/api/distancematrix/json"
+        params = {
+            "origins": "|".join(origins),
+            "destinations": "|".join(destinations),
+            "key": api_key,
+            "units": "metric"
+        }
+        resp = requests.get(url, params=params)
+        data = resp.json()
+        if data.get("status") != "OK":
+            raise RuntimeError(f"Google Distance Matrix API error: {data}")
+        dist_mat = [[0] * n for _ in range(n)]
+        dur_mat = [[0] * n for _ in range(n)]
+        for i, row in enumerate(data["rows"]):
+            for j, elem in enumerate(row["elements"]):
+                if elem.get("status") == "OK":
+                    dist_mat[i][j] = elem["distance"]["value"]  # mét
+                    dur_mat[i][j] = elem["duration"]["value"]   # giây
+                else:
+                    dist_mat[i][j] = 10**9
+                    dur_mat[i][j] = 10**9
+        return dist_mat, dur_mat
 
     @staticmethod
-    def _solve_tsp_ortools(locs: List[Tuple[float, float]]) -> float:
+    def _solve_tsp_ortools(
+        locs: List[Tuple[float, float]],
+        use_duration: bool = False
+    ) -> Tuple[List[int], float, float]:
+        """
+        Trả về (route_nodes, total_distance_km, total_duration_s)
+        route_nodes là list các node index: 0=user_loc, 1..n=các store theo thứ tự đi
+        (không quay về điểm xuất phát)
+        """
         n = len(locs)
-        dist_mat = SearchService._create_distance_matrix(locs)
+        dist_mat, dur_mat = SearchService._create_distance_matrix(locs)
+        mat = dur_mat if use_duration else dist_mat
+
         manager = pywrapcp.RoutingIndexManager(n, 1, 0)
         routing = pywrapcp.RoutingModel(manager)
 
         def cost(i, j):
-            return dist_mat[manager.IndexToNode(i)][manager.IndexToNode(j)]
-
+            return mat[manager.IndexToNode(i)][manager.IndexToNode(j)]
         transit = routing.RegisterTransitCallback(cost)
         routing.SetArcCostEvaluatorOfAllVehicles(transit)
         routing.AddDimension(transit, 0, 10**9, True, 'Distance')
 
         params = pywrapcp.DefaultRoutingSearchParameters()
-        params.first_solution_strategy = routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
+        params.first_solution_strategy = (
+            routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
+        )
         sol = routing.SolveWithParameters(params)
         if sol is None:
             raise RuntimeError('TSP solution not found')
 
+        # Lấy thứ tự node (path) mà không thêm điểm quay về
+        route_nodes = []
         idx = routing.Start(0)
-        total = 0
+        total_dist = 0
+        total_dur = 0
         while not routing.IsEnd(idx):
+            node = manager.IndexToNode(idx)
+            route_nodes.append(node)
             nxt = sol.Value(routing.NextVar(idx))
-            total += routing.GetArcCostForVehicle(idx, nxt, 0)
+            total_dist += dist_mat[node][manager.IndexToNode(nxt)]
+            total_dur  += dur_mat[node][manager.IndexToNode(nxt)]
             idx = nxt
-        return total / 1000.0
+
+        return route_nodes, total_dist / 1000.0, total_dur
 
     def get_top_k_plans(
         self,
@@ -70,11 +129,8 @@ class SearchService:
         groups: List[List[int]],
         user_loc: Tuple[float, float]
     ) -> List[dict]:
-        # Validate input dât
         try:
-            req = SearchRequestModel(stores=stores, 
-                                     groups=groups, 
-                                     user_loc=user_loc)
+            req = SearchRequestModel(stores=stores, groups=groups, user_loc=user_loc)
         except ValidationError as e:
             raise ValueError(f"Invalid input data: {e}")
 
@@ -94,7 +150,6 @@ class SearchService:
             candidates.update(s for _, s in priced[:self.preselect_k])
         cands = list(candidates)
 
-        # 2) Enumerate and find score
         plans = []
         plan_id = 1
         for r in range(1, len(cands) + 1):
@@ -114,37 +169,116 @@ class SearchService:
                 if not ok:
                     continue
 
+                # Chuẩn bị locs và gọi TSP
                 locs = [user_loc_valid] + [stores_valid[s]['coord'] for s in subset]
-                dist = self._solve_tsp_ortools(locs)
-                # Fake duration: 1km = 6 phút
-                duration = int(dist * 6)
-                # Waypoints: tên store, có thể thêm điểm trung gian nếu muốn
+                route_nodes, dist, duration = self._solve_tsp_ortools(locs)
+
+                # Build waypoints & coordinates theo route_nodes
                 waypoints = []
                 coordinates = []
-                # Start
-                if subset:
-                    start_name = list(stores_valid[subset[0]].get('name', str(subset[0])))
-                    end_name = list(stores_valid[subset[-1]].get('name', str(subset[-1])))
-                else:
-                    start_name = end_name = ""
-                # Lấy tên store nếu có
-                store_names = [stores_valid[s].get('name', str(s)) for s in subset]
-                waypoints = store_names
-                coordinates = [user_loc_valid] + [stores_valid[s]['coord'] for s in subset]
-                # Format output
+                for node in route_nodes:
+                    if node == 0:
+                        waypoints.append("user location")
+                        coordinates.append(user_loc_valid)
+                    else:
+                        store_key = subset[node - 1]  # node=1→subset[0],…
+                        info = stores_valid[store_key]
+                        waypoints.append(info.get('name', store_key))
+                        coordinates.append(info['coord'])
+
                 plans.append({
                     'id': plan_id,
-                    'start': store_names[0] if store_names else '',
-                    'end': store_names[-1] if store_names else '',
-                    'cost': round(total_price, 2),  # total cost of items
+                    'cost': round(total_price, 2),
                     'distance': round(dist, 2),
                     'duration': duration,
-                    'coordinates': [{'lat': c[0], 'lng': c[1]} for c in coordinates],
+                    'coordinates': [
+                        {'lat': lat, 'lng': lng} for lat, lng in coordinates
+                    ],
                     'waypoints': waypoints
                 })
                 plan_id += 1
-        plans = plans[:self.top_k]
-        return plans
+
+        return plans[:self.top_k]
+
+    def get_shortest_distance_plans(
+        self,
+        stores: Dict[str, dict],
+        groups: List[List[int]],
+        user_loc: Tuple[float, float]
+    ) -> List[dict]:
+        """
+        Tối ưu theo quãng đường (nhỏ nhất) nhưng vẫn đưa ra 'cost' để tham khảo.
+        """
+        try:
+            req = SearchRequestModel(stores=stores, groups=groups, user_loc=user_loc)
+        except ValidationError as e:
+            raise ValueError(f"Invalid input data: {e}")
+
+        stores_valid = {sid: model.dict() for sid, model in req.stores.items()}
+        groups_valid = req.groups
+        user_loc_valid = req.user_loc
+
+        # 1) Tập candidates: tất cả store có thể cung cấp ít nhất 1 item
+        candidates = [
+            sid for sid, info in stores_valid.items()
+            if any(i in info['items'] for grp in groups_valid for i in grp)
+        ]
+
+        plans = []
+        plan_id = 1
+
+        # 2) Enumerate mọi kích thước subset
+        for r in range(1, len(candidates) + 1):
+            for subset in itertools.combinations(candidates, r):
+                # 2.a) Tính cost (vẫn cần cover đủ groups)
+                total_price = 0.0
+                ok = True
+                for grp in groups_valid:
+                    pmin = float('inf')
+                    for s in subset:
+                        vals = [stores_valid[s]['items'][i] for i in grp if i in stores_valid[s]['items']]
+                        if vals:
+                            pmin = min(pmin, min(vals))
+                    if pmin == float('inf'):
+                        ok = False
+                        break
+                    total_price += pmin
+                if not ok:
+                    continue
+
+                # 2.b) Tính TSP trên locs = [user] + coords của subset
+                locs = [user_loc_valid] + [stores_valid[s]['coord'] for s in subset]
+                route_nodes, dist, duration = self._solve_tsp_ortools(locs)
+
+                # 2.c) Build waypoints & coordinates
+                waypoints = []
+                coordinates = []
+                for node in route_nodes:
+                    if node == 0:
+                        waypoints.append("user location")
+                        coordinates.append(user_loc_valid)
+                    else:
+                        store_key = subset[node - 1]
+                        info = stores_valid[store_key]
+                        waypoints.append(info.get('name', store_key))
+                        coordinates.append(info['coord'])
+
+                plans.append({
+                    'id': plan_id,
+                    'cost': round(total_price, 2),
+                    'distance': round(dist, 2),
+                    'duration': duration,
+                    'coordinates': [
+                        {'lat': lat, 'lng': lng}
+                        for lat, lng in coordinates
+                    ],
+                    'waypoints': waypoints
+                })
+                plan_id += 1
+
+        # 3) Sắp xếp theo quãng đường (không phải cost) và trả về top-k
+        plans.sort(key=lambda x: x['distance'])
+        return plans[:self.top_k]
 
     def get_plans_from_nearby(
         self,
@@ -202,7 +336,7 @@ class SearchService:
             groups.append(group)
 
         # Delegate to existing get_top_k_plans
-        return self.get_top_k_plans(
+        return self.get_shortest_distance_plans(
             stores=stores_for_search,
             groups=groups,
             user_loc=user_loc
