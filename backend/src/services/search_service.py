@@ -36,7 +36,6 @@ class SearchService:
         Return: (distance_matrix, duration_matrix) (met, seconds)
         """
         n = len(locs)
-        # Nếu ép dùng Haversine hoặc số lượng điểm lớn, chỉ dùng Haversine
         if force_haversine or n > 10:
             dist_mat = [[0] * n for _ in range(n)]
             dur_mat = [[0] * n for _ in range(n)]
@@ -48,10 +47,8 @@ class SearchService:
                     else:
                         d_km = SearchService._haversine(locs[i], locs[j])
                         dist_mat[i][j] = int(d_km * 1000)  # mét
-                        # Giả định tốc độ trung bình 30km/h (8.33 m/s)
                         dur_mat[i][j] = int(dist_mat[i][j] / 8.33)
             return dist_mat, dur_mat
-        # Nếu số lượng điểm nhỏ, gọi Google API một lần
         api_key = Config.GGMAP_API_KEY
         if not api_key:
             raise RuntimeError("GGMAP_API_KEY environment variable not set")
