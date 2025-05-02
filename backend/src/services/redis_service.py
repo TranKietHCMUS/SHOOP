@@ -1,4 +1,5 @@
 import redis
+import json
 from src.config import Config
 
 class RedisService:
@@ -6,7 +7,7 @@ class RedisService:
         self.client = redis.Redis.from_url(Config.REDIS_URL, decode_responses=True)
 
     def set(self, key, value, ex=None):
-        """Set key to value, ex: expire time in seconds (optional)"""
+        """set key to value, ex: expire time in seconds (optional)"""
         return self.client.set(key, value, ex=ex)
 
     def get(self, key):
@@ -24,3 +25,14 @@ class RedisService:
     def keys(self, pattern='*'):
         """Get all keys by pattern"""
         return self.client.keys(pattern)
+
+    def set_json(self, key, obj, ex=None):
+        """Save object python as json"""
+        return self.set(key, json.dumps(obj), ex=ex)
+
+    def get_json(self, key):
+        """get object (json) by key"""
+        val = self.get(key)
+        if val is not None:
+            return json.loads(val)
+        return None
