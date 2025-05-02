@@ -32,8 +32,8 @@ class SearchService:
     @staticmethod
     def _create_distance_matrix(locs: List[Tuple[float, float]]):
         """
-        Sử dụng Google Distance Matrix API để tạo ma trận khoảng cách (mét) và thời gian (giây).
-        Trả về: (distance_matrix, duration_matrix)
+        Matrix distance using gg map API 
+        Return: (distance_matrix, duration_matrix) (met, seconds)
         """
         api_key = os.environ.get("GGMAP_API_KEY")
         if not api_key:
@@ -147,8 +147,6 @@ class SearchService:
 
                 locs = [user_loc_valid] + [stores_valid[s]['coord'] for s in subset]
                 dist, duration = self._solve_tsp_ortools(locs)
-                # Fake duration: 1km = 6 phút
-                duration = int(dist * 6)
                 # Waypoints: tên store, có thể thêm điểm trung gian nếu muốn
                 waypoints = []
                 coordinates = []
