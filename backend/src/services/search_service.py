@@ -1,12 +1,12 @@
 import math
 import itertools
-import os
 import requests
 from typing import Dict, List, Tuple
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 from pydantic import ValidationError
 
 from src.models.search_model import SearchRequestModel
+from src.config import Config
 
 
 class SearchService:
@@ -30,33 +30,48 @@ class SearchService:
         return 2 * R * math.asin(math.sqrt(h))
 
     @staticmethod
-    def _create_distance_matrix(locs: List[Tuple[float, float]]):
+    def _create_distance_matrix(locs: List[Tuple[float, float]], force_haversine: bool = False):
         """
-        Matrix distance using gg map API 
+        Matrix distance using gg map API (nếu số lượng điểm nhỏ) hoặc Haversine (nếu số lượng điểm lớn hoặc ép dùng)
         Return: (distance_matrix, duration_matrix) (met, seconds)
         """
-        api_key = os.environ.get("GGMAP_API_KEY")
+        n = len(locs)
+        # Nếu ép dùng Haversine hoặc số lượng điểm lớn, chỉ dùng Haversine
+        if force_haversine or n > 10:
+            dist_mat = [[0] * n for _ in range(n)]
+            dur_mat = [[0] * n for _ in range(n)]
+            for i in range(n):
+                for j in range(n):
+                    if i == j:
+                        dist_mat[i][j] = 0
+                        dur_mat[i][j] = 0
+                    else:
+                        d_km = SearchService._haversine(locs[i], locs[j])
+                        dist_mat[i][j] = int(d_km * 1000)  # mét
+                        # Giả định tốc độ trung bình 30km/h (8.33 m/s)
+                        dur_mat[i][j] = int(dist_mat[i][j] / 8.33)
+            return dist_mat, dur_mat
+        # Nếu số lượng điểm nhỏ, gọi Google API một lần
+        api_key = Config.GGMAP_API_KEY
         if not api_key:
             raise RuntimeError("GGMAP_API_KEY environment variable not set")
         origins = [f"{lat},{lng}" for lat, lng in locs]
         destinations = origins
         url = "https://maps.googleapis.com/maps/api/distancematrix/json"
-        n = len(locs)
+        params = {
+            "origins": "|".join(origins),
+            "destinations": "|".join(destinations),
+            "key": api_key,
+            "units": "metric"
+        }
+        resp = requests.get(url, params=params)
+        data = resp.json()
+        if data.get("status") != "OK":
+            raise RuntimeError(f"Google Distance Matrix API error: {data}")
         dist_mat = [[0] * n for _ in range(n)]
         dur_mat = [[0] * n for _ in range(n)]
-        for i, origin in enumerate(origins):
-            params = {
-                "origins": origin,
-                "destinations": "|".join(destinations),
-                "key": api_key,
-                "units": "metric"
-            }
-            resp = requests.get(url, params=params)
-            data = resp.json()
-            if data.get("status") != "OK":
-                raise RuntimeError(f"Google Distance Matrix API error: {data}")
-            row = data["rows"][0]["elements"]
-            for j, elem in enumerate(row):
+        for i, row in enumerate(data["rows"]):
+            for j, elem in enumerate(row["elements"]):
                 if elem.get("status") == "OK":
                     dist_mat[i][j] = elem["distance"]["value"]  # mét
                     dur_mat[i][j] = elem["duration"]["value"]   # giây
