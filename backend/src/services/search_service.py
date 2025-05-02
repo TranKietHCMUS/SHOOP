@@ -1,5 +1,7 @@
 import math
 import itertools
+import os
+import requests
 from typing import Dict, List, Tuple
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 from pydantic import ValidationError
@@ -28,41 +30,70 @@ class SearchService:
         return 2 * R * math.asin(math.sqrt(h))
 
     @staticmethod
-    def _create_distance_matrix(locs: List[Tuple[float, float]]) -> List[List[int]]:
+    def _create_distance_matrix(locs: List[Tuple[float, float]]):
+        """
+        Matrix distance using gg map API 
+        Return: (distance_matrix, duration_matrix) (met, seconds)
+        """
+        api_key = os.environ.get("GGMAP_API_KEY")
+        if not api_key:
+            raise RuntimeError("GGMAP_API_KEY environment variable not set")
+        origins = [f"{lat},{lng}" for lat, lng in locs]
+        destinations = origins
+        url = "https://maps.googleapis.com/maps/api/distancematrix/json"
         n = len(locs)
-        mat = [[0] * n for _ in range(n)]
-        for i, a in enumerate(locs):
-            for j, b in enumerate(locs):
-                mat[i][j] = int(SearchService._haversine(a, b) * 1000)
-        return mat
+        dist_mat = [[0] * n for _ in range(n)]
+        dur_mat = [[0] * n for _ in range(n)]
+        for i, origin in enumerate(origins):
+            params = {
+                "origins": origin,
+                "destinations": "|".join(destinations),
+                "key": api_key,
+                "units": "metric"
+            }
+            resp = requests.get(url, params=params)
+            data = resp.json()
+            if data.get("status") != "OK":
+                raise RuntimeError(f"Google Distance Matrix API error: {data}")
+            row = data["rows"][0]["elements"]
+            for j, elem in enumerate(row):
+                if elem.get("status") == "OK":
+                    dist_mat[i][j] = elem["distance"]["value"]  # mét
+                    dur_mat[i][j] = elem["duration"]["value"]   # giây
+                else:
+                    dist_mat[i][j] = 10**9
+                    dur_mat[i][j] = 10**9
+        return dist_mat, dur_mat
 
     @staticmethod
-    def _solve_tsp_ortools(locs: List[Tuple[float, float]]) -> float:
+    def _solve_tsp_ortools(locs: List[Tuple[float, float]], use_duration: bool = False) -> tuple:
+        """
+        Trả về (tổng quãng đường km, tổng thời gian giây)
+        """
         n = len(locs)
-        dist_mat = SearchService._create_distance_matrix(locs)
+        dist_mat, dur_mat = SearchService._create_distance_matrix(locs)
+        mat = dur_mat if use_duration else dist_mat
         manager = pywrapcp.RoutingIndexManager(n, 1, 0)
         routing = pywrapcp.RoutingModel(manager)
-
         def cost(i, j):
-            return dist_mat[manager.IndexToNode(i)][manager.IndexToNode(j)]
-
+            return mat[manager.IndexToNode(i)][manager.IndexToNode(j)]
         transit = routing.RegisterTransitCallback(cost)
         routing.SetArcCostEvaluatorOfAllVehicles(transit)
         routing.AddDimension(transit, 0, 10**9, True, 'Distance')
-
         params = pywrapcp.DefaultRoutingSearchParameters()
         params.first_solution_strategy = routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
         sol = routing.SolveWithParameters(params)
         if sol is None:
             raise RuntimeError('TSP solution not found')
-
         idx = routing.Start(0)
-        total = 0
+        total_dist = 0
+        total_dur = 0
         while not routing.IsEnd(idx):
             nxt = sol.Value(routing.NextVar(idx))
-            total += routing.GetArcCostForVehicle(idx, nxt, 0)
+            total_dist += dist_mat[manager.IndexToNode(idx)][manager.IndexToNode(nxt)]
+            total_dur += dur_mat[manager.IndexToNode(idx)][manager.IndexToNode(nxt)]
             idx = nxt
-        return total / 1000.0
+        return total_dist / 1000.0, total_dur
 
     def get_top_k_plans(
         self,
@@ -115,9 +146,7 @@ class SearchService:
                     continue
 
                 locs = [user_loc_valid] + [stores_valid[s]['coord'] for s in subset]
-                dist = self._solve_tsp_ortools(locs)
-                # Fake duration: 1km = 6 phút
-                duration = int(dist * 6)
+                dist, duration = self._solve_tsp_ortools(locs)
                 # Waypoints: tên store, có thể thêm điểm trung gian nếu muốn
                 waypoints = []
                 coordinates = []
@@ -134,7 +163,7 @@ class SearchService:
                 # Format output
                 plans.append({
                     'id': plan_id,
-                    'start': store_names[0] if store_names else '',
+                    'start': 'user location',  # Ghi rõ là user location
                     'end': store_names[-1] if store_names else '',
                     'cost': round(total_price, 2),  # total cost of items
                     'distance': round(dist, 2),
