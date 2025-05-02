@@ -12,10 +12,10 @@ class Config:
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
     REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
     REDIS_PORT = os.getenv('REDIS_PORT', 6379)
+    REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
     GGMAP_API_KEY = os.getenv('GGMAP_API_KEY')
     DEBUG = True 
     DIMENSIONS = 768
     VECTOR_WEIGHT = 0.7
     FULL_TEXT_WEIGHT = 0.3
     SECRET_KEY = os.getenv('SECRET_KEY')
-    
