@@ -160,6 +160,8 @@ class SearchService:
 
                 plans.append({
                     'id': plan_id,
+                    'start': "user location",
+                    'end': waypoints[-1] if waypoints else '',
                     'cost': round(total_price, 2),
                     'distance': round(dist, 2),
                     'duration': duration,
