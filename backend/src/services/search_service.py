@@ -32,49 +32,21 @@ class SearchService:
     @staticmethod
     def _create_distance_matrix(locs: List[Tuple[float, float]], force_haversine: bool = False):
         """
-        Matrix distance using gg map API (nếu số lượng điểm nhỏ) hoặc Haversine (nếu số lượng điểm lớn hoặc ép dùng)
-        Return: (distance_matrix, duration_matrix) (met, seconds)
+        Matrix distance using Haversine only. Google Distance Matrix API is not used.
+        Return: (distance_matrix, duration_matrix) (meters, seconds)
         """
         n = len(locs)
-        if force_haversine or n > 10:
-            dist_mat = [[0] * n for _ in range(n)]
-            dur_mat = [[0] * n for _ in range(n)]
-            for i in range(n):
-                for j in range(n):
-                    if i == j:
-                        dist_mat[i][j] = 0
-                        dur_mat[i][j] = 0
-                    else:
-                        d_km = SearchService._haversine(locs[i], locs[j])
-                        dist_mat[i][j] = int(d_km * 1000)  # mét
-                        dur_mat[i][j] = int(dist_mat[i][j] / 8.33)
-            return dist_mat, dur_mat
-        api_key = Config.GGMAP_API_KEY
-        if not api_key:
-            raise RuntimeError("GGMAP_API_KEY environment variable not set")
-        origins = [f"{lat},{lng}" for lat, lng in locs]
-        destinations = origins
-        url = "https://maps.googleapis.com/maps/api/distancematrix/json"
-        params = {
-            "origins": "|".join(origins),
-            "destinations": "|".join(destinations),
-            "key": api_key,
-            "units": "metric"
-        }
-        resp = requests.get(url, params=params)
-        data = resp.json()
-        if data.get("status") != "OK":
-            raise RuntimeError(f"Google Distance Matrix API error: {data}")
         dist_mat = [[0] * n for _ in range(n)]
         dur_mat = [[0] * n for _ in range(n)]
-        for i, row in enumerate(data["rows"]):
-            for j, elem in enumerate(row["elements"]):
-                if elem.get("status") == "OK":
-                    dist_mat[i][j] = elem["distance"]["value"]  # mét
-                    dur_mat[i][j] = elem["duration"]["value"]   # giây
+        for i in range(n):
+            for j in range(n):
+                if i == j:
+                    dist_mat[i][j] = 0
+                    dur_mat[i][j] = 0
                 else:
-                    dist_mat[i][j] = 10**9
-                    dur_mat[i][j] = 10**9
+                    d_km = SearchService._haversine(locs[i], locs[j])
+                    dist_mat[i][j] = int(d_km * 1000)  # meters
+                    dur_mat[i][j] = int(dist_mat[i][j] / 8.33)
         return dist_mat, dur_mat
 
     @staticmethod
