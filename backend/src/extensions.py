@@ -6,11 +6,7 @@ from src.config import Config
 
 db = MongoDB(db_name=Config.DB_NAME)    
 
-redis = redis.Redis(
-    host=Config.REDIS_HOST,
-    port=Config.REDIS_PORT,
-    decode_responses=True
-)
+redis = redis.Redis.from_url(Config.REDIS_URL, decode_responses=True)
 
 AI_MODELS = {
     "sbert": SentenceTransformer("VoVanPhuc/sup-SimCSE-VietNamese-phobert-base"),
