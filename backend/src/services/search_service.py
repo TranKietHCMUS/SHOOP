@@ -308,7 +308,7 @@ class SearchService:
             groups.append(group)
 
         # Delegate to existing get_top_k_plans
-        return self.get_shortest_distance_plans(
+        return self.get_top_k_plans(
             stores=stores_for_search,
             groups=groups,
             user_loc=user_loc
