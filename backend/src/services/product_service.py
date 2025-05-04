@@ -189,56 +189,60 @@ class ProductService:
             print(f"Error deleting product: {e}")
             return False
             
-    def search(self, query_vector: list[float], product_name: str = None, top_k: int = 10) -> list[dict]:
+    def search(self, query_vector: list[float], product_name: str = None, unit: str = None, top_k: int = 10) -> list[dict]:
         try:
-            # Normalize vector
             query_vector = self.validate_vector(query_vector)
-
             results = {}
 
-            vector_pipeline = [
-                {
-                    "$vectorSearch": {
-                        "index": "vector_index",
-                        "path": "vector",
-                        "queryVector": query_vector, 
-                        "numCandidates": 100,
-                        "limit": 20
+            print(f"Query vector: {query_vector[:5]}... (length: {len(query_vector)})")
+            print(f"Searching for product name: '{product_name}', unit: '{unit}'")
+
+            if query_vector:
+                vector_pipeline = [
+                    {
+                        "$vectorSearch": {
+                            "index": "vector_index",
+                            "path": "vector",
+                            "queryVector": query_vector, 
+                            "numCandidates": 100,
+                            "limit": 100 
+                        }
+                    },
+                    {
+                        "$project": {
+                            "_id": 1,
+                            "name": 1,
+                            "price": 1,
+                            "unit": 1,
+                            "store_name": 1,
+                            "category": 1,
+                            "img_url": 1,
+                            "created_at": 1,
+                            "updated_at": 1,
+                            "vs_score": {"$meta": "vectorSearchScore"}
+                        }
                     }
-                },
-                {
-                    "$project": {
-                        "_id": 1,
-                        "name": 1,
-                        "price": 1,
-                        "unit": 1,
-                        "store_name": 1,
-                        "category": 1,
-                        "img_url": 1,
-                        "created_at": 1,
-                        "updated_at": 1,
-                        "vs_score": {"$meta": "vectorSearchScore"}
+                ]
+                
+                vector_results = list(self.collection.aggregate(vector_pipeline))
+                
+                # Process vector results
+                for doc in vector_results:
+                    doc_id = str(doc["_id"])
+                    results[doc_id] = {
+                        "_id": doc["_id"],
+                        "name": doc["name"],
+                        "price": doc.get("price"),
+                        "unit": doc.get("unit"),
+                        "store_name": doc.get("store_name"),
+                        "category": doc.get("category"),
+                        "img_url": doc.get("img_url"),
+                        "created_at": doc.get("created_at"),
+                        "updated_at": doc.get("updated_at"),
+                        "vs_score": doc["vs_score"] * Config.VECTOR_WEIGHT,
+                        "fts_score": 0,
+                        "unit_score": 0
                     }
-                }
-            ]
-            
-            vector_results = list(self.collection.aggregate(vector_pipeline))
-            
-            for doc in vector_results:
-                doc_id = str(doc["_id"])
-                results[doc_id] = {
-                    "_id": doc["_id"],
-                    "name": doc["name"],
-                    "price": doc.get("price"),
-                    "unit": doc.get("unit"),
-                    "store_name": doc.get("store_name"),
-                    "category": doc.get("category"),
-                    "img_url": doc.get("img_url"),
-                    "created_at": doc.get("created_at"),
-                    "updated_at": doc.get("updated_at"),
-                    "vs_score": doc["vs_score"] * Config.VECTOR_WEIGHT,
-                    "fts_score": 0
-                }
 
             if product_name:
                 text_pipeline = [
@@ -247,7 +251,7 @@ class ProductService:
                             "index": "product_text_index",
                             "text": {
                                 "query": product_name,
-                                "path": ["name", "unit"]
+                                "path": "name"
                             }
                         }
                     },
@@ -265,7 +269,7 @@ class ProductService:
                             "fts_score": {"$meta": "searchScore"}
                         }
                     },
-                    {"$limit": 20}
+                    {"$limit": 100}
                 ]
                 
                 text_results = list(self.collection.aggregate(text_pipeline))
@@ -286,27 +290,70 @@ class ProductService:
                             "created_at": doc.get("created_at"),
                             "updated_at": doc.get("updated_at"),
                             "vs_score": 0,
-                            "fts_score": doc["fts_score"] * Config.FULL_TEXT_WEIGHT
+                            "fts_score": doc["fts_score"] * Config.FULL_TEXT_WEIGHT,
+                            "unit_score": 0
                         }
+
+            for doc_id, doc in results.items():
+                doc["initial_score"] = doc["vs_score"] + doc["fts_score"]
+
+            initial_results = list(results.values())
+            initial_results.sort(key=lambda x: x["initial_score"], reverse=True)
+            
+            rerank_candidates = initial_results[:min(100, len(initial_results))]
+            
+            
+            if unit and rerank_candidates:
+                
+                for doc in rerank_candidates:
+                    doc_id = str(doc["_id"])
+                    if doc_id in results and doc.get("unit"):
+                        unit_score = self.ai_service.unit_similarity_score(doc.get("unit"), unit) * Config.UNIT_WEIGHT
+                        results[doc_id]["unit_score"] = unit_score
 
             final_results = list(results.values())
             for doc in final_results:
-                doc["score"] = doc["vs_score"] + doc["fts_score"]
-            
+                doc["score"] = doc["vs_score"] + doc["fts_score"] + doc["unit_score"]
+                
             final_results.sort(key=lambda x: x["score"], reverse=True)
-            return final_results[:top_k]
+            
+            return_results = []
+            for doc in final_results:
+                return_results.append({
+                    "_id": doc["_id"],
+                    "name": doc["name"],
+                    "price": doc.get("price"),
+                    "unit": doc.get("unit"),
+                    "store_name": doc.get("store_name"),
+                    "category": doc.get("category"),
+                    "img_url": doc.get("img_url"),
+                    "created_at": doc.get("created_at"),
+                    "updated_at": doc.get("updated_at"),
+                    "score": doc["score"],
+                    "vs_score": doc["vs_score"],
+                    "fts_score": doc["fts_score"],
+                    "unit_score": doc["unit_score"]
+                })
+            
+            return return_results[:top_k]
 
         except Exception as e:
             print(f"Error searching products: {e}")
+            # traceback.print_exc()  # Add this to get the full stack trace
             return []
-    def search_products(self, embeddings: np.ndarray, product_names: List[str]) -> List[List[Dict[str, Any]]]:
+
+    def search_products(self, embeddings: np.ndarray, product_items_with_units: List[tuple], top_k: int = 10) -> List[List[Dict[str, Any]]]:
         try:
             results = []
-            for embedding, product_name in zip(embeddings, product_names):    
+            for i, (embedding, item_tuple) in enumerate(zip(embeddings, product_items_with_units)):
+                product_name, unit = item_tuple                
                 search_results = self.search(
                     query_vector=embedding.tolist(),
-                    product_name=product_name
+                    product_name=product_name, 
+                    unit=unit,
+                    top_k=top_k
                 )
+                
                 results.append(search_results)
             return results
         except Exception as e:

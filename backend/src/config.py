@@ -16,6 +16,24 @@ class Config:
     GGMAP_API_KEY = os.getenv('GGMAP_API_KEY')
     DEBUG = True 
     DIMENSIONS = 768
-    VECTOR_WEIGHT = 0.7
-    FULL_TEXT_WEIGHT = 0.3
+    VECTOR_WEIGHT = 0.6
+    FULL_TEXT_WEIGHT = 0.2
+    UNIT_WEIGHT = 0.2
     SECRET_KEY = os.getenv('SECRET_KEY')
+    UNIT_VARIATIONS = {
+        "hộp": ["hop", "box", "h"],
+        "chai": ["bottle", "btl", "ch"],
+        "lon": ["can", "l"],
+        "lốc": ["pack", "loc"],
+        "kg": ["kilograms", "kilogram", "kilo"],
+        "g": ["gram", "grams"],
+        "túi": ["tui", "bag"],
+        "gói": ["goi", "packet"],
+        "ml": ["milliliter", "milliliters"],
+        "l": ["liter", "liters"],
+        "thùng": ["thung", "carton", "case"],
+        "cái": ["piece", "cai"],
+        "vỉ": ["strip", "vi"],
+        "khay": ["tray", "khay"],
+        "viên": ["vien", "tablet"],
+    }
