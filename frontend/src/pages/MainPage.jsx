@@ -7,6 +7,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import Header from '../components/Header';
 import { mapColors } from '../lib/map_colors';
 import { useNavigate } from 'react-router-dom';
+import { useGoogleMapsApi } from '../hooks/useGoogleMapsApi'; // Import the Google Maps API hook
 const MapSection = React.memo(({ 
   stores, 
   onStoreClick, 
@@ -39,7 +40,8 @@ const MainPage = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [isProcessing, setIsProcessing] = useState(true);
   const routePolylinesRef = useRef([]);
-  // State cho map và UI cũ
+  const { isLoaded, error, googleApi } = useGoogleMapsApi(); // Use the Google Maps API hook
+
   const [currentPhase, setCurrentPhase] = useState(1);
   const [selectedStore, setSelectedStore] = useState(null);
   const [selectedRoute, setSelectedRoute] = useState(null);
@@ -47,7 +49,7 @@ const MainPage = () => {
   const [routes, setRoutes] = useState([]);
   const navigate = useNavigate();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  // Hàm xử lý tuần tự: lấy vị trí -> gọi API
+
   const processSearchWithLocation = useCallback(async () => {
     if (!searchData) {
       toast.error('No search data found');
@@ -58,32 +60,59 @@ const MainPage = () => {
     console.log('Starting search process...');
     let fetchedLocation = null;
     try {
-      // Bước 1: Lấy vị trí người dùng
-      console.log('Getting user location...');
-      const position = await new Promise((resolve, reject) => {
-        if (!navigator.geolocation) {
-          reject(new Error('Trình duyệt của bạn không hỗ trợ định vị.'));
-          return;
+      if (searchData.location !== 'current') {
+        console.log('Using custom address:', searchData.location);
+        
+        // Check if Google Maps API is loaded through our hook
+        if (!isLoaded || !googleApi) {
+          throw new Error('Google Maps API not loaded');
         }
-
-        navigator.geolocation.getCurrentPosition(
-          resolve,
-          reject,
-          {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
+        
+        const geocoder = new googleApi.maps.Geocoder();
+        
+        fetchedLocation = await new Promise((resolve, reject) => {
+          geocoder.geocode({ address: searchData.location }, (results, status) => {
+            if (status === 'OK' && results && results.length > 0) {
+              const location = results[0].geometry.location;
+              resolve({
+                lat: location.lat(),
+                lng: location.lng()
+              });
+            } else {
+              reject(new Error(`Geocoding failed: ${status}`));
+            }
+          });
+        });
+        
+        console.log('Custom address geocoded:', fetchedLocation);
+        setUserLocation(fetchedLocation);
+      }
+      else {
+        console.log('Getting user location...');
+        const position = await new Promise((resolve, reject) => {
+          if (!navigator.geolocation) {
+            reject(new Error('Your browser does not provided with geolocation.'));
+            return;
           }
-        );
-      });
 
-      fetchedLocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      console.log('User location obtained:', fetchedLocation);
-      setUserLocation(fetchedLocation);
+          navigator.geolocation.getCurrentPosition(
+            resolve,
+            reject,
+            {
+              enableHighAccuracy: true,
+              timeout: 5000,
+              maximumAge: 0
+            }
+          );
+        });
 
+        fetchedLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        console.log('User location obtained:', fetchedLocation);
+        setUserLocation(fetchedLocation);
+      }
       // Bước 2: Gọi API với vị trí đã lấy được
       console.log('Calling API with:', { searchData, user_location: fetchedLocation });
       setIsProcessing(true);
@@ -117,18 +146,16 @@ const MainPage = () => {
       }
     } catch (error) {
       console.error('Error during searching: ', error);
-      // Phân biệt lỗi định vị và lỗi API
-      if (!fetchedLocation) { // Nếu lỗi xảy ra trước khi lấy được vị trí
+      if (!fetchedLocation) { 
          toast.error(`Navigator error: ${error.message}`);
       } else {
          toast.error(`Searching error: ${error.message}`);
       }
-      // Không set userLocation nếu lỗi xảy ra trước khi lấy được vị trí
       if (!fetchedLocation) setUserLocation(null);
     } finally {
       setIsProcessing(false);
     }
-  }, [searchData]);
+  }, [searchData, isLoaded, googleApi]);
 
   useEffect(() => {
     setIsProcessing(true);
@@ -235,23 +262,26 @@ const MainPage = () => {
     }
   
     routesToRender.forEach((route, index) => {
+      console.log(`Rendering route ${route.id}: ${route}`);
       if (!route || !Array.isArray(route.coordinates) || route.coordinates.length < 2) {
-        console.warn("Invalid route:", route);
+        console.log("Invalid route:", route);
         return;
       }
   
       const origin = route.coordinates[0];
       const destination = route.coordinates[route.coordinates.length - 1];
-      const waypoints = route.coordinates.slice(1, -1).map(coord => ({
-        location: coord,
+      const waypoints = route.waypoints
+      .slice(1) // Skip the first waypoint if it's the same as origin
+      .map(address => ({
+        location: address,
         stopover: true,
-      }));
-  
+      }));     
+      console.log(`Origin: ${JSON.stringify(origin)}, Destination: ${JSON.stringify(destination)}, Waypoints: ${JSON.stringify(waypoints)}`);
       directionsService.route(
         {
-          origin,
-          destination,
-          waypoints,
+          origin: origin,
+          destination: destination,
+          waypoints: waypoints,
           optimizeWaypoints: true,
           travelMode: googleApi.maps.TravelMode.DRIVING,
         },
@@ -390,7 +420,7 @@ const MainPage = () => {
 
     return {
       stores: storesToShow, // Sử dụng stores từ API
-      radius: parseInt(searchData.expected_radius) * 1000, 
+      radius: parseFloat(searchData.expected_radius) * 1000, 
       onStoreClick: handleStoreClick,
       renderAdditionalLayers: currentPhase === 2 ? (map, google) => renderRoutes(map, google, routes) : null, // Truyền hàm render với routes hiện tại
       routes: routes, // Truyền routes để MapContainer biết khi nào cần vẽ lại

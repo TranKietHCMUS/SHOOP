@@ -10,8 +10,8 @@ class ProductVecService:
 
     def _ensure_indexes(self):
         try:
-            self.collection.create_index([("name", 1)], unique=True, name="name_unique_index")
-
+            self.collection.create_index([("name", "text")], unique=True, name="name_unique_index")
+            self.collection.create_index([("unit", "text")], name="unit_index")
             # Semantic search index
             vector_index_model = SearchIndexModel(
                 definition={

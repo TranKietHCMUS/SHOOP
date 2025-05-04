@@ -2,11 +2,27 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { QuestionMarkCircleIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import toast, { Toaster } from 'react-hot-toast';
+import { motion } from 'framer-motion';
 
 const SearchForm = () => {
   const navigate = useNavigate();
   const [distance, setDistance] = useState(5);
+  const [distanceInput, setDistanceInput] = useState('5'); // Add this new state for input display
   const [searchQuery, setSearchQuery] = useState('');
+  const [useCurrentLocation, setUseCurrentLocation] = useState(true);
+  const [customAddress, setCustomAddress] = useState('');
+
+  const handleDistanceChange = (e) => {
+    const value = e.target.value;
+    setDistanceInput(value);
+    
+    // Only update the actual distance state if there's a value
+    if (value === '') {
+      setDistance(''); // Allow empty string in the state
+    } else {
+      setDistance(Number(value));
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,15 +40,26 @@ const SearchForm = () => {
       });
       return;
     }
+    
+    const finalDistance = distance === '' ? 5 : distance;
+    
     const searchData = {
       prompt: searchQuery,
-      expected_radius: distance
+      expected_radius: finalDistance,
+      location: useCurrentLocation ? 'current' : customAddress
     };
     navigate('/result', { state: { searchData } });
   };
 
   return (
     <div className="w-full">
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: 'easeInOut' }}
+        exit={{ opacity: 0, y: -100 }}
+        className="mb-4 text-center text-lg text-primary"
+      >
       <Toaster />
       <div className="bg-white rounded-lg px-2">
         {/* Logo */}
@@ -44,57 +71,84 @@ const SearchForm = () => {
           />
         </div>
 
-        {/* Search Input */}
+        {/* Search Input - Changed to textarea */}
         <div className="mb-3 text-left">
           <label htmlFor="search" className="block text-sm font-medium text-primary mb-1">
             What do you want to buy?
           </label>
           <div className="relative">
-            <input
-              type="text"
+            <textarea
               id="search"
               className="w-full p-2 pl-9 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
-              placeholder="Ex: 1kg apple and 2kg orange..."
+              placeholder="Ex: 1kg apple and 2kg orange for a total of 200000 vnd..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              rows="8"
             />
-            <QuestionMarkCircleIcon className="h-5 w-5 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
+            <QuestionMarkCircleIcon className="h-5 w-5 text-primary absolute left-2 top-4 transform" />
           </div>
         </div>
 
-        {/* Distance input */}
-        <div className="mb-2 text-left">
+        {/* Distance input - Changed to number input */}
+        <div className="mb-3 text-left">
           <label htmlFor="distance" className="block text-sm font-medium text-primary mb-1">
-            Maximum distance (km)
+            Maximum distance or radius (km)
           </label>
           <div className="relative">
             <input
-              type="text"
+              type="number"
               id="distance"
-              disabled
+              min="0.1"
+              max="50"
               className="w-full p-2 pl-9 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
-              value={distance + " km"}
+              value={distanceInput} 
+              onChange={handleDistanceChange}
             />
             <MapPinIcon className="h-5 w-5 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
           </div>
         </div>
 
-        {/* Distance Slider */}
+        {/* Location Selection - New input */}
         <div className="mb-3 text-left">
-          <div className="relative mt-2">
+          <label className="block text-sm font-medium text-primary mb-1">
+            Your location
+          </label>
+          <div className="flex items-center mb-2">
             <input
-              type="range"
-              min="1"
-              max="50"
-              value={distance}
-              onChange={(e) => setDistance(Number(e.target.value))}
-              className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#00B14F]"
+              type="radio"
+              id="currentLocation"
+              name="locationType"
+              checked={useCurrentLocation}
+              onChange={() => setUseCurrentLocation(true)}
+              className="mr-2 accent-[#00B14F]"
             />
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
-              <span>1km</span>
-              <span>50km</span>
-            </div>
+            <label htmlFor="currentLocation" className="text-sm">Use current location</label>
           </div>
+          <div className="flex items-center mb-2">
+            <input
+              type="radio"
+              id="customLocation"
+              name="locationType"
+              checked={!useCurrentLocation}
+              onChange={() => setUseCurrentLocation(false)}
+              className="mr-2 accent-[#00B14F]"
+            />
+            <label htmlFor="customLocation" className="text-sm">Enter custom address</label>
+          </div>
+          
+          {!useCurrentLocation && (
+            <div className="relative mt-2">
+              <input
+                type="text"
+                id="address"
+                className="w-full p-2 pl-9 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
+                placeholder="Enter your address..."
+                value={customAddress}
+                onChange={(e) => setCustomAddress(e.target.value)}
+              />
+              <MapPinIcon className="h-5 w-5 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
+            </div>
+          )}
         </div>
     
         {/* Submit Button */}
@@ -105,6 +159,7 @@ const SearchForm = () => {
           Search Store
         </button>
       </div>
+      </motion.div>
     </div>
   );
 };
