@@ -9,8 +9,6 @@ import ProfileHeader from '../components/Profile/ProfileHeader';
 import NavigationTabs from '../components/Profile/NavigationTabs';
 import ProfileInfo from '../components/Profile/ProfileInfo';
 import SearchHistory from '../components/Profile/SearchHistory';
-import HistoryModal from '../components/Profile/HistoryModal';
-import StoreModal from '../components/Profile/StoreModal';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -18,10 +16,6 @@ const ProfilePage = () => {
   const [searchHistory, setSearchHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('profile');
-  const [selectedHistory, setSelectedHistory] = useState(null);
-  const [showHistoryModal, setShowHistoryModal] = useState(false);
-  const [selectedStore, setSelectedStore] = useState(null);
-  const [showStoreModal, setShowStoreModal] = useState(false);
 
   const fetchSearchHistory = async () => {
     try {
@@ -33,7 +27,7 @@ const ProfilePage = () => {
         return;
       }
       
-      const response = await fetch(`http://localhost:5000/api/search-history/${userId}`, {
+      const response = await fetch(`http://localhost:5000/user/history`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json',
@@ -45,8 +39,8 @@ const ProfilePage = () => {
         throw new Error('Failed to fetch search history');
       }
       
-      const data = await response.json();
-      setSearchHistory(data);
+      const res = await response.json();
+      setSearchHistory(res.data.history);
       setIsLoading(false);
     } catch (error) {
       console.error('Error fetching search history:', error);
@@ -56,12 +50,13 @@ const ProfilePage = () => {
 
   const clearSearchHistory = async () => {
     try {
-      const userId = user?.id || localStorage.getItem('userId');
+      const userId = user?.id;
       
       if (!userId) return;
       
-      const response = await fetch(`http://localhost:5000/api/search-history/${userId}`, {
+      const response = await fetch(`http://localhost:5000/user/history/clear`, {
         method: 'DELETE',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         }
@@ -135,25 +130,13 @@ const ProfilePage = () => {
                 openHistoryDetail={openHistoryDetail}
                 clearSearchHistory={clearSearchHistory}
                 navigate={navigate}
+                user={user}
+                setSearchHistory={setSearchHistory}
               />
             )}
           </div>
         </motion.div>
       </main>
-      
-      <HistoryModal
-        showHistoryModal={showHistoryModal}
-        selectedHistory={selectedHistory}
-        closeHistoryModal={closeHistoryModal}
-        openStoreDetail={openStoreDetail}
-        navigate={navigate}
-      />
-      
-      <StoreModal
-        showStoreModal={showStoreModal}
-        selectedStore={selectedStore}
-        closeStoreModal={closeStoreModal}
-      />
       
       <SimpleFooter />
     </div>
