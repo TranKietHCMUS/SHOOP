@@ -101,6 +101,7 @@ class StoreService:
         items = prompt_model.items
         product_names = [item.get("product_name") for item in items if item.get("product_name")]
         # Find stores within radius
+        print(product_names)
         stores = self.get_stores_within_radius(lat, lng, radius_km)
         if not stores:
             return []
@@ -108,13 +109,21 @@ class StoreService:
         # Obtain AI-based similar products per item (top 10 theo score)
         embeddings = self.ai_service.get_embeddings(product_names)
         similar_products = []
-        for idx, pname in enumerate(product_names):
-            sims = self.product_service.search_products([embeddings[idx]], [pname])
+        for idx, item in enumerate(items):
+            pname = item.get("product_name")
+            unit = item.get("unit")
+            print(unit)
+            print(pname)
+            sims = self.product_service.search_products([embeddings[idx]], [(pname, unit)])
+            
+
             if sims and isinstance(sims[0], list):
                 sims = sims[0]
-            sims = sorted(sims, key=lambda x: x.get('score', 0), reverse=True)[:10]
+            sims = sorted(sims, key=lambda x: x.get('score', 0), reverse=True)
             similar_products.append(sims)
+
         # Gom tất cả tên sản phẩm key từ similar_products (chỉ lấy tên, không mở rộng)
+        print(similar_products)
         all_similar_names = set()
         for sims in similar_products:
             all_similar_names.update([res.get("name") for res in sims if res.get("name")])
@@ -163,17 +172,16 @@ class StoreService:
             store_products = products_by_store.get(store_name, {})
             for info in product_items:
                 sim_names = info["similar_names"]
-                # Chỉ lấy đúng các sản phẩm có tên trong sim_names (exact match), tối đa 5 sản phẩm cho mỗi tên
                 candidates = []
                 for name in sim_names:
-                    candidates.extend(store_products.get(name, [])[:10])
+                    candidates.extend(store_products.get(name, []))
                 if candidates:
                     has_candidate = True
                 items_list.append({
                     "product_name": info["query_name"],
                     "quantity": info["quantity"],
                     "unit": info["unit"],
-                    "candidates": candidates[:10]  # tổng tối đa 5 sản phẩm cho mỗi item
+                    "candidates": candidates[:10] 
                 })
             if has_candidate:
                 store_copy = dict(store)
