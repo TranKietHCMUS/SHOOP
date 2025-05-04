@@ -48,7 +48,44 @@ class SearchService:
                     dist_mat[i][j] = int(d_km * 1000)  # meters
                     dur_mat[i][j] = int(dist_mat[i][j] / 8.33)
         return dist_mat, dur_mat
-
+    @staticmethod
+    def _reverse_geocode(lat: float, lng: float) -> str:
+        """Call Google Geocoding API to get address from lat/lng."""
+        api_key = getattr(Config, 'GGMAP_API_KEY', None)
+        if not api_key:
+            return f"({lat}, {lng})"
+        
+        url = (
+            "https://maps.googleapis.com/maps/api/geocode/json"
+            f"?latlng={lat},{lng}"
+            f"&key={api_key}"
+        )
+        try:
+            resp = requests.get(url, timeout=5)
+            resp.raise_for_status()  # sẽ throw nếu HTTP status != 200
+            data = resp.json()
+            
+            status = data.get('status', '')
+            if status != 'OK':
+                logging.warning("Geocoding API returned %s: %s", status, data.get('error_message'))
+                return f"({lat}, {lng})"
+            
+            results = data.get('results', [])
+            if not results:
+                logging.info("No results for %s,%s", lat, lng)
+                return f"({lat}, {lng})"
+            
+            return results[0].get('formatted_address', f"({lat}, {lng})")
+        
+        except requests.exceptions.RequestException as e:
+            logging.error("HTTP error during reverse geocode: %s", e)
+        except ValueError as e:
+            logging.error("Invalid JSON from Geocoding API: %s", e)
+        except Exception as e:
+            logging.exception("Unexpected error in _reverse_geocode")
+        
+        return f"({lat}, {lng})"
+    
     @staticmethod
     def _solve_tsp_ortools(
         locs: List[Tuple[float, float]],
@@ -159,7 +196,8 @@ class SearchService:
                         coordinates.append(info['coord'])
 
                 plans.append({
-                    'id': plan_id,
+                    'start': self._reverse_geocode(user_loc_valid[0], user_loc_valid[1]),
+                    'end': waypoints[-1] if waypoints else '',
                     'cost': round(total_price, 2),
                     'distance': round(dist, 2),
                     'duration': duration,
@@ -308,7 +346,7 @@ class SearchService:
             groups.append(group)
 
         # Delegate to existing get_top_k_plans
-        return self.get_shortest_distance_plans(
+        return self.get_top_k_plans(
             stores=stores_for_search,
             groups=groups,
             user_loc=user_loc
