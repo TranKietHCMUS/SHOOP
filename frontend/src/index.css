@@ -46,17 +46,15 @@
 .custom-scrollbar {
   max-height: 45vh;
   overflow-y: auto;
-  overflow-x: hidden; /* Ngăn cuộn ngang */
+  overflow-x: hidden; 
   background: white;
   border-radius: 1rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   
-  /* Tùy chỉnh thanh cuộn cho Firefox */
   scrollbar-width: thin;
   scrollbar-color: #00B14F #f1f1f1;
 }
 
-/* Tùy chỉnh thanh cuộn cho Chrome, Safari và các trình duyệt Webkit khác */
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
 }

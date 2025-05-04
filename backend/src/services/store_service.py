@@ -5,10 +5,11 @@ import re
 from time import time
 
 class StoreService:
-    def __init__(self, ai_service):
+    def __init__(self, ai_service=None, product_service=None):
         self.collection = db.get_collection("stores")
         self.product_collection = db.get_collection("products")
         self.ai_service = ai_service
+        self.product_service = product_service
         self._ensure_indexes()
     def _ensure_indexes(self):
         try:
@@ -108,7 +109,7 @@ class StoreService:
         embeddings = self.ai_service.get_embeddings(product_names)
         similar_products = []
         for idx, pname in enumerate(product_names):
-            sims = self.ai_service.search_products([embeddings[idx]], [pname])
+            sims = self.product_service.search_products([embeddings[idx]], [pname])
             if sims and isinstance(sims[0], list):
                 sims = sims[0]
             sims = sorted(sims, key=lambda x: x.get('score', 0), reverse=True)[:10]

@@ -24,9 +24,7 @@ const MapContainer = ({
   const isInitializedRef = useRef(false);
   const { isLoaded, error, googleApi } = useGoogleMapsApi();
 
-  // Cleanup function để xóa tất cả markers và shapes
   const cleanupMap = () => {
-    // Xóa user marker
     if (userMarkerRef.current) {
       userMarkerRef.current.setMap(null);
       userMarkerRef.current = null;

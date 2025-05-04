@@ -11,6 +11,7 @@ class Product:
         store_name: str,
         category: str,
         img_url: str,
+        vector: Optional[List[float]] = None,
         created_at: Optional[datetime] = None,
         updated_at: Optional[datetime] = None,
         id: str = None,
@@ -22,6 +23,7 @@ class Product:
         self.unit = unit
         self.category = category
         self.img_url = img_url
+        self.vector = vector if vector else []
         self.created_at = created_at or datetime.now()
         self.updated_at = updated_at or datetime.now()
 
@@ -33,10 +35,10 @@ class Product:
             "store_name": self.store_name,
             "category": self.category,
             "img_url": self.img_url,
+            "vector": self.vector,
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
         if self._id:
             result["_id"] = self._id
         return result
-    

@@ -28,6 +28,8 @@ export default function RouteInfo({ route }) {
   
   // Truncate long addresses
   const truncateAddress = (address, maxLength = 60) => {
+    if (!address) return '';
+    if (typeof address !== 'string') return address;
     if (address.length <= maxLength) return address;
     return `${address.substring(0, maxLength)}...`;
   };
@@ -68,11 +70,11 @@ export default function RouteInfo({ route }) {
           <div className="flex-1">
             <div className="mb-2">
               <p className="text-sm text-gray-500">Start</p>
-              <p className="font-medium">{truncateAddress(route.start)}</p>
+              <p className="font-medium">{truncateAddress(route.waypoints[0])}</p>
             </div>
             <div>
               <p className="text-sm text-gray-500">End</p>
-              <p className="font-medium">{truncateAddress(route.end)}</p>
+              <p title={route.waypoints[route.waypoints.length - 1]} className="font-medium">{truncateAddress(route.waypoints[route.waypoints.length - 1])}</p>
             </div>
           </div>
         </div>

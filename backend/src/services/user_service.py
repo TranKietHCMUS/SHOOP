@@ -10,14 +10,15 @@ from src.config import Config
 
 
 class UserService:  
-    def __init__(self, db, ai_service=None):
+    def __init__(self, db, ai_service=None, product_service=None):
         self.ai_service = ai_service
+        self.product_service = product_service
         self.collection = db.get_collection("users")
         self._ensure_indexes()
         
     def get_similar_products(self, user_products):
         embeddings = self.ai_service.get_embeddings(user_products)
-        results = self.ai_service.search_products(embeddings, user_products)
+        results = self.product_service.search_products(embeddings, user_products)
         final_results = []
         for i, res in enumerate(results):
             product_res = []
@@ -25,6 +26,13 @@ class UserService:
                 product_res.append({
                     "id": str(result['_id']),
                     "name": result['name'],
+                    "store_name": result['store_name'],
+                    "price": result['price'],
+                    "unit": result['unit'],
+                    "category": result['category'],
+                    "img_url": result['img_url'],
+                    "vs_score": result['vs_score'],
+                    "fts_score": result['fts_score'],
                     "score": result['score'],
                     "created_at": result['created_at'],
                     "updated_at": result['updated_at'],

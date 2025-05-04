@@ -4,8 +4,7 @@ from src.extensions import AI_MODELS, db
 from src.models.prompt_model import PromptModel
 
 class AIService:
-    def __init__(self, product_vec_service=None):
-        self.product_vec_service = product_vec_service
+    def __init__(self):
         self.sbert = AI_MODELS["sbert"]
         self.genai = AI_MODELS["genai"]
         
@@ -22,7 +21,8 @@ class AIService:
             - quantity: số lượng (là số nguyên)
             - unit: đơn vị tính (là chuỗi)
         - total_price: tổng giá tiền (là số thực)
-        Sản phẩm có thể là bất kì thứ gì đến từ siêu thị, cửa hàng tiện lợi, ...
+        Sản phẩm có thể là bất kì thứ gì đến từ siêu thị và cửa hàng tiện lợi, bao gồm thực phẩm, đồ uống, đồ dùng gia đình, đồ dùng cá nhân, và các sản phẩm khác.
+        - Đơn vị tính có thể là: cái, chai, gói, hộp, túi, kg, lít, gam, ml, viên, gói, thùng, vỉ, khay.
         Chỉ trả về kết quả dưới dạng nội dung JSON hợp lệ. Không thêm giải thích hay văn bản khác.
         Sau đây là văn bản:
         """
@@ -51,16 +51,4 @@ class AIService:
             print(f"Error getting embeddings: {e}")
             return np.array([])
 
-    def search_products(self, embeddings: np.ndarray, product_names: List[str]) -> List[List[Dict[str, Any]]]:
-        try:
-            results = []
-            for embedding, product_name in zip(embeddings, product_names):    
-                search_results = self.product_vec_service.search(
-                    query_vector=embedding.tolist(),
-                    product_name=product_name
-                )
-                results.append(search_results)
-            return results
-        except Exception as e:
-            print(f"Error searching products: {e}")
-            return []
+    
