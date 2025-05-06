@@ -25,30 +25,30 @@ class SearchService:
         # ... (logging info)
     
     @staticmethod    
-    def _reverse_geocode(lat: float, lng: float, user_agent: Optional[str] = None) -> str:
+    def _reverse_geocode(lat: float, lng: float) -> str:
         """Call OpenStreetMap Nominatim API to get address from lat/lng."""
         # Nominatim bắt buộc header User-Agent (hoặc email) để định danh client
         headers = {
-            "User-Agent": user_agent or "my-app/1.0 (your.email@example.com)"
+            "User-Agent": "ISHOOP/1.0 (phimhoathinh789@gmail.com)"  
         }
         url = "https://nominatim.openstreetmap.org/reverse"
         params = {
             "lat": lat,
-            "lng": lng,
-            "format": "json",
-            "addressdetails": 0,  # nếu bạn chỉ cần formatted string
+            "lon": lng,
+            "format": "jsonv2",        # jsonv2 cho cả structured và display_name
+            "addressdetails": 1        # nếu cần phân tách sâu hơn (thành phần địa chỉ)
         }
 
         try:
-            resp = requests.get(url, params=params, headers=headers, timeout=5)
+            resp = requests.get(url, params=params, headers=headers, timeout=1)
+            print(resp)
+
             resp.raise_for_status()
             data = resp.json()
-
             # nếu không có kết quả
             if "error" in data or "display_name" not in data:
                 logging.info("No reverse-geocode result for %s,%s: %s", lat, lng, data.get("error"))
                 return f"({lat}, {lng})"
-
             return data["display_name"]
 
         except requests.exceptions.RequestException as e:
@@ -244,9 +244,20 @@ class SearchService:
 
     @staticmethod
     def _get_location_address_helper(location_idx, data_model):
-        """Helper to get a 'name' or 'address' for a location index."""
+        """Always use _reverse_geocode for user location (location_idx == 0)."""
         if location_idx == 0:
-            return data_model['user_loc_info_orig'].get('address', "User Location")
+            user_loc = data_model['user_loc_info_orig']
+            lat = user_loc.get('lat')
+            lng = user_loc.get('lng')
+
+            if lat is not None and lng is not None:
+                try:
+                    lat_f = float(lat)
+                    lng_f = float(lng)
+                    return SearchService._reverse_geocode(lat_f, lng_f)
+                except Exception:
+                    pass
+            return "User Location"
         for store_id, loc_idx_val in data_model['store_location_indices_orig'].items():
             if loc_idx_val == location_idx:
                 return data_model['stores_info_orig'][store_id].get('address', store_id)
@@ -518,7 +529,7 @@ class SearchService:
         print("#######################")
         # 4. Delegate to the existing planner
 
-        self.distance_cost_per_km = distance_cost_per_km if distance_cost_per_km is not None else self.DEFAULT_DISTANCE_COST_PER_KM
+        self.distance_cost_per_km = 0
         return self.find_optimal_shopping_plan(
             stores_for_search=stores_for_search,
             required_item_groups=required_item_groups,
