@@ -1,6 +1,7 @@
 import math
 import itertools
 import requests
+import logging
 from typing import Dict, List, Tuple
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 from pydantic import ValidationError

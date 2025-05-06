@@ -10,5 +10,5 @@ product_service = ProductService(ai_service=ai_service)
 user_service = UserService(ai_service=ai_service, 
                            product_service=product_service,
                            db=db)
-store_service = StoreService(ai_service=ai_service)
+store_service = StoreService(ai_service=ai_service, product_service=product_service)
 redis_service = RedisService()

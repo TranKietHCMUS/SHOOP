@@ -14,12 +14,11 @@ class UserController:
         if not request:
             return jsonify({"error": "Missing request"}), 400
         try:
-            products, similar_products, quantity, total_price, stores = self.user_service.processing(request=request)
+            products, similar_products, quantity, total_price = self.user_service.processing(request=request)
             return jsonify({"products": products, 
                             "similar_products": similar_products, 
                             "quantity": quantity, 
-                            "total_price": total_price, 
-                            "stores": stores}), 200
+                            "total_price": total_price}), 200
         except ValueError as e:
             return jsonify({"error": "Invalid prompt: " + str(e)}), 400
         except Exception as e:

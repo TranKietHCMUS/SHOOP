@@ -16,9 +16,18 @@ class UserService:
         self.collection = db.get_collection("users")
         self._ensure_indexes()
         
-    def get_similar_products(self, user_products):
-        embeddings = self.ai_service.get_embeddings(user_products)
-        results = self.product_service.search_products(embeddings, user_products)
+    def get_similar_products(self, user_products_with_units, top_k=10):
+        # Extract product names for embedding generation (first item in each tuple)
+        product_names = [item[0] for item in user_products_with_units]
+        print(f"user_products_with_units: {user_products_with_units}")
+        # Generate embeddings for the product names only
+        embeddings = self.ai_service.get_embeddings(product_names)
+        
+        # Search for products with both name and unit
+        results = self.product_service.search_products(embeddings=embeddings, 
+                                                       product_items_with_units=user_products_with_units,
+                                                       top_k=top_k)
+        # print(f"Results: {results}")
         final_results = []
         for i, res in enumerate(results):
             product_res = []
@@ -33,6 +42,7 @@ class UserService:
                     "img_url": result['img_url'],
                     "vs_score": result['vs_score'],
                     "fts_score": result['fts_score'],
+                    "unit_score": result.get('unit_score', 0),
                     "score": result['score'],
                     "created_at": result['created_at'],
                     "updated_at": result['updated_at'],
@@ -40,17 +50,13 @@ class UserService:
             final_results.append(product_res)
         return final_results
 
-    def get_stores(self, products):
-        stores = []
-        # TODO: implement logic to search for stores
-        return stores
-
     def processing(self, request):
         prompt = request.get("prompt")
         expected_radius = request.get("expected_radius")
         user_location = request.get("user_location")
 
         prompt_instance = self.ai_service.process_prompt(prompt)
+        print(f"Prompt instance: {prompt_instance.__dict__}")
         items = prompt_instance.items
         if not items:
             raise ValueError("Error in prompting, prompt again")
@@ -60,11 +66,10 @@ class UserService:
         for item in items:
             products.append(item.get("product_name"))
             quantity.append((item.get("quantity"), item.get("unit")))
-            
-        similar_products = self.get_similar_products(products)
-        stores = self.get_stores(similar_products)
+        product_with_unit = [(item.get("product_name"), item.get("unit")) for item in items]
+        similar_products = self.get_similar_products(product_with_unit)
 
-        return products, similar_products, quantity, total_price, stores
+        return products, similar_products, quantity, total_price
 
     def _ensure_indexes(self):
         try:
