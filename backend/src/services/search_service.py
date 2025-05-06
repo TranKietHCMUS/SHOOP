@@ -2,12 +2,16 @@ import math
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 import logging
-from typing import Dict, List, Tuple, Set
+import requests
+from typing import Dict, List, Tuple, Set, Optional
 import re 
+from haversine import haversine  # Added import
+from src.config import Config
+
 logger = logging.getLogger(__name__)
 
 class SearchService:
-    # ... (DEFAULT_DISTANCE_COST_PER_KM, etc., and __init__ as before) ...
+    # Parameter to scale distance cost
     DEFAULT_DISTANCE_COST_PER_KM = 500
     DEFAULT_ITEM_PRICE_SCALE_FACTOR = 1
     DEFAULT_TIME_LIMIT_SECONDS = 3
@@ -19,24 +23,43 @@ class SearchService:
         self.time_limit_seconds = time_limit_seconds if time_limit_seconds is not None else self.DEFAULT_TIME_LIMIT_SECONDS
         self.average_speed_kmh = average_speed_kmh if average_speed_kmh is not None else self.DEFAULT_AVERAGE_SPEED_KMH
         # ... (logging info)
+    
+    @staticmethod    
+    def _reverse_geocode(lat: float, lng: float, user_agent: Optional[str] = None) -> str:
+        """Call OpenStreetMap Nominatim API to get address from lat/lng."""
+        # Nominatim bắt buộc header User-Agent (hoặc email) để định danh client
+        headers = {
+            "User-Agent": user_agent or "my-app/1.0 (your.email@example.com)"
+        }
+        url = "https://nominatim.openstreetmap.org/reverse"
+        params = {
+            "lat": lat,
+            "lng": lng,
+            "format": "json",
+            "addressdetails": 0,  # nếu bạn chỉ cần formatted string
+        }
 
-
-    @staticmethod
-    def _calculate_haversine_distance(lat1, lng1, lat2, lng2): # Giữ nguyên
-        R = 6371
         try:
-            lat1_rad, lng1_rad = math.radians(float(lat1)), math.radians(float(lng1))
-            lat2_rad, lng2_rad = math.radians(float(lat2)), math.radians(float(lng2))
-        except (ValueError, TypeError) as e:
-            logger.error(f"Invalid coordinates for Haversine: ({lat1},{lng1}) to ({lat2},{lng2}). Error: {e}")
-            return float('inf')
-        dlng, dlat = lng2_rad - lng1_rad, lat2_rad - lat1_rad
-        a = math.sin(dlat / 2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlng / 2)**2
-        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-        return R * c
+            resp = requests.get(url, params=params, headers=headers, timeout=5)
+            resp.raise_for_status()
+            data = resp.json()
 
-    # _prepare_data_model và _solve_with_or_tools giữ nguyên như phiên bản trước
-    # Quan trọng: Đảm bảo 'address' được lưu trong user_loc_info_orig và stores_info_orig
+            # nếu không có kết quả
+            if "error" in data or "display_name" not in data:
+                logging.info("No reverse-geocode result for %s,%s: %s", lat, lng, data.get("error"))
+                return f"({lat}, {lng})"
+
+            return data["display_name"]
+
+        except requests.exceptions.RequestException as e:
+            logging.error("HTTP error during OSM reverse geocode: %s", e)
+        except ValueError as e:
+            logging.error("Invalid JSON from Nominatim API: %s", e)
+        except Exception as e:
+            logging.exception("Unexpected error in _reverse_geocode")
+
+        return f"({lat}, {lng})"
+
     def _prepare_data_model(self, stores_input, user_loc_input, req_groups_input):
         data = {}
         locations = [] 
@@ -113,7 +136,8 @@ class SearchService:
         data['distance_matrix_scaled'] = [[0] * num_locs for _ in range(num_locs)]
         for i in range(num_locs):
             for j in range(i, num_locs): 
-                dist_km = self._calculate_haversine_distance(locations[i][0], locations[i][1], locations[j][0], locations[j][1])
+                # Use haversine library instead of custom function
+                dist_km = haversine(locations[i], locations[j])
                 scaled_dist = int(dist_km * self.distance_cost_per_km) if dist_km != float('inf') else 999999999 
                 data['distance_matrix_scaled'][i][j] = scaled_dist
                 data['distance_matrix_scaled'][j][i] = scaled_dist 
@@ -238,7 +262,7 @@ class SearchService:
 
     def _parse_solution(self, data_model, manager, routing, solution):
         if not solution:
-            # Trả về một list chứa một object lỗi theo định dạng yêu cầu
+            # Trả về một list chứa một object lỗi 
             return [{
                 'start': "N/A", 'end': "N/A", 'cost': 0, 'distance': 0, 'duration': 0,
                 'coordinates': [], 'waypoints': [],
@@ -246,7 +270,6 @@ class SearchService:
                 '_solver_status_code': routing.status() if routing else -1
             }]
 
-        # --- Reconstruct detailed_node_map for easy lookup of item/store details ---
         detailed_node_map_orig_price = {} # Maps OR-Tools node index to its details
         or_tools_node_idx_tracker = 1
         for store_id, store_info in data_model['stores_info_orig'].items():
@@ -267,7 +290,6 @@ class SearchService:
                         or_tools_node_idx_tracker += 1
                         break
         
-        # --- Initialize aggregates for the single trip object ---
         trip_coordinates = []
         trip_waypoints_addresses = []
         trip_purchased_items = [] # For total cost and coverage
@@ -305,12 +327,12 @@ class SearchService:
             from_routing_manager_idx = manager.NodeToIndex(from_or_tools_node_in_path)
             to_routing_manager_idx = manager.NodeToIndex(to_or_tools_node_in_path)
 
-            # Distance for this leg
+            # Distance 
             arc_dist_scaled = routing.GetArcCostForVehicle(from_routing_manager_idx, to_routing_manager_idx, 0)
             leg_distance_km = arc_dist_scaled / self.distance_cost_per_km if self.distance_cost_per_km else 0
             total_trip_distance_km += leg_distance_km
 
-            # Duration for this leg
+            # Duration 
             leg_duration_hours = leg_distance_km / self.average_speed_kmh if self.average_speed_kmh > 0 else 0
             leg_duration_seconds = int(leg_duration_hours * 3600)
             total_trip_duration_seconds += leg_duration_seconds
@@ -326,7 +348,6 @@ class SearchService:
                         "price_original": task_detail['price_original']
                     })
                     
-                    # Add coordinates and waypoint if this physical location hasn't been added *just before*
                     # This handles multiple tasks at the same physical store location
                     current_physical_loc_idx = task_detail['location_idx']
                     if current_physical_loc_idx != last_visited_physical_location_idx :
@@ -367,7 +388,7 @@ class SearchService:
             '_purchased_items_details': trip_purchased_items # For internal check
         }
         
-        # --- Coverage Check (for internal validation, can be moved to a summary if needed) ---
+        # --- Coverage Check  ---
         covered_groups_flags = [False] * len(data_model['req_groups_info_orig'])
         for item_info in trip_purchased_items:
             for i, group_set in enumerate(data_model['req_groups_info_orig']):
@@ -383,7 +404,6 @@ class SearchService:
         # The result is a list containing this single trip object
         return [final_trip_object]
 
-    # --- Public Method ---
     def find_optimal_shopping_plan(self, stores_for_search, required_item_groups, user_loc):
         logger.info("Received request for optimal shopping plan (single trip output).")
         # ... (input validation as before, returning [{_error_message:...}] on error) ...
@@ -448,7 +468,6 @@ class SearchService:
     ) -> List[dict]:
         """
         Accepts output of get_products_for_stores_within_radius (list of stores with address, lat, lng, items)
-        and computes top-k plans.
         """
         if not stores_list:
             return []
@@ -498,6 +517,8 @@ class SearchService:
         print(user_loc)
         print("#######################")
         # 4. Delegate to the existing planner
+
+        self.distance_cost_per_km = distance_cost_per_km if distance_cost_per_km is not None else self.DEFAULT_DISTANCE_COST_PER_KM
         return self.find_optimal_shopping_plan(
             stores_for_search=stores_for_search,
             required_item_groups=required_item_groups,
