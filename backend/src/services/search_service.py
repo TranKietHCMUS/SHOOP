@@ -625,5 +625,10 @@ class SearchService:
             required_item_groups=required_item_groups,
             user_loc=user_loc
         )
-
-        return [*first_way, *second_way]
+        self.distance_cost_per_km = 500000
+        third_way = self.find_optimal_shopping_plan(
+            stores_for_search=stores_for_search,
+            required_item_groups=required_item_groups,
+            user_loc=user_loc
+        )
+        return [*first_way, *second_way, *third_way]
