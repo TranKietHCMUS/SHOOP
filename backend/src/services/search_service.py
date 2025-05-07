@@ -626,4 +626,4 @@ class SearchService:
             user_loc=user_loc
         )
 
-        return first_way, second_way
+        return [*first_way, *second_way]
