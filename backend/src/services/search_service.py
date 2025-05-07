@@ -613,9 +613,17 @@ class SearchService:
         print("#######################")
         # 4. Delegate to the existing planner
 
-        self.distance_cost_per_km = 500
-        return self.find_optimal_shopping_plan(
+        self.distance_cost_per_km = 0
+        first_way = self.find_optimal_shopping_plan(
             stores_for_search=stores_for_search,
             required_item_groups=required_item_groups,
             user_loc=user_loc
         )
+        self.distance_cost_per_km = 500
+        second_way = self.find_optimal_shopping_plan(
+            stores_for_search=stores_for_search,
+            required_item_groups=required_item_groups,
+            user_loc=user_loc
+        )
+
+        return first_way, second_way
