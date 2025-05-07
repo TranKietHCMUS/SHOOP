@@ -8,7 +8,7 @@ from src.services.services import store_service, redis_service
 
 class SearchController:
     def __init__(self):
-        self.search_service = SearchService(lambda_dist=0.1, preselect_k=3, top_k=3)
+        self.search_service = SearchService()
         self.store_service = store_service
         self.redis_service = redis_service
 
