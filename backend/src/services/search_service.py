@@ -60,6 +60,39 @@ class SearchService:
 
         return f"({lat}, {lng})"
 
+    def _get_distance_matrix_ors(self, locations: list) -> list:
+        """
+        Call OpenRouteService API to get the distance matrix (in meters) for a list of (lat, lng) tuples.
+        Returns a 2D list of distances in kilometers.
+        """
+        api_key = getattr(Config, 'ORS_API_KEY', None)
+        if not api_key:
+            logger.error("OpenRouteService API key not found in Config.ORS_API_KEY")
+            raise Exception("ORS API key missing")
+        url = "https://api.openrouteservice.org/v2/matrix/driving-car"
+        headers = {
+            'Authorization': api_key,
+            'Content-Type': 'application/json'
+        }
+        coords = [[lng, lat] for lat, lng in locations]  # ORS expects [lng, lat]
+        payload = {
+            "locations": coords,
+            "metrics": ["distance"],
+            "units": "km"
+        }
+        try:
+            resp = requests.post(url, json=payload, headers=headers, timeout=10)
+            resp.raise_for_status()
+            data = resp.json()
+            if "distances" in data:
+                return data["distances"]
+            else:
+                logger.error(f"ORS matrix response missing 'distances': {data}")
+                raise Exception("ORS matrix response invalid")
+        except Exception as e:
+            logger.error(f"ORS matrix API error: {e}")
+            raise
+
     def _prepare_data_model(self, stores_input, user_loc_input, req_groups_input):
         data = {}
         locations = [] 
@@ -133,15 +166,38 @@ class SearchService:
         data['store_location_indices_orig'] = store_location_indices 
 
         num_locs = len(locations)
-        data['distance_matrix_scaled'] = [[0] * num_locs for _ in range(num_locs)]
-        for i in range(num_locs):
-            for j in range(i, num_locs): 
-                # Use haversine library instead of custom function
-                dist_km = haversine(locations[i], locations[j])
-                scaled_dist = int(dist_km * self.distance_cost_per_km) if dist_km != float('inf') else 999999999 
-                data['distance_matrix_scaled'][i][j] = scaled_dist
-                data['distance_matrix_scaled'][j][i] = scaled_dist 
-        
+        data['distance_matrix_physical_km'] = [[0.0] * num_locs for _ in range(num_locs)] # Ma trận mới
+        # --- Use OpenRouteService for distance matrix ---
+        try:
+            logger.info("Attempting to get distance matrix from OpenRouteService...")
+            ors_matrix_km = self._get_distance_matrix_ors(locations) # Giả sử hàm này trả về km
+            logger.info(f"ORS matrix received (sample row 0): {ors_matrix_km[0][:5] if ors_matrix_km else 'Empty'}")
+            
+            # Điền vào cả ma trận physical và ma trận scaled
+            data['distance_matrix_scaled'] = [[0] * num_locs for _ in range(num_locs)]
+            for r in range(num_locs):
+                for c in range(num_locs):
+                    dist_km_val = float(ors_matrix_km[r][c])
+                    data['distance_matrix_physical_km'][r][c] = dist_km_val
+                    data['distance_matrix_scaled'][r][c] = int(dist_km_val * self.distance_cost_per_km)
+            logger.info("Successfully processed ORS distance matrix.")
+            print(ors_matrix_km)
+        except Exception as e:
+            logger.error(f"Falling back to Haversine due to ORS error: {e}")
+            data['distance_matrix_scaled'] = [[0] * num_locs for _ in range(num_locs)]
+            for i in range(num_locs):
+                for j in range(i, num_locs):
+                    # Sử dụng haversine trực tiếp từ thư viện
+                    dist_km_val = haversine(locations[i], locations[j]) # locations[i] là (lat, lon)
+                    
+                    data['distance_matrix_physical_km'][i][j] = dist_km_val
+                    data['distance_matrix_physical_km'][j][i] = dist_km_val # Đối xứng
+
+                    scaled_dist = int(dist_km_val * self.distance_cost_per_km) if dist_km_val != float('inf') else 999999999
+                    data['distance_matrix_scaled'][i][j] = scaled_dist
+                    data['distance_matrix_scaled'][j][i] = scaled_dist
+            logger.info("Successfully processed Haversine distance matrix (fallback).")
+
         data['scaled_item_prices_at_nodes'] = [
             int(price * self.item_price_scale_factor) for price in data['item_prices_at_nodes_original']
         ]
@@ -303,101 +359,129 @@ class SearchService:
         
         trip_coordinates = []
         trip_waypoints_addresses = []
-        trip_purchased_items = [] # For total cost and coverage
-        total_trip_distance_km = 0
-        total_trip_duration_seconds = 0
-        
-        # Start of the trip
-        start_trip_location_idx = 0 # Always starts at user's location (depot location_idx)
+        trip_purchased_items = []
+        total_trip_distance_km_to_last_store = 0 # Đổi tên để rõ ràng
+        total_trip_duration_seconds_to_last_store = 0 # Đổi tên
+
+        start_trip_location_idx = 0 
         start_trip_address = self._get_location_address_helper(start_trip_location_idx, data_model)
         start_trip_coords = self._get_coordinates_helper(start_trip_location_idx, data_model)
         
         trip_coordinates.append(start_trip_coords)
         trip_waypoints_addresses.append(start_trip_address)
 
-        last_visited_physical_location_idx = start_trip_location_idx
+        last_visited_physical_location_idx_for_waypoint = start_trip_location_idx # Chỉ để quản lý waypoints
         
-        index = routing.Start(0)
-        item_cost_dim = routing.GetDimensionOrDie('ItemCost')
-
-        visited_or_tools_nodes_in_order = [] # Store OR-Tools node indices of the path
+        visited_or_tools_nodes_in_order = []
         temp_index = routing.Start(0)
         while not routing.IsEnd(temp_index):
             visited_or_tools_nodes_in_order.append(manager.IndexToNode(temp_index))
             temp_index = solution.Value(routing.NextVar(temp_index))
-        if routing.IsEnd(temp_index): # Add the actual end node (depot)
-             visited_or_tools_nodes_in_order.append(manager.IndexToNode(temp_index))
+        # KHÔNG thêm điểm cuối (depot) vào đây nếu không muốn tính chặng về
+        # visited_or_tools_nodes_in_order.append(manager.IndexToNode(temp_index)) # Dòng này có thể bỏ nếu không muốn xử lý chặng cuối cùng trong vòng lặp
 
 
-        # Iterate through the actual path taken (arcs/legs)
-        for i in range(len(visited_or_tools_nodes_in_order) -1):
-            from_or_tools_node_in_path = visited_or_tools_nodes_in_order[i]
-            to_or_tools_node_in_path = visited_or_tools_nodes_in_order[i+1]
+        last_store_physical_loc_idx = -1 # Sẽ lưu location_idx của cửa hàng cuối cùng ghé
+        last_store_address = start_trip_address # Mặc định nếu không ghé cửa hàng nào
+        last_store_item_purchase_node = -1 # OR-Tools node của task mua hàng cuối cùng
+
+
+        # Lặp qua các CHẶNG ĐƯỜNG (arcs) của lộ trình
+        # Nếu không muốn tính chặng cuối về depot, chỉ lặp đến trước chặng cuối
+        # num_arcs_to_consider = len(visited_or_tools_nodes_in_order) - 1
+        
+        # Xây dựng lại lộ trình từ solution để lấy các task thực sự
+        # Solution chứa một chuỗi các OR-Tools Node Indices
+        current_or_tools_idx = routing.Start(0)
+        route_nodes_from_solution = []
+        while not routing.IsEnd(current_or_tools_idx):
+            route_nodes_from_solution.append(manager.IndexToNode(current_or_tools_idx))
+            current_or_tools_idx = solution.Value(routing.NextVar(current_or_tools_idx))
+        # Thêm node cuối cùng (thường là depot)
+        route_nodes_from_solution.append(manager.IndexToNode(current_or_tools_idx))
+
+        logger.info(f"DEBUG: Full route nodes from OR-Tools solution: {route_nodes_from_solution}")
+
+        # Bây giờ lặp qua các CUNG ĐƯỜNG (legs) của lộ trình này
+        for i in range(len(route_nodes_from_solution) - 1):
+            from_or_tools_node_in_path = route_nodes_from_solution[i]
+            to_or_tools_node_in_path = route_nodes_from_solution[i+1] # Node tiếp theo trong lộ trình
             
-            # Get corresponding RoutingIndexManager indices for arc cost
-            from_routing_manager_idx = manager.NodeToIndex(from_or_tools_node_in_path)
-            to_routing_manager_idx = manager.NodeToIndex(to_or_tools_node_in_path)
+            # Nếu chặng này là từ cửa hàng cuối cùng về depot, thì không tính vào distance/duration
+            # Điều này xảy ra khi from_node là một task node, và to_node là depot VÀ nó là điểm cuối của route.
+            # Cách kiểm tra đơn giản hơn: nếu to_node là depot VÀ nó là node cuối cùng trong route_nodes_from_solution
+            # thì chặng này (i) là chặng về.
+            
+            is_last_leg_to_depot = False
+            if to_or_tools_node_in_path == data_model['depot'] and i == len(route_nodes_from_solution) - 2:
+                is_last_leg_to_depot = True
+                logger.info(f"DEBUG: Identified last leg to depot: from {from_or_tools_node_in_path} to {to_or_tools_node_in_path}. Skipping distance/duration for this leg.")
 
-            # Distance 
-            arc_dist_scaled = routing.GetArcCostForVehicle(from_routing_manager_idx, to_routing_manager_idx, 0)
-            leg_distance_km = arc_dist_scaled / self.distance_cost_per_km if self.distance_cost_per_km else 0
-            total_trip_distance_km += leg_distance_km
 
-            # Duration 
+            leg_distance_km = 0.0
+            if not is_last_leg_to_depot: # Chỉ tính khoảng cách nếu không phải chặng cuối về nhà
+                from_loc_idx = 0 if from_or_tools_node_in_path == data_model['depot'] else data_model['node_to_store_map'].get(from_or_tools_node_in_path)
+                to_loc_idx = 0 if to_or_tools_node_in_path == data_model['depot'] else data_model['node_to_store_map'].get(to_or_tools_node_in_path)
+
+                if from_loc_idx is not None and to_loc_idx is not None:
+                    leg_distance_km = data_model['distance_matrix_physical_km'][from_loc_idx][to_loc_idx]
+                    total_trip_distance_km_to_last_store += leg_distance_km
+                else:
+                    logger.warning(f"Could not map nodes to loc_idx for leg: {from_or_tools_node_in_path} -> {to_or_tools_node_in_path}")
+            
+            # Duration vẫn tính từ leg_distance_km (sẽ là 0 nếu is_last_leg_to_depot)
             leg_duration_hours = leg_distance_km / self.average_speed_kmh if self.average_speed_kmh > 0 else 0
             leg_duration_seconds = int(leg_duration_hours * 3600)
-            total_trip_duration_seconds += leg_duration_seconds
+            if not is_last_leg_to_depot:
+                total_trip_duration_seconds_to_last_store += leg_duration_seconds
 
-            # If the 'to_node' is a task node (a store where we might buy something)
-            if to_or_tools_node_in_path != data_model['depot'] and not (routing.IsEnd(to_routing_manager_idx) and to_or_tools_node_in_path == data_model['depot']):
+            # Xử lý việc mua hàng và waypoints (logic này vẫn giữ nguyên)
+            if to_or_tools_node_in_path != data_model['depot']: # Đây là một task node (cửa hàng)
                 task_detail = detailed_node_map_orig_price.get(to_or_tools_node_in_path)
                 if task_detail:
-                    # Add item to purchased list
                     trip_purchased_items.append({
                         "item_id": task_detail['item_id'],
                         "store_id": task_detail['store_id'],
                         "price_original": task_detail['price_original']
                     })
                     
-                    # This handles multiple tasks at the same physical store location
                     current_physical_loc_idx = task_detail['location_idx']
-                    if current_physical_loc_idx != last_visited_physical_location_idx :
+                    # Cập nhật thông tin cửa hàng cuối cùng
+                    last_store_physical_loc_idx = current_physical_loc_idx
+                    last_store_address = self._get_location_address_helper(current_physical_loc_idx, data_model)
+                    last_store_item_purchase_node = to_or_tools_node_in_path
+
+
+                    if current_physical_loc_idx != last_visited_physical_location_idx_for_waypoint:
                         trip_coordinates.append(self._get_coordinates_helper(current_physical_loc_idx, data_model))
                         trip_waypoints_addresses.append(self._get_location_address_helper(current_physical_loc_idx, data_model))
-                        last_visited_physical_location_idx = current_physical_loc_idx
-            
-            # If the 'to_node' is the final depot (end of entire route)
-            elif routing.IsEnd(to_routing_manager_idx) and to_or_tools_node_in_path == data_model['depot']:
-                # The depot is the last physical stop. Its coordinate and waypoint should already be
-                # the last one if the route ends there. If it's different from the last store, add it.
-                depot_loc_idx = 0
-                if depot_loc_idx != last_visited_physical_location_idx:
-                    trip_coordinates.append(self._get_coordinates_helper(depot_loc_idx, data_model))
-                    trip_waypoints_addresses.append(self._get_location_address_helper(depot_loc_idx, data_model))
-                    last_visited_physical_location_idx = depot_loc_idx
+                        last_visited_physical_location_idx_for_waypoint = current_physical_loc_idx
+            # Không cần xử lý đặc biệt cho to_node là depot cuối cùng ở đây nữa vì đã check is_last_leg_to_depot
 
-
-        # --- Total item cost for the entire trip ---
         total_trip_items_cost_original = sum(item['price_original'] for item in trip_purchased_items)
         
-        # Determine the 'end' address of the entire trip
-        # This is the address of the last *physical location* visited
-        # If the list of waypoints is > 1, the last one is the end. Otherwise, it's the start.
-        end_trip_address = trip_waypoints_addresses[-1] if len(trip_waypoints_addresses) > 1 else start_trip_address
+        # End address giờ sẽ là địa chỉ của cửa hàng cuối cùng đã ghé
+        # Hoặc nếu không ghé cửa hàng nào, nó sẽ là địa chỉ bắt đầu
+        end_trip_address = last_store_address if last_store_physical_loc_idx != -1 else start_trip_address
+        if not trip_purchased_items: # Nếu không mua gì cả, điểm kết thúc là điểm bắt đầu
+             end_trip_address = start_trip_address
+             # Trong trường hợp này, trip_coordinates và trip_waypoints_addresses chỉ chứa điểm bắt đầu
+             # total_trip_distance_km_to_last_store và duration sẽ là 0.
 
-        # --- Construct the single trip object ---
+
         final_trip_object = {
             'start': start_trip_address,
-            'end': end_trip_address,
+            'end': end_trip_address, # Địa chỉ của cửa hàng cuối cùng
             'cost': round(total_trip_items_cost_original, 2),
-            'distance': round(total_trip_distance_km, 2),
-            'duration': total_trip_duration_seconds,
-            'coordinates': trip_coordinates,
-            'waypoints': trip_waypoints_addresses,
-            '_solver_objective_scaled': solution.ObjectiveValue(), # For debug
-            '_coverage_check': {}, # For internal check, not part of direct output
-            '_purchased_items_details': trip_purchased_items # For internal check
+            'distance': round(total_trip_distance_km_to_last_store, 2), # Khoảng cách đến cửa hàng cuối
+            'duration': total_trip_duration_seconds_to_last_store, # Thời gian đến cửa hàng cuối
+            'coordinates': trip_coordinates, # Vẫn bao gồm tất cả các điểm đã ghé
+            'waypoints': trip_waypoints_addresses, # Vẫn bao gồm tất cả các điểm đã ghé
+            '_solver_objective_scaled': solution.ObjectiveValue(), 
+            '_coverage_check': {}, 
+            '_purchased_items_details': trip_purchased_items
         }
+
         
         # --- Coverage Check  ---
         covered_groups_flags = [False] * len(data_model['req_groups_info_orig'])
@@ -529,7 +613,7 @@ class SearchService:
         print("#######################")
         # 4. Delegate to the existing planner
 
-        self.distance_cost_per_km = 0
+        self.distance_cost_per_km = 500
         return self.find_optimal_shopping_plan(
             stores_for_search=stores_for_search,
             required_item_groups=required_item_groups,
