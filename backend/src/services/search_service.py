@@ -26,38 +26,39 @@ class SearchService:
     
     @staticmethod    
     def _reverse_geocode(lat: float, lng: float) -> str:
-        """Call OpenStreetMap Nominatim API to get address from lat/lng."""
-        # Nominatim bắt buộc header User-Agent (hoặc email) để định danh client
+        """Call OpenRouteService Reverse Geocoding API to get address from lat/lng."""
+        from src.config import Config
+        api_key = getattr(Config, 'ORS_API_KEY', None)
+        if not api_key:
+            logging.error("OpenRouteService API key not found in Config.ORS_API_KEY")
+            return f"({lat}, {lng})"
+        url = "https://api.openrouteservice.org/geocode/reverse"
         headers = {
-            "User-Agent": "ISHOOP/1.0 (phimhoathinh789@gmail.com)"  
+            "Authorization": api_key,
+            "Accept": "application/json"
         }
-        url = "https://nominatim.openstreetmap.org/reverse"
         params = {
-            "lat": lat,
-            "lon": lng,
-            "format": "jsonv2",        # jsonv2 cho cả structured và display_name
-            "addressdetails": 1        # nếu cần phân tách sâu hơn (thành phần địa chỉ)
+            "point.lat": lat,
+            "point.lon": lng,
+            "size": 1
         }
-
         try:
-            resp = requests.get(url, params=params, headers=headers, timeout=1)
-            print(resp)
-
+            resp = requests.get(url, params=params, headers=headers, timeout=2)
             resp.raise_for_status()
             data = resp.json()
-            # nếu không có kết quả
-            if "error" in data or "display_name" not in data:
-                logging.info("No reverse-geocode result for %s,%s: %s", lat, lng, data.get("error"))
-                return f"({lat}, {lng})"
-            return data["display_name"]
-
+            features = data.get("features", [])
+            if features and "properties" in features[0]:
+                address = features[0]["properties"].get("label")
+                if address:
+                    return address
+            logging.info("No reverse-geocode result for %s,%s: %s", lat, lng, data)
+            return f"({lat}, {lng})"
         except requests.exceptions.RequestException as e:
-            logging.error("HTTP error during OSM reverse geocode: %s", e)
+            logging.error("HTTP error during ORS reverse geocode: %s", e)
         except ValueError as e:
-            logging.error("Invalid JSON from Nominatim API: %s", e)
+            logging.error("Invalid JSON from ORS API: %s", e)
         except Exception as e:
             logging.exception("Unexpected error in _reverse_geocode")
-
         return f"({lat}, {lng})"
 
     def _get_distance_matrix_ors(self, locations: list) -> list:
