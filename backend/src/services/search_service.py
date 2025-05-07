@@ -474,7 +474,7 @@ class SearchService:
             'end': end_trip_address, # Địa chỉ của cửa hàng cuối cùng
             'cost': round(total_trip_items_cost_original, 2),
             'distance': round(total_trip_distance_km_to_last_store, 2), # Khoảng cách đến cửa hàng cuối
-            'duration': total_trip_duration_seconds_to_last_store, # Thời gian đến cửa hàng cuối
+            'duration': int(total_trip_duration_seconds_to_last_store/60), # Thời gian đến cửa hàng cuối
             'coordinates': trip_coordinates, # Vẫn bao gồm tất cả các điểm đã ghé
             'waypoints': trip_waypoints_addresses, # Vẫn bao gồm tất cả các điểm đã ghé
             '_solver_objective_scaled': solution.ObjectiveValue(), 
