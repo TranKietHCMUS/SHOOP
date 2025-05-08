@@ -3,13 +3,16 @@ from src.extensions import db
 from src.services.ai_service import AIService
 import re
 from time import time
+import json # Added import
+from src.services.redis_service import RedisService # Added import
 
 class StoreService:
-    def __init__(self, ai_service=None, product_service=None):
+    def __init__(self, ai_service=None, product_service=None, redis_service=None): # Added redis_service
         self.collection = db.get_collection("stores")
         self.product_collection = db.get_collection("products")
         self.ai_service = ai_service
         self.product_service = product_service
+        self.redis_service = redis_service if redis_service else RedisService() # Initialize RedisService
         self._ensure_indexes()
     def _ensure_indexes(self):
         try:
@@ -109,22 +112,49 @@ class StoreService:
         # Prepare product items with units for batch processing
         product_items_with_units = []
         if items:
-            product_items_with_units = [
+
+            product_items_with_units = sorted([ # Sort for consistent cache key
                 (item.get("product_name"), item.get("unit"))
                 for item in items if item.get("product_name")
-            ]
+            ])
 
         similar_products_by_item = [] # This will be a list of lists of similar product dicts
+        raw_search_results = None
+
         if product_items_with_units:
-            product_names_for_embedding = [item[0] for item in product_items_with_units]
-            embeddings = self.ai_service.get_embeddings(product_names_for_embedding)
+            # Create cache key
+            cache_key_parts = []
+            for name, unit in product_items_with_units:
+                cache_key_parts.append(f"{name or ''}_{unit or ''}")
             
-            # Call product_service.search_products once for all items
-            raw_search_results = self.product_service.search_products(
-                embeddings=embeddings,
-                product_items_with_units=product_items_with_units,
-                top_k=10 # Get top 10 similar products per item
-            )
+            # More robust cache key generation
+            cache_key_string = "|".join(cache_key_parts)
+            cache_key = f"product_search_cache_v3:{cache_key_string}"
+
+            # Try to get from Redis
+            cached_results = self.redis_service.get_json(cache_key)
+
+            if cached_results is not None:
+                print(f"Cache HIT for key: {cache_key}")
+                raw_search_results = cached_results
+            else:
+                print(f"Cache MISS for key: {cache_key}")
+                product_names_for_embedding = [item[0] for item in product_items_with_units]
+                embeddings = self.ai_service.get_embeddings(product_names_for_embedding)
+                
+                # Call product_service.search_products once for all items
+                raw_search_results = self.product_service.search_products(
+                    embeddings=embeddings,
+                    product_items_with_units=product_items_with_units,
+                    top_k=10 # Get top 10 similar products per item
+                )
+                print(f"Raw search results from product_service") # Log raw search results
+                if raw_search_results is not None: # Only cache if results are not None
+                    try:
+                        self.redis_service.set_json(cache_key, raw_search_results, ex=86400) # Cache for 1 day
+                        print(f"Successfully cached results for key: {cache_key}")
+                    except TypeError as e:
+                        print(f"Error serializing results for Redis: {e}. Data: ") # Log the data that caused error
 
             if raw_search_results:
                 for single_item_sim_prods in raw_search_results:
@@ -139,8 +169,7 @@ class StoreService:
         else: # No product items from prompt
             if items: # if items list exists but resulted in no product_items_with_units (e.g. all names were None)
                  similar_products_by_item = [[] for _ in items]
-
-        print(similar_products_by_item)
+                
         # Gom tất cả tên sản phẩm (original query names + similar names) for DB query
         all_product_names_for_db_query = set()
         for i, item_data in enumerate(items):
