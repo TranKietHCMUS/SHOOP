@@ -559,77 +559,120 @@ class SearchService:
 
     def get_plans_from_nearby(
         self,
-        stores_list: List[dict],
-        user_loc: Tuple[float, float]
+        stores_list: List[dict],  
+        user_loc_tuple: Tuple[float, float] 
     ) -> List[dict]:
-        """
-        Accepts output of get_products_for_stores_within_radius (list of stores with address, lat, lng, items)
-        """
         if not stores_list:
+            logger.warning("get_plans_from_nearby: Empty stores_list provided.")
             return []
 
-        # 1. Filter out stores without any candidates for all items
-        filtered_stores = []
-        for store in stores_list:
-            items = store.get("items", [])
-            if all(info.get("candidates") for info in items):
-                filtered_stores.append(store)
-        if not filtered_stores:
+        original_product_groups_structure = [] # Lưu lại cấu trúc product_name và candidates ban đầu
+        if stores_list:
+            for item_info_template in stores_list[0].get("items", []):
+                product_name_needed = item_info_template.get("product_name")
+                if product_name_needed:
+                    original_product_groups_structure.append({
+                        "product_name": product_name_needed,
+                        "candidates_names": set() # Sẽ thu thập tất cả candidate names cho product_name này
+                    })
+        
+        if not original_product_groups_structure:
+            logger.warning("get_plans_from_nearby: Could not determine required product groups from stores_list.")
             return []
 
-        # 2. Build stores_for_search in the desired format
+        # --- Xây dựng stores_for_search và thu thập tất cả candidate names cho mỗi product_name ---
         stores_for_search = {}
-        for idx, store in enumerate(filtered_stores, start=1):
-            # Create a unique key per store (e.g., "WinMart_1", "WinMart_2", ...)
-            base_name = store.get("address")
-            key = base_name
-            lat = store.get("lat")
-            lng = store.get("lng")
-            stores_for_search[key] = {
-                "lat": lat,
-                "lng": lng,
-                "items": {}
-            }
-            # Flatten each candidate into the items dict
-            for info in store.get("items", []):
-                qty = info.get("quantity", 1)
-                for candidate in info.get("candidates", []):
-                    item_key = candidate.get("name")  # keep original name
-                    price = (candidate.get("price", 0) or 0) * qty
-                    stores_for_search[key]["items"][item_key] = price
+        all_candidates_for_product_name_map: Dict[str, Set[str]] = {
+            pg['product_name']: set() for pg in original_product_groups_structure
+        }
 
-        # 3. Build required_item_groups: group candidate names by product_name
-        first_store = filtered_stores[0]
+        for store_data_from_input in stores_list:
+            store_address = store_data_from_input.get("address")
+            if not store_address:
+                logger.warning(f"Skipping store due to missing address (used as key): {store_data_from_input}")
+                continue
+            
+            store_key = store_address 
+            lat = store_data_from_input.get("lat")
+            lng = store_data_from_input.get("lng")
+
+            if lat is None or lng is None:
+                logger.warning(f"Skipping store {store_key} due to missing lat/lng.")
+                continue
+            
+            current_store_items_for_search = {}
+            has_at_least_one_valid_item_for_needed_groups = False
+
+            # Duyệt qua các product_group mà người dùng CẦN (từ original_product_groups_structure)
+            for needed_pg_info in original_product_groups_structure:
+                needed_product_name = needed_pg_info["product_name"]
+                
+                # Tìm product_group tương ứng trong cửa hàng hiện tại
+                store_pg_data = next((item_grp for item_grp in store_data_from_input.get("items", [])
+                                      if item_grp.get("product_name") == needed_product_name), None)
+                
+                if store_pg_data and store_pg_data.get("candidates"):
+                    qty = store_pg_data.get("quantity", 1)
+                    for candidate in store_pg_data.get("candidates", []):
+                        candidate_name = candidate.get("name")
+                        candidate_price = candidate.get("price", 0) or 0
+                        if candidate_name:
+                            current_store_items_for_search[candidate_name] = candidate_price * qty
+                            all_candidates_for_product_name_map[needed_product_name].add(candidate_name)
+                            has_at_least_one_valid_item_for_needed_groups = True
+            
+            if has_at_least_one_valid_item_for_needed_groups and current_store_items_for_search:
+                 stores_for_search[store_key] = {
+                    "lat": lat,
+                    "lng": lng,
+                    "items": current_store_items_for_search
+                }
+            else:
+                logger.info(f"Store {store_key} does not offer any items for the required product groups or has no items. Skipping.")
+
+
+        if not stores_for_search:
+            logger.warning("get_plans_from_nearby: No stores left after filtering and processing for required items.")
+            return []
+
+        # --- Xây dựng required_item_groups từ all_candidates_for_product_name_map ---
         required_item_groups = []
-        for info in first_store.get("items", []):
-            group = {c.get("name") for c in info.get("candidates", [])}
-            required_item_groups.append(group)
-        user_loc={"lat": user_loc[0], "lng": user_loc[1]}
-        print("#######################")
-        print(stores_for_search)
-        print("#######################")
-        print(required_item_groups)
-        print("#######################")
-        print(user_loc)
-        print("#######################")
-        # 4. Delegate to the existing planner
+        for needed_pg_info in original_product_groups_structure:
+            product_name = needed_pg_info["product_name"]
+            candidate_set_for_this_product = all_candidates_for_product_name_map.get(product_name)
+            if candidate_set_for_this_product: # Chỉ thêm group nếu có ít nhất 1 candidate cho product_name đó
+                required_item_groups.append(candidate_set_for_this_product)
+            else:
+                # Điều này có nghĩa là không có cửa hàng nào cung cấp BẤT KỲ candidate nào cho product_name này
+                logger.error(f"CRITICAL: No candidates found across ALL processed stores for required product_name: '{product_name}'. Plan will be infeasible.")
+                # Bạn có thể muốn trả về lỗi ở đây ngay lập tức
+                return [{
+                    '_error_message': f"No items available anywhere for the product group: '{product_name}'.",
+                    # ... (các trường lỗi khác)
+                }]
 
-        self.distance_cost_per_km = 0
-        first_way = self.find_optimal_shopping_plan(
-            stores_for_search=stores_for_search,
-            required_item_groups=required_item_groups,
-            user_loc=user_loc
-        )
-        self.distance_cost_per_km = 500
-        second_way = self.find_optimal_shopping_plan(
-            stores_for_search=stores_for_search,
-            required_item_groups=required_item_groups,
-            user_loc=user_loc
-        )
-        self.distance_cost_per_km = 500000
-        third_way = self.find_optimal_shopping_plan(
-            stores_for_search=stores_for_search,
-            required_item_groups=required_item_groups,
-            user_loc=user_loc
-        )
-        return [*first_way, *second_way, *third_way]
+
+        user_loc_for_solver = {"lat": user_loc_tuple[0], "lng": user_loc_tuple[1]}
+        
+        logger.debug("--- Prepared for find_optimal_shopping_plan ---")
+        logger.debug(f"stores_for_search: {stores_for_search}")
+        logger.debug(f"required_item_groups: {required_item_groups}")
+        logger.debug(f"user_loc_for_solver: {user_loc_for_solver}")
+        logger.debug("-------------------------------------------------")
+
+
+        # --- Gọi find_optimal_shopping_plan nhiều lần với distance_cost_per_km khác nhau ---
+        results = []
+        distance_costs_to_try = [0, 500, 500000] # Các giá trị bạn muốn thử
+
+        for cost_per_km in distance_costs_to_try:
+            self.distance_cost_per_km = cost_per_km # Cập nhật cho instance
+            logger.info(f"\n--- Finding plan with DISTANCE_COST_PER_KM = {self.distance_cost_per_km} ---")
+            plan = self.find_optimal_shopping_plan(
+                stores_for_search=stores_for_search,
+                required_item_groups=required_item_groups,
+                user_loc=user_loc_for_solver
+            )
+            results.extend(plan) 
+
+        return results
