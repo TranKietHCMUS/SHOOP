@@ -30,7 +30,7 @@ class SearchController:
 
         # cache in redis
         key = f"user:{g.user_id}:data"
-        # redis_service.update_latest_plans(key, plans)
+        redis_service.update_latest_plans(key, plans)
         
         return jsonify(plans), 200
 
