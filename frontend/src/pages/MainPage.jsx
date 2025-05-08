@@ -16,7 +16,6 @@ const MapSection = React.memo(({
   radius,
   userLocation 
 }) => {
-  console.log('MapSection received userLocation:', userLocation);
   return (
     <div className="absolute inset-0">
       <MapContainer
@@ -41,6 +40,9 @@ const MainPage = () => {
   const [isProcessing, setIsProcessing] = useState(true);
   const routePolylinesRef = useRef([]);
   const { isLoaded, error, googleApi } = useGoogleMapsApi(); // Use the Google Maps API hook
+  const routeColorsRef = useRef({});
+  // Thêm ref để theo dõi mặc dù lưu trữ màu ban đầu của route
+  const originalRouteColorsRef = useRef({});
 
   const [currentPhase, setCurrentPhase] = useState(1);
   const [selectedStore, setSelectedStore] = useState(null);
@@ -84,7 +86,6 @@ const MainPage = () => {
           });
         });
         
-        console.log('Custom address geocoded:', fetchedLocation);
         setUserLocation(fetchedLocation);
       }
       else {
@@ -110,13 +111,12 @@ const MainPage = () => {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        console.log('User location obtained:', fetchedLocation);
         setUserLocation(fetchedLocation);
       }
       // Bước 2: Gọi API với vị trí đã lấy được
       console.log('Calling API with:', { searchData, user_location: fetchedLocation });
       setIsProcessing(true);
-      const response = await fetch('http://127.0.0.1:5000/api/search/nearby', {
+      const response = await fetch('http://localhost:5000/api/search/nearby', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -181,9 +181,8 @@ const MainPage = () => {
 
   const handleNextPhase = useCallback(async () => {
     setIsProcessing(true);
-    console.log('User location handleNextPhase:', userLocation);
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/search/plans', {
+      const response = await fetch('http://localhost:5000/api/search/plans', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -199,20 +198,23 @@ const MainPage = () => {
         throw new Error('Error in API call');
       }
       const data = await response.json();
-      console.log('Routes PHASE 2:', data);
       setRoutes(data);
       setCurrentPhase(2);
       setSelectedStore(null);
       setActiveTab('route');
       setIsProcessing(false);
-      toast.success('Found routes!', {
-        duration: 3000,
-        position: 'top-center',
-        style: {
-          background: '#00B14F',
-          color: '#fff',
-        },
-      });
+      if (data[0]._error_message) {
+        toast.error(data[0]._error_message, {
+          duration: 3000,
+          position: 'top-center',
+        });
+      }
+      else {
+        toast.success('Found routes!', {
+          duration: 3000,
+          position: 'top-center',
+        });
+      }
     } catch (error) {
       toast.error(`An error: "${error}" occurred while finding routes. Please try again!`, {
         duration: 3000,
@@ -245,9 +247,7 @@ const MainPage = () => {
     const directionsService = new googleApi.maps.DirectionsService();
     const renderedRoutes = [];
   
-    // Clear existing polylines directly rather than using state
     if (map) {
-      // Remove existing polylines if they exist in a ref
       if (routePolylinesRef.current && routePolylinesRef.current.length > 0) {
         routePolylinesRef.current.forEach(routeData => {
           if (routeData.path) {
@@ -261,8 +261,21 @@ const MainPage = () => {
       }
     }
   
+    const routeColors = [
+      '#FF4500',
+      '#4285F4', 
+      '#9C27B0'
+    ];
+    
     routesToRender.forEach((route, index) => {
-      console.log(`Rendering route ${route.id}: ${route}`);
+      if (!originalRouteColorsRef.current[route.id]) {
+        const colorIndex = index % routeColors.length;
+        const routeColor = routeColors[colorIndex];
+        originalRouteColorsRef.current[route.id] = routeColor;
+      }
+    });
+  
+    routesToRender.forEach((route, index) => {
       if (!route || !Array.isArray(route.coordinates) || route.coordinates.length < 2) {
         console.log("Invalid route:", route);
         return;
@@ -271,12 +284,12 @@ const MainPage = () => {
       const origin = route.coordinates[0];
       const destination = route.coordinates[route.coordinates.length - 1];
       const waypoints = route.waypoints
-      .slice(1) // Skip the first waypoint if it's the same as origin
+      .slice(1) 
       .map(address => ({
         location: address,
         stopover: true,
       }));     
-      console.log(`Origin: ${JSON.stringify(origin)}, Destination: ${JSON.stringify(destination)}, Waypoints: ${JSON.stringify(waypoints)}`);
+      
       directionsService.route(
         {
           origin: origin,
@@ -288,16 +301,11 @@ const MainPage = () => {
         (result, status) => {
           if (status === googleApi.maps.DirectionsStatus.OK && result.routes.length > 0) {
             const isSelected = selectedRoute && selectedRoute.id === route.id;
-            let strokeColor;
-            if (isSelected) {
-              strokeColor = '#00B14F'; // Green for selected
-            } else if (index === 0) {
-              strokeColor = '#FF4500'; // Orange-red for first route
-            } else {
-              strokeColor = '#4285F4'; // Blue for other routes
-            }
             
-            // Base styling
+            const originalColor = originalRouteColorsRef.current[route.id];
+            
+            const strokeColor = isSelected ? '#00B14F' : originalColor;
+
             const zIndex = isSelected ? 1000 : 900 - index;
             const strokeWeight = isSelected ? 10 : 6;
             
@@ -314,15 +322,13 @@ const MainPage = () => {
               clickable: true
             });
             
-            // Add hover effect to route
             const hoverWeight = isSelected ? 12 : 9;
             
-            // Add mouse listeners for hover effects
             googleApi.maps.event.addListener(path, 'mouseover', () => {
               path.setOptions({
                 strokeWeight: hoverWeight,
                 strokeOpacity: 0.9,
-                zIndex: 1001 // Ensure hovered route is on top
+                zIndex: 1001 
               });
             });
             
@@ -334,18 +340,13 @@ const MainPage = () => {
               });
             });
   
-            // Click handler - show sidebar with route info
-            const listener = googleApi.maps.event.addListener(path, 'click', () => {
-              console.log("Route clicked:", route.id);
-              
-              // Highlight the route even more on click
+            const listener = googleApi.maps.event.addListener(path, 'click', () => {              
               path.setOptions({
                 strokeWeight: hoverWeight,
                 strokeOpacity: 1,
                 zIndex: 1001
               });
               
-              // After a short delay, reduce the highlight a bit but keep it visible
               setTimeout(() => {
                 if (path) {
                   path.setOptions({
@@ -355,13 +356,11 @@ const MainPage = () => {
                 }
               }, 300);
               
-              // Show the route details in sidebar
               handleRouteClick(route);
-              setIsSidebarCollapsed(false); // Ensure sidebar is visible
+              setIsSidebarCollapsed(false); 
             });
   
             renderedRoutes.push({ path, listener });
-            // Also store in ref for cleanup
             routePolylinesRef.current.push({ path, listener });
           } else {
             console.warn('Directions request failed:', status);
@@ -373,10 +372,8 @@ const MainPage = () => {
     return renderedRoutes;
   }, [handleRouteClick, selectedRoute, setIsSidebarCollapsed]);
   
-  // Add this useEffect in your component to handle cleanup when component unmounts
   useEffect(() => {
     return () => {
-      // Cleanup polylines when component unmounts
       if (routePolylinesRef.current && routePolylinesRef.current.length > 0) {
         routePolylinesRef.current.forEach(routeData => {
           if (routeData.path) {
@@ -392,7 +389,6 @@ const MainPage = () => {
   }, []);
   
 
-  // Memoize sidebar props
   const sidebarProps = useMemo(() => ({
     currentPhase,
     selectedStore,
@@ -414,10 +410,6 @@ const MainPage = () => {
   const mapSectionProps = useMemo(() => {
     // Chỉ truyền stores từ kết quả tìm kiếm API
      const storesToShow = searchResults || [];
-    console.log('Updating mapSectionProps with userLocation:', userLocation);
-    console.log('Stores being passed to MapSection:', storesToShow);
-     console.log('Routes being passed to MapSection:', routes);
-
     return {
       stores: storesToShow, // Sử dụng stores từ API
       radius: parseFloat(searchData.expected_radius) * 1000, 

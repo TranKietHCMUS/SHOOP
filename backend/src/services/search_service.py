@@ -665,7 +665,7 @@ class SearchService:
         results = []
         distance_costs_to_try = [0, 500, 500000] # Các giá trị bạn muốn thử
 
-        for cost_per_km in distance_costs_to_try:
+        for i, cost_per_km in enumerate(distance_costs_to_try):
             self.distance_cost_per_km = cost_per_km # Cập nhật cho instance
             logger.info(f"\n--- Finding plan with DISTANCE_COST_PER_KM = {self.distance_cost_per_km} ---")
             plan = self.find_optimal_shopping_plan(
@@ -673,6 +673,7 @@ class SearchService:
                 required_item_groups=required_item_groups,
                 user_loc=user_loc_for_solver
             )
+            plan['id'] = i
             results.extend(plan) 
 
         return results

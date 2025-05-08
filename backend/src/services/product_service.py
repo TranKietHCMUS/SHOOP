@@ -6,6 +6,9 @@ from bson.objectid import ObjectId
 from pymongo.operations import SearchIndexModel
 from typing import List, Dict, Any
 import numpy as np
+from datetime import datetime
+from tqdm import tqdm
+
 class ProductService:
     def __init__(self, ai_service: AIService):
         self.collection = db.get_collection("products")
@@ -133,7 +136,7 @@ class ProductService:
             self.validate_product(product)
             
             if not product.vector:
-                vector = self.ai_service.get_embeddings(product.name)
+                vector = self.ai_service.get_embeddings(product.name + product.unit)
                 product.vector = vector.tolist()
             else:
                 product.vector = self.validate_vector(product.vector)
@@ -363,3 +366,25 @@ class ProductService:
         except Exception as e:
             print(f"Error searching products: {e}")
             return []
+    
+    def re_indexing(self) -> bool:
+        try:
+            all_products = self.get_all_products()
+            for product in tqdm(all_products, total=len(all_products), desc="Re-indexing products"):
+                product = product.to_dict()
+                # print(product)
+                vector = self.ai_service.get_embeddings(product["unit"] + " " + product["name"])
+                product["vector"] = vector.tolist()
+                product["updated_at"] = datetime.now()
+                self.collection.update_one(
+                    {"_id": product["_id"]},
+                    {"$set": {
+                        "vector": product["vector"],
+                        "updated_at": product["updated_at"]
+                    }}
+                )
+            return True
+        except Exception as e:
+            print(f"Error re-indexing products: {e}")
+            return False
+

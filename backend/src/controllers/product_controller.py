@@ -60,4 +60,5 @@ class ProductController:
     def delete_product(self, id: str) -> bool:
         return self.product_service.delete_by_id(id)
 
-
+    def re_indexing(self) -> bool:
+        return self.product_service.re_indexing()
