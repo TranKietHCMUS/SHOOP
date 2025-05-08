@@ -673,7 +673,8 @@ class SearchService:
                 required_item_groups=required_item_groups,
                 user_loc=user_loc_for_solver
             )
-            plan['id'] = i
+            for p in plan:
+                p['id'] = i
             results.extend(plan) 
 
         return results
