@@ -14,9 +14,9 @@ class Product:
         vector: Optional[List[float]] = None,
         created_at: Optional[datetime] = None,
         updated_at: Optional[datetime] = None,
-        id: str = None,
+        _id: str = None,
     ):
-        self._id = ObjectId(id) if id else None
+        self._id = ObjectId(_id) if _id else None
         self.name = name
         self.store_name = store_name
         self.price = price

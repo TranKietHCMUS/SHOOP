@@ -32,5 +32,7 @@ def insert_products():
 def get_product_by_name(name: str):
     return product_controller.get_product_by_name(name)
 
-
-
+@product_routes.route("/re-indexing", methods=["GET"])
+def re_indexing():
+    res = product_controller.re_indexing()
+    return jsonify({"message": "Re-indexing products successfully"}), 200 if res else 500

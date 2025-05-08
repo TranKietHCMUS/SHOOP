@@ -619,16 +619,19 @@ class SearchService:
             required_item_groups=required_item_groups,
             user_loc=user_loc
         )
+        first_way[0]['id'] = 1
         self.distance_cost_per_km = 500
         second_way = self.find_optimal_shopping_plan(
             stores_for_search=stores_for_search,
             required_item_groups=required_item_groups,
             user_loc=user_loc
         )
+        second_way[0]['id'] = 2
         self.distance_cost_per_km = 500000
         third_way = self.find_optimal_shopping_plan(
             stores_for_search=stores_for_search,
             required_item_groups=required_item_groups,
             user_loc=user_loc
         )
+        third_way[0]['id'] = 3
         return [*first_way, *second_way, *third_way]

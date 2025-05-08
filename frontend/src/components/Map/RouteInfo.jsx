@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { MapPin, Navigation, Clock, DollarSign, ChevronDown, ChevronUp, Map } from 'lucide-react';
+import CustomScrollbar from '../SubComponents/Scrollbar';
 
 export default function RouteInfo({ route }) {
   const [expanded, setExpanded] = useState(false);
@@ -35,7 +36,7 @@ export default function RouteInfo({ route }) {
   };
 
   return (
-    <div className="bg-white overflow-hidden border max-w-2xl mx-auto">
+    <div className="flex flex-col h-full bg-white overflow-hidden border max-w-2xl mx-auto">
       {/* Header */}
       <div className="bg-primary text-white p-4 flex justify-between items-center">
         <div className="flex items-center space-x-2">
@@ -55,7 +56,7 @@ export default function RouteInfo({ route }) {
       </div>
 
       {/* Main Content */}
-      <div className="p-4">
+      <div className="flex-1 flex flex-col p-4 min-h-0">
         {/* Origin and Destination */}
         <div className="flex items-start mb-4">
           <div className="mr-3 flex flex-col items-center">
@@ -70,7 +71,7 @@ export default function RouteInfo({ route }) {
           <div className="flex-1">
             <div className="mb-2">
               <p className="text-sm text-gray-500">Start</p>
-              <p className="font-medium">{truncateAddress(route.waypoints[0])}</p>
+              <p title={route.waypoints[0]} className="font-medium">{truncateAddress(route.waypoints[0])}</p>
             </div>
             <div>
               <p className="text-sm text-gray-500">End</p>
@@ -97,7 +98,7 @@ export default function RouteInfo({ route }) {
 
         {/* Waypoints - Expanded View */}
         {route.waypoints && route.waypoints.length > 0 && (
-          <div>
+          <div className="flex flex-col flex-1 min-h-0">
             <button 
               className="flex items-center justify-between w-full text-left text-sm font-medium text-primary hover:text-blue-800 py-2"
               onClick={() => setExpanded(!expanded)}
@@ -105,9 +106,8 @@ export default function RouteInfo({ route }) {
               <span>Waypoints ({route.waypoints.length})</span>
               {expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
             </button>
-            
             {expanded && (
-              <div className="mt-2 pl-4 border-l-2 border-green-500">
+            <CustomScrollbar>
                 {route.waypoints.map((waypoint, index) => (
                   <div key={index} className="py-2">
                     <div className="flex">
@@ -120,7 +120,7 @@ export default function RouteInfo({ route }) {
                     </div>
                   </div>
                 ))}
-              </div>
+              </CustomScrollbar>
             )}
           </div>
         )}

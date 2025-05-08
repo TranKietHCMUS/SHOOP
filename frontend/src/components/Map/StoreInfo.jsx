@@ -41,7 +41,7 @@ const StoreInfo = ({ store }) => {
   return (
     <div>
       <style>{globalScrollbarStyles}</style>
-      <div className="max-w-3xl mx-auto p-2 bg-white">
+      <div className="max-w-3xl mx-auto bg-white">
         <header className="mb-6 flex items-start">
           <img src={store.img_url} alt={store.name} className="w-16 h-16 rounded-lg object-cover flex-shrink-0 mr-4" />
           <div className="flex-1 min-w-0">
@@ -82,7 +82,7 @@ const StoreInfo = ({ store }) => {
               </div>
 
               <CustomScrollbar className="max-h-10">
-                <div className="space-y-4 p-2">
+                <div className="space-y">
                   {store.items[selectedItemIndex].candidates.map((c, i) => (
                     <div
                       key={i}
