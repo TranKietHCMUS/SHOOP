@@ -133,7 +133,6 @@ class StoreService:
 
             # Try to get from Redis
             cached_results = self.redis_service.get_json(cache_key)
-            cached_results = None
             if cached_results is not None:
                 print(f"Cache HIT for key: {cache_key}")
                 raw_search_results = cached_results
