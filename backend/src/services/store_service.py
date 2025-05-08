@@ -112,6 +112,7 @@ class StoreService:
         # Prepare product items with units for batch processing
         product_items_with_units = []
         if items:
+
             product_items_with_units = sorted([ # Sort for consistent cache key
                 (item.get("product_name"), item.get("unit"))
                 for item in items if item.get("product_name")
@@ -168,7 +169,7 @@ class StoreService:
         else: # No product items from prompt
             if items: # if items list exists but resulted in no product_items_with_units (e.g. all names were None)
                  similar_products_by_item = [[] for _ in items]
-
+                
         # Gom tất cả tên sản phẩm (original query names + similar names) for DB query
         all_product_names_for_db_query = set()
         for i, item_data in enumerate(items):
