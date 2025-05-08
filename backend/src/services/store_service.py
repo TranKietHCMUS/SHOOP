@@ -125,7 +125,7 @@ class StoreService:
             # Create cache key
             cache_key_parts = []
             for name, unit in product_items_with_units:
-                cache_key_parts.append(f"{name or ''}_{unit or ''}")
+                cache_key_parts.append(f"{name or ''} {unit or ''}")
             
             # More robust cache key generation
             cache_key_string = "|".join(cache_key_parts)
