@@ -5,14 +5,29 @@ from src.config import Config
 class RedisService:
     def __init__(self):
         self.client = redis.Redis.from_url(Config.REDIS_URL, decode_responses=True)
+        print("RedisService initialized")
 
     def set(self, key, value, ex=None):
         """set key to value, ex: expire time in seconds (optional)"""
-        return self.client.set(key, value, ex=ex)
+        print(f"RedisService.set: Attempting to set key='{key}'. Value type: {type(value)}. Expiry: {ex}")
+        try:
+            result = self.client.set(key, value, ex=ex)
+            print(f"RedisService.set: Successfully set key='{key}'. Result: {result}")
+            return result
+        except Exception as e:
+            print(f"RedisService.set: Error setting key='{key}': {e}")
+            raise
 
     def get(self, key):
         """Get value by key"""
-        return self.client.get(key)
+        print(f"RedisService.get: Attempting to get key='{key}'")
+        try:
+            value = self.client.get(key)
+            print(f"RedisService.get: Key='{key}', Retrieved value type: {type(value)}. Value: '{str(value)[:100]}...'") # Log snippet of value
+            return value
+        except Exception as e:
+            print(f"RedisService.get: Error getting key='{key}': {e}")
+            raise
 
     def delete(self, key):
         """Delete key"""
@@ -28,13 +43,34 @@ class RedisService:
 
     def set_json(self, key, obj, ex=None):
         """Save object python as json"""
-        return self.set(key, json.dumps(obj), ex=ex)
+        print(f"RedisService.set_json: Attempting to set JSON for key='{key}'. Object type: {type(obj)}. Expiry: {ex}")
+        try:
+            json_value = json.dumps(obj)
+            print(f"RedisService.set_json: Successfully serialized object for key='{key}'. JSON value snippet: '{json_value[:100]}...'")
+            return self.set(key, json_value, ex=ex)
+        except TypeError as te:
+            print(f"RedisService.set_json: TypeError during JSON serialization for key='{key}': {te}. Object causing error: {obj}")
+            raise # Re-raise to be caught by service layer if needed
+        except Exception as e:
+            print(f"RedisService.set_json: General error for key='{key}': {e}")
+            raise
 
     def get_json(self, key):
         """get object (json) by key"""
+        print(f"RedisService.get_json: Attempting to get JSON for key='{key}'")
         val = self.get(key)
         if val is not None:
-            return json.loads(val)
+            try:
+                deserialized_obj = json.loads(val)
+                print(f"RedisService.get_json: Successfully deserialized JSON for key='{key}'")
+                return deserialized_obj
+            except json.JSONDecodeError as jde:
+                print(f"RedisService.get_json: JSONDecodeError for key='{key}': {jde}. Raw value: '{val[:100]}...'")
+                return None # Or handle error as appropriate
+            except Exception as e:
+                print(f"RedisService.get_json: Error deserializing JSON for key='{key}': {e}")
+                raise
+        print(f"RedisService.get_json: No value found for key='{key}'")
         return None
 
     def lpush_json(self, key, obj, max_len=5):

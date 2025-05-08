@@ -319,16 +319,20 @@ class ProductService:
             
             return_results = []
             for doc in final_results:
+                # Ensure datetime objects are converted to string
+                created_at = doc.get("created_at")
+                updated_at = doc.get("updated_at")
+
                 return_results.append({
-                    "_id": doc["_id"],
+                    "_id": str(doc["_id"]), 
                     "name": doc["name"],
                     "price": doc.get("price"),
                     "unit": doc.get("unit"),
                     "store_name": doc.get("store_name"),
                     "category": doc.get("category"),
                     "img_url": doc.get("img_url"),
-                    "created_at": doc.get("created_at"),
-                    "updated_at": doc.get("updated_at"),
+                    "created_at": created_at.isoformat() if created_at else None,
+                    "updated_at": updated_at.isoformat() if updated_at else None,
                     "score": doc["score"],
                     "vs_score": doc["vs_score"],
                     "fts_score": doc["fts_score"],
