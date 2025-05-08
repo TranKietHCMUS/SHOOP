@@ -133,7 +133,7 @@ class StoreService:
 
             # Try to get from Redis
             cached_results = self.redis_service.get_json(cache_key)
-
+            cached_results = None
             if cached_results is not None:
                 print(f"Cache HIT for key: {cache_key}")
                 raw_search_results = cached_results
@@ -148,7 +148,7 @@ class StoreService:
                     product_items_with_units=product_items_with_units,
                     top_k=10 # Get top 10 similar products per item
                 )
-                print(f"Raw search results from product_service") # Log raw search results
+                print(f"Raw search results from product_service : {raw_search_results}") # Log raw search results
                 if raw_search_results is not None: # Only cache if results are not None
                     try:
                         self.redis_service.set_json(cache_key, raw_search_results, ex=86400) # Cache for 1 day
@@ -166,10 +166,16 @@ class StoreService:
                         similar_products_by_item.append([]) # Append empty list if result is not a list
             else: # Fill with empty lists if search_products returned None or empty
                 similar_products_by_item = [[] for _ in product_items_with_units]
-        else: # No product items from prompt
-            if items: # if items list exists but resulted in no product_items_with_units (e.g. all names were None)
-                 similar_products_by_item = [[] for _ in items]
-                
+            # END OF BLOCK where similar_products_by_item is populated
+
+        # Create a mapping from (product_name, unit) tuple of SOUGHT items to their similar products list
+        # product_items_with_units is the sorted list of (name, unit) tuples used for the search
+        # similar_products_by_item contains results in the same order as product_items_with_units
+        search_results_map = {}
+        if product_items_with_units and similar_products_by_item and len(product_items_with_units) == len(similar_products_by_item):
+            for i, pu_tuple in enumerate(product_items_with_units): # pu_tuple is (name, unit) from the sorted list
+                search_results_map[pu_tuple] = similar_products_by_item[i]
+        
         # Gom tất cả tên sản phẩm (original query names + similar names) for DB query
         all_product_names_for_db_query = set()
         for i, item_data in enumerate(items):
@@ -209,14 +215,19 @@ class StoreService:
             
         # Build per-item info for the final structure
         product_details_for_output = []
-        for idx, item_from_prompt in enumerate(items):
+        # 'items' is the original list from prompt_model.items, in the correct prompt order
+        for item_from_prompt in items: 
             pname = item_from_prompt.get("product_name")
             qty = item_from_prompt.get("quantity")
             unit = item_from_prompt.get("unit")
             
-            current_item_similar_raw = similar_products_by_item[idx] if idx < len(similar_products_by_item) else []
-            
-            # sim_names includes the original product name + names of similar products found by AI
+            current_item_similar_raw = []
+            if pname: # Ensure product_name exists, as map is keyed with non-null names
+                current_pu_tuple = (pname, unit)
+                # Use the search_results_map to get results for this specific (pname, unit)
+                current_item_similar_raw = search_results_map.get(current_pu_tuple, [])
+            # else: item had no product_name, so no similar items were searched for it
+
             # Ensure original name is first and list is unique
             combined_names_for_matching = []
             if pname:
