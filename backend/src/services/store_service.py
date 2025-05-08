@@ -3,13 +3,16 @@ from src.extensions import db
 from src.services.ai_service import AIService
 import re
 from time import time
+import json # Added import
+from src.services.redis_service import RedisService # Added import
 
 class StoreService:
-    def __init__(self, ai_service=None, product_service=None):
+    def __init__(self, ai_service=None, product_service=None, redis_service=None): # Added redis_service
         self.collection = db.get_collection("stores")
         self.product_collection = db.get_collection("products")
         self.ai_service = ai_service
         self.product_service = product_service
+        self.redis_service = redis_service if redis_service else RedisService() # Initialize RedisService
         self._ensure_indexes()
     def _ensure_indexes(self):
         try:
@@ -98,55 +101,104 @@ class StoreService:
         """
         # Extract product names and quantities from the prompt
         prompt_model = self.ai_service.process_prompt(prompt)
-        items = prompt_model.items
-        product_names = [item.get("product_name") for item in items if item.get("product_name")]
+        items = prompt_model.items # List of {"product_name": "...", "unit": "...", "quantity": ...}
+
         # Find stores within radius
-        print(product_names)
         stores = self.get_stores_within_radius(lat, lng, radius_km)
         if not stores:
             return []
         store_names = list({store.get("name") for store in stores if store.get("name")})
-        # Obtain AI-based similar products per item (top 10 theo score)
-        embeddings = self.ai_service.get_embeddings(product_names)
-        similar_products = []
-        for idx, item in enumerate(items):
-            pname = item.get("product_name")
-            unit = item.get("unit")
-            print(unit)
-            print(pname)
-            sims = self.product_service.search_products([embeddings[idx]], [(pname, unit)])
+
+        # Prepare product items with units for batch processing
+        product_items_with_units = []
+        if items:
+
+            product_items_with_units = sorted([ # Sort for consistent cache key
+                (item.get("product_name"), item.get("unit"))
+                for item in items if item.get("product_name")
+            ])
+
+        similar_products_by_item = [] # This will be a list of lists of similar product dicts
+        raw_search_results = None
+
+        if product_items_with_units:
+            # Create cache key
+            cache_key_parts = []
+            for name, unit in product_items_with_units:
+                cache_key_parts.append(f"{name or ''}_{unit or ''}")
             
+            # More robust cache key generation
+            cache_key_string = "|".join(cache_key_parts)
+            cache_key = f"product_search_cache_v3:{cache_key_string}"
 
-            if sims and isinstance(sims[0], list):
-                sims = sims[0]
-            sims = sorted(sims, key=lambda x: x.get('score', 0), reverse=True)
-            similar_products.append(sims)
+            # Try to get from Redis
+            cached_results = self.redis_service.get_json(cache_key)
 
-        # Gom tất cả tên sản phẩm key từ similar_products (chỉ lấy tên, không mở rộng)
-        print(similar_products)
-        all_similar_names = set()
-        for sims in similar_products:
-            all_similar_names.update([res.get("name") for res in sims if res.get("name")])
+            if cached_results is not None:
+                print(f"Cache HIT for key: {cache_key}")
+                raw_search_results = cached_results
+            else:
+                print(f"Cache MISS for key: {cache_key}")
+                product_names_for_embedding = [item[0] for item in product_items_with_units]
+                embeddings = self.ai_service.get_embeddings(product_names_for_embedding)
+                
+                # Call product_service.search_products once for all items
+                raw_search_results = self.product_service.search_products(
+                    embeddings=embeddings,
+                    product_items_with_units=product_items_with_units,
+                    top_k=10 # Get top 10 similar products per item
+                )
+                print(f"Raw search results from product_service") # Log raw search results
+                if raw_search_results is not None: # Only cache if results are not None
+                    try:
+                        self.redis_service.set_json(cache_key, raw_search_results, ex=86400) # Cache for 1 day
+                        print(f"Successfully cached results for key: {cache_key}")
+                    except TypeError as e:
+                        print(f"Error serializing results for Redis: {e}. Data: ") # Log the data that caused error
+
+            if raw_search_results:
+                for single_item_sim_prods in raw_search_results:
+                    if isinstance(single_item_sim_prods, list):
+                        # Sort by score, similar to original individual logic
+                        sorted_sims = sorted(single_item_sim_prods, key=lambda x: x.get('score', 0), reverse=True)
+                        similar_products_by_item.append(sorted_sims)
+                    else:
+                        similar_products_by_item.append([]) # Append empty list if result is not a list
+            else: # Fill with empty lists if search_products returned None or empty
+                similar_products_by_item = [[] for _ in product_items_with_units]
+        else: # No product items from prompt
+            if items: # if items list exists but resulted in no product_items_with_units (e.g. all names were None)
+                 similar_products_by_item = [[] for _ in items]
+                
+        # Gom tất cả tên sản phẩm (original query names + similar names) for DB query
+        all_product_names_for_db_query = set()
+        for i, item_data in enumerate(items):
+            original_product_name = item_data.get("product_name")
+            if original_product_name:
+                all_product_names_for_db_query.add(original_product_name)
+            
+            if i < len(similar_products_by_item):
+                sims_for_this_item = similar_products_by_item[i]
+                all_product_names_for_db_query.update([res.get("name") for res in sims_for_this_item if res.get("name")])
+        
         # Truy vấn database chỉ với các tên này (exact match)
         query = {
             "store_name": {"$in": store_names},
-            "name": {"$in": list(all_similar_names)}
+            "name": {"$in": list(all_product_names_for_db_query)}
         }
         products_cursor = self.product_collection.find(query)
-        products = list(products_cursor)
+        products_in_stores = list(products_cursor)
 
-        print(product_names)
-        print(similar_products)
         # Gom sản phẩm theo store_name và name
-        products_by_store = {}
-        for p in products:
+        products_by_store_and_name = {}
+        for p in products_in_stores:
             sname = p.get("store_name")
             pname = p.get("name")
-            if sname not in products_by_store:
-                products_by_store[sname] = {}
-            if pname not in products_by_store[sname]:
-                products_by_store[sname][pname] = []
-            products_by_store[sname][pname].append({
+            if sname not in products_by_store_and_name:
+                products_by_store_and_name[sname] = {}
+            if pname not in products_by_store_and_name[sname]:
+                products_by_store_and_name[sname][pname] = []
+            products_by_store_and_name[sname][pname].append({
                 "id": str(p["_id"]),
                 "name": p["name"],
                 "price": p.get("price"),
@@ -154,37 +206,58 @@ class StoreService:
                 "category": p.get("category"),
                 "img_url": p.get("img_url")
             })
-        # Build per-item info
-        product_items = []
-        for idx, item in enumerate(items):
-            pname = item.get("product_name")
-            qty = item.get("quantity")
-            unit = item.get("unit")
-            sims = similar_products[idx] if idx < len(similar_products) else []
-            sim_names = [pname] + [res.get("name") for res in sims if res.get("name")]
-            product_items.append({"query_name": pname, "quantity": qty, "unit": unit, "similar_names": sim_names})
+            
+        # Build per-item info for the final structure
+        product_details_for_output = []
+        for idx, item_from_prompt in enumerate(items):
+            pname = item_from_prompt.get("product_name")
+            qty = item_from_prompt.get("quantity")
+            unit = item_from_prompt.get("unit")
+            
+            current_item_similar_raw = similar_products_by_item[idx] if idx < len(similar_products_by_item) else []
+            
+            # sim_names includes the original product name + names of similar products found by AI
+            # Ensure original name is first and list is unique
+            combined_names_for_matching = []
+            if pname:
+                combined_names_for_matching.append(pname)
+            combined_names_for_matching.extend([res.get("name") for res in current_item_similar_raw if res.get("name")])
+            combined_names_for_matching = list(dict.fromkeys(combined_names_for_matching)) # Unique names, preserving order
+
+            product_details_for_output.append({
+                "query_name": pname, 
+                "quantity": qty, 
+                "unit": unit, 
+                "names_to_match_in_store": combined_names_for_matching
+            })
+            
         # Ghép vào từng store
         results = []
-        for store in stores:
-            store_name = store.get("name")
-            items_list = []
-            has_candidate = False
-            store_products = products_by_store.get(store_name, {})
-            for info in product_items:
-                sim_names = info["similar_names"]
-                candidates = []
-                for name in sim_names:
-                    candidates.extend(store_products.get(name, []))
-                if candidates:
-                    has_candidate = True
-                items_list.append({
-                    "product_name": info["query_name"],
-                    "quantity": info["quantity"],
-                    "unit": info["unit"],
-                    "candidates": candidates[:10] 
+        for store_info in stores:
+            store_name = store_info.get("name")
+            items_list_for_store = []
+            store_has_any_candidate_product = False
+            
+            products_available_in_this_store = products_by_store_and_name.get(store_name, {})
+            
+            for detail_info in product_details_for_output:
+                product_candidates_in_store = []
+                for name_to_check in detail_info["names_to_match_in_store"]:
+                    product_candidates_in_store.extend(products_available_in_this_store.get(name_to_check, []))
+                
+                if product_candidates_in_store:
+                    store_has_any_candidate_product = True
+                    
+                items_list_for_store.append({
+                    "product_name": detail_info["query_name"],
+                    "quantity": detail_info["quantity"],
+                    "unit": detail_info["unit"],
+                    "candidates": product_candidates_in_store[:10] # Take top 10 actual products found in this store
                 })
-            if has_candidate:
-                store_copy = dict(store)
-                store_copy["items"] = items_list
-                results.append(store_copy)
+                
+            if store_has_any_candidate_product:
+                store_data_copy = dict(store_info) # Avoid modifying original store dict from stores list
+                store_data_copy["items"] = items_list_for_store
+                results.append(store_data_copy)
+                
         return results
