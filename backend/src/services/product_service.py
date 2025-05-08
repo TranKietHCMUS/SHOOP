@@ -18,9 +18,9 @@ class ProductService:
     def _ensure_indexes(self):
         try:
             self.collection.create_index(
-                [("name", 1), ("unit", 1)], 
+                [("name", 1), ("unit", 1), ("store_name", 1)], 
                 unique=True, 
-                name="name_unit_unique_index"
+                name="name_unit_store_unique_index"
             )
             
             self.collection.create_index([("_id", 1)], name="id_unique_index")
