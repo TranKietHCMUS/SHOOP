@@ -33,10 +33,24 @@ class StoreService:
             raise ValueError("Address must be a non-empty string")
     
     def get_all_stores(self) -> list[Store]:
-        return [Store(**store) for store in self.collection.find()]
+        return [Store(
+            name=store.get("name"),
+            address=store.get("address"),
+            img_url=store.get("img_url"),
+            lat=store.get("lat"),
+            lng=store.get("lng"),
+            id=store.get("_id")
+        ) for store in self.collection.find()]
     
-    def get_store_by_name(self, name: str) -> Store:
-        return self.collection.find_one({"name": name})
+    def get_store_by_name(self, name: str) -> list[Store]:
+        return [Store(
+            name=store.get("name"),
+            address=store.get("address"),
+            img_url=store.get("img_url"),
+            lat=store.get("lat"),
+            lng=store.get("lng"),
+            id=store.get("_id")
+        ) for store in self.collection.find({"name": name})]
 
     def get_store_by_id(self, id: str) -> Store:
         return self.collection.find_one({"_id": id})

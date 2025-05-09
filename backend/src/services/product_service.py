@@ -311,7 +311,7 @@ class ProductService:
                 for doc in rerank_candidates:
                     doc_id = str(doc["_id"])
                     if doc_id in results and doc.get("unit"):
-                        unit_score = self.ai_service.unit_similarity_score(doc.get("unit"), unit) * Config.UNIT_WEIGHT
+                        unit_score = self.ai_service.unit_similarity_score(doc.get("unit"), unit)
                         results[doc_id]["unit_score"] = unit_score
 
             final_results = list(results.values())

@@ -29,3 +29,10 @@ dist-ssr
 .env.development.local
 .env.test.local
 .env.production.local 
+
+# Docker
+docker-compose.prod.yml
+
+Dockerfile.prod
+Dockerfile.test
+

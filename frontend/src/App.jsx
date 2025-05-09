@@ -9,6 +9,8 @@ import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
+import StoresPage from './pages/StoresPage';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/phase1-result" element={<Phase1Result />} />
           <Route path="/result" element={<MainPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/stores" element={<StoresPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </Router>
     </AuthProvider>

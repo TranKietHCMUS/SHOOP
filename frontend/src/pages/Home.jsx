@@ -5,6 +5,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useAuth } from '../contexts/AuthContext';
 import { motion } from 'framer-motion'
 import SimpleFooter from '../components/SimpleFooter';
+import RoadmapGuide from '../components/RoadmapGuide';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -95,6 +96,9 @@ const Home = () => {
             </motion.div>
           ))}
         </div>
+        
+        {/* Roadmap Guide Section */}
+        <RoadmapGuide />
       </main>
       <SimpleFooter/>
     </div>

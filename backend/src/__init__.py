@@ -17,7 +17,7 @@ def create_app():
     app = Flask(__name__)
 
     origins = [
-        "http://localhost:5174"
+        "http://localhost:5174",
     ]
     
     CORS(app, 

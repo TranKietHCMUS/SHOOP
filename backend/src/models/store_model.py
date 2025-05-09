@@ -10,9 +10,11 @@ class Store:
         img_url: str,
         lat: float,
         lng: float,
+        id: str = None,
         created_at: Optional[datetime] = None,
         updated_at: Optional[datetime] = None,
-    ):
+    ): 
+        self._id = id if id else str(ObjectId())
         self.name = name
         self.address = address
         self.img_url = img_url
@@ -31,5 +33,8 @@ class Store:
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
+        if self._id:
+            result["_id"] = str(self._id)
         return result
+    
     

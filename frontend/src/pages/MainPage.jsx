@@ -463,7 +463,7 @@ const MainPage = () => {
         </div>
         
         {/* Legend and Navigation Controls in top-right corner */}
-        <div className="absolute top-20 right-4 z-20 flex flex-col gap-3">
+        <div className="absolute top-20 right-4 z-20 flex flex-col gap-3 z-0">
           {/* Legend */}
           <div className="bg-white rounded-lg shadow-md p-3 w-52">
             <h3 className="text-sm font-bold mb-1 text-gray-700">Store Marks</h3>
