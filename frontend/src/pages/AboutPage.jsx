@@ -12,15 +12,15 @@ const AboutPage = () => {
       bio: 'A dedicated Full Stack Developer and AI Engineer with a strong passion for integrating Artificial Intelligence into modern web applications. Committed to delivering innovative, efficient, and scalable solutions across the tech stack.'
     },
     {
-      name: 'Phát Nguyễn',
+      name: 'Lê Nguyễn Tấn Phát',
       role: 'Backend Developer',
-      avatar: 'https://randomuser.me/api/portraits/women/1.jpg',
+      avatar: '/imgs/phat.jpg',
       bio: 'A highly motivated Backend Developer with a passion for designing and building robust, scalable, and high-performance backend systems. Eager to tackle complex challenges and contribute to impactful technology solutions.'
     },
     {
       name: 'Trần Như Anh Kiệt',
       role: 'Data Engineer',
-      avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+      avatar: '/imgs/kiet.jpg',
       bio: 'A passionate Data Engineer skilled in designing and implementing scalable, efficient data pipelines. Driven by a desire to transform raw data into valuable insights that support data-driven decision-making.'
     }
   ];
