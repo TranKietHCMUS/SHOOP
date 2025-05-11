@@ -1,0 +1,1546 @@
+[
+    {
+        "name": "Bánh khoai lang nhân phô mai Hokkaido",
+        "unit": "cái"
+    },
+    {
+        "name": "Cá tẩm bột chiên giòn (15pcs)",
+        "unit": "phần"
+    },
+    {
+        "name": "Corndog - xúc xích tẩm bột nhân phô mai hồng",
+        "unit": "cây"
+    },
+    {
+        "name": "Gyoza - bánh xếp nhân thịt nướng",
+        "unit": "phần"
+    },
+    {
+        "name": "Miếng gà chiên tiêu Pe-Bo-Chi",
+        "unit": "miếng"
+    },
+    {
+        "name": "Xúc xích heo xông khói lớn 90g",
+        "unit": "cây"
+    },
+    {
+        "name": "Xúc xích hồ lô bò phô mai (5pcs/xiên)",
+        "unit": "xiên"
+    },
+    {
+        "name": "Xúc xích xông khói 50g",
+        "unit": "cây"
+    },
+    {
+        "name": "Đùi gà giòn cay",
+        "unit": "miếng"
+    },
+    {
+        "name": "Đùi gà góc tư nướng vị tiêu",
+        "unit": "miếng"
+    },
+    {
+        "name": "Gà xiên que sốt Teriyaki",
+        "unit": "xiên"
+    },
+    {
+        "name": "Gà xiên que nướng vị Mexican",
+        "unit": "xiên"
+    },
+    {
+        "name": "Okonomiyaki - Bánh xèo Nhật nhân hải sản",
+        "unit": "cái"
+    },
+    {
+        "name": "Takoyaki SET",
+        "unit": "set"
+    },
+    {
+        "name": "Combo yêu thích",
+        "unit": "set"
+    },
+    {
+        "name": "Bún tươi",
+        "unit": "phần"
+    },
+    {
+        "name": "Bò viên TVS",
+        "unit": "phần"
+    },
+    {
+        "name": "Bắp cải cuộn tôm",
+        "unit": "miếng"
+    },
+    {
+        "name": "Cá viên lớn",
+        "unit": "miếng"
+    },
+    {
+        "name": "Cá viên nhân cá trích",
+        "unit": "miếng"
+    },
+    {
+        "name": "Cá viên trứng muối",
+        "unit": "miếng"
+    },
+    {
+        "name": "Chả cá bọc bắp non",
+        "unit": "miếng"
+    },
+    {
+        "name": "Chả cá bọc trứng cút",
+        "unit": "miếng"
+    },
+    {
+        "name": "Chả cá cuộn rong biển",
+        "unit": "miếng"
+    },
+    {
+        "name": "Chả cá cuộn trứng",
+        "unit": "miếng"
+    },
+    {
+        "name": "Chả cá hấp",
+        "unit": "phần"
+    },
+    {
+        "name": "Chả cá rau củ",
+        "unit": "phần"
+    },
+    {
+        "name": "Chả cá topokki",
+        "unit": "phần"
+    },
+    {
+        "name": "Đậu hủ cá",
+        "unit": "miếng"
+    },
+    {
+        "name": "Đậu hủ cá phô mai Hokkaido 20g (50pcs)",
+        "unit": "gói"
+    },
+    {
+        "name": "Hải sản viên nhân trứng cá",
+        "unit": "miếng"
+    },
+    {
+        "name": "Mực viên",
+        "unit": "miếng"
+    },
+    {
+        "name": "Sò điệp surimi",
+        "unit": "miếng"
+    },
+    {
+        "name": "Thanh cua",
+        "unit": "cây"
+    },
+    {
+        "name": "Tôm surimi",
+        "unit": "miếng"
+    },
+    {
+        "name": "Viên cua hoàng đế",
+        "unit": "miếng"
+    },
+    {
+        "name": "Xúc xích bạch tuộc",
+        "unit": "cây"
+    },
+    {
+        "name": "Xúc xích hotpot",
+        "unit": "cây"
+    },
+    {
+        "name": "Bánh bao nhân thịt heo trứng muối",
+        "unit": "cái"
+    },
+    {
+        "name": "Famiman 120g",
+        "unit": "gói"
+    },
+    {
+        "name": "Bánh giò nhân gà 2 trứng cút",
+        "unit": "cái"
+    },
+    {
+        "name": "Bánh giò nhân thịt 2 trứng cút",
+        "unit": "cái"
+    },
+    {
+        "name": "Americano đá 12oz",
+        "unit": "ly"
+    },
+    {
+        "name": "Americano nóng 10oz",
+        "unit": "ly"
+    },
+    {
+        "name": "Cà phê đen đá - L size",
+        "unit": "ly"
+    },
+    {
+        "name": "Cà phê đen đá - S size",
+        "unit": "ly"
+    },
+    {
+        "name": "Cà phê muối - S size",
+        "unit": "ly"
+    },
+    {
+        "name": "Cà phê sữa đá - L size",
+        "unit": "ly"
+    },
+    {
+        "name": "Cà phê sữa đá - S size",
+        "unit": "ly"
+    },
+    {
+        "name": "Milo ly - S size",
+        "unit": "ly"
+    },
+    {
+        "name": "Milo ly - XL size",
+        "unit": "ly"
+    },
+    {
+        "name": "Milo ly - L size",
+        "unit": "ly"
+    },
+    {
+        "name": "Nestea chanh ly - L size",
+        "unit": "ly"
+    },
+    {
+        "name": "Nestea chanh ly - XL size",
+        "unit": "ly"
+    },
+    {
+        "name": "Nestea trà vải hương lài - L size",
+        "unit": "ly"
+    },
+    {
+        "name": "Nestea trà vải hương lài - XL size",
+        "unit": "ly"
+    },
+    {
+        "name": "Big Omusubi Hamburg Phô Mai Hokkaido",
+        "unit": "cái"
+    },
+    {
+        "name": "Big Omusubi Tôm Chiên Xốt Tartar",
+        "unit": "cái"
+    },
+    {
+        "name": "Jikamaki Omusubi Bò Xốt Tiêu Xanh",
+        "unit": "cái"
+    },
+    {
+        "name": "Jikamaki Omusubi Gà Áp Chảo & Phô Mai Mozzrealla",
+        "unit": "cái"
+    },
+    {
+        "name": "Jikamaki Omusubi Trứng Ốp La",
+        "unit": "cái"
+    },
+    {
+        "name": "Omusubi Set Dinh Dưỡng",
+        "unit": "set"
+    },
+    {
+        "name": "Temaki Omusubi Bacon & Phô Mai Hokkaido",
+        "unit": "cái"
+    },
+    {
+        "name": "Temaki Omusubi Cá Hồi Nướng",
+        "unit": "cái"
+    },
+    {
+        "name": "Temaki Omusubi Cá Hồi Nướng Mayo",
+        "unit": "cái"
+    },
+    {
+        "name": "Temaki Omusubi Cá Hồi Xốt Teriyaki",
+        "unit": "cái"
+    },
+    {
+        "name": "Temaki Omusubi Cá Ngừ & Cơm Gia Vị Rong Biển",
+        "unit": "cái"
+    },
+    {
+        "name": "Temaki Omusubi Cá ngừ Mayo",
+        "unit": "cái"
+    },
+    {
+        "name": "Temaki Omusubi Thanh Cua Mayo",
+        "unit": "cái"
+    },
+    {
+        "name": "Temaki Omusubi Tôm Xào Cay Mayonnaise",
+        "unit": "cái"
+    },
+    {
+        "name": "Set Yêu Thích",
+        "unit": "set"
+    },
+    {
+        "name": "Sushi Set Cá Ngừ Mayo & Trứng",
+        "unit": "set"
+    },
+    {
+        "name": "Sushi Set California Tobiko",
+        "unit": "set"
+    },
+    {
+        "name": "Temaki Sushi Cá Ngừ Mayo",
+        "unit": "cái"
+    },
+    {
+        "name": "Temaki Sushi Thanh Cua & Tobiko",
+        "unit": "cái"
+    },
+    {
+        "name": "Temaki Sushi Tôm Xốt Cay & Tobiko",
+        "unit": "cái"
+    },
+    {
+        "name": "Cơm (Gạo Thơm Nàng Hoa)",
+        "unit": "phần"
+    },
+    {
+        "name": "Cơm Bò Cay & Trứng",
+        "unit": "phần"
+    },
+    {
+        "name": "Cơm Cà Ri Nhật & Ức Gà Áp Chảo",
+        "unit": "phần"
+    },
+    {
+        "name": "Cơm Chiên Dương Châu",
+        "unit": "phần"
+    },
+    {
+        "name": "Cơm Chiên Kim Chi Cá Hồi",
+        "unit": "phần"
+    },
+    {
+        "name": "Cơm Chiên Xúc Xích Xốt Cay & Phô Mai Mozzarella",
+        "unit": "phần"
+    },
+    {
+        "name": "Cơm Đậu Hủ Xốt Sả Ớt",
+        "unit": "phần"
+    },
+    {
+        "name": "Cơm Gà Dakgalbi & Phô Mai",
+        "unit": "phần"
+    },
+    {
+        "name": "Cơm Gà Trứng Kiểu Nhật",
+        "unit": "phần"
+    },
+    {
+        "name": "Cơm Gạo Lức Tôm Xốt Bơ Tỏi",
+        "unit": "phần"
+    },
+    {
+        "name": "Cơm Nghêu & Thịt Xào Cay",
+        "unit": "phần"
+    },
+    {
+        "name": "Cơm Chiên Gà nướng phô mai cay",
+        "unit": "phần"
+    },
+    {
+        "name": "Mì Xào Thịt Vịt BBQ",
+        "unit": "phần"
+    },
+    {
+        "name": "Mì Ý Bò Bằm",
+        "unit": "phần"
+    },
+    {
+        "name": "Mì Ý Tôm Xốt Kem Phô Mai",
+        "unit": "phần"
+    },
+    {
+        "name": "Mì Ý Xúc Xích Xông Khói Xốt Rau củ",
+        "unit": "phần"
+    },
+    {
+        "name": "Mì Hảo Hảo xào khô tôm chua ngọt 75g",
+        "unit": "gói"
+    },
+    {
+        "name": "Mì SiuKay vị bò 127g",
+        "unit": "gói"
+    },
+    {
+        "name": "Mì xào khô Indomie Mì Goreng vị sườn 80g",
+        "unit": "gói"
+    },
+    {
+        "name": "Mì xào khô Indomie Mì Goreng 85g",
+        "unit": "gói"
+    },
+    {
+        "name": "Mì ly CayKay bị bò 66g",
+        "unit": "ly"
+    },
+    {
+        "name": "Mì SiuKay bị hải sản 128g",
+        "unit": "gói"
+    },
+    {
+        "name": "Mì ly Modern lẩu Thái Tôm 67g",
+        "unit": "ly"
+    },
+    {
+        "name": "Ly Hảo Hảo tôm chua cay 67g",
+        "unit": "ly"
+    },
+    {
+        "name": "Bát Kool Spaghetti xốt bò bằm 105g",
+        "unit": "bát"
+    },
+    {
+        "name": "Bánh mì Sandwich lạt (A)",
+        "unit": "cái"
+    },
+    {
+        "name": "Bánh mì Sandwich Nho (LVG)",
+        "unit": "cái"
+    },
+    {
+        "name": "Sandwich Cá Ngừ & Trứng Mayonnaise",
+        "unit": "cái"
+    },
+    {
+        "name": "Sandwich Dăm Bông & Phô Mai Hokkaido",
+        "unit": "cái"
+    },
+    {
+        "name": "Sandwich Ebikatsu & trứng mayo tobiko",
+        "unit": "cái"
+    },
+    {
+        "name": "Sandwich gà cay phô mai",
+        "unit": "cái"
+    },
+    {
+        "name": "Sandwich Hỗn Hợp",
+        "unit": "cái"
+    },
+    {
+        "name": "Sandwich Nguyên Cám Cà Nướng Mật Ong",
+        "unit": "cái"
+    },
+    {
+        "name": "Sandwich Nguyên Cám Thanh Cua & Salad Trứng",
+        "unit": "cái"
+    },
+    {
+        "name": "Sandwich Nguyên Cám Thịt Nướng Bulgogi, xà lách, cà chua",
+        "unit": "cái"
+    },
+    {
+        "name": "Sandwich Tôm xốt bơ tỏi & trứng",
+        "unit": "cái"
+    },
+    {
+        "name": "Sandwich Trứng chiên & Xúc Xích Xông Khói",
+        "unit": "cái"
+    },
+    {
+        "name": "Sandwich Trứng Mayonnaise",
+        "unit": "cái"
+    },
+    {
+        "name": "Sandwich Trứng Ốp la & Xúc Xích Tỏi",
+        "unit": "cái"
+    },
+    {
+        "name": "Cháo Hải Sản & Nấm",
+        "unit": "phần"
+    },
+    {
+        "name": "Cháo Thịt Kho Nấm",
+        "unit": "phần"
+    },
+    {
+        "name": "Gimbap Kim Chi & Phô Mai",
+        "unit": "cuốn"
+    },
+    {
+        "name": "Salad bông cải xanh xà lách giòn & ức gà",
+        "unit": "phần"
+    },
+    {
+        "name": "Salad cải xoăn tôm và trứng",
+        "unit": "phần"
+    },
+    {
+        "name": "Salad gạo lứt thịt xông khói & rau củ",
+        "unit": "phần"
+    },
+    {
+        "name": "Salad mini bắp cải trộn",
+        "unit": "phần"
+    },
+    {
+        "name": "Mousse Chanh leo (FG)",
+        "unit": "hũ"
+    },
+    {
+        "name": "Panna Cotta vị Xoài (FG)",
+        "unit": "hũ"
+    },
+    {
+        "name": "TNT - Chè Khoai đậu bí 140g",
+        "unit": "hũ"
+    },
+    {
+        "name": "TNT - Chè môn sáp 140g",
+        "unit": "hũ"
+    },
+    {
+        "name": "TNT - Chè bắp 140g",
+        "unit": "hũ"
+    },
+    {
+        "name": "TNT - Chè bưởi 140g",
+        "unit": "hũ"
+    },
+    {
+        "name": "Bánh Mì Truyền Thống",
+        "unit": "ổ"
+    },
+    {
+        "name": "Bánh Mì Que Thịt Nướng Sả",
+        "unit": "cây"
+    },
+    {
+        "name": "Bánh Mì Que Pate Nướng Cay",
+        "unit": "cây"
+    },
+    {
+        "name": "Bánh Mì Que Gà Xốt Cay Hàn Quốc",
+        "unit": "cây"
+    },
+    {
+        "name": "Bánh Mì Que Gà Gà Ngũ Vị",
+        "unit": "cây"
+    },
+    {
+        "name": "Bánh Mì Nem Nướng Jambon",
+        "unit": "ổ"
+    },
+    {
+        "name": "Bánh Mì dừa lưới (A)",
+        "unit": "ổ"
+    },
+    {
+        "name": "Bánh Mì Chả Cá Sợi",
+        "unit": "ổ"
+    },
+    {
+        "name": "Bánh Mì Bánh Tôm & Phô Mai Cheddar",
+        "unit": "ổ"
+    },
+    {
+        "name": "Bánh Su Kem (I)",
+        "unit": "cái"
+    },
+    {
+        "name": "Bông Lan Chuối (A)",
+        "unit": "cái"
+    },
+    {
+        "name": "Bánh Hawaii Khoai Tây 1/2 ổ (Y)",
+        "unit": "ổ"
+    },
+    {
+        "name": "Bánh Đậu đỏ mới (Y)",
+        "unit": "cái"
+    },
+    {
+        "name": "Bánh crepe tiramisu",
+        "unit": "cái"
+    },
+    {
+        "name": "Bánh Dorayaki nhân kem sữa Hokkaido",
+        "unit": "cái"
+    },
+    {
+        "name": "Đan Mạch Bơ nhỏ (A_TB)",
+        "unit": "cái"
+    },
+    {
+        "name": "Đan Mạch custard",
+        "unit": "cái"
+    },
+    {
+        "name": "Dorayaki nhân Sô Cô La (I)",
+        "unit": "cái"
+    },
+    {
+        "name": "Chà bông kẹp (A)",
+        "unit": "cái"
+    },
+    {
+        "name": "Chà bông hotdog (A_TB)",
+        "unit": "cái"
+    },
+    {
+        "name": "Bánh xốp Phô Mai (A)",
+        "unit": "gói"
+    },
+    {
+        "name": "Bánh Mì cua mini (A)",
+        "unit": "cái"
+    },
+    {
+        "name": "Bánh Mì lạt mini nhỏ (A)",
+        "unit": "cái"
+    },
+    {
+        "name": "Sữa trái cây Nutriboost dâu 297ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Sữa hương bánh quy Nutriboost 297ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Sữa trái cây Nutriboost dâu 1L",
+        "unit": "chai"
+    },
+    {
+        "name": "Lothamilk - Sữa tươi TC đường đen 250ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Lothamilk - Trà sữa trân châu 250ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Sữa Bắp Thái Sơn 330ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Sữa hương Dưa Lưới - Binggrae 200ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Sữa hương Chuối - Binggrae 200ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Sữa uống lên men Yakult 65ml*5",
+        "unit": "lốc"
+    },
+    {
+        "name": "Sữa đậu nành Fami bịch 200ml",
+        "unit": "bịch"
+    },
+    {
+        "name": "Lothamilk - Sữa thanh trùng có đường 490ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Sữa chua Đường VNM 100g",
+        "unit": "hũ"
+    },
+    {
+        "name": "SG - Sữa chua nếp cẩm 120g",
+        "unit": "hũ"
+    },
+    {
+        "name": "Sữa chua Nha Đam VNM 100g",
+        "unit": "hũ"
+    },
+    {
+        "name": "Sữa chua VNM lựu đỏ ít đường 100g",
+        "unit": "hũ"
+    },
+    {
+        "name": "Milo lon 240ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Milo lúa mạch nắp vặn 210ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Milo nắp vặn Hương Bạc Hà 200ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Milo nước 180ml",
+        "unit": "hộp"
+    },
+    {
+        "name": "Sữa Thanh Trùng VNM DUONG Fino 220ml",
+        "unit": "hộp"
+    },
+    {
+        "name": "Sữa Thanh Trùng VNM IT DUONG Fino 220ml",
+        "unit": "hộp"
+    },
+    {
+        "name": "Sữa Thanh Trùng VNM KO DUONG Fino 220ml",
+        "unit": "hộp"
+    },
+    {
+        "name": "Sữa Đặc NSPN Xanh 380g",
+        "unit": "lon"
+    },
+    {
+        "name": "IDP - Malto Socola 180ml",
+        "unit": "hộp"
+    },
+    {
+        "name": "IDP - Malto Socola Bạc Hà 180ml",
+        "unit": "hộp"
+    },
+    {
+        "name": "Betagen SCU cam 140ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Betagen SCU tự nhiên 140ml",
+        "unit": "chai"
+    },
+    {
+        "name": "VNM - SCA Nha đam ít đường 100g",
+        "unit": "hũ"
+    },
+    {
+        "name": "Yogurt ăn TH vị nha đam 100g",
+        "unit": "hũ"
+    },
+    {
+        "name": "Yogurt ăn TH vị việt quất 100g",
+        "unit": "hũ"
+    },
+    {
+        "name": "Aquafina 5L",
+        "unit": "chai"
+    },
+    {
+        "name": "Aquafina 1500ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Aquafina 500ml",
+        "unit": "chai"
+    },
+    {
+        "name": "C+ soda chanh - bổ sung vitamin C 350ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Coca-Cola chai 390ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Coca-Cola giảm đường chai 1.5L",
+        "unit": "chai"
+    },
+    {
+        "name": "Coca-Cola giảm đường chai 600ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Coca-Cola zero chai 600ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Dasani 1.5L",
+        "unit": "chai"
+    },
+    {
+        "name": "Dasani 510ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Fuzetea + trà đào và hạt chia 450ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Hồng trà C2 vị đào 455ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Hồng trà C2 vị Vải 455ml",
+        "unit": "chai"
+    },
+    {
+        "name": "ICE + Hương đào 490ml",
+        "unit": "chai"
+    },
+    {
+        "name": "LaVie 1.5L",
+        "unit": "chai"
+    },
+    {
+        "name": "LaVie 500ml",
+        "unit": "chai"
+    },
+    {
+        "name": "LaVie 5L",
+        "unit": "chai"
+    },
+    {
+        "name": "Nước dưa hấu nha đam 500ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Nước Gạo Buổi sáng 1.5L",
+        "unit": "chai"
+    },
+    {
+        "name": "Nước Gạo Buổi sáng 500ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Nước tăng lực Lipovitan Honey",
+        "unit": "chai"
+    },
+    {
+        "name": "Nước tăng lực Monster 355ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Nước tăng lực Red bull vitamin và kẽm 250ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Nước tăng lực Redbull",
+        "unit": "lon"
+    },
+    {
+        "name": "Nước tăng lực Rockstar lon 250ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Nước trà xanh C2 hương chanh 455ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Pepsi Cola chai 600ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Seiryu 1000ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Sprite pet 600ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Sting dâu lon cao 320ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Sting Straw Pet 330ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Sting Vàng Pet 330ml",
+        "unit": "chai"
+    },
+    {
+        "name": "TEA + Plus Trà ô long 1L",
+        "unit": "chai"
+    },
+    {
+        "name": "TEA + Plus Trà ô long 450ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Tea Break trà sữa 345ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Thức uống bổ sung ion Pocari Sweat 500ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Trà bí đao Wonderfarm 440ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Trà C2 Chanh tuyết Bạc Hà Freeze 455ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Trà đen C2 hương dâu anh đào Freeze 455ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Trà Ô Long Không đường Tea + Plus 450ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Trà Ô Long vị chanh Tea + Plus 450ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Trà olong vị chanh Tea + Plus 1L",
+        "unit": "chai"
+    },
+    {
+        "name": "Trà Sữa Mr Brown 580ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Trà Tắc Mật Ong Cozy 455ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Trà Thanh Nhiệt Dr Thanh 455ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Trà Xanh Không Độ Chanh 455ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Twister Cam chai 1L",
+        "unit": "chai"
+    },
+    {
+        "name": "Cà phê sữa highlands hộp 180ml",
+        "unit": "hộp"
+    },
+    {
+        "name": "Highlands cà phê sữa lon 235ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Latte - Trà sữa 480ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Goodmood - Nước uống vị sữa chua 455ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Trà mật ong Hoa Lài 585ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Nescafe cà phê Latte hộp 180ml",
+        "unit": "hộp"
+    },
+    {
+        "name": "Thức uống bổ sung ion Pocari Sweat 900ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Bia 333",
+        "unit": "lon"
+    },
+    {
+        "name": "Bia Heineken lon bạc 330ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Bia Heineken lon cao 330ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Bia Red Horse 500ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Bia Sài Gòn Lager lon 330ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Bia Tiger Crystal lon 330ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Bia Tiger lon 500ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Rượu Good Day 360ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Rượu Good Day Đào 360ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Rượu Good Day Dâu 360ml 13.5%",
+        "unit": "chai"
+    },
+    {
+        "name": "Rượu Good Day Việt Quất 360ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Rượu mùi Good Day hương socola bạc hà 360ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Sapporo Premium lon bạc 330ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Strongbow dâu đen lon 330ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Strongbow dâu đỏ lon 330ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Tiger lon cao 330ml",
+        "unit": "lon"
+    },
+    {
+        "name": "Cá hộp Ba cô gái loại - Easy open",
+        "unit": "hộp"
+    },
+    {
+        "name": "Dầu Cooking Oil Tường An 1L",
+        "unit": "chai"
+    },
+    {
+        "name": "Dầu nành nguyên chất Simply 1L",
+        "unit": "chai"
+    },
+    {
+        "name": "DH - Muối ớt chanh Nha Trang",
+        "unit": "hũ"
+    },
+    {
+        "name": "Nước mắm Nam Ngư 3in1 500ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Nước tương TTT Nhất Ca 500ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Tương Cà Chai Nhựa Pet 270",
+        "unit": "chai"
+    },
+    {
+        "name": "Tương Ớt Chai Nhựa Pet 270",
+        "unit": "chai"
+    },
+    {
+        "name": "TUDD giàu năng lượng Milo hũ 400g",
+        "unit": "hũ"
+    },
+    {
+        "name": "Bánh gạo AN vị tảo biển 111.3g",
+        "unit": "gói"
+    },
+    {
+        "name": "Bánh Karo phô mai hoàng kim (26g x 6 gói)",
+        "unit": "hộp"
+    },
+    {
+        "name": "Bánh Karo trứng tươi chà bông (26g x 6 gói)",
+        "unit": "hộp"
+    },
+    {
+        "name": "Bánh ngọt nhân trứng muối Đài Loan 180g",
+        "unit": "gói"
+    },
+    {
+        "name": "Bánh Pillows nhân dừa 85g",
+        "unit": "gói"
+    },
+    {
+        "name": "Bánh Pillows nhân socola 85g",
+        "unit": "gói"
+    },
+    {
+        "name": "Bánh que Dorkbua vị thịt xông khói 50g",
+        "unit": "gói"
+    },
+    {
+        "name": "Bánh que Dorkbua vị truyền thống 50g",
+        "unit": "gói"
+    },
+    {
+        "name": "Bánh quế Poca nhân kem ổi hồng 115g",
+        "unit": "gói"
+    },
+    {
+        "name": "Bánh quế Poca nhân kem trứng muối 115g",
+        "unit": "gói"
+    },
+    {
+        "name": "Bento snack mực vị cay ngọt 18g",
+        "unit": "gói"
+    },
+    {
+        "name": "Bento snack mực vị cay Thái 18g",
+        "unit": "gói"
+    },
+    {
+        "name": "Choco Pie 12P",
+        "unit": "hộp"
+    },
+    {
+        "name": "Chupa Chups SourBelt 1m trái cây 55g",
+        "unit": "gói"
+    },
+    {
+        "name": "Custas 12P",
+        "unit": "hộp"
+    },
+    {
+        "name": "GOKOCHI vị muối tự nhiên 65g",
+        "unit": "gói"
+    },
+    {
+        "name": "Goute 4P",
+        "unit": "hộp"
+    },
+    {
+        "name": "Karamucho vị cay đặc biệt 85g",
+        "unit": "gói"
+    },
+    {
+        "name": "Kẹo dẻo Burger khổng lồ Funmore 50g",
+        "unit": "gói"
+    },
+    {
+        "name": "Kẹo dẻo Con mắt Funmore 18g",
+        "unit": "gói"
+    },
+    {
+        "name": "Kẹo Jackpot Slot Machine 20g",
+        "unit": "gói"
+    },
+    {
+        "name": "Kẹo socola Snicker 51g",
+        "unit": "thanh"
+    },
+    {
+        "name": "Kẹo the Playmore vị nho 22g",
+        "unit": "gói"
+    },
+    {
+        "name": "Kinh Đô Snack vị cua 29g",
+        "unit": "gói"
+    },
+    {
+        "name": "KitKat socola 2F (17g)",
+        "unit": "thanh"
+    },
+    {
+        "name": "Lay's khoai tây tự nhiên 90g",
+        "unit": "gói"
+    },
+    {
+        "name": "Lay's khoai tây vị tảo biển 90g",
+        "unit": "gói"
+    },
+    {
+        "name": "Lay's wavy tôm hùm sốt trứng muối hoàng kim 90g",
+        "unit": "gói"
+    },
+    {
+        "name": "O'star phô mai trứng muối 56g",
+        "unit": "gói"
+    },
+    {
+        "name": "O'star Kimchi 108g",
+        "unit": "gói"
+    },
+    {
+        "name": "O'star phô mai trứng muối 90g",
+        "unit": "gói"
+    },
+    {
+        "name": "Oishi bánh phồng mực Indo chips 110g",
+        "unit": "gói"
+    },
+    {
+        "name": "Oishi bánh phồng tôm hùm Indo chips 68g",
+        "unit": "gói"
+    },
+    {
+        "name": "Oishi Snack bí đỏ 110g",
+        "unit": "gói"
+    },
+    {
+        "name": "Oishi Snack tôm cay đặc biệt 68g",
+        "unit": "gói"
+    },
+    {
+        "name": "Oishi Snack tôm cay nồng 70g",
+        "unit": "gói"
+    },
+    {
+        "name": "Oreo kem vani 119.6g",
+        "unit": "gói"
+    },
+    {
+        "name": "Pillows nhân socola vj hazelnut 85g",
+        "unit": "gói"
+    },
+    {
+        "name": "Pinattsu vị mực cay 85g (party size)",
+        "unit": "gói"
+    },
+    {
+        "name": "Pinattsu vị nước cốt dừa 85g (party size)",
+        "unit": "gói"
+    },
+    {
+        "name": "Snack Poca bị bò lúc lắc 65g",
+        "unit": "gói"
+    },
+    {
+        "name": "Snack Poca vị mực lăn muối ớt 65g",
+        "unit": "gói"
+    },
+    {
+        "name": "Socola viên Milo Nuggets 25g",
+        "unit": "gói"
+    },
+    {
+        "name": "Swing vị bò bít tết 108g",
+        "unit": "gói"
+    },
+    {
+        "name": "Swing vị phô mai hai lớp 95g",
+        "unit": "gói"
+    },
+    {
+        "name": "Lotte kẹo mút Lollipop Ice 11g (1 cây)",
+        "unit": "cây"
+    },
+    {
+        "name": "Kẹo the Playmore vị dưa hấu 22g",
+        "unit": "gói"
+    },
+    {
+        "name": "Acnes - Giấy Thấm Dầu",
+        "unit": "gói"
+    },
+    {
+        "name": "BC Colgate Slimsoft charcoal",
+        "unit": "cái"
+    },
+    {
+        "name": "BG Attack khử mùi hương Anh Đào 360g",
+        "unit": "chai"
+    },
+    {
+        "name": "BG OMO comfort tinh dầu thơm nồng nàn 360g",
+        "unit": "chai"
+    },
+    {
+        "name": "BG OMO comfort tinh dầu thơm nồng nàn 720g",
+        "unit": "chai"
+    },
+    {
+        "name": "Bông tẩy trang Helen Harper 80m",
+        "unit": "gói"
+    },
+    {
+        "name": "Bông tẩy trang Silcot 82 pcs",
+        "unit": "gói"
+    },
+    {
+        "name": "Closeup KDR Kim cương 100g",
+        "unit": "tuýp"
+    },
+    {
+        "name": "Dao cạo Blue II Plus (gói 2 cây)",
+        "unit": "gói"
+    },
+    {
+        "name": "Dầu gội X-MEN-BOSS intense 180gr",
+        "unit": "chai"
+    },
+    {
+        "name": "DG Pantene ngăn rụng tóc 150g",
+        "unit": "chai"
+    },
+    {
+        "name": "DG Rejoice siêu mượt 170ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Diana Sensi Cool Fresh SMC 8m",
+        "unit": "gói"
+    },
+    {
+        "name": "Dove tẩy tế bào chết 298g",
+        "unit": "chai"
+    },
+    {
+        "name": "DX Pantene 3PDK ngăn rụng tóc 150ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Gạc dán mục Hydro - colloid 16 miếng",
+        "unit": "gói"
+    },
+    {
+        "name": "Gatsby Pomade vuốt tóc Perfect Raise 75",
+        "unit": "hũ"
+    },
+    {
+        "name": "Gatsby Wax tóc M&H giữ nếp&dày tóc-đen 75g",
+        "unit": "hũ"
+    },
+    {
+        "name": "Giấy ăn E\"mos Premium 100t 1 lớp",
+        "unit": "gói"
+    },
+    {
+        "name": "Giấy LETGREEN hộp 160 tờ 521514",
+        "unit": "hộp"
+    },
+    {
+        "name": "Giấy lựa Pulppy hộp 180 tờ",
+        "unit": "hộp"
+    },
+    {
+        "name": "Hazeline SRM Matcha Trầm Trà 50g",
+        "unit": "hũ"
+    },
+    {
+        "name": "Hazeline SRM Nghệ Hoa Cúc 50g",
+        "unit": "hũ"
+    },
+    {
+        "name": "KĐR Colgate Maxfresh Bạc Hà 180g",
+        "unit": "tuýp"
+    },
+    {
+        "name": "KĐR Sensodyne - Bạc Hà",
+        "unit": "tuýp"
+    },
+    {
+        "name": "Kem chống nắng Super Block SPF 81",
+        "unit": "tuýp"
+    },
+    {
+        "name": "Kem rửa mặt Oxy làm sạch sâu có hạt 100g",
+        "unit": "tuýp"
+    },
+    {
+        "name": "Khăn tẩy trang và lau mặt Acnes 20m",
+        "unit": "gói"
+    },
+    {
+        "name": "Khăn ướt cồn Letgreen 50 miếng",
+        "unit": "gói"
+    },
+    {
+        "name": "Khăn ướt Letgreen mini lốc 6",
+        "unit": "lốc"
+    },
+    {
+        "name": "Khẩu trang 3D ngăn khói bụi",
+        "unit": "cái"
+    },
+    {
+        "name": "Khẩu trang Unicharm 3D Mask Virus Block",
+        "unit": "gói"
+    },
+    {
+        "name": "Khẩu trang y tế 3 lớp Dr.Mask 10pcs",
+        "unit": "gói"
+    },
+    {
+        "name": "Listerine NSM coolmint 250ml",
+        "unit": "chai"
+    },
+    {
+        "name": "LNM Nivea nam làm sáng 50ml",
+        "unit": "chai"
+    },
+    {
+        "name": "LNM Nivea nam ngăn ố vàng B&W 50ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Mặt nạ Avif Biocell dưỡng trắng da 23g",
+        "unit": "miếng"
+    },
+    {
+        "name": "Mặt nạ Biocell dưỡng ẩm da 23g",
+        "unit": "miếng"
+    },
+    {
+        "name": "Mặt nạ Detox Dưa Leo & Chanh Tươi 21g",
+        "unit": "miếng"
+    },
+    {
+        "name": "Mặt nạ Detox Lựu Đỏ & Chanh Tây",
+        "unit": "miếng"
+    },
+    {
+        "name": "Mặt nạ dừa sinh học Dưỡng mịn",
+        "unit": "miếng"
+    },
+    {
+        "name": "Mặt nạ dưỡng ẩm cho mắt",
+        "unit": "miếng"
+    },
+    {
+        "name": "Mặt nạ dưỡng ẩm cho môi",
+        "unit": "miếng"
+    },
+    {
+        "name": "Mặt nạ Relaxing trà xanh 21g",
+        "unit": "miếng"
+    },
+    {
+        "name": "MIENG DAN MUI LOT MUN BIORE - NAM 5M",
+        "unit": "gói"
+    },
+    {
+        "name": "MIENG DAN MUI LOT MUN BIORE 5M",
+        "unit": "gói"
+    },
+    {
+        "name": "Nước súc miệng Dr. Muối truyền thống 500m",
+        "unit": "chai"
+    },
+    {
+        "name": "Nước tẩy trang Micellar Senka 230ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Nước tẩy trang Simple micellar 400ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Romano - Sua tam Shower foam - classic",
+        "unit": "chai"
+    },
+    {
+        "name": "XNM Nivea nam phân tử bạc 150ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Vitamin dưỡng tóc Ellips phục hồi hư tổn 6v",
+        "unit": "gói"
+    },
+    {
+        "name": "Sáp thơm Glade S.G Lavender 180g",
+        "unit": "hũ"
+    },
+    {
+        "name": "Vitamin dưỡng tóc Ellips duy trì độ ẩm 6v",
+        "unit": "gói"
+    },
+    {
+        "name": "Senka mặt nạ dưỡng ẩm sáng mịn 25ml",
+        "unit": "miếng"
+    },
+    {
+        "name": "Vim BC & NT xanh 500ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Vaseline Lip dưỡng môi hồng xinh 7g",
+        "unit": "hũ"
+    },
+    {
+        "name": "Sữa rửa mặt Simple 150ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Tăm bông kháng khuẩn SAKURA 200pcs",
+        "unit": "hộp"
+    },
+    {
+        "name": "Sunsilk xịt dưỡng tóc tinh dầu bưởi 12x100ml",
+        "unit": "chai"
+    },
+    {
+        "name": "Sữa rửa mặt tẩy trang Hatomugi 130g",
+        "unit": "tuýp"
+    },
+    {
+        "name": "Abi Bánh tráng bơ 100g",
+        "unit": "gói"
+    },
+    {
+        "name": "Abi Bánh tráng phô mai 80g",
+        "unit": "gói"
+    },
+    {
+        "name": "Abi Bánh tráng sa tế cay 80g",
+        "unit": "gói"
+    },
+    {
+        "name": "Abi Cơm cháy siêu vị 70g",
+        "unit": "gói"
+    },
+    {
+        "name": "Bột ngọt 400g L2 Ajinomoto",
+        "unit": "gói"
+    },
+    {
+        "name": "Cà phê truyền thống Highlands 200g",
+        "unit": "gói"
+    },
+    {
+        "name": "Cozy - Trà đào (25 túi) 50g",
+        "unit": "hộp"
+    },
+    {
+        "name": "CP - XXTT Red (40g x 5)",
+        "unit": "gói"
+    },
+    {
+        "name": "G7 3 in 1 hộp 20 gói 16g",
+        "unit": "hộp"
+    },
+    {
+        "name": "G - Da cá vị trứng muối 25g",
+        "unit": "gói"
+    },
+    {
+        "name": "Hạt hướng dương chacheer vị dừa 130g",
+        "unit": "gói"
+    },
+    {
+        "name": "Hạt mỗi ngày - Daily nuts 25g",
+        "unit": "gói"
+    },
+    {
+        "name": "Hey Yo chân gà bách thảo 40g",
+        "unit": "gói"
+    },
+    {
+        "name": "Nescafe 3in1 Đậm đà hài hòa (20pcs*17g)",
+        "unit": "hộp"
+    },
+    {
+        "name": "Trà sữa trân châu Hoàng Gia 416g (8 ly)",
+        "unit": "hộp"
+    },
+    {
+        "name": "XXTT heo Visssan 70g",
+        "unit": "gói"
+    },
+    {
+        "name": "Snack Da cá hồi tôm nướng muối ớt 25g",
+        "unit": "gói"
+    },
+    {
+        "name": "Snack Da cá hồi vị phô mai 25g",
+        "unit": "gói"
+    }
+]
