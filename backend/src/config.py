@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
+    PROD_ENV = os.getenv('PROD_ENV')
+    CORS_ORIGINS = os.getenv('CORS_ORIGINS')
     MONGODB_URI = os.getenv('MONGODB_URI')
     DB_NAME = os.getenv('DB_NAME', 'grab')
     SECRET_KEY = os.getenv('SECRET_KEY', 'dev')
@@ -17,24 +19,25 @@ class Config:
     ORS_API_KEY = os.getenv('ORS_API_KEY')
     DEBUG = True 
     DIMENSIONS = 768
-    VECTOR_WEIGHT = 0.6
-    FULL_TEXT_WEIGHT = 0.2
+    VECTOR_WEIGHT = 0.7
+    FULL_TEXT_WEIGHT = 0.3
     UNIT_WEIGHT = 0.2
     SECRET_KEY = os.getenv('SECRET_KEY')
     UNIT_VARIATIONS = {
-        "hộp": ["hop", "box", "h"],
-        "chai": ["bottle", "btl", "ch"],
-        "lon": ["can", "l"],
-        "lốc": ["pack", "loc"],
-        "kg": ["kilograms", "kilogram", "kilo"],
-        "g": ["gram", "grams"],
-        "túi": ["tui", "bag"],
-        "gói": ["goi", "packet"],
-        "ml": ["milliliter", "milliliters"],
-        "l": ["liter", "liters"],
-        "thùng": ["thung", "carton", "case"],
-        "cái": ["piece", "cai"],
-        "vỉ": ["strip", "vi"],
-        "khay": ["tray", "khay"],
-        "viên": ["vien", "tablet"],
+        "hộp": ["hop", "h"],
+        "chai": ["ch", "lọ"],
+        "lon": ["l"],
+        "lốc": ["loc", "vỉ", "bó"],
+        "kg": ["ký", "kí", "kilô"],
+        "g": ["gam"],
+        "túi": ["tui", "bao"],
+        "gói": ["goi", "bịch"],
+        "ml": ["mililit"],
+        "l": ["lít"],
+        "thùng": ["thung", "thg"],
+        "cái": ["cai", "chiếc"],
+        "vỉ": ["vi", "tấm"],
+        "khay": ["khay"],
+        "viên": ["vien", "liều"],
     }
+

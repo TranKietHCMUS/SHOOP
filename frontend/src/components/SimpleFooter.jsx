@@ -60,8 +60,8 @@ const SimpleFooter = ({ minimal = false }) => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/jobs" className="hover:text-[#00B14F] transition-colors">
-                    Careers
+                  <Link to="/stores" className="hover:text-[#00B14F] transition-colors">
+                    Stores
                   </Link>
                 </li>
                 <li>
@@ -74,7 +74,7 @@ const SimpleFooter = ({ minimal = false }) => {
             <div>
               <h3 className="font-semibold text-base mb-2 text-[#00B14F]">Contact</h3>
               <ul className="space-y-1 text-sm text-gray-600">
-                <li>Email: contact@jobsync.com</li>
+                <li>Email: contact@shoop.com</li>
                 <li>Tel: (84) 123-456-789</li>
                 <li>Address: Ho Chi Minh City, Vietnam</li>
               </ul>

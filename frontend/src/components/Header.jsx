@@ -47,11 +47,11 @@ const Header = () => {
             <NavLink to="/" className="text-base md:text-xl" active={location.pathname === "/"}>
               Home
             </NavLink>
-            <NavLink to="/jobs" className="text-base md:text-xl" active={location.pathname.includes("/jobs")}>
-              Find Jobs
+            <NavLink to="/get-user-data" className="text-base md:text-xl" active={location.pathname === "/get-user-data"}>
+              Search
             </NavLink>
-            <NavLink to="/employers" className="text-base md:text-xl" active={location.pathname.includes("/employers")}>
-              For Employers
+            <NavLink to="/stores" className="text-base md:text-xl" active={location.pathname.includes("/stores")}>
+              Stores
             </NavLink>
             <NavLink to="/about" className="text-base md:text-xl" active={location.pathname === "/about"}>
               About
@@ -107,15 +107,9 @@ const Header = () => {
                   </button>
                   
                   {/* Dropdown menu */}
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-1 border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right scale-95 group-hover:scale-100">
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-1 border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right scale-95 group-hover:scale-100 z-10000">
                     <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#00B14F]">
                       Your Profile
-                    </Link>
-                    <Link to="/dashboard" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#00B14F]">
-                      Dashboard
-                    </Link>
-                    <Link to="/settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#00B14F]">
-                      Settings
                     </Link>
                     <div className="border-t border-gray-100 my-1"></div>
                     <button

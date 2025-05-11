@@ -2,31 +2,39 @@ version: '3.8'
 
 services:
   frontend:
-    image: kiettna/shoop-frontend:latest
+    image: lynn0402/shoop-frontend:latest
     container_name: shoop-frontend
     ports:
       - "80:80"
     restart: always
-    environment:
-      - VITE_API_URL=${VITE_API_URL}
-      - VITE_APP_NAME=${VITE_APP_NAME}
-      - VITE_GOOGLE_MAPS_API_KEY=${VITE_GOOGLE_MAPS_API_KEY}
-      - PORT=${PORT}
+    environment: 
+    - VITE_API_URL=${VITE_API_URL}
+    - VITE_APP_NAME=${VITE_APP_NAME}
+    - VITE_GOOGLE_MAPS_API_KEY=${VITE_GOOGLE_MAPS_API_KEY}
+    networks:
+      - app-network
 
   backend:
-    image: kiettna/shoop-backend:latest
+    image: lynn0402/shoop-backend:latest
     container_name: shoop-backend
     ports:
       - "5000:5000"
     restart: always
     environment:
-      - MONGO_PASSWORD=${MONGO_PASSWORD}
       - MONGODB_URI=${MONGODB_URI}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - REDIS_URL=${REDIS_URL}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - GGMAP_API_KEY=${GGMAP_API_KEY}
-      - DB_NAME=${DB_NAME}
-      - REDIS_HOST=${REDIS_HOST}
-      - REDIS_PORT=${REDIS_PORT}
-      - SECRET_KEY=${SECRET_KEY}
-      - REDIS_URL=${REDIS_URL}
       - ORS_API_KEY=${ORS_API_KEY}
+      - DB_NAME=${DB_NAME}
+      - ORTOOLS_KEY=${ORTOOLS_KEY}
+      - SECRET_KEY=${SECRET_KEY}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - PROD_ENV=True
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

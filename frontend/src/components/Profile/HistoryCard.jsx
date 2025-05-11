@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Clock, MapPin, ChevronRight, Search, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
-
+import { API_CONFIG } from '../../lib/config';
 const formatDate = (dateString) => {
     try {
       const date = new Date(dateString);
@@ -19,7 +19,6 @@ const formatDate = (dateString) => {
   };
 
 const HistoryCard = ({ item, index, expandedCard, toggleExpand, viewDetails, openHistoryDetail, onDeleteSuccess, user, setSearchHistory }) => {
-  // Hàm xử lý khi người dùng xóa lịch sử
   const deleteHistoryCard = async (e) => {
     e.stopPropagation();
     try {
@@ -28,7 +27,7 @@ const HistoryCard = ({ item, index, expandedCard, toggleExpand, viewDetails, ope
       if (!userId) 
         toast.error('User not found!');
 
-      const response = await fetch(`http://localhost:5000/user/history/delete?index=${index}`, {
+      const response = await fetch(`/api/user/history/delete?index=${index}`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {
