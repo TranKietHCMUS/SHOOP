@@ -1,29 +1,22 @@
-# Build stage
-FROM node:20-alpine as builder
+# Stage 1: Build Vite app
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy source code
 COPY . .
 
-# Build the application
+# Build app (output sẽ nằm trong dist/)
 RUN npm run build
 
-# Production stage
+# Stage 2: Serve với Nginx
 FROM nginx:alpine
 
-# Copy built assets from builder stage
-COPY --from=builder /app/build /usr/share/nginx/html
-
-# Copy nginx configuration if needed
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy dist vào nginx html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"] 
+CMD ["nginx", "-g", "daemon off;"]
