@@ -20,12 +20,13 @@ services:
       - "5000:5000"
     restart: always
     environment:
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
       - MONGODB_URI=${MONGODB_URI}
-      - REDIS_URL=${REDIS_URL}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - GGMAP_API_KEY=${GGMAP_API_KEY}
-      - ORS_API_KEY=${ORS_API_KEY}
       - DB_NAME=${DB_NAME}
-      - ORTOOLS_KEY=${ORTOOLS_KEY}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
       - SECRET_KEY=${SECRET_KEY}
-      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - REDIS_URL=${REDIS_URL}
+      - ORS_API_KEY=${ORS_API_KEY}
