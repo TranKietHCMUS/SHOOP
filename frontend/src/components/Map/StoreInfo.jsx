@@ -71,7 +71,7 @@ const StoreInfo = ({ store }) => {
         {/* Selected Item Content */}
         <section>
           {store.items[selectedItemIndex] && (
-            <div className="bg-gray-50 rounded-xl p-1 shadow-sm">
+            <div className="bg-gray-50 rounded-xl shadow-sm">
               <div className="mb-4">
                 {/* <h4 className="text-xl font-semibold text-gray-800 break-words">
                   {store.items[selectedItemIndex].product_name}

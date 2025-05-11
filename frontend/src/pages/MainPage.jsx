@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import { mapColors } from '../lib/map_colors';
 import { useNavigate } from 'react-router-dom';
 import { useGoogleMapsApi } from '../hooks/useGoogleMapsApi'; // Import the Google Maps API hook
+import { API_CONFIG } from '../lib/config';
 const MapSection = React.memo(({ 
   stores, 
   onStoreClick, 
@@ -116,7 +117,7 @@ const MainPage = () => {
       // Bước 2: Gọi API với vị trí đã lấy được
       console.log('Calling API with:', { searchData, user_location: fetchedLocation });
       setIsProcessing(true);
-      const response = await fetch('http://localhost:5000/api/search/nearby', {
+      const response = await fetch(`/api/search/nearby`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -182,7 +183,7 @@ const MainPage = () => {
   const handleNextPhase = useCallback(async () => {
     setIsProcessing(true);
     try {
-      const response = await fetch('http://localhost:5000/api/search/plans', {
+      const response = await fetch(`/api/search/plans`, {
         method: 'POST',
         credentials: 'include',
         headers: {

@@ -14,12 +14,10 @@ const StoresPage = () => {
   useEffect(() => {
     const fetchStores = async () => {
       try {
-        // Lấy danh sách tất cả cửa hàng từ các loại trong map_colors
         const storePromises = Object.keys(mapColors).map(storeName => {
-            const url = new URL(`${API_CONFIG.BASE_URL}/store`);
-            url.searchParams.append("name", storeName);
-          
-            return fetch(url.toString(), {
+          const url = new URL(`/api/store`);
+          url.searchParams.append("name", storeName);
+          return fetch(url.toString(), {
               method: "GET",
               headers: {
                 "Accept": "application/json"

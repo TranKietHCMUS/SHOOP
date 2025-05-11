@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-
-const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+import { API_CONFIG } from '../lib/config';
 
 export function useGoogleMapsApi() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [googleApi, setGoogleApi] = useState(null);
-
+  const GOOGLE_MAPS_API_KEY = API_CONFIG.GOOGLE_MAPS_API_KEY;
   useEffect(() => {
     let isMounted = true;
 

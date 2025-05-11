@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useCallback, useState, useEffect } from 'react';
-
+import { API_CONFIG } from '../lib/config';
 const AuthContext = createContext();
 
-const baseUrl = 'http://localhost:5000';
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -62,7 +61,7 @@ export const AuthProvider = ({ children }) => {
     setLoginError(null);
   
     try {
-      const response = await fetch(`${baseUrl}/auth/login`, {
+      const response = await fetch(`/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -104,7 +103,7 @@ export const AuthProvider = ({ children }) => {
     setRegisterError(null);
   
     try {
-      const response = await fetch(`${baseUrl}/auth/register`, {
+      const response = await fetch(`/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -150,7 +149,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
   
     try {
-      const response = await fetch(`${baseUrl}/auth/logout`, {
+      const response = await fetch(`/api/auth/logout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

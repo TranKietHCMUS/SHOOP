@@ -11,8 +11,11 @@ matplotlib
 python-dotenv==1.0.1
 redis
 sentence-transformers==4.1.0
-google-generativeai
+google-genai
 bcrypt==4.3.0
 ortools
 haversine
 gunicorn
+PyJWT
+huggingface_hub
+accelerate

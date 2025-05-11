@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from src.controllers.search_controller import SearchController
 from src.middlewares.verify_token import token_required
 
-search_bp = Blueprint("search", __name__, url_prefix="/api/search")
+search_bp = Blueprint("search", __name__, url_prefix="/search")
 search_controller = SearchController()
 
 # POST /search/plans

@@ -9,7 +9,7 @@ import ProfileHeader from '../components/Profile/ProfileHeader';
 import NavigationTabs from '../components/Profile/NavigationTabs';
 import ProfileInfo from '../components/Profile/ProfileInfo';
 import SearchHistory from '../components/Profile/SearchHistory';
-
+import { API_CONFIG } from '../lib/config';
 const ProfilePage = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -27,7 +27,7 @@ const ProfilePage = () => {
         return;
       }
       
-      const response = await fetch(`http://localhost:5000/user/history`, {
+      const response = await fetch(`/api/user/history`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const ProfilePage = () => {
       
       if (!userId) return;
       
-      const response = await fetch(`http://localhost:5000/user/history/clear`, {
+      const response = await fetch(`/api/user/history/clear`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {
