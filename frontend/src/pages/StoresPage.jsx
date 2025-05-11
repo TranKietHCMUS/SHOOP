@@ -15,9 +15,8 @@ const StoresPage = () => {
     const fetchStores = async () => {
       try {
         const storePromises = Object.keys(mapColors).map(storeName => {
-          const url = new URL(`/api/store`);
-          url.searchParams.append("name", storeName);
-          return fetch(url.toString(), {
+          const url = `/api/store?name=${storeName}`;
+          return fetch(url, {
               method: "GET",
               headers: {
                 "Accept": "application/json"
