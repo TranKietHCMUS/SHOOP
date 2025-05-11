@@ -1,4 +1,4 @@
-# Job Sync Project
+SHOOP Project
 
 1. Create conda environment
 ```bash
