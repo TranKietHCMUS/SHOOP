@@ -14,19 +14,14 @@ def get_products():
 def insert_products():
     data = request.json
     products = data.get("products")
-    length = len(products)
-    batch_size = 100  
+    if not products:
+        return jsonify({"error": "No products provided"}), 400
+    batch_size = 100
     results = []
-    for batch in tqdm(batched(products, batch_size), total=length//batch_size):
-        # print("batch", batch)
-        message, status = product_controller.add_products(batch)
-        if status != 200:
-            results.append(f"Batch failed: {message}")
-        else:
-            results.append(message)
-    return jsonify({"message": f"\n{results}"}), 200
-
-    
+    for batch in tqdm(batched(products, batch_size), total=(len(products) // batch_size) + 1):
+        result = product_controller.add_products(batch)
+        results.append(result[0].json if hasattr(result[0], 'json') else result[0])
+    return jsonify({"message": results}), 200
 
 @product_routes.route("/<string:name>", methods=["GET"])
 def get_product_by_name(name: str):
@@ -34,5 +29,4 @@ def get_product_by_name(name: str):
 
 @product_routes.route("/re-indexing", methods=["GET"])
 def re_indexing():
-    res = product_controller.re_indexing()
-    return jsonify({"message": "Re-indexing products successfully"}), 200 if res else 500
+    return product_controller.re_indexing()

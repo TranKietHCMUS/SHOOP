@@ -6,10 +6,13 @@ import math
 import re
 from collections import Counter
 from src.config import Config
+import logging
+
 class AIService:
     def __init__(self):
         self.sbert = AI_MODELS["sbert"]
         self.genai = AI_MODELS["genai"]
+        self.logger = logging.getLogger(__name__)
         
     def _get_system_prompt(self) -> str:
         return """
@@ -35,32 +38,32 @@ class AIService:
         """
 
     def process_prompt(self, prompt: str) -> PromptModel:
+        """Process a prompt and return a PromptModel object."""
         try:
             response = self.genai.models.generate_content(
                 model="gemini-2.0-flash-lite", 
                 contents=(self._get_system_prompt() + prompt)
             )
-
             raw_text = response.text.strip()
             if raw_text.startswith("```") and raw_text.endswith("```"):
                 raw_text = "\n".join(raw_text.split("\n")[1:-1])
-
             return PromptModel.from_json(raw_text)
-            
         except Exception as e:
-            print(f"Error processing prompt: {e}")
+            self.logger.error(f"Error processing prompt: {e}")
             return PromptModel()
 
     def get_embeddings(self, sentences: Union[List[str], str]) -> np.ndarray:
+        """Get embeddings for a list of sentences or a single sentence."""
         try:
             if isinstance(sentences, str):
                 sentences = [sentences]
             return self.sbert.encode(sentences)
         except Exception as e:
-            print(f"Error getting embeddings: {e}")
+            self.logger.error(f"Error getting embeddings: {e}")
             return np.array([])
             
     def preprocess_text(self, text: str) -> List[str]:
+        """Preprocess text: lower, tokenize, remove stop words."""
         if not text:
             return []
             
@@ -110,7 +113,7 @@ class AIService:
             return score
             
         except Exception as e:
-            print(f"Error calculating BM25 score: {e}")
+            self.logger.error(f"Error calculating BM25 score: {e}")
             return 0.0
             
     def okapi_bm25_score(self, query: str, document: str, k1: float = 1.5, 
@@ -152,7 +155,7 @@ class AIService:
             return score
             
         except Exception as e:
-            print(f"Error calculating Okapi BM25 score: {e}")
+            self.logger.error(f"Error calculating Okapi BM25 score: {e}")
             return 0.0
             
     def unit_similarity_score(self, query_unit: str, product_unit: str) -> float:
@@ -189,6 +192,6 @@ class AIService:
             return 0.1  
             
         except Exception as e:
-            print(f"Error calculating unit similarity: {e}")
+            self.logger.error(f"Error calculating unit similarity: {e}")
             return 0.0
 

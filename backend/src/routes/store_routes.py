@@ -14,17 +14,14 @@ def get_stores():
 def insert_stores():
     data = request.json
     stores = data.get("stores")
-    length = len(stores)
-    batch_size = 100  
+    if not stores:
+        return jsonify({"error": "No stores provided"}), 400
+    batch_size = 100
     results = []
-    for batch in tqdm(batched(stores, batch_size), total=length//batch_size):
-        # print("batch", batch)
-        failed, status = store_controller.add_stores(batch)
-        if status != 200:
-            results.append(f"Batch failed: {failed}")
-        else:
-            results.append(failed)
-    return jsonify({"message": f"{results}"}), 200
+    for batch in tqdm(batched(stores, batch_size), total=(len(stores) // batch_size) + 1):
+        result = store_controller.add_stores(batch)
+        results.append(result[0].json if hasattr(result[0], 'json') else result[0])
+    return jsonify({"message": results}), 200
 
 @store_routes.route("/<string:name>", methods=["GET"])
 def get_store_by_name(name: str):

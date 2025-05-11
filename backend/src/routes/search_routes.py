@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 from src.controllers.search_controller import SearchController
 from src.middlewares.verify_token import token_required
 

@@ -8,12 +8,14 @@ from typing import List, Dict, Any
 import numpy as np
 from datetime import datetime
 from tqdm import tqdm
+import logging
 
 class ProductService:
     def __init__(self, ai_service: AIService):
+        self.logger = logging.getLogger(__name__)
         self.collection = db.get_collection("products")
-        self._ensure_indexes()
         self.ai_service = ai_service
+        self._ensure_indexes()
         
     def _ensure_indexes(self):
         try:
@@ -68,25 +70,25 @@ class ProductService:
                 
                 if not vector_index_exists:
                     self.collection.create_search_index(model=vector_index_model)
-                    print("Vector search index created successfully")
+                    self.logger.info("Vector search index created successfully")
                 
                 if not text_index_exists:
                     self.collection.create_search_index(model=text_index_model)
-                    print("Text search index created successfully")
+                    self.logger.info("Text search index created successfully")
                     
-                print("Search indexes verified successfully")
+                self.logger.info("Search indexes verified successfully")
             except Exception as e:
-                print(f"Error checking or creating search indexes: {e}")
+                self.logger.error(f"Error checking or creating search indexes: {e}")
                 try:
                     self.collection.create_search_index(model=vector_index_model)
                     self.collection.create_search_index(model=text_index_model)
-                    print("Search indexes created")
+                    self.logger.info("Search indexes created")
                 except Exception as e2:
-                    print(f"Failed to create search indexes: {e2}")
+                    self.logger.error(f"Failed to create search indexes: {e2}")
                 
-            print("All indexes created or verified successfully")
+            self.logger.info("All indexes created or verified successfully")
         except Exception as e:
-            print(f"Error creating indexes: {e}, full error: {str(e)}")
+            self.logger.error(f"Error creating indexes: {e}, full error: {str(e)}")
 
     def validate_product(self, product: Product) -> None:
         if not product.name or not isinstance(product.name, str):
@@ -133,18 +135,18 @@ class ProductService:
 
     def insert_one(self, product: Product) -> Product:
         try:
-            self.validate_product(product)
+            self._validate_product(product)
             
             if not product.vector:
                 vector = self.ai_service.get_embeddings(product.name + product.unit)
                 product.vector = vector.tolist()
             else:
-                product.vector = self.validate_vector(product.vector)
+                product.vector = self._validate_vector(product.vector)
                 
             self.collection.insert_one(product.to_dict())
             return product
         except Exception as e:
-            print(f"Error inserting product: {e}")
+            self.logger.error(f"Error inserting product: {e}")
             raise e
             
     def insert_many(self, products: list[Product]) -> tuple[int, list[dict]]:
@@ -156,11 +158,11 @@ class ProductService:
                     self.insert_one(product)
                     cnt += 1
                 except Exception as e:
-                    print(f"Error inserting product: {e}")
+                    self.logger.error(f"Error inserting product: {e}")
                     failed.append(product.to_dict())
             return cnt, failed
         except Exception as e:
-            print(f"Error inserting products: {e}")
+            self.logger.error(f"Error inserting products: {e}")
             raise e
             
     def update_by_id(self, id: str, update_data: dict) -> bool:
@@ -173,7 +175,7 @@ class ProductService:
                 vector = self.ai_service.get_embeddings(update_data["name"])
                 update_data["vector"] = vector.tolist()
             elif "vector" in update_data:
-                update_data["vector"] = self.validate_vector(update_data["vector"])
+                update_data["vector"] = self._validate_vector(update_data["vector"])
                 
             result = self.collection.update_one(
                 {"_id": ObjectId(id)},
@@ -181,7 +183,7 @@ class ProductService:
             )
             return result.modified_count > 0
         except Exception as e:
-            print(f"Error updating product: {e}")
+            self.logger.error(f"Error updating product: {e}")
             raise e
 
     def delete_by_id(self, id: str) -> bool:
@@ -189,92 +191,28 @@ class ProductService:
             result = self.collection.delete_one({"_id": ObjectId(id)})
             return result.deleted_count > 0
         except Exception as e:
-            print(f"Error deleting product: {e}")
+            self.logger.error(f"Error deleting product: {e}")
             return False
             
     def search(self, query_vector: list[float], product_name: str = None, unit: str = None, top_k: int = 10) -> list[dict]:
         try:
-            query_vector = self.validate_vector(query_vector)
+            query_vector = self._validate_vector(query_vector)
             results = {}
 
             print(f"Query vector: {query_vector[:5]}... (length: {len(query_vector)})")
             print(f"Searching for product name: '{product_name}', unit: '{unit}'")
 
             if query_vector:
-                vector_pipeline = [
-                    {
-                        "$vectorSearch": {
-                            "index": "vector_index",
-                            "path": "vector",
-                            "queryVector": query_vector, 
-                            "numCandidates": 100,
-                            "limit": 100 
-                        }
-                    },
-                    {
-                        "$project": {
-                            "_id": 1,
-                            "name": 1,
-                            "price": 1,
-                            "unit": 1,
-                            "store_name": 1,
-                            "category": 1,
-                            "img_url": 1,
-                            "created_at": 1,
-                            "updated_at": 1,
-                            "vs_score": {"$meta": "vectorSearchScore"}
-                        }
-                    }
-                ]
-                
+                vector_pipeline = self._get_vector_search_pipeline(query_vector)
                 vector_results = list(self.collection.aggregate(vector_pipeline))
                 
                 # Process vector results
                 for doc in vector_results:
                     doc_id = str(doc["_id"])
-                    results[doc_id] = {
-                        "_id": doc["_id"],
-                        "name": doc["name"],
-                        "price": doc.get("price"),
-                        "unit": doc.get("unit"),
-                        "store_name": doc.get("store_name"),
-                        "category": doc.get("category"),
-                        "img_url": doc.get("img_url"),
-                        "created_at": doc.get("created_at"),
-                        "updated_at": doc.get("updated_at"),
-                        "vs_score": doc["vs_score"] * Config.VECTOR_WEIGHT,
-                        "fts_score": 0,
-                        "unit_score": 0
-                    }
+                    results[doc_id] = self._map_vector_result(doc)
 
             if product_name:
-                text_pipeline = [
-                    {
-                        "$search": {
-                            "index": "product_text_index",
-                            "text": {
-                                "query": product_name,
-                                "path": "name"
-                            }
-                        }
-                    },
-                    {
-                        "$project": {
-                            "_id": 1,
-                            "name": 1,
-                            "price": 1,
-                            "unit": 1,
-                            "store_name": 1,
-                            "category": 1,
-                            "img_url": 1,
-                            "created_at": 1,
-                            "updated_at": 1,
-                            "fts_score": {"$meta": "searchScore"}
-                        }
-                    },
-                    {"$limit": 100}
-                ]
-                
+                text_pipeline = self._get_text_search_pipeline(product_name)
                 text_results = list(self.collection.aggregate(text_pipeline))
                 
                 for doc in text_results:
@@ -282,20 +220,7 @@ class ProductService:
                     if doc_id in results:
                         results[doc_id]["fts_score"] = doc["fts_score"] * Config.FULL_TEXT_WEIGHT
                     else:
-                        results[doc_id] = {
-                            "_id": doc["_id"],
-                            "name": doc["name"],
-                            "price": doc.get("price"),
-                            "unit": doc.get("unit"),
-                            "store_name": doc.get("store_name"),
-                            "category": doc.get("category"),
-                            "img_url": doc.get("img_url"),
-                            "created_at": doc.get("created_at"),
-                            "updated_at": doc.get("updated_at"),
-                            "vs_score": 0,
-                            "fts_score": doc["fts_score"] * Config.FULL_TEXT_WEIGHT,
-                            "unit_score": 0
-                        }
+                        results[doc_id] = self._map_text_result(doc)
 
             for doc_id, doc in results.items():
                 doc["initial_score"] = doc["vs_score"] + doc["fts_score"]
@@ -320,32 +245,12 @@ class ProductService:
                 
             final_results.sort(key=lambda x: x["score"], reverse=True)
             
-            return_results = []
-            for doc in final_results:
-                # Ensure datetime objects are converted to string
-                created_at = doc.get("created_at")
-                updated_at = doc.get("updated_at")
-
-                return_results.append({
-                    "_id": str(doc["_id"]), 
-                    "name": doc["name"],
-                    "price": doc.get("price"),
-                    "unit": doc.get("unit"),
-                    "store_name": doc.get("store_name"),
-                    "category": doc.get("category"),
-                    "img_url": doc.get("img_url"),
-                    "created_at": created_at.isoformat() if created_at else None,
-                    "updated_at": updated_at.isoformat() if updated_at else None,
-                    "score": doc["score"],
-                    "vs_score": doc["vs_score"],
-                    "fts_score": doc["fts_score"],
-                    "unit_score": doc["unit_score"]
-                })
+            return_results = [self._map_return_result(doc) for doc in final_results[:top_k]]
             
-            return return_results[:top_k]
+            return return_results
 
         except Exception as e:
-            print(f"Error searching products: {e}")
+            self.logger.error(f"Error searching products: {e}")
             # traceback.print_exc()  # Add this to get the full stack trace
             return []
 
@@ -364,7 +269,7 @@ class ProductService:
                 results.append(search_results)
             return results
         except Exception as e:
-            print(f"Error searching products: {e}")
+            self.logger.error(f"Error searching products: {e}")
             return []
     
     def re_indexing(self) -> bool:
@@ -385,6 +290,124 @@ class ProductService:
                 )
             return True
         except Exception as e:
-            print(f"Error re-indexing products: {e}")
+            self.logger.error(f"Error re-indexing products: {e}")
             return False
+
+    def _validate_product(self, product: Product) -> None:
+        if not product.name or not isinstance(product.name, str):
+            raise ValueError("Name must be a non-empty string")
+        if product.price < 0:
+            raise ValueError("Price must be a positive number")
+        if not product.store_name or not isinstance(product.store_name, str):
+            raise ValueError("Store name must be a non-empty string")
+        if product.vector and not isinstance(product.vector, list):
+            raise ValueError("Vector must be a list of float values")
+        if product.vector and len(product.vector) != Config.DIMENSIONS:
+            raise ValueError(f"Vector must have exactly {Config.DIMENSIONS} dimensions")
+
+    def _get_vector_search_pipeline(self, query_vector):
+        return [
+            {
+                "$vectorSearch": {
+                    "index": "vector_index",
+                    "path": "vector",
+                    "queryVector": query_vector, 
+                    "numCandidates": 100,
+                    "limit": 100 
+                }
+            },
+            {
+                "$project": {
+                    "_id": 1,
+                    "name": 1,
+                    "price": 1,
+                    "unit": 1,
+                    "store_name": 1,
+                    "category": 1,
+                    "img_url": 1,
+                    "created_at": 1,
+                    "updated_at": 1,
+                    "vs_score": {"$meta": "vectorSearchScore"}
+                }
+            }
+        ]
+
+    def _get_text_search_pipeline(self, product_name):
+        return [
+            {
+                "$search": {
+                    "index": "product_text_index",
+                    "text": {
+                        "query": product_name,
+                        "path": "name"
+                    }
+                }
+            },
+            {
+                "$project": {
+                    "_id": 1,
+                    "name": 1,
+                    "price": 1,
+                    "unit": 1,
+                    "store_name": 1,
+                    "category": 1,
+                    "img_url": 1,
+                    "created_at": 1,
+                    "updated_at": 1,
+                    "fts_score": {"$meta": "searchScore"}
+                }
+            },
+            {"$limit": 100}
+        ]
+
+    def _map_vector_result(self, doc):
+        return {
+            "_id": doc["_id"],
+            "name": doc["name"],
+            "price": doc.get("price"),
+            "unit": doc.get("unit"),
+            "store_name": doc.get("store_name"),
+            "category": doc.get("category"),
+            "img_url": doc.get("img_url"),
+            "created_at": doc.get("created_at"),
+            "updated_at": doc.get("updated_at"),
+            "vs_score": doc["vs_score"] * Config.VECTOR_WEIGHT,
+            "fts_score": 0,
+            "unit_score": 0
+        }
+
+    def _map_text_result(self, doc):
+        return {
+            "_id": doc["_id"],
+            "name": doc["name"],
+            "price": doc.get("price"),
+            "unit": doc.get("unit"),
+            "store_name": doc.get("store_name"),
+            "category": doc.get("category"),
+            "img_url": doc.get("img_url"),
+            "created_at": doc.get("created_at"),
+            "updated_at": doc.get("updated_at"),
+            "vs_score": 0,
+            "fts_score": doc["fts_score"] * Config.FULL_TEXT_WEIGHT,
+            "unit_score": 0
+        }
+
+    def _map_return_result(self, doc):
+        created_at = doc.get("created_at")
+        updated_at = doc.get("updated_at")
+        return {
+            "_id": str(doc["_id"]), 
+            "name": doc["name"],
+            "price": doc.get("price"),
+            "unit": doc.get("unit"),
+            "store_name": doc.get("store_name"),
+            "category": doc.get("category"),
+            "img_url": doc.get("img_url"),
+            "created_at": created_at.isoformat() if created_at else None,
+            "updated_at": updated_at.isoformat() if updated_at else None,
+            "score": doc["score"],
+            "vs_score": doc["vs_score"],
+            "fts_score": doc["fts_score"],
+            "unit_score": doc["unit_score"]
+        }
 

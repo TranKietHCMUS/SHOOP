@@ -7,6 +7,7 @@ from typing import List, Optional, Dict
 from src.models.user_model import Users
 import jwt
 from src.config import Config
+import logging
 
 
 class UserService:  
@@ -14,69 +15,50 @@ class UserService:
         self.ai_service = ai_service
         self.product_service = product_service
         self.collection = db.get_collection("users")
+        self.logger = logging.getLogger(__name__)
         self._ensure_indexes()
         
     def get_similar_products(self, user_products_with_units, top_k=10):
-        # Extract product names for embedding generation (first item in each tuple)
-        product_names = [item[0] for item in user_products_with_units]
-        print(f"user_products_with_units: {user_products_with_units}")
-        # Generate embeddings for the product names only
-        embeddings = self.ai_service.get_embeddings(product_names)
-        
-        # Search for products with both name and unit
-        results = self.product_service.search_products(embeddings=embeddings, 
-                                                       product_items_with_units=user_products_with_units,
-                                                       top_k=top_k)
-        # print(f"Results: {results}")
-        final_results = []
-        for i, res in enumerate(results):
-            product_res = []
-            for j, result in enumerate(res):
-                product_res.append({
-                    "id": str(result['_id']),
-                    "name": result['name'],
-                    "store_name": result['store_name'],
-                    "price": result['price'],
-                    "unit": result['unit'],
-                    "category": result['category'],
-                    "img_url": result['img_url'],
-                    "vs_score": result['vs_score'],
-                    "fts_score": result['fts_score'],
-                    "unit_score": result.get('unit_score', 0),
-                    "score": result['score'],
-                    "created_at": result['created_at'],
-                    "updated_at": result['updated_at'],
-                })
-            final_results.append(product_res)
-        return final_results
+        try:
+            product_names = [item[0] for item in user_products_with_units]
+            embeddings = self.ai_service.get_embeddings(product_names)
+            results = self.product_service.search_products(embeddings=embeddings, 
+                                                          product_items_with_units=user_products_with_units,
+                                                          top_k=top_k)
+            final_results = []
+            for i, res in enumerate(results):
+                product_res = [self._map_product_result(result) for result in res]
+                final_results.append(product_res)
+            return final_results
+        except Exception as e:
+            self.logger.error(f"Error getting similar products: {e}")
+            return []
 
     def processing(self, request):
-        prompt = request.get("prompt")
-        expected_radius = request.get("expected_radius")
-        user_location = request.get("user_location")
-
-        prompt_instance = self.ai_service.process_prompt(prompt)
-        print(f"Prompt instance: {prompt_instance.__dict__}")
-        items = prompt_instance.items
-        if not items:
-            raise ValueError("Error in prompting, prompt again")
-        products = []
-        quantity = []
-        total_price = prompt_instance.total_price
-        for item in items:
-            products.append(item.get("product_name"))
-            quantity.append((item.get("quantity"), item.get("unit")))
-        product_with_unit = [(item.get("product_name"), item.get("unit")) for item in items]
-        similar_products = self.get_similar_products(product_with_unit)
-
-        return products, similar_products, quantity, total_price
+        try:
+            prompt = request.get("prompt")
+            expected_radius = request.get("expected_radius")
+            user_location = request.get("user_location")
+            prompt_instance = self.ai_service.process_prompt(prompt)
+            items = prompt_instance.items
+            if not items:
+                raise ValueError("Error in prompting, prompt again")
+            products = [item.get("product_name") for item in items]
+            quantity = [(item.get("quantity"), item.get("unit")) for item in items]
+            total_price = prompt_instance.total_price
+            product_with_unit = [(item.get("product_name"), item.get("unit")) for item in items]
+            similar_products = self.get_similar_products(product_with_unit)
+            return products, similar_products, quantity, total_price
+        except Exception as e:
+            self.logger.error(f"Error in processing: {e}")
+            raise e
 
     def _ensure_indexes(self):
         try:
             self.collection.create_index([("username", 1)], unique=True, name="username_unique_index")
-            print("Indexes created successfully")
+            self.logger.info("Indexes created successfully")
         except Exception as e:
-            print(f"Error creating indexes: {e}")
+            self.logger.error(f"Error creating indexes: {e}")
 
     def _validate_user(self, user: Dict) -> Dict:
         validated_user = user.copy()
@@ -144,37 +126,19 @@ class UserService:
                 raise ValueError(f"Username '{new_user.username}' already exists")
             
             result = self.collection.insert_one(new_user.to_dict())
-            return {
-                "id": str(result.inserted_id),
-                "username": new_user.username,
-                "fullName": new_user.fullName,
-                "dateOfBirth": new_user.dateOfBirth,
-                "gender": new_user.gender,
-                "history": new_user.history,
-                "created_at": new_user.created_at,
-                "updated_at": new_user.updated_at
-            }
+            return self._map_user_result(new_user, result.inserted_id)
         except Exception as e:
-            print(f"Error adding user: {e}")
+            self.logger.error(f"Error adding user: {e}")
             raise e
 
     def find_by_id(self, id: str) -> Optional[Dict]:
         try:
             user_data = self.collection.find_one({"_id": ObjectId(id)})
             if user_data:
-                return {
-                    "id": str(user_data["_id"]),
-                    "username": user_data["username"],
-                    "fullName": user_data["fullName"],
-                    "dateOfBirth": user_data["dateOfBirth"],
-                    "gender": user_data["gender"],
-                    "history": user_data.get("history", []),
-                    "created_at": user_data["created_at"],
-                    "updated_at": user_data["updated_at"]
-                }
+                return self._map_user_dict(user_data)
             return None
         except Exception as e:
-            print(f"Error finding user: {e}")
+            self.logger.error(f"Error finding user: {e}")
             return None
 
     def find_by_username(self, username: str) -> Optional[Dict]:
@@ -182,19 +146,10 @@ class UserService:
             user_data = self.collection.find_one({"username": username})
 
             if user_data:
-                return {
-                    "id": str(user_data["_id"]),
-                    "username": user_data["username"],
-                    "fullName": user_data["fullName"],
-                    "dateOfBirth": user_data["dateOfBirth"],
-                    "gender": user_data["gender"],
-                    "history": user_data.get("history", []),
-                    "created_at": user_data["created_at"],
-                    "updated_at": user_data["updated_at"]
-                }
+                return self._map_user_dict(user_data)
             return None
         except Exception as e:
-            print(f"Error finding user: {e}")
+            self.logger.error(f"Error finding user: {e}")
             return None
 
     def verify_password(self, username: str, password: str) -> bool:
@@ -204,7 +159,7 @@ class UserService:
                 return False
             return bcrypt.checkpw(password.encode('utf-8'), user["password"].encode('utf-8'))
         except Exception as e:
-            print(f"Error verifying password: {e}")
+            self.logger.error(f"Error verifying password: {e}")
             return False
 
     def update_by_id(self, id: str, update_user: Dict) -> bool:
@@ -220,7 +175,7 @@ class UserService:
             )
             return result.modified_count > 0
         except Exception as e:
-            print(f"Error updating user: {e}")
+            self.logger.error(f"Error updating user: {e}")
             raise e
 
     def delete_by_id(self, id: str) -> bool:
@@ -228,7 +183,7 @@ class UserService:
             result = self.collection.delete_one({"_id": ObjectId(id)})
             return result.deleted_count > 0
         except Exception as e:
-            print(f"Error deleting user: {e}")
+            self.logger.error(f"Error deleting user: {e}")
             return False
 
     def add_history(self, id: str, history_entry: dict) -> bool:
@@ -242,7 +197,7 @@ class UserService:
             )
             return result.modified_count > 0
         except Exception as e:
-            print(f"Error adding history: {e}")
+            self.logger.error(f"Error adding history: {e}")
             raise e
 
     @staticmethod
@@ -255,3 +210,44 @@ class UserService:
         }
         token = jwt.encode(payload, Config.SECRET_KEY, algorithm='HS256')
         return token
+
+    def _map_product_result(self, result):
+        return {
+            "id": str(result['_id']),
+            "name": result['name'],
+            "store_name": result['store_name'],
+            "price": result['price'],
+            "unit": result['unit'],
+            "category": result['category'],
+            "img_url": result['img_url'],
+            "vs_score": result['vs_score'],
+            "fts_score": result['fts_score'],
+            "unit_score": result.get('unit_score', 0),
+            "score": result['score'],
+            "created_at": result['created_at'],
+            "updated_at": result['updated_at'],
+        }
+
+    def _map_user_result(self, user_obj, inserted_id):
+        return {
+            "id": str(inserted_id),
+            "username": user_obj.username,
+            "fullName": user_obj.fullName,
+            "dateOfBirth": user_obj.dateOfBirth,
+            "gender": user_obj.gender,
+            "history": user_obj.history,
+            "created_at": user_obj.created_at,
+            "updated_at": user_obj.updated_at
+        }
+
+    def _map_user_dict(self, user_data):
+        return {
+            "id": str(user_data["_id"]),
+            "username": user_data["username"],
+            "fullName": user_data["fullName"],
+            "dateOfBirth": user_data["dateOfBirth"],
+            "gender": user_data["gender"],
+            "history": user_data.get("history", []),
+            "created_at": user_data["created_at"],
+            "updated_at": user_data["updated_at"]
+        }

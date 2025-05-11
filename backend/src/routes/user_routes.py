@@ -8,8 +8,7 @@ user_controller = UserController()
 # -> add later
 @user_routes.route("/search", methods=["POST"])
 def search():
-    message, status_code = user_controller.handle_user_search(request.json)
-    return message, status_code
+    return user_controller.handle_user_search(request.json)
 
 @user_routes.route("/history", methods=["GET"])
 @token_required

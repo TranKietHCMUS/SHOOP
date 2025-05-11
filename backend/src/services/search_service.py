@@ -22,7 +22,7 @@ class SearchService:
         self.item_price_scale_factor = item_price_scale_factor if item_price_scale_factor is not None else self.DEFAULT_ITEM_PRICE_SCALE_FACTOR
         self.time_limit_seconds = time_limit_seconds if time_limit_seconds is not None else self.DEFAULT_TIME_LIMIT_SECONDS
         self.average_speed_kmh = average_speed_kmh if average_speed_kmh is not None else self.DEFAULT_AVERAGE_SPEED_KMH
-        # ... (logging info)
+        self.logger = logging.getLogger(__name__)
     
     @staticmethod    
     def _reverse_geocode(lat: float, lng: float) -> str:
@@ -501,60 +501,51 @@ class SearchService:
         return [final_trip_object]
 
     def find_optimal_shopping_plan(self, stores_for_search, required_item_groups, user_loc):
-        logger.info("Received request for optimal shopping plan (single trip output).")
-        # ... (input validation as before, returning [{_error_message:...}] on error) ...
+        self.logger.info("Received request for optimal shopping plan (single trip output).")
         if not stores_for_search or not required_item_groups or not user_loc:
-            logger.error("Missing required input: stores, groups, or user_loc.")
+            self.logger.error("Missing required input: stores, groups, or user_loc.")
             return [{
                 'start': "N/A", 'end': "N/A", 'cost': 0, 'distance': 0, 'duration': 0,
                 'coordinates': [], 'waypoints': [],
                 '_error_message': "Missing stores, groups, or user location.",
             }]
-
-
-        logger.info("Preparing data model...")
+        self.logger.info("Preparing data model...")
         data_model = self._prepare_data_model(stores_for_search, user_loc, required_item_groups)
-        
         if data_model is None:
-            logger.error("Failed to prepare data model.")
+            self.logger.error("Failed to prepare data model.")
             return [{
                 'start': "N/A", 'end': "N/A", 'cost': 0, 'distance': 0, 'duration': 0,
                 'coordinates': [], 'waypoints': [],
                 '_error_message': "Error preparing data for OR-Tools."
             }]
-        
         for i, task_nodes in enumerate(data_model['task_nodes_for_group']):
             group_set = required_item_groups[i]
             if not task_nodes and group_set:
                 group_name_preview = "_".join(sorted(list(group_set))[:2])
                 msg = f"No items available for a required group: ({group_name_preview}...). Cannot find a valid plan."
-                logger.error(msg)
+                self.logger.error(msg)
                 return [{
                     'start': "N/A", 'end': "N/A", 'cost': 0, 'distance': 0, 'duration': 0,
                     'coordinates': [], 'waypoints': [],
                     '_error_message': msg,
                     '_status_code': "INFEASIBLE_REQUIREMENTS"
                 }]
-
-        logger.info(f"Data model prepared. Num_nodes: {data_model['num_nodes']}, Num_locations: {len(data_model['locations'])}")
+        self.logger.info(f"Data model prepared. Num_nodes: {data_model['num_nodes']}, Num_locations: {len(data_model['locations'])}")
         manager, routing, solution = self._solve_with_or_tools(data_model)
-
-        if not solution: # Handle no solution from solver
+        if not solution:
             status_map = {0: "ROUTING_NOT_SOLVED", 1: "ROUTING_SUCCESS", 2: "ROUTING_FAIL",
                           3: "ROUTING_FAIL_TIMEOUT", 4: "ROUTING_INVALID"}
             solver_status_str = status_map.get(routing.status() if routing else -1, 'UNKNOWN_SOLVER_STATE')
-            logger.warning(f"No solution found by OR-Tools. Solver status: {solver_status_str}")
+            self.logger.warning(f"No solution found by OR-Tools. Solver status: {solver_status_str}")
             return [{
                 'start': "N/A", 'end': "N/A", 'cost': 0, 'distance': 0, 'duration': 0,
                 'coordinates': [], 'waypoints': [],
                 '_error_message': f"Solver did not find a solution. Status: {solver_status_str}",
                 '_solver_status_code': routing.status() if routing else -1
             }]
-
-
-        logger.info("Solution found. Parsing results for single trip output...")
+        self.logger.info("Solution found. Parsing results for single trip output...")
         parsed_plan = self._parse_solution(data_model, manager, routing, solution)
-        logger.info("Optimal shopping plan (single trip) processed successfully.")
+        self.logger.info("Optimal shopping plan (single trip) processed successfully.")
         return parsed_plan
 
     def get_plans_from_nearby(
