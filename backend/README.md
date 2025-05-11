@@ -1,11 +1,11 @@
 # How to run
 1. Create Virtual Environment with Anaconda
 ```
-conda create -n jobsync python=3.12.4
+conda create -n shoop python=3.12.4
 ```
 2. Activate VE
 ```
-conda activate jobsync
+conda activate shoop
 ```
 3. Install Dependencies
 ```
