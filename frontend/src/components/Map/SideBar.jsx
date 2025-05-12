@@ -54,7 +54,7 @@ const Sidebar = React.memo(({
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="rounded-md h-full bg-white shadow-lg"
-            style={{ width: '350px' }}
+            style={{ width: '100%', maxWidth: '350px' }}
           >
             <div className="relative">
               <button 
@@ -96,7 +96,7 @@ const Sidebar = React.memo(({
               </div>
             )}
             
-            <div className="p-4 h-[calc(80vh-1rem)]">
+            <div className="p-4 h-[calc(80vh-1rem)] md:h-[calc(80vh-1rem)] sm:h-[calc(70vh-1rem)] overflow-auto">
               {currentPhase === 2 && activeTab === 'route' ? (
                 <RouteInfo route={selectedRoute} routes={routes} />
               ) : (

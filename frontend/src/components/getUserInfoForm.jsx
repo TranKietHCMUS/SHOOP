@@ -58,40 +58,40 @@ const SearchForm = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeInOut' }}
         exit={{ opacity: 0, y: -100 }}
-        className="mb-4 text-center text-lg text-primary"
+        className="mb-2 sm:mb-3 text-center text-lg text-primary"
       >
       <Toaster />
-      <div className="bg-white rounded-lg px-2">
+      <div className="bg-white rounded-lg px-2 sm:px-3 md:px-3">
         {/* Logo */}
-        <div className="mb-3 flex justify-center">
+        <div className="mb-2 flex justify-center">
           <img 
             src="/logo/no_bg_new.png"
             alt="Grab Logo"
-            className="h-20 w-auto object-contain"
+            className="h-12 sm:h-14 md:h-16 w-auto object-contain"
           />
         </div>
 
         {/* Search Input - Changed to textarea */}
-        <div className="mb-3 text-left">
-          <label htmlFor="search" className="block text-sm font-medium text-primary mb-1">
+        <div className="mb-2 text-left">
+          <label htmlFor="search" className="block text-xs sm:text-sm font-medium text-primary mb-1">
             What do you want to buy?
           </label>
           <div className="relative">
             <textarea
               id="search"
-              className="w-full p-2 pl-9 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
+              className="w-full p-1.5 pl-7 text-xs sm:text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
               placeholder="Ex: 1kg apple and 2kg orange for a total of 200000 vnd..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              rows="8"
+              rows={useCurrentLocation ? "4" : "3"}
             />
-            <QuestionMarkCircleIcon className="h-5 w-5 text-primary absolute left-2 top-4 transform" />
+            <QuestionMarkCircleIcon className="h-4 w-4 sm:h-5 sm:w-5 text-primary absolute left-1.5 top-3 transform" />
           </div>
         </div>
 
         {/* Distance input - Changed to number input */}
-        <div className="mb-3 text-left">
-          <label htmlFor="distance" className="block text-sm font-medium text-primary mb-1">
+        <div className="mb-2 text-left">
+          <label htmlFor="distance" className="block text-xs sm:text-sm font-medium text-primary mb-1">
             Maximum distance or radius (km)
           </label>
           <div className="relative">
@@ -100,20 +100,20 @@ const SearchForm = () => {
               id="distance"
               min="0.1"
               max="50"
-              className="w-full p-2 pl-9 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
+              className="w-full p-1.5 pl-7 text-xs sm:text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
               value={distanceInput} 
               onChange={handleDistanceChange}
             />
-            <MapPinIcon className="h-5 w-5 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
+            <MapPinIcon className="h-4 w-4 text-primary absolute left-1.5 top-1/2 transform -translate-y-1/2" />
           </div>
         </div>
 
         {/* Location Selection - New input */}
-        <div className="mb-3 text-left">
-          <label className="block text-sm font-medium text-primary mb-1">
+        <div className="mb-2 text-left">
+          <label className="block text-xs sm:text-sm font-medium text-primary mb-1">
             Your location
           </label>
-          <div className="flex items-center mb-2">
+          <div className="flex items-center mb-1">
             <input
               type="radio"
               id="currentLocation"
@@ -122,9 +122,9 @@ const SearchForm = () => {
               onChange={() => setUseCurrentLocation(true)}
               className="mr-2 accent-[#00B14F]"
             />
-            <label htmlFor="currentLocation" className="text-sm">Use current location</label>
+            <label htmlFor="currentLocation" className="text-xs sm:text-sm">Use current location</label>
           </div>
-          <div className="flex items-center mb-2">
+          <div className="flex items-center mb-1">
             <input
               type="radio"
               id="customLocation"
@@ -133,20 +133,20 @@ const SearchForm = () => {
               onChange={() => setUseCurrentLocation(false)}
               className="mr-2 accent-[#00B14F]"
             />
-            <label htmlFor="customLocation" className="text-sm">Enter custom address</label>
+            <label htmlFor="customLocation" className="text-xs sm:text-sm">Enter custom address</label>
           </div>
           
           {!useCurrentLocation && (
-            <div className="relative mt-2">
+            <div className="relative mt-1">
               <input
                 type="text"
                 id="address"
-                className="w-full p-2 pl-9 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
+                className="w-full p-1.5 pl-7 text-xs sm:text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent textfield-bg-primary text-left"
                 placeholder="Enter your address..."
                 value={customAddress}
                 onChange={(e) => setCustomAddress(e.target.value)}
               />
-              <MapPinIcon className="h-5 w-5 text-primary absolute left-2 top-1/2 transform -translate-y-1/2" />
+              <MapPinIcon className="h-4 w-4 text-primary absolute left-1.5 top-1/2 transform -translate-y-1/2" />
             </div>
           )}
         </div>
@@ -154,7 +154,7 @@ const SearchForm = () => {
         {/* Submit Button */}
         <button
           onClick={handleSubmit}
-          className="w-full bg-[#00B14F] text-white py-2 rounded-lg text-sm font-medium hover:bg-[#009F47] transition-colors"
+          className="w-full bg-[#00B14F] text-white py-1.5 rounded-lg text-xs sm:text-sm font-medium hover:bg-[#009F47] transition-colors"
         >
           Search Store
         </button>

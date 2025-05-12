@@ -373,7 +373,7 @@ const MainPage = () => {
     });
   
     return renderedRoutes;
-  }, [handleRouteClick, selectedRoute, setIsSidebarCollapsed]);
+  }, [handleRouteClick, selectedRoute]);
   
   useEffect(() => {
     return () => {
@@ -415,14 +415,13 @@ const MainPage = () => {
      const storesToShow = searchResults || [];
     return {
       stores: storesToShow, // Sử dụng stores từ API
-      radius: parseFloat(searchData.expected_radius) * 1000, 
+      radius: searchData?.expected_radius ? parseFloat(searchData.expected_radius) * 1000 : 1000, 
       onStoreClick: handleStoreClick,
       renderAdditionalLayers: currentPhase === 2 ? (map, google) => renderRoutes(map, google, routes) : null, // Truyền hàm render với routes hiện tại
       routes: routes, // Truyền routes để MapContainer biết khi nào cần vẽ lại
       userLocation // Truyền userLocation đã lấy được
-      // Loại bỏ các props không còn dùng trong MapSection: currentPhase, handleBackPhase, handleNextPhase
     };
-  }, [searchResults, handleStoreClick, currentPhase, renderRoutes, routes, userLocation]); // Phụ thuộc vào searchResults và routes
+  }, [searchResults, handleStoreClick, currentPhase, renderRoutes, routes, userLocation, searchData?.expected_radius]);
 
   if (isProcessing && userLocation === null) {
     return (
@@ -468,54 +467,36 @@ const MainPage = () => {
         {/* Legend and Navigation Controls in top-right corner */}
         <div className="absolute top-20 right-4 z-20 flex flex-col gap-3 z-0">
           {/* Legend */}
-          <div className="bg-white rounded-lg shadow-md p-3 w-52">
-            <h3 className="text-sm font-bold mb-1 text-gray-700">Store Marks</h3>
-            <h4 className="text-xs font-semibold mb-2 text-gray-600">Select store icon or route line for more information</h4>
-            <div className="space-y-2">
+          <div className="bg-white rounded-lg shadow-md p-2 sm:p-3 w-40 sm:w-52">
+            <h3 className="text-xs sm:text-sm font-bold mb-1 text-gray-700">Store Marks</h3>
+            <h4 className="text-[10px] sm:text-xs font-semibold mb-2 text-gray-600">Select store icon or route line for more information</h4>
+            <div className="space-y-1 sm:space-y-2">
               <div className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-4 mr-2" viewBox="0 0 384 512">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 sm:h-5 w-3 sm:w-4 mr-1 sm:mr-2" viewBox="0 0 384 512">
                   <path fill={"#fa0202"} d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
                 </svg>
-                <span className="text-xs">You</span>
+                <span className="text-[10px] sm:text-xs">You</span>
               </div>
               {mapColors && Object.keys(mapColors).map((storeName) => (
                 <div key={storeName} className="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-4 mr-2" viewBox="0 0 384 512">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 sm:h-5 w-3 sm:w-4 mr-1 sm:mr-2" viewBox="0 0 384 512">
                     <path fill={mapColors[storeName]} d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
                   </svg>
-                  <span className="text-xs">{storeName}</span>
+                  <span className="text-[10px] sm:text-xs">{storeName}</span>
                 </div>
               ))}
-              {/* <div className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-4 mr-2" viewBox="0 0 384 512">
-                  <path fill={mapColors["Bách hóa xanh"]} d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
-                </svg>
-                <span className="text-xs">Bách hóa xanh</span>
-              </div>
-              <div className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-4 mr-2" viewBox="0 0 384 512">
-                  <path fill={mapColors["WinMart"]} d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
-                </svg>
-                <span className="text-xs">WinMart</span>
-              </div>
-              <div className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-4 mr-2" viewBox="0 0 384 512">
-                  <path fill={mapColors["FamilyMart"]} d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
-                </svg>
-                <span className="text-xs">FamilyMart</span>
-              </div> */}
             </div>
           </div>
           
           {/* Navigation buttons */}
-          <div className="bg-white rounded-lg shadow-md p-3">
+          <div className="bg-white rounded-lg shadow-md p-2 sm:p-3">
             <div className="flex flex-col gap-2">
               {currentPhase === 2 && (
                 <button
                   onClick={handleBackPhase}
-                  className="mb-2 btn-primary w-full px-3 py-2 text-sm text-white rounded-md transition-colors duration-200 flex items-center justify-center"
+                  className="mb-2 btn-primary w-full px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm text-white rounded-md transition-colors duration-200 flex items-center justify-center"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 sm:h-4 w-3 sm:w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                   </svg>
                   Back to Stores
@@ -524,10 +505,10 @@ const MainPage = () => {
               {currentPhase === 1 && (
                 <button
                   onClick={handleNextPhase}
-                  className="mb-2 btn-primary w-full px-3 py-2 text-sm text-white rounded-md transition-colors duration-200 flex items-center justify-center"
+                  className="mb-2 btn-primary w-full px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm text-white rounded-md transition-colors duration-200 flex items-center justify-center"
                 >
                   Find Routes
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 sm:h-4 w-3 sm:w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </button>
@@ -535,9 +516,9 @@ const MainPage = () => {
             </div>
             <button
               onClick={() => navigate('/get-user-data')}
-              className="btn-primary w-full px-3 py-2 text-sm text-white rounded-md transition-colors duration-200 flex items-center justify-center"
+              className="btn-primary w-full px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm text-white rounded-md transition-colors duration-200 flex items-center justify-center"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 sm:h-4 w-3 sm:w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
               Back to Search
@@ -545,11 +526,9 @@ const MainPage = () => {
           </div>
         </div>
         
-        
-        
         {/* Sidebar overlaying the map */}
-        <div className="m-4 absolute top-16 left-0 h-[calc(100vh-8rem)] z-20" 
-              style={{ marginLeft: '2rem'}}>
+        <div className="absolute top-16 left-0 h-[calc(100vh-8rem)] z-20" 
+              style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}>
           <SideBar {...sidebarProps} />
         </div>
       </div>

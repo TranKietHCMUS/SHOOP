@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useGoogleMapsApi } from '../../hooks/useGoogleMapsApi';
 import toast from 'react-hot-toast';
 import { mapColors } from '../../lib/map_colors';
@@ -10,7 +10,6 @@ const MapContainer = ({
   onStoreClick,
   renderAdditionalLayers = null,
   routes = [],
-  
 }) => {
   console.log('MapContainer props:', { stores, routes, userLocation });
   
@@ -23,8 +22,10 @@ const MapContainer = ({
   const additionalLayersRef = useRef([]);
   const isInitializedRef = useRef(false);
   const { isLoaded, error, googleApi } = useGoogleMapsApi();
+  // Store zoom level in ref instead of state to prevent re-renders
+  const mapZoomRef = useRef(window.innerWidth < 768 ? 13 : 14);
 
-  const cleanupMap = () => {
+  const cleanupMap = useCallback(() => {
     if (userMarkerRef.current) {
       userMarkerRef.current.setMap(null);
       userMarkerRef.current = null;
@@ -57,7 +58,7 @@ const MapContainer = ({
     //   navigator.geolocation.clearWatch(watchIdRef.current);
     //   watchIdRef.current = null;
     // }
-  };
+  }, []);
 
   // const updateUserLocation = (position) => {
   //   const newLocation = {
@@ -125,20 +126,6 @@ const MapContainer = ({
   // };
 
   // Khởi tạo vị trí user khi component mount
-  // useEffect(() => {
-  //   if (!isInitializedRef.current && isLoaded) {
-  //     startTracking();
-  //     isInitializedRef.current = true;
-  //   }
-  //   // Cleanup khi component unmount
-  //   return () => {
-  //     if (watchIdRef.current) {
-  //       navigator.geolocation.clearWatch(watchIdRef.current);
-  //       watchIdRef.current = null;
-  //     }
-  //   };
-  // }, [isLoaded]);
-
   useEffect(() => {
     if (isLoaded && googleApi && mapRef.current && userLocation) {
       // Cleanup trước khi tạo map mới
@@ -160,7 +147,7 @@ const MapContainer = ({
       // Tạo map instance mới
       const newMap = new googleApi.maps.Map(mapRef.current, {
         center: userLocation,
-        zoom: 14,
+        zoom: mapZoomRef.current,
         mapTypeControl: true,
         streetViewControl: true,
         fullscreenControl: true,
@@ -291,7 +278,20 @@ const MapContainer = ({
     return () => {
       cleanupMap();
     };
-  }, [isLoaded, googleApi, userLocation, stores, radius, renderAdditionalLayers, routes, onStoreClick]);
+  }, [isLoaded, googleApi, userLocation, stores, radius, renderAdditionalLayers, routes, onStoreClick, cleanupMap]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newZoom = window.innerWidth < 768 ? 13 : 14;
+      mapZoomRef.current = newZoom;
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.setZoom(newZoom);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   if (error) {
     return (
