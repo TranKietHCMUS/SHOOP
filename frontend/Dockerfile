@@ -15,22 +15,18 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-
-# Build app (output sẽ nằm trong dist/)
 RUN npm run build
 
 # Stage 2: Serve với Nginx
 FROM nginx:alpine
 
-# Copy dist vào nginx html
+# Copy frontend build
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copy file cấu hình nginx tùy chỉnh
+# Copy nginx.conf (đã chỉnh sửa cho production)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Đặt biến môi trường mặc định cho PORT
-ENV PORT=80
-
+# Expose port 80 (nginx sẽ listen 80 or 443 tùy file config)
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]

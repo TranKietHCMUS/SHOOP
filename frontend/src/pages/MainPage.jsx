@@ -160,8 +160,10 @@ const MainPage = () => {
 
   useEffect(() => {
     setIsProcessing(true);
-    processSearchWithLocation();
-  }, [processSearchWithLocation]);
+    if (isLoaded) {
+      processSearchWithLocation();
+    }
+  }, [processSearchWithLocation, isLoaded]);
 
   const handleStoreClick = useCallback((store) => {
     setSelectedStore(store);
