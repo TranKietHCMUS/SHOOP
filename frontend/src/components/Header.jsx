@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { toast } from 'react-hot-toast';
 
 const Header = () => {
   const { isAuthenticated, user, logout } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -23,8 +25,19 @@ const Header = () => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
+  const handleSearchClick = (e) => {
+  console.log(isAuthenticated); 
+    if (!isAuthenticated) {
+      e.preventDefault();
+      toast.error('Please login for this feature!', {
+        duration: 1000,
+      }
+      );
+    }
+  };
+
   return (
-    <header className="bg-white shadow-md py-2">
+    <header className="bg-white shadow-md py-2 sticky top-0 z-50">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
@@ -47,7 +60,12 @@ const Header = () => {
             <NavLink to="/" className="text-base md:text-xl" active={location.pathname === "/"}>
               Home
             </NavLink>
-            <NavLink to="/get-user-data" className="text-base md:text-xl" active={location.pathname === "/get-user-data"}>
+            <NavLink 
+              to="/get-user-data" 
+              className="text-base md:text-xl" 
+              active={location.pathname === "/get-user-data"}
+              onClick={handleSearchClick}
+            >
               Search
             </NavLink>
             <NavLink to="/stores" className="text-base md:text-xl" active={location.pathname.includes("/stores")}>
@@ -150,11 +168,15 @@ const Header = () => {
           <MobileNavLink to="/" active={location.pathname === "/"}>
             Home
           </MobileNavLink>
-          <MobileNavLink to="/jobs" active={location.pathname.includes("/jobs")}>
-            Find Jobs
+          <MobileNavLink 
+            to="/get-user-data" 
+            active={location.pathname === "/get-user-data"}
+            onClick={handleSearchClick}
+          >
+            Search
           </MobileNavLink>
-          <MobileNavLink to="/employers" active={location.pathname.includes("/employers")}>
-            For Employers
+          <MobileNavLink to="/stores" active={location.pathname.includes("/stores")}>
+            Stores
           </MobileNavLink>
           <MobileNavLink to="/about" active={location.pathname === "/about"}>
             About
@@ -193,18 +215,6 @@ const Header = () => {
               >
                 Your Profile
               </Link>
-              <Link
-                to="/dashboard"
-                className="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-[#00B14F]"
-              >
-                Dashboard
-              </Link>
-              <Link
-                to="/settings"
-                className="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-[#00B14F]"
-              >
-                Settings
-              </Link>
               <button
                 onClick={logout}
                 className="mt-1 block w-full text-left px-3 py-2 text-base font-medium text-red-600 hover:bg-red-50 hover:text-red-700"
@@ -220,7 +230,7 @@ const Header = () => {
 };
 
 // Desktop Navigation Link
-const NavLink = ({ to, children, active }) => (
+const NavLink = ({ to, children, active, onClick }) => (
   <Link
     to={to}
     className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
@@ -228,13 +238,14 @@ const NavLink = ({ to, children, active }) => (
         ? "text-[#00B14F] bg-[#00B14F]/5" 
         : "text-gray-700 hover:text-[#00B14F] hover:bg-gray-50"
     }`}
+    onClick={onClick}
   >
     {children}
   </Link>
 );
 
 // Mobile Navigation Link
-const MobileNavLink = ({ to, children, active }) => (
+const MobileNavLink = ({ to, children, active, onClick }) => (
   <Link
     to={to}
     className={`block px-3 py-2 rounded-lg text-base font-medium ${
@@ -242,6 +253,7 @@ const MobileNavLink = ({ to, children, active }) => (
         ? "text-[#00B14F] bg-[#00B14F]/5" 
         : "text-gray-700 hover:text-[#00B14F] hover:bg-gray-50"
     }`}
+    onClick={onClick}
   >
     {children}
   </Link>

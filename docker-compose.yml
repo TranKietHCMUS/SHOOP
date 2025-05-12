@@ -4,15 +4,18 @@ services:
   frontend:
     image: lynn0402/shoop-frontend:latest
     container_name: shoop-frontend
+    restart: always
     ports:
       - "80:80"
-    restart: always
-    environment: 
-    - VITE_API_URL=${VITE_API_URL}
-    - VITE_APP_NAME=${VITE_APP_NAME}
-    - VITE_GOOGLE_MAPS_API_KEY=${VITE_GOOGLE_MAPS_API_KEY}
+    environment:
+      VITE_API_URL: ${VITE_API_URL}
+      VITE_APP_NAME: ${VITE_APP_NAME}
+      VITE_GOOGLE_MAPS_API_KEY: ${VITE_GOOGLE_MAPS_API_KEY}
+    depends_on:
+      - backend
     networks:
       - app-network
+
 
   backend:
     image: lynn0402/shoop-backend:latest
@@ -28,7 +31,6 @@ services:
       - GGMAP_API_KEY=${GGMAP_API_KEY}
       - ORS_API_KEY=${ORS_API_KEY}
       - DB_NAME=${DB_NAME}
-      - ORTOOLS_KEY=${ORTOOLS_KEY}
       - SECRET_KEY=${SECRET_KEY}
       - JWT_SECRET_KEY=${JWT_SECRET_KEY}
       - PROD_ENV=True

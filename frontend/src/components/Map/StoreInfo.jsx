@@ -42,21 +42,21 @@ const StoreInfo = ({ store }) => {
     <div>
       <style>{globalScrollbarStyles}</style>
       <div className="max-w-3xl mx-auto bg-white">
-        <header className="mb-6 flex items-start">
-          <img src={store.img_url} alt={store.name} className="w-16 h-16 rounded-lg object-cover flex-shrink-0 mr-4" />
-          <div className="flex-1 min-w-0">
-            <h3 className="text-2xl font-bold text-primary break-words">{store.name}</h3>
-            <p className="text-gray-600 mt-1 text-sm">{store.address}</p>
+        <header className="mb-6 flex flex-col sm:flex-row items-center sm:items-start">
+          <img src={store.img_url} alt={store.name} className="w-16 h-16 rounded-lg object-cover flex-shrink-0 mb-3 sm:mb-0 sm:mr-4" />
+          <div className="flex-1 min-w-0 text-center sm:text-left">
+            <h3 className="text-xl sm:text-2xl font-bold text-primary break-words">{store.name}</h3>
+            <p className="text-gray-600 mt-1 text-xs sm:text-sm">{store.address}</p>
           </div>
         </header>
 
         {/* Tab Navigation */}
         <div className="mb-6 overflow-x-auto">
-          <div className="flex space-x-2 border-b border-gray-200">
+          <div className="flex space-x-2 border-b border-gray-200 pb-1 whitespace-nowrap">
             {store.items.map((item, idx) => (
               <button
                 key={idx}
-                className={`px-4 py-2 font-medium text-sm rounded-t-lg transition-colors
+                className={`px-2 sm:px-4 py-1 sm:py-2 font-medium text-xs sm:text-sm rounded-t-lg transition-colors
                   ${selectedItemIndex === idx 
                     ? 'bg-green-500 text-white border-b-2 border-green-600' 
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
@@ -72,30 +72,27 @@ const StoreInfo = ({ store }) => {
         <section>
           {store.items[selectedItemIndex] && (
             <div className="bg-gray-50 rounded-xl shadow-sm">
-              <div className="mb-4">
-                {/* <h4 className="text-xl font-semibold text-gray-800 break-words">
-                  {store.items[selectedItemIndex].product_name}
-                </h4> */}
-                <p className="text-gray-500">
+              <div className="mb-4 p-2 sm:p-4">
+                <p className="text-gray-500 text-sm">
                   Quantity: {store.items[selectedItemIndex].quantity} {store.items[selectedItemIndex].unit}
                 </p>
               </div>
 
               <CustomScrollbar className="max-h-10">
-                <div className="space-y">
+                <div className="space-y-2 p-2 sm:p-0">
                   {store.items[selectedItemIndex].candidates.map((c, i) => (
                     <div
                       key={i}
-                      className="flex items-start w-full bg-white rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow"
+                      className="flex items-start w-full bg-white rounded-lg p-3 sm:p-4 border border-gray-200 hover:shadow-md transition-shadow"
                     >
                       <img
                         src={c.img_url}
                         alt={c.name}
-                        className="w-16 h-16 object-cover rounded-lg mr-4 flex-shrink-0"
+                        className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-lg mr-3 flex-shrink-0"
                       />
                       <div className="flex-1 min-w-0">
-                        <p className="font-medium text-gray-700 break-words w-full">{c.name}</p>
-                        <p className="mt-1 text-lg font-bold text-green-600">
+                        <p className="font-medium text-sm sm:text-base text-gray-700 break-words w-full">{c.name}</p>
+                        <p className="mt-1 text-base sm:text-lg font-bold text-green-600">
                           {c.price.toLocaleString()} đ/{c.unit}
                         </p>
                       </div>

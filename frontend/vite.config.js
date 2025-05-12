@@ -43,8 +43,8 @@ export default defineConfig(({ command, mode }) => {
   const combinedEnv = { ...rootEnv, ...env }
   
   // Đặt giá trị fallback cho các biến quan trọng nếu chưa được định nghĩa
-  const VITE_API_URL = combinedEnv.VITE_API_URL
-  const VITE_GOOGLE_MAPS_API_KEY = combinedEnv.VITE_GOOGLE_MAPS_API_KEY
+  const VITE_API_URL = combinedEnv.VITE_API_URL || 'http://localhost:5000'
+  const VITE_GOOGLE_MAPS_API_KEY = combinedEnv.VITE_GOOGLE_MAPS_API_KEY || ''
   console.log('Final environment variables:', {
     VITE_API_URL,
     VITE_GOOGLE_MAPS_API_KEY,
