@@ -14,7 +14,7 @@ class SearchService:
     # Parameter to scale distance cost
     DEFAULT_DISTANCE_COST_PER_KM = 500
     DEFAULT_ITEM_PRICE_SCALE_FACTOR = 1
-    DEFAULT_TIME_LIMIT_SECONDS = 3
+    DEFAULT_TIME_LIMIT_SECONDS = 1
     DEFAULT_AVERAGE_SPEED_KMH = 25
 
     def __init__(self, distance_cost_per_km=None, item_price_scale_factor=None, time_limit_seconds=None, average_speed_kmh=None):
